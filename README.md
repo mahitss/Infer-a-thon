@@ -13,8 +13,9 @@ The system must distinguish proposals from accepted commitments, preserve origin
 - **Milestone:** M001 — Product Discovery & Technical Foundation
 - **Status:** Documentation package drafted; Product Owner approval and official problem-statement fit pending.
 - **Implementation:** Not started.
-- **Repository baseline:** GitHub repository inspected on 2026-11-19. It was empty (size 0, no branches; tree and commit-history requests returned HTTP 409).
-- **GitHub write attempt:** GitHub Contents API returned HTTP 403 `Resource not accessible by integration`; no remote files or commits were created.
+- **Initial repository inspection (historical, 2026-11-19):** at that time the repository was empty (size 0, no branches; tree and commit-history requests returned HTTP 409). This describes the starting state only, not the current repository.
+- **Initial GitHub API write attempt (historical, 2026-11-19):** the GitHub Contents API returned HTTP 403 `Resource not accessible by integration`; no remote files or commits were created by that attempt. This was superseded by the successful local Git import recorded below.
+- **Documentation baseline:** the initial documentation package was committed on `main` as `d5e5e18757285a28eb9975afcca599be2be6316f` (`docs: establish Infer-a-Thon M001 discovery baseline`) and pushed to `origin/main` without force. The remote commit SHA was verified with `git ls-remote` and the GitHub API tree.
 
 ## Team
 
@@ -29,6 +30,8 @@ The system must distinguish proposals from accepted commitments, preserve origin
 - [Proposed Architecture](docs/architecture.md)
 - [ADR-001: Evidence-first Modular Monolith](docs/ADR-001.md)
 - [Roadmap & Acceptance Gates](docs/roadmap-and-acceptance.md)
+- [Research Sources & Verification Notes](docs/research-sources.md)
+- [M001 Verification & Blockers](docs/m001-verification.md)
 
 ## Core principle
 
