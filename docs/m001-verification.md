@@ -57,6 +57,17 @@ No application lint, type check, unit/integration/E2E tests or production build 
 
 Six lines in the authoritative source use two trailing spaces as Markdown hard line breaks, and were preserved verbatim: `docs/PRD.md` lines 3–5, `docs/architecture.md` line 3, `docs/competitive-landscape.md` line 3, `docs/m001-verification.md` line 3. `git diff --check` passes (exit 0); the stricter `git diff --cached --check` reports these six lines as trailing whitespace. Removing them would merge rendered metadata lines, so they are retained intentionally and are not defects to fix.
 
+## M001.2 post-import audit (completed)
+
+- **Commit:** `79afabfb351af389761cc1df23c80a9dc2b47f81`
+- **Message:** `docs: record M001.1 import verification`
+- **Branch:** `main`
+- **Files modified:** `README.md`, `CODEX_HANDOFF.md`, `docs/m001-verification.md`.
+- **Changes:** 55 additions, 10 deletions.
+- **Independent GitHub verification:** branch reference, commit, parent, file list and unchanged six document blobs verified.
+- **M001.2 status:** accepted.
+- **M001 overall status:** open; remaining discovery gates still apply.
+
 ## Open exit criteria
 
 - [ ] Product Owner approves PRD, MVP boundaries and primary workflow.
