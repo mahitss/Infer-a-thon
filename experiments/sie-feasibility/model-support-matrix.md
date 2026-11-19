@@ -9,7 +9,7 @@ the official docs. No identifier was invented.
 | sie_id | Primitive | Input | Key config | Approx. largest weight artifact (HF API, 2026-11-19) | Bundle / image | CPU status here |
 |---|---|---|---|---|---|---|
 | `sentence-transformers/all-MiniLM-L6-v2` | encode | text, max_seq 256 | dense dim 384, mean pooling, normalized | 90.9 MB | `default` / `latest-cpu-default`, `sentence_transformer` adapter | Documented; **Untested** |
-| `BAAI/bge-m3` | encode + score | text, max_seq 8192 | dense 1024, sparse 250002, multivector 1024 | 2.27 GB | `default` / `latest-cpu-default`, `bge_m3_flash` / `bge_m3_flag` | Documented; **Blocked** — size exceeds available RAM |
+| `BAAI/bge-m3` | encode + score | text, max_seq 8192 | dense 1024, sparse 250002, multivector 1024 | 2.27 GB | `default` / `latest-cpu-default`, `bge_m3_flash` / `bge_m3_flag` | Documented; **Blocked** — insufficient verified headroom: 2.27 GB exceeds the 2.23 GB sample but is below 2.83 GB; overhead unknown |
 | `cross-encoder/ms-marco-MiniLM-L-6-v2` | score | text, max_seq 512 | `bert_flash_cross_encoder` | 91.0 MB | `default` / `latest-cpu-default` | Documented; **Untested** |
 | `urchade/gliner_multi-v2.1` | extract (NER) | text, max_seq 384 | `gliner` adapter, zero-shot labels | 1.16 GB | `default` / `latest-cpu-default` | Documented; **Blocked by gate** (size vs RAM) |
 | `openai/whisper-large-v3-turbo` | extract (audio) | audio | `whisper.adapter`, float16 | 1.62 GB | listed in `default` bundle | Documented; **Untested**, CPU feasibility unknown |
@@ -30,3 +30,10 @@ the official docs. No identifier was invented.
 
 - From SIE 0.13.0 telemetry is off by default; opt-out: `DO_NOT_TRACK=1` or `SIE_TELEMETRY_DISABLED=1`.
 - Experiment config sets both opt-outs, binds to localhost, and uses a named HF cache volume.
+
+## Corrections (M001.3.1) and pinning status
+
+- The bge-m3 blocker was previously overstated as "size exceeds available RAM". Corrected: it exceeds the lower 2.23 GB sample but is below the 2.83 GB sample; runtime/container overhead is unknown and verified headroom is insufficient. The 8 GB threshold is an internal conservative policy, not an official SIE minimum.
+- `ghcr.io/v2/` HTTP 405 to HEAD proves endpoint reachability only; no image/blob pull was tested.
+- Observed `hf_revision` values for every model above and the `default` bundle SHA are recorded in `config/versions.json`.
+- Image digest and SDK version remain unrecorded: no authorized pull or SDK install occurred, and no value was invented. This is a remaining reproducibility blocker.

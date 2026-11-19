@@ -1,23 +1,37 @@
 {
+  "check_id": "M001.3-resource-gate",
   "date": "2026-11-19",
+  "checked_at": "2026-11-19T13:21:00Z",
+  "checked_at_note": "Documentation/correction timestamp from M001.3.1, not a new gate measurement. No new resource check was performed.",
   "branch": "research/m001-sie-feasibility",
   "baseline_commit": "8d7f506424a01c7d66fedf980e1a73752f1f05a5",
+  "config_version": "sie-cpu.yml:1",
+  "image_tag": "ghcr.io/superlinked/sie-server:latest-cpu-default",
+  "image_digest": null,
+  "image_digest_note": "Tag is mutable. Digest was not resolved because no registry pull/inspection was authorized or performed.",
+  "sdk_version": null,
+  "sdk_version_note": "sie-sdk was not installed; no release number is claimed.",
   "observed": {
     "cpu": "AMD Ryzen 5 7520U with Radeon Graphics",
     "cores_physical": 4,
     "cores_logical": 8,
     "ram_physical_gb": 15.28,
     "ram_available_gb_samples": [2.23, 2.83],
+    "ram_available_gb_min": 2.23,
+    "ram_available_gb_max": 2.83,
     "gpu": "AMD Radeon(TM) Graphics (integrated); no NVIDIA/CUDA device",
     "windows": "Windows 11 Home Single Language 10.0.26200",
     "wsl2": "installed; distro docker-desktop STOPPED; default version 2",
     "docker_client": "29.9.3; compose v5.7.0",
+    "docker_engine_ready": false,
     "docker_engine_error": "failed to connect to npipe:////./pipe/dockerDesktopLinuxEngine; system cannot find the file specified",
     "disk_free_gb": 154.85,
     "port_8080_listener": false,
     "python": "3.13.5",
     "ollama": "0.40.16; models gemma3:4b, qwen3.5:4b, gemma4:31b-cloud"
   },
+  "memory_safety_threshold_gb": 8,
+  "memory_safety_threshold_note": "Internal conservative safety policy for this experiment, NOT an official SIE minimum requirement.",
   "model_weight_artifacts_gb": {
     "sentence-transformers/all-MiniLM-L6-v2": 0.0909,
     "cross-encoder/ms-marco-MiniLM-L-6-v2": 0.091,
@@ -26,16 +40,30 @@
     "openai/whisper-large-v3-turbo": 1.62,
     "Qwen/Qwen3-Reranker-4B": 4.06
   },
+  "bge_m3_memory_analysis": {
+    "artifact_gb": 2.27,
+    "exceeds_lower_sample_2_23_gb": true,
+    "below_upper_sample_2_83_gb": true,
+    "runtime_and_container_overhead": "unknown; not measured",
+    "verified_headroom": "insufficient",
+    "conclusion": "The 2.27 GB artifact is below the upper RAM sample but above the lower sample. With unknown runtime and container overhead there is insufficient verified memory headroom to proceed."
+  },
   "criteria": {
     "physical_memory_headroom": "FAIL",
     "docker_wsl_memory_readiness": "FAIL",
     "host_disk_space": "PASS",
-    "network_connectivity": "PASS",
+    "network_connectivity": "PARTIAL",
     "linux_docker_engine_ready": "FAIL"
+  },
+  "criteria_detail": {
+    "physical_memory_headroom": "Insufficient verified headroom: 2.23-2.83 GB available vs 8 GB internal safety policy; bge-m3 2.27 GB straddles the samples and overhead is unknown.",
+    "network_connectivity": "Documentation hosts (superlinked.com, github.com) returned HTTP 200. ghcr.io/v2/ returned HTTP 405 to HEAD, which proves endpoint reachability only. No image manifest, layer or blob download was tested; registry pull status UNVERIFIED.",
+    "linux_docker_engine_ready": "npipe:////./pipe/dockerDesktopLinuxEngine missing; WSL distro docker-desktop stopped. This independently blocks the experiment regardless of RAM."
   },
   "decision": "STOP_BEFORE_DOWNLOAD",
   "status": "BLOCKED",
-  "reason": "Docker Linux engine is not running and only 2.23-2.83 GB RAM is available; BAAI/bge-m3 alone requires ~2.27 GB.",
+  "reason": "Docker Linux engine is unavailable (independent blocker) and there is insufficient verified memory headroom. Available RAM samples are 2.23 GB and 2.83 GB; the 2.27 GB bge-m3 artifact exceeds the lower sample but is below the upper sample, and runtime/container overhead is unknown.",
   "downloads_attempted": false,
+  "registry_pull_tested": false,
   "inference_executed": false
 }

@@ -69,20 +69,22 @@ Sizes are the largest weight artifact reported by the Hugging Face model API on 
 
 | Gate criterion | Requirement | Observed | Verdict |
 |---|---|---|---|
-| Physical memory | Enough headroom for container + model | 15.28 GB total, only 2.23–2.83 GB available | **FAIL** |
+| Physical memory | Enough verified headroom for container + model | 15.28 GB total; available samples **2.23 GB** (lower) and **2.83 GB** (upper) | **FAIL — insufficient verified headroom** |
 | Docker/WSL memory | Engine running with usable memory | WSL distro `docker-desktop` stopped; daemon unreachable; no `.wslconfig` | **FAIL** |
 | Host disk | Space for image + model cache | 154.85 GB free | PASS |
-| Network | Docs/registry reachable | superlinked.com HTTP 200, github.com HTTP 200, ghcr.io/v2 responded (405 to HEAD, expected for a registry) | PASS |
+| Network | Docs/registry reachable and pull verified | Docs hosts HTTP 200; `ghcr.io/v2/` returned **405 to HEAD** = endpoint reachability only, **not** a successful manifest/blob download | **PARTIAL / UNVERIFIED** |
 | Linux Docker engine | Ready | `npipe:////./pipe/dockerDesktopLinuxEngine` missing | **FAIL** |
 
-**Decision: STOP before pulling any image or model.** The largest required model for the multilingual benchmark (`BAAI/bge-m3`, ~2.27 GB) alone exceeds currently available RAM; the Docker engine is not running. No downloads, container starts, or inference calls were made.
+**Memory analysis (corrected in M001.3.1):** the `BAAI/bge-m3` artifact (~2.27 GB) **exceeds the lower sample (2.23 GB)** but is **below the upper sample (2.83 GB)**. It is therefore incorrect to say it exceeds *all* recorded RAM samples. Runtime and container overhead are unknown and were not measured, so there is **insufficient verified memory headroom**. The **8 GB** threshold used in this report is an **internal conservative safety policy for this experiment, not an official SIE minimum requirement**.
+
+**Decision: STOP before pulling any image or model.** There is insufficient verified memory headroom, and the Docker Linux engine is unavailable — an **independent blocker** that would stop the experiment even if memory were adequate. No downloads, container starts, registry pulls, or inference calls were made.
 
 ## Phases 4–9 — BLOCKED (not executed)
 
 | Phase | Intended test | Status | Exact blocker |
 |---|---|---|---|
 | 4 — Smoke test | `/readyz`, SDK connect, model metadata, inference | **BLOCKED** | Docker Linux engine unavailable; resource gate failed |
-| 5 — Encode | MiniLM then bge-m3; EN/HI/Hinglish retrieval | **BLOCKED** | No SIE server; bge-m3 ~2.27 GB > available RAM |
+| 5 — Encode | MiniLM then bge-m3; EN/HI/Hinglish retrieval | **BLOCKED** | No SIE server; bge-m3 ~2.27 GB vs 2.23–2.83 GB available samples with unknown overhead — insufficient verified headroom |
 | 6 — Score | `cross-encoder/ms-marco-MiniLM-L-6-v2` rerank | **BLOCKED** | No SIE server; multilingual Qwen3 reranker is GPU-oriented (~4.06 GB) |
 | 7 — Extract | `urchade/gliner_multi-v2.1` GLiNER fields | **BLOCKED** | No SIE server; model ~1.16 GB vs ~2.5 GB available |
 | 8 — OCR/audio | docling default/ocr, whisper | **BLOCKED** | No SIE server; dedicated OCR VLMs require non-CPU image bundles; no NVIDIA GPU |
@@ -98,23 +100,45 @@ No success metrics, latencies, accuracies, or memory measurements are reported. 
 - [Run configuration (localhost, telemetry off)](../experiments/sie-feasibility/config/sie-cpu.yml)
 - [Synthetic multilingual corpus](../experiments/sie-feasibility/data/multilingual_corpus.jsonl)
 - [Synthetic extraction examples with ground truth](../experiments/sie-feasibility/data/extraction_samples.jsonl)
-- Reproducible scripts: `env_audit.ps1`, `run_smoke_test.sh`, `benchmark_encode.py`, `benchmark_score.py`, `benchmark_extract.py`
+- Reproducible scripts: `env_audit.ps1`, `run_smoke_test.sh`, `benchmark_encode.py`, `benchmark_score.py`, `benchmark_extract.py`, `test_metric_helpers.py`
+- Version/config record: [`config/versions.json`](../experiments/sie-feasibility/config/versions.json)
 - Raw results: `results/resource-gate.json`, `results/benchmark-results.json` (all measurements `null` — not tested), `results/blocked-log.md`
 
 No weights, caches, credentials, or Docker images are committed.
+
+### Corpus and metric limitations (corrected in M001.3.1)
+
+- The 24-record synthetic corpus is a **pilot smoke corpus**, not sufficient evidence for general multilingual quality. It has limited EN/HI/Hinglish business-message coverage and **no hard negatives, paraphrases or conflicting-evidence examples**. These must be added before any multilingual claim.
+- Encode p95 latency now uses **linear interpolation** over sorted samples at `(n−1)×0.95`; `--iterations` must be an integer ≥ 1 (zero/negative/non-integer rejected).
+- Extraction reporting separates **field-presence** precision/recall/F1 from **normalized field-value exact-match** precision/recall/F1. Normalization is limited to whitespace, casefold, documented punctuation stripping and explicit currency aliases (`rs`, `rupees`, `rupee`, `₹` → `inr`); there is no translation or value guessing.
+- Neither metric is agreement-detection accuracy, negation handling or factual correctness.
+
+### Reproducibility and pinning status (M001.3.1)
+
+- The image tag `ghcr.io/superlinked/sie-server:latest-cpu-default` is **mutable**. No digest is recorded because no registry pull or manifest inspection was performed; inventing a digest is prohibited.
+- `sie-sdk` is **not version-pinned**: it was never installed in this milestone, so no release number is claimed.
+- Model identifiers and their observed `hf_revision` values, plus the observed `default` bundle config SHA, are recorded in `config/versions.json`. Model weight artifacts were not downloaded; sizes come from Hugging Face metadata only.
+- Exact invocation paths (from repository root):
+  - `powershell -File experiments/sie-feasibility/scripts/env_audit.ps1`
+  - `bash experiments/sie-feasibility/scripts/run_smoke_test.sh` (refuses unless the gate, timestamp, threshold, engine and explicit pull authorization all pass)
+  - `python experiments/sie-feasibility/scripts/benchmark_encode.py --model ... --corpus experiments/sie-feasibility/data/multilingual_corpus.jsonl --iterations 5 --out experiments/sie-feasibility/results`
+  - `python experiments/sie-feasibility/scripts/benchmark_score.py --corpus experiments/sie-feasibility/data/multilingual_corpus.jsonl --out experiments/sie-feasibility/results`
+  - `python experiments/sie-feasibility/scripts/benchmark_extract.py --data experiments/sie-feasibility/data/extraction_samples.jsonl --out experiments/sie-feasibility/results`
+  - `python -m unittest discover -s experiments/sie-feasibility/scripts -p 'test_*.py' -v`
+- **Remaining pinning blocker:** reproducible exact reproduction is not yet possible until an authorized pull provides an image digest and an SDK version is installed and recorded.
 
 ## Phase 11 — Technical recommendation (evidence-based, provisional)
 
 Answers are conditioned on the resource gate failing; they are **documentation-based hypotheses**, not measured conclusions.
 
-1. **Can SIE run locally on our hardware?** Not demonstrated. The CPU image is documented for x86 Linux and should be technically compatible with this x86 laptop under Docker Desktop/WSL2, but the engine is not running and available RAM is too low. Evidence: Phase 1/3. **Verdict: UNVERIFIED / currently BLOCKED.**
+1. **Can SIE run locally on our hardware?** Not demonstrated. The CPU image is documented for x86 Linux and should be technically compatible with this x86 laptop under Docker Desktop/WSL2, but the engine is not running (independent blocker) and there is insufficient **verified** memory headroom: 2.23/2.83 GB samples, unknown runtime overhead, and an internal conservative 8 GB safety policy (not an official SIE minimum). Evidence: Phase 1/3. **Verdict: UNVERIFIED / currently BLOCKED.**
 2. **Which primitives work locally?** Docs indicate `encode`, `score`, `extract` are in the CPU default bundle; `generate` requires the CUDA image. Actual local support is untested. Evidence: `bundles/default.yaml`, quickstart.
 3. **Best multilingual model?** `BAAI/bge-m3` is the documented multilingual flagship with dense+sparse output; untested here. `all-MiniLM-L6-v2` is English-oriented. Evidence: model configs and docs. **No measured winner.**
 4. **Is reranking affordable on CPU?** Unknown. The small `ms-marco-MiniLM-L-6-v2` reranker (~91 MB) is the only CPU-plausible candidate; the multilingual `Qwen/Qwen3-Reranker-4B` (~4.06 GB, CUDA-graph/Triton profile) is not. Evidence: model configs, HF sizes.
 5. **OCR/transcription without GPU?** Born-digital document parsing via `docling` `default` profile is a plausible CPU path; scanned/image OCR via dedicated VLM models is documented on GPU/vision bundles only; Whisper transcription is in the default bundle but its CPU feasibility is untested. Evidence: OCR docs, bundle list, model config.
 6. **Does generation need a separate runtime?** SIE Generate requires a CUDA SGLang image, so it cannot run here. Ollama (v0.40.16) is already installed with `gemma3:4b` and `qwen3.5:4b`; it could be a separate local reasoning layer, but model loading was not tested. It must be labelled Ollama, not SIE Generate.
 7. **Can the system remain ₹0?** Self-hosted SIE is open source; no spend is required if CPU models suffice and Ollama is used for generation. However, GPU-only OCR/generation would require either hardware we lack or a paid service. **₹0 is plausible but unproven for the full workflow.**
-8. **What must be simplified/replaced?** Likely: drop dedicated VLM OCR (use docling default + manual review for scans), use small English/Hinglish embeddings instead of bge-m3 if RAM stays low, use the small cross-encoder reranker or skip reranking, and use Ollama for agent reasoning.
+8. **What must be simplified/replaced?** Likely: drop dedicated VLM OCR (use docling default + manual review for scans), use small ~90 MB embeddings instead of bge-m3 until verified headroom meets the internal 8 GB policy, use the small cross-encoder reranker or skip reranking, and use Ollama for agent reasoning.
 9. **Architecture decisions to change?** The M001 architecture already says "verify SIE model/hosting path before implementation." This milestone confirms that gate remains **open**. ADR-001's modular monolith and repository-interface abstraction for semantic search remain sound; do not hard-code SIE or any model ID into application code until benchmarks exist. Consider adding an ADR for a local-generation fallback (Ollama) and a CPU-only capability matrix.
 
 ## Phase 12 — Verification
@@ -128,7 +152,19 @@ Answers are conditioned on the resource gate failing; they are **documentation-b
 
 ## Outstanding work / next gates
 
-- Approval to start Docker Desktop (without changing resource allocations) and re-run the resource gate at a time when ≥8 GB RAM is available.
-- Approval to pull `ghcr.io/superlinked/sie-server:latest-cpu-default` and download only the ~90 MB MiniLM model first.
-- Actual EN/HI/Hinglish encode, score and GLiNER extract benchmarks.
+- Approval to start Docker Desktop (without changing resource allocations) and re-run the resource gate at a time when available RAM meets the **internal conservative 8 GB safety policy** (not an official SIE minimum).
+- Explicit authorization to pull `ghcr.io/superlinked/sie-server:latest-cpu-default` (required by the hardened smoke-test script) and to download only the ~90 MB MiniLM model first.
+- Actual EN/HI/Hinglish encode, score and GLiNER extract benchmarks on an expanded corpus with hard negatives, paraphrases and conflicting evidence.
+- Resolution of image-digest and SDK-version pinning blockers.
 - Official 2026-12-05 brief fit review and Product Owner approval remain open from M001.
+
+## Corrections recorded in M001.3.1 (independent architecture review)
+
+The resource-gate BLOCKED decision is unchanged. The following defects were corrected:
+
+1. **RAM reporting:** removed the claim that the 2.27 GB bge-m3 artifact exceeds all available RAM. It exceeds the 2.23 GB lower sample but is below the 2.83 GB upper sample; overhead is unknown and verified headroom is insufficient. The 8 GB figure is an internal safety policy, not an official SIE minimum.
+2. **Network status:** `ghcr.io/v2/` HTTP 405 to HEAD is endpoint reachability only, not a tested manifest/blob download. Registry pull status is `PARTIAL / UNVERIFIED`.
+3. **Extraction metrics:** replaced label-only overlap with separate field-presence and normalized field-value exact-match precision/recall/F1, using actual predicted entity text.
+4. **Encoding metrics:** replaced the nearest-rank p95 with linear interpolation; added iteration validation (≥1); documented pilot-corpus limits.
+5. **Smoke-test hardening:** the script now requires a fresh PASS gate with timestamp, documented 8 GB internal threshold, engine availability and explicit pull authorization, with cleanup on failure and localhost-only/telemetry-off preserved.
+6. **Reproducibility:** recorded observed model revisions and bundle SHA; image digest and SDK version remain unrecorded blockers.

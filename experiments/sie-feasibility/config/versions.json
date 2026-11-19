@@ -1,0 +1,38 @@
+{
+  "config_version": "sie-cpu.yml:1",
+  "recorded_at": "2026-11-19T13:21:00Z",
+  "source": "Official SIE GitHub repository (main branch) and model YAML configs, inspected 2026-11-19",
+  "image": {
+    "tag": "ghcr.io/superlinked/sie-server:latest-cpu-default",
+    "tag_is_mutable": true,
+    "digest": null,
+    "blocker": "No registry pull or manifest inspection was authorized or performed; digest cannot be recorded without inventing it."
+  },
+  "sdk": {
+    "python_package": "sie-sdk",
+    "pinned_version": null,
+    "blocker": "SDK was not installed; no release number was observed. 'pip install sie-sdk' in official docs is unpinned."
+  },
+  "bundle": {
+    "name": "default",
+    "config_path": "packages/sie_server/bundles/default.yaml",
+    "sha_observed": "8fb6de52efda2e28e1f9c361563b2c22094a0297",
+    "source": "https://api.github.com/repos/superlinked/sie/contents/packages/sie_server/bundles/default.yaml?ref=main"
+  },
+  "models": [
+    {"sie_id": "sentence-transformers/all-MiniLM-L6-v2", "hf_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"},
+    {"sie_id": "BAAI/bge-m3", "hf_revision": "5617a9f61b028005a4858fdac845db406aefb181"},
+    {"sie_id": "cross-encoder/ms-marco-MiniLM-L-6-v2", "hf_revision": "c5ee24cb16019beea0893ab7796b1df96625c6b8"},
+    {"sie_id": "urchade/gliner_multi-v2.1", "hf_revision": "443d26d654e0324125a96bebd8e796c14ff2efe6"},
+    {"sie_id": "openai/whisper-large-v3-turbo", "hf_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9"},
+    {"sie_id": "docling", "hf_id": "superlinked/docling-artifacts", "hf_revision": "310479be56f3a99a0fea75d930e11eea38bf5ef7"},
+    {"sie_id": "Qwen/Qwen3-Reranker-4B", "hf_revision": "22e683669bc0f0bd69640a1354a6d0aebcfeede5"}
+  ],
+  "model_revision_source": "https://raw.githubusercontent.com/superlinked/sie/main/packages/sie_server/models/",
+  "remaining_pinning_blockers": [
+    "Image tag is mutable and no digest was observed.",
+    "Python SDK version was not installed or observed.",
+    "Exact resolved dependency versions inside the image are unknown without running or inspecting the image.",
+    "Model artifacts were not downloaded; first-load sizes are from Hugging Face metadata, not measured locally."
+  ]
+}

@@ -25,7 +25,7 @@ be fabrication. All numeric fields in `benchmark-results.json` are `null`.
 ## Exact blockers by phase
 
 - Phase 4 smoke test: Docker Linux engine not running.
-- Phase 5 encode: no server; `BAAI/bge-m3` ~2.27 GB exceeds available RAM.
+- Phase 5 encode: no server; `BAAI/bge-m3` ~2.27 GB exceeds the 2.23 GB lower sample but is below the 2.83 GB upper sample; overhead unknown, so verified headroom is insufficient. Docker engine unavailability is an independent blocker.
 - Phase 6 score: no server; multilingual `Qwen/Qwen3-Reranker-4B` ~4.06 GB and GPU-oriented profile.
 - Phase 7 extract: no server; GLiNER model ~1.16 GB vs ~2.5 GB available.
 - Phase 8 OCR/audio: no server; dedicated OCR VLMs require non-CPU image bundles; no NVIDIA GPU.
@@ -33,7 +33,14 @@ be fabrication. All numeric fields in `benchmark-results.json` are `null`.
 
 ## Potential ₹0 alternatives (untested)
 
-- Start Docker Desktop with existing allocations and re-check at ≥8 GB free RAM.
+- Start Docker Desktop with existing allocations and re-check against the **internal conservative 8 GB safety policy** (not an official SIE minimum requirement).
 - Use only ~90 MB models first (MiniLM encode, ms-marco-MiniLM reranker).
 - Use `docling` default profile for born-digital PDFs; defer scanned-document OCR.
 - Use already-installed Ollama 4B models as a *separate* reasoning layer; never label it SIE Generate.
+- Before any pull, a fresh gate result with status PASS, timestamp, threshold and engine readiness must exist, and `SIE_IMAGE_PULL_AUTHORIZED=1` must be set.
+
+## Corrections recorded in M001.3.1
+
+- RAM claim corrected: 2.27 GB exceeds the lower 2.23 GB sample, is below the 2.83 GB sample; overhead unknown.
+- Network claim corrected: `ghcr.io/v2/` HTTP 405 to HEAD is endpoint reachability only; no manifest, layer or blob download was tested; registry pull status UNVERIFIED.
+- No Docker, registry pull, model download or inference was performed in M001.3.1.

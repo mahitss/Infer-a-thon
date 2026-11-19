@@ -45,7 +45,7 @@ credentials, API keys or secrets were printed. No system settings were changed.
 |---|---|
 | `https://superlinked.com/docs/quickstart` | HTTP 200 |
 | `https://github.com/superlinked/sie` | HTTP 200 |
-| `https://ghcr.io/v2/` | HTTP 405 to HEAD — expected for a registry endpoint; connectivity not proven for a blob pull |
+| `https://ghcr.io/v2/` | HTTP 405 to HEAD — **endpoint reachability only**. No manifest, layer or blob download was tested; registry pull status **UNVERIFIED**. |
 
 ## Conclusion
 

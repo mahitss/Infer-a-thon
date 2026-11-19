@@ -1,10 +1,14 @@
 {
   "status": "BLOCKED",
-  "note": "No SIE container was started and no model was downloaded. Every measurement below is null because nothing was executed. These are placeholders, not results.",
+  "note": "No SIE container was started, no model was downloaded and no registry blob pull was tested. Every measurement below is null because nothing was executed. These are placeholders, not results.",
+  "network_status": "PARTIAL/UNVERIFIED: documentation hosts reachable; ghcr.io/v2/ responded 405 to HEAD (endpoint reachability only); no image or blob download tested.",
+  "memory_headroom": "INSUFFICIENT_VERIFIED: samples 2.23 GB and 2.83 GB available; internal conservative policy threshold 8 GB; runtime/container overhead unknown.",
+  "corpus_caveat": "24-record pilot smoke corpus only; limited EN/HI/Hinglish coverage; no hard negatives, paraphrases or conflicting-evidence examples; not sufficient evidence for general multilingual quality.",
   "encode": {
     "sentence-transformers/all-MiniLM-L6-v2": {
       "first_load_seconds": null,
       "warm_latency_ms_mean": null,
+      "warm_latency_ms_p95": null,
       "embedding_dimensions": null,
       "top1_accuracy": null,
       "top3_recall": null,
@@ -13,11 +17,12 @@
     "BAAI/bge-m3": {
       "first_load_seconds": null,
       "warm_latency_ms_mean": null,
+      "warm_latency_ms_p95": null,
       "embedding_dimensions": null,
       "top1_accuracy": null,
       "top3_recall": null,
       "successful_inference_count": null,
-      "blocker": "resource gate: ~2.27 GB model vs 2.23-2.83 GB available RAM"
+      "blocker": "insufficient verified memory headroom: 2.27 GB artifact exceeds the 2.23 GB lower sample but is below the 2.83 GB upper sample; overhead unknown; Docker engine also unavailable"
     }
   },
   "score": {
@@ -30,10 +35,19 @@
   },
   "extract": {
     "urchade/gliner_multi-v2.1": {
-      "micro_precision": null,
-      "micro_recall": null,
+      "field_presence": {
+        "precision": null,
+        "recall": null,
+        "f1": null
+      },
+      "field_value_normalized_exact": {
+        "precision": null,
+        "recall": null,
+        "f1": null
+      },
       "successful": null,
-      "failures": null
+      "failures": null,
+      "note": "Field presence and normalized value correctness are separate metrics; neither is agreement-detection accuracy."
     }
   },
   "ocr_audio": {
