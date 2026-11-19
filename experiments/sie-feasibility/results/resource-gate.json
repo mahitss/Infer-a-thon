@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-19",
+  "branch": "research/m001-sie-feasibility",
+  "baseline_commit": "8d7f506424a01c7d66fedf980e1a73752f1f05a5",
+  "observed": {
+    "cpu": "AMD Ryzen 5 7520U with Radeon Graphics",
+    "cores_physical": 4,
+    "cores_logical": 8,
+    "ram_physical_gb": 15.28,
+    "ram_available_gb_samples": [2.23, 2.83],
+    "gpu": "AMD Radeon(TM) Graphics (integrated); no NVIDIA/CUDA device",
+    "windows": "Windows 11 Home Single Language 10.0.26200",
+    "wsl2": "installed; distro docker-desktop STOPPED; default version 2",
+    "docker_client": "29.9.3; compose v5.7.0",
+    "docker_engine_error": "failed to connect to npipe:////./pipe/dockerDesktopLinuxEngine; system cannot find the file specified",
+    "disk_free_gb": 154.85,
+    "port_8080_listener": false,
+    "python": "3.13.5",
+    "ollama": "0.40.16; models gemma3:4b, qwen3.5:4b, gemma4:31b-cloud"
+  },
+  "model_weight_artifacts_gb": {
+    "sentence-transformers/all-MiniLM-L6-v2": 0.0909,
+    "cross-encoder/ms-marco-MiniLM-L-6-v2": 0.091,
+    "urchade/gliner_multi-v2.1": 1.16,
+    "BAAI/bge-m3": 2.27,
+    "openai/whisper-large-v3-turbo": 1.62,
+    "Qwen/Qwen3-Reranker-4B": 4.06
+  },
+  "criteria": {
+    "physical_memory_headroom": "FAIL",
+    "docker_wsl_memory_readiness": "FAIL",
+    "host_disk_space": "PASS",
+    "network_connectivity": "PASS",
+    "linux_docker_engine_ready": "FAIL"
+  },
+  "decision": "STOP_BEFORE_DOWNLOAD",
+  "status": "BLOCKED",
+  "reason": "Docker Linux engine is not running and only 2.23-2.83 GB RAM is available; BAAI/bge-m3 alone requires ~2.27 GB.",
+  "downloads_attempted": false,
+  "inference_executed": false
+}

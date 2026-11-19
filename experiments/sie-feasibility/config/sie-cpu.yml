@@ -1,0 +1,26 @@
+# SIE CPU experiment configuration (intended, NOT executed).
+# Safety: localhost-only, telemetry disabled, persistent model cache volume.
+# No credentials are stored here; no public port publishing.
+
+services:
+  sie-cpu:
+    image: ghcr.io/superlinked/sie-server:latest-cpu-default
+    platform: linux/amd64
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - sie-hf-cache:/app/.cache/huggingface
+    environment:
+      DO_NOT_TRACK: "1"
+      SIE_TELEMETRY_DISABLED: "1"
+      SIE_TELEMETRY_ENABLED: "0"
+    # Do not add GPU reservations: this machine has no NVIDIA GPU.
+
+volumes:
+  sie-hf-cache:
+
+# Intended first-load targets, in increasing size order:
+#   sentence-transformers/all-MiniLM-L6-v2  (~90 MB, dense 384)
+#   cross-encoder/ms-marco-MiniLM-L-6-v2    (~91 MB, reranker)
+#   urchade/gliner_multi-v2.1               (~1.16 GB, NER)
+#   BAAI/bge-m3                             (~2.27 GB, multilingual encode) -- only if >=8 GB free

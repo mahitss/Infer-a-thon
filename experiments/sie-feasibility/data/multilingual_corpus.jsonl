@@ -1,0 +1,24 @@
+{"type":"doc","id":"d01","lang":"en","text":"We confirm the unit price of 240 rupees per carton for the 500 cartons discussed yesterday."}
+{"type":"doc","id":"d02","lang":"en","text":"Payment terms are 30 days from the date of invoice, and delivery is scheduled for 12 December."}
+{"type":"doc","id":"d03","lang":"en","text":"Our counteroffer was 220 rupees per carton, valid until Friday evening."}
+{"type":"doc","id":"d04","lang":"en","text":"Please note the freight charge of 1500 rupees is included in the quoted price."}
+{"type":"doc","id":"d05","lang":"hi","text":"हम 500 कार्टन के लिए 240 रुपये प्रति कार्टन कीमत की पुष्टि करते हैं।"}
+{"type":"doc","id":"d06","lang":"hi","text":"भुगतान की शर्तें चालान की तारीख से 30 दिन हैं और डिलीवरी 12 दिसंबर को निर्धारित है।"}
+{"type":"doc","id":"d07","lang":"hi","text":"हमारा जवाबी प्रस्ताव 220 रुपये प्रति कार्टन है, जो शुक्रवार शाम तक मान्य है।"}
+{"type":"doc","id":"d08","lang":"hinglish","text":"Bhai 500 cartons ka rate 240 rupees per carton final kar do kal tak."}
+{"type":"doc","id":"d09","lang":"hinglish","text":"Payment 30 din baad invoice se, delivery 12 December ko arrange kar rahe hain."}
+{"type":"doc","id":"d10","lang":"hinglish","text":"Humara counteroffer 220 rupees tha lekin supplier ne accept nahi kiya."}
+{"type":"doc","id":"d11","lang":"en","text":"The customer acknowledged the message but did not agree to the revised delivery date."}
+{"type":"doc","id":"d12","lang":"hi","text":"ग्राहक ने संदेश देखा और कहा 'ठीक है', लेकिन कीमत पर सहमति नहीं दी।"}
+{"type":"query","id":"q01","lang":"en","text":"What unit price was confirmed for the cartons?","relevant_doc_ids":["d01"],"note":"Retrieval relevance label only; does not assert the deal was accepted."}
+{"type":"query","id":"q02","lang":"en","text":"When is delivery scheduled and what are the payment terms?","relevant_doc_ids":["d02"],"note":"Retrieval relevance label only."}
+{"type":"query","id":"q03","lang":"en","text":"What was our counteroffer and until when was it valid?","relevant_doc_ids":["d03"],"note":"Retrieval relevance label only."}
+{"type":"query","id":"q04","lang":"hi","text":"कार्टनों के लिए कौन सी कीमत पुष्ट की गई?","relevant_doc_ids":["d05"],"note":"Hindi retrieval relevance label."}
+{"type":"query","id":"q05","lang":"hi","text":"भुगतान की शर्तें क्या हैं और डिलीवरी कब है?","relevant_doc_ids":["d06"],"note":"Hindi retrieval relevance label."}
+{"type":"query","id":"q06","lang":"hi","text":"हमारा जवाबी प्रस्ताव क्या था?","relevant_doc_ids":["d07"],"note":"Hindi retrieval relevance label."}
+{"type":"query","id":"q07","lang":"hinglish","text":"Cartons ka final rate kya bola tha?","relevant_doc_ids":["d08"],"note":"Hinglish retrieval relevance label."}
+{"type":"query","id":"q08","lang":"hinglish","text":"Payment aur delivery kab hone wale hain?","relevant_doc_ids":["d09"],"note":"Hinglish retrieval relevance label."}
+{"type":"query","id":"q09","lang":"hinglish","text":"Counteroffer kaise respond hua?","relevant_doc_ids":["d10"],"note":"Hinglish retrieval relevance label."}
+{"type":"query","id":"q10","lang":"en","text":"Did the customer accept the revised delivery date?","relevant_doc_ids":["d11"],"note":"Avoid equating acknowledgement with acceptance."}
+{"type":"query","id":"q11","lang":"hi","text":"क्या ग्राहक ने कीमत स्वीकार की?","relevant_doc_ids":["d12"],"note":"'ठीक है' is an acknowledgement, not price acceptance."}
+{"type":"query","id":"q12","lang":"hinglish","text":"Freight charge quote me included hai kya?","relevant_doc_ids":["d04"],"note":"Cross-language retrieval label."}

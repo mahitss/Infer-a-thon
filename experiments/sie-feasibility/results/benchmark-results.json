@@ -1,0 +1,48 @@
+{
+  "status": "BLOCKED",
+  "note": "No SIE container was started and no model was downloaded. Every measurement below is null because nothing was executed. These are placeholders, not results.",
+  "encode": {
+    "sentence-transformers/all-MiniLM-L6-v2": {
+      "first_load_seconds": null,
+      "warm_latency_ms_mean": null,
+      "embedding_dimensions": null,
+      "top1_accuracy": null,
+      "top3_recall": null,
+      "successful_inference_count": null
+    },
+    "BAAI/bge-m3": {
+      "first_load_seconds": null,
+      "warm_latency_ms_mean": null,
+      "embedding_dimensions": null,
+      "top1_accuracy": null,
+      "top3_recall": null,
+      "successful_inference_count": null,
+      "blocker": "resource gate: ~2.27 GB model vs 2.23-2.83 GB available RAM"
+    }
+  },
+  "score": {
+    "cross-encoder/ms-marco-MiniLM-L-6-v2": {
+      "top1_accuracy": null,
+      "rank_movements": null,
+      "warm_latency_ms_mean": null,
+      "failures": null
+    }
+  },
+  "extract": {
+    "urchade/gliner_multi-v2.1": {
+      "micro_precision": null,
+      "micro_recall": null,
+      "successful": null,
+      "failures": null
+    }
+  },
+  "ocr_audio": {
+    "docling_default": {"status": "NOT_TESTED", "blocker": "no running SIE server"},
+    "docling_ocr": {"status": "NOT_TESTED", "blocker": "no running SIE server"},
+    "whisper": {"status": "NOT_TESTED", "blocker": "no running SIE server"}
+  },
+  "generate": {
+    "sie_generate": {"status": "BLOCKED", "blocker": "requires CUDA SGLang image; no NVIDIA GPU"},
+    "ollama": {"status": "NOT_TESTED", "note": "Installed locally but not exercised in this milestone"}
+  }
+}
