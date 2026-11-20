@@ -86,7 +86,7 @@ Sizes are the largest weight artifact reported by the Hugging Face model API on 
 | 4 — Smoke test | `/readyz`, SDK connect, model metadata, inference | **BLOCKED** | Docker Linux engine unavailable; resource gate failed |
 | 5 — Encode | MiniLM then bge-m3; EN/HI/Hinglish retrieval | **BLOCKED** | No SIE server; bge-m3 ~2.27 GB vs 2.23–2.83 GB available samples with unknown overhead — insufficient verified headroom |
 | 6 — Score | `cross-encoder/ms-marco-MiniLM-L-6-v2` rerank | **BLOCKED** | No SIE server; multilingual Qwen3 reranker is GPU-oriented (~4.06 GB) |
-| 7 — Extract | `urchade/gliner_multi-v2.1` GLiNER fields | **BLOCKED** | No SIE server; model ~1.16 GB vs ~2.5 GB available |
+| 7 — Extract | `urchade/gliner_multi-v2.1` GLiNER fields | **BLOCKED** | No SIE server; overall 8 GB internal gate failed and Docker engine unavailable. The 1.16 GB artifact is below both RAM samples (2.23/2.83 GB); overhead unmeasured and CPU inference untested |
 | 8 — OCR/audio | docling default/ocr, whisper | **BLOCKED** | No SIE server; dedicated OCR VLMs require non-CPU image bundles; no NVIDIA GPU |
 | 9 — Generate | SIE Generate vs Ollama | **BLOCKED (documented)** | SIE Generate requires CUDA SGLang image; no NVIDIA GPU. Ollama is installed with 4B models but was not used for this milestone |
 
@@ -100,7 +100,7 @@ No success metrics, latencies, accuracies, or memory measurements are reported. 
 - [Run configuration (localhost, telemetry off)](../experiments/sie-feasibility/config/sie-cpu.yml)
 - [Synthetic multilingual corpus](../experiments/sie-feasibility/data/multilingual_corpus.jsonl)
 - [Synthetic extraction examples with ground truth](../experiments/sie-feasibility/data/extraction_samples.jsonl)
-- Reproducible scripts: `env_audit.ps1`, `run_smoke_test.sh`, `benchmark_encode.py`, `benchmark_score.py`, `benchmark_extract.py`, `test_metric_helpers.py`
+- Reproducible scripts: `env_audit.ps1`, `gate_check.py`, `generate_resource_gate.py`, `smoke_gate.py`, `run_smoke_test.sh`, `benchmark_encode.py`, `benchmark_score.py`, `benchmark_extract.py`, `test_metric_helpers.py`, `test_gate_safety.py`
 - Version/config record: [`config/versions.json`](../experiments/sie-feasibility/config/versions.json)
 - Raw results: `results/resource-gate.json`, `results/benchmark-results.json` (all measurements `null` — not tested), `results/blocked-log.md`
 
@@ -168,3 +168,11 @@ The resource-gate BLOCKED decision is unchanged. The following defects were corr
 4. **Encoding metrics:** replaced the nearest-rank p95 with linear interpolation; added iteration validation (≥1); documented pilot-corpus limits.
 5. **Smoke-test hardening:** the script now requires a fresh PASS gate with timestamp, documented 8 GB internal threshold, engine availability and explicit pull authorization, with cleanup on failure and localhost-only/telemetry-off preserved.
 6. **Reproducibility:** recorded observed model revisions and bundle SHA; image digest and SDK version remain unrecorded blockers.
+
+## Gate hardening and GLiNER correction (M001.3.2)
+
+- `gate_check.py` enforces the internal 8 GB minimum (numeric, never boolean), a fixed **10-minute** freshness window (not environment-configurable), boolean Docker readiness, and valid non-future timestamps. `threshold=1`, `threshold=true/false`, boolean RAM and stale/future timestamps are rejected.
+- `generate_resource_gate.py` writes `resource-gate.json` from real read-only diagnostics with an automatic PASS/BLOCKED verdict; manually edited gates are not trusted evidence. `smoke_gate.py` performs a **live host RAM recheck** plus engine/authorization checks before any Compose startup.
+- `run_smoke_test.sh` installs cleanup before startup, uses an isolated per-invocation Compose project, handles partial starts/readiness/SDK/inference failures and interrupts, and never deletes the persistent model-cache volume.
+- The GLiNER artifact (~1.16 GB) is **smaller than both** RAM samples (2.23/2.83 GB). Phase 7 was blocked by the overall 8 GB gate failure, Docker engine unavailability, unmeasured overhead and the fact that CPU inference remains untested — not by GLiNER's own size.
+- Extraction results distinguish attempted, successful and failed samples and report `EXECUTED`/`PARTIAL`/`FAILED`; metrics are conditional on inference success and are not end-to-end accuracy.

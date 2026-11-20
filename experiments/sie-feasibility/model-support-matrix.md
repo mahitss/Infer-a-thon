@@ -11,7 +11,7 @@ the official docs. No identifier was invented.
 | `sentence-transformers/all-MiniLM-L6-v2` | encode | text, max_seq 256 | dense dim 384, mean pooling, normalized | 90.9 MB | `default` / `latest-cpu-default`, `sentence_transformer` adapter | Documented; **Untested** |
 | `BAAI/bge-m3` | encode + score | text, max_seq 8192 | dense 1024, sparse 250002, multivector 1024 | 2.27 GB | `default` / `latest-cpu-default`, `bge_m3_flash` / `bge_m3_flag` | Documented; **Blocked** — insufficient verified headroom: 2.27 GB exceeds the 2.23 GB sample but is below 2.83 GB; overhead unknown |
 | `cross-encoder/ms-marco-MiniLM-L-6-v2` | score | text, max_seq 512 | `bert_flash_cross_encoder` | 91.0 MB | `default` / `latest-cpu-default` | Documented; **Untested** |
-| `urchade/gliner_multi-v2.1` | extract (NER) | text, max_seq 384 | `gliner` adapter, zero-shot labels | 1.16 GB | `default` / `latest-cpu-default` | Documented; **Blocked by gate** (size vs RAM) |
+| `urchade/gliner_multi-v2.1` | extract (NER) | text, max_seq 384 | `gliner` adapter, zero-shot labels | 1.16 GB | `default` / `latest-cpu-default` | Documented; **Untested** — artifact 1.16 GB is smaller than both RAM samples (2.23/2.83 GB). The overall 8 GB internal gate failed and Docker engine was unavailable; runtime/container overhead unmeasured |
 | `openai/whisper-large-v3-turbo` | extract (audio) | audio | `whisper.adapter`, float16 | 1.62 GB | listed in `default` bundle | Documented; **Untested**, CPU feasibility unknown |
 | `docling` (`superlinked/docling-artifacts`) | extract (document) | document/images | profiles `default` (embedded text) and `ocr` (rasterize + OCR); max 100 pages, 16 MB, 90 s timeout | not measured | `default` / `latest-cpu-default`, `docling.adapter` | Born-digital parsing documented; **Untested**; OCR profile untested |
 | `microsoft/Florence-2-base` | extract (vision/OCR) | images | `<OCR>` / `<OCR_WITH_REGION>` | not measured | `default` bundle lists `florence2` | Flat-text image OCR documented; **Untested** |
@@ -37,3 +37,7 @@ the official docs. No identifier was invented.
 - `ghcr.io/v2/` HTTP 405 to HEAD proves endpoint reachability only; no image/blob pull was tested.
 - Observed `hf_revision` values for every model above and the `default` bundle SHA are recorded in `config/versions.json`.
 - Image digest and SDK version remain unrecorded: no authorized pull or SDK install occurred, and no value was invented. This is a remaining reproducibility blocker.
+
+## Correction (M001.3.2) — GLiNER artifact size
+
+The earlier statement that GLiNER's 1.16 GB artifact itself exceeded available RAM was inaccurate: 1.16 GB is **smaller than both** recorded samples (2.23 GB and 2.83 GB). The reasons Phase 7 was blocked were the **overall internal 8 GB safety gate failing**, the **Docker engine being unavailable**, **unmeasured runtime/container overhead**, and the fact that **CPU inference remains untested**. No model-size-based claim is made.

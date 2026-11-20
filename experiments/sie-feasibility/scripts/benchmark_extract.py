@@ -107,11 +107,36 @@ def field_value_counts(samples, predictions):
 
 
 def evaluate(samples, predictions):
-    """Pure evaluation function used by both the CLI and unit tests."""
+    """Pure evaluation function used by both the CLI and unit tests.
+
+    Only samples with a successful inference result are in `predictions`.
+    Failed samples are excluded from the metric counts; see execution_status
+    and METRICS_SCOPE_NOTE for how that affects end-to-end interpretation.
+    """
+    evaluated = [s for s in samples if s["id"] in predictions]
     return {
-        "field_presence": prf(*field_presence_counts(samples, predictions)),
-        "field_value_normalized_exact": prf(*field_value_counts(samples, predictions)),
+        "field_presence": prf(*field_presence_counts(evaluated, predictions)),
+        "field_value_normalized_exact": prf(*field_value_counts(evaluated, predictions)),
     }
+
+
+def execution_status(attempted, successful, failures):
+    """EXECUTED / PARTIAL / FAILED from inference outcomes."""
+    if attempted <= 0 or successful <= 0:
+        return "FAILED"
+    if failures > 0:
+        return "PARTIAL"
+    return "EXECUTED"
+
+
+METRICS_SCOPE_NOTE = (
+    "Metrics are computed only over samples with successful inference. "
+    "Failed samples are excluded from precision/recall/F1 counts but are "
+    "reported separately; therefore these metrics are conditional on inference "
+    "success and are NOT end-to-end accuracy. Always read them together with "
+    "attempted/successful/failed counts and execution_status. "
+    "Neither metric measures agreement detection or factual correctness."
+)
 
 
 def main():
@@ -134,6 +159,10 @@ def main():
         print(f"BLOCKED: sie-sdk unavailable ({exc}). No inference was run.")
         return 2
 
+    if not samples:
+        print("FAILED: dataset contains no samples")
+        return 2
+
     client = SIEClient("http://127.0.0.1:8080")
     predictions, failures, per_sample = {}, 0, []
     for s in samples:
@@ -143,21 +172,26 @@ def main():
             predictions[s["id"]] = entities
             per_sample.append({
                 "id": s["id"],
+                "status": "SUCCESS",
                 "predicted_labels": sorted({e.get("label") for e in entities if e.get("label") in LABELS}),
                 "expected_labels": sorted({k for k, v in s["ground_truth"].items()
                                            if k in LABELS and v is not None}),
             })
         except Exception as exc:
             failures += 1
-            print(f"sample {s['id']} failed: {type(exc).__name__}: {exc}")
+            detail = f"{type(exc).__name__}: {exc}"
+            per_sample.append({"id": s["id"], "status": "FAILED", "error": detail})
+            print(f"sample {s['id']} failed: {detail}")
 
+    successful = len(samples) - failures
     result = {
-        "status": "EXECUTED",
+        "status": execution_status(len(samples), successful, failures),
         "model": args.model,
-        "samples": len(samples),
-        "successful": len(samples) - failures,
-        "failures": failures,
+        "attempted_samples": len(samples),
+        "successful_inference_samples": successful,
+        "failed_inference_samples": failures,
         "metrics": evaluate(samples, predictions),
+        "metrics_scope_note": METRICS_SCOPE_NOTE,
         "normalization_rules": NORMALIZATION_RULES,
         "per_sample": per_sample,
         "caveat": "Field presence and normalized value correctness are NOT agreement-detection accuracy, "

@@ -35,6 +35,10 @@
   },
   "extract": {
     "urchade/gliner_multi-v2.1": {
+      "execution_status": null,
+      "attempted_samples": null,
+      "successful_inference_samples": null,
+      "failed_inference_samples": null,
       "field_presence": {
         "precision": null,
         "recall": null,
@@ -45,9 +49,7 @@
         "recall": null,
         "f1": null
       },
-      "successful": null,
-      "failures": null,
-      "note": "Field presence and normalized value correctness are separate metrics; neither is agreement-detection accuracy."
+      "note": "EXECUTED/PARTIAL/FAILED is determined by inference outcomes. Metrics cover only successful samples and are not end-to-end accuracy. Field presence and normalized value correctness are separate metrics; neither is agreement-detection accuracy."
     }
   },
   "ocr_audio": {
