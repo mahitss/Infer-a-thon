@@ -15,7 +15,8 @@ caches, credentials or Docker images**.
 - `data/multilingual_corpus.jsonl` — 24-record **pilot smoke corpus** (EN/HI/Hinglish) with labels.
 - `data/extraction_samples.jsonl` — 10 synthetic extraction examples with ground truth.
 - `scripts/env_audit.ps1` — re-run the Phase 1 environment audit (no secrets printed).
-- `scripts/gate_check.py` — pure gate validation (8 GB internal minimum, fixed 10-minute freshness).
+- `scripts/gate_check.py` — pure gate validation (finite numbers only, 8 GB internal minimum, fixed 10-minute freshness) plus `--live-check` for the second RAM check.
+- `scripts/compose_policy.py` — pure helpers for stable cache volume naming and safe teardown policy.
 - `scripts/generate_resource_gate.py` — writes `resource-gate.json` from real read-only diagnostics; PASS/BLOCKED automatic.
 - `scripts/smoke_gate.py` — pre-startup refusal checks, including a LIVE RAM recheck; mocked in tests.
 - `scripts/run_smoke_test.sh` — gated local smoke test; refuses before Compose startup; isolated project + cleanup.
@@ -66,3 +67,18 @@ caches, credentials or Docker images**.
 - Cleanup is installed before startup, covers partial starts/readiness/SDK/inference failures and interrupts, uses an isolated Compose project, and never deletes the cache volume.
 - GLiNER's 1.16 GB artifact is smaller than both RAM samples; its blocker was the overall gate/engine, not its own size. CPU inference remains untested.
 - Extraction results now report attempted/successful/failed samples and EXECUTED/PARTIAL/FAILED status; metrics are conditional on inference success.
+
+## Corrections recorded in M001.3.3
+
+- `gate_check.py` rejects NaN, +inf, -inf and booleans for threshold, recorded RAM and live RAM using `math.isfinite()`; malformed diagnostics produce BLOCKED, never PASS.
+- `smoke_gate.py` compares live RAM with `max(8 GB, recorded threshold)`; missing or non-finite diagnostics are refused. `run_smoke_test.sh` performs a **second** live RAM check after config/image inspection and immediately before `up -d`.
+- The cache volume is now explicitly named `sie-hf-cache`, so it is reused across different isolated Compose project names. Cleanup stops only the isolated containers/network and never deletes the volume (`down --remove-orphans`, no `-v`, no volume prune).
+
+### Cache lifecycle and risks
+- Compose creates `sie-hf-cache` on first use and reuses it for every project name. It survives `down` and is never pruned by this harness.
+- Benefit: model downloads are reused; no accumulation of `<project>_sie-hf-cache` volumes.
+- Risk: the cache grows on disk and is never reclaimed automatically. Operators must inspect `docker volume inspect sie-hf-cache` and remove it deliberately only when they accept re-downloading models. No cleanup command in this repository deletes it.
+- Risk: concurrent smoke-test invocations share one cache volume. Since only one container is expected at a time and ports bind to localhost, concurrent runs should be avoided; the isolated project names keep teardown safe.
+
+### Extraction benchmark exit codes
+`0` = EXECUTED, `3` = PARTIAL, `4` = FAILED inference, `2` = invalid dataset, `5` = SDK unavailable. An accurate JSON artifact is written for every outcome; a failed inference is never reported as a successful benchmark.

@@ -11,6 +11,11 @@ Neither metric measures agreement detection, negation handling, legal
 enforceability or factual correctness. The SDK is imported lazily so pure
 helpers can be unit-tested without sie-sdk installed.
 
+Exit codes (documented): 0 = EXECUTED, 3 = PARTIAL, 4 = FAILED inference,
+2 = invalid dataset, 5 = SDK unavailable. A failed inference is never reported
+as a successful extraction benchmark. An accurate JSON artifact is written for
+every outcome.
+
 Usage (from repository root, after an authorized smoke test):
   python experiments/sie-feasibility/scripts/benchmark_extract.py \
       --model urchade/gliner_multi-v2.1 \
@@ -24,6 +29,22 @@ from pathlib import Path
 
 LABELS = ["buyer", "supplier", "product", "quantity", "unit_price",
           "currency", "payment_terms", "delivery_commitment"]
+
+# Documented process exit codes (distinct per outcome).
+EXIT_EXECUTED = 0
+EXIT_PARTIAL = 3
+EXIT_FAILED = 4
+EXIT_INVALID_DATASET = 2
+EXIT_SDK_UNAVAILABLE = 5
+
+
+def exit_code_for(status):
+    """Map an execution status to its documented exit code."""
+    return {
+        "EXECUTED": EXIT_EXECUTED,
+        "PARTIAL": EXIT_PARTIAL,
+        "FAILED": EXIT_FAILED,
+    }[status]
 
 # Transparent, documented normalization rules only. No translation, no guessing.
 PUNCTUATION_TO_STRIP = ".,!?;:'\"()[]{}—–|/\\"
@@ -139,6 +160,16 @@ METRICS_SCOPE_NOTE = (
 )
 
 
+def write_result(out_dir, result):
+    """Always persist an accurate JSON artifact; never report unrun inference."""
+    destination = Path(out_dir)
+    destination.mkdir(parents=True, exist_ok=True)
+    path = destination / "extract-results.json"
+    path.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(json.dumps(result, indent=2, ensure_ascii=False))
+    return path
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="urchade/gliner_multi-v2.1")
@@ -147,21 +178,40 @@ def main():
     args = ap.parse_args()
 
     samples = []
-    with open(args.data, encoding="utf-8") as fh:
-        for line in fh:
-            if line.strip():
-                samples.append(json.loads(line))
+    try:
+        with open(args.data, encoding="utf-8") as fh:
+            for line in fh:
+                if line.strip():
+                    row = json.loads(line)
+                    if not isinstance(row, dict) or "id" not in row or "text" not in row or "ground_truth" not in row:
+                        raise ValueError("sample must contain id, text and ground_truth")
+                    samples.append(row)
+    except (OSError, ValueError) as exc:
+        write_result(args.out, {
+            "status": "FAILED", "reason": f"invalid dataset: {type(exc).__name__}: {exc}",
+            "attempted_samples": 0, "successful_inference_samples": 0,
+            "failed_inference_samples": 0, "metrics": None,
+        })
+        return EXIT_INVALID_DATASET
+
+    if not samples:
+        write_result(args.out, {
+            "status": "FAILED", "reason": "dataset contains no samples",
+            "attempted_samples": 0, "successful_inference_samples": 0,
+            "failed_inference_samples": 0, "metrics": None,
+        })
+        return EXIT_INVALID_DATASET
 
     try:
         from sie_sdk import SIEClient
         from sie_sdk.types import Item
     except ImportError as exc:
-        print(f"BLOCKED: sie-sdk unavailable ({exc}). No inference was run.")
-        return 2
-
-    if not samples:
-        print("FAILED: dataset contains no samples")
-        return 2
+        write_result(args.out, {
+            "status": "FAILED", "reason": f"sie-sdk unavailable: {exc}",
+            "attempted_samples": 0, "successful_inference_samples": 0,
+            "failed_inference_samples": 0, "metrics": None,
+        })
+        return EXIT_SDK_UNAVAILABLE
 
     client = SIEClient("http://127.0.0.1:8080")
     predictions, failures, per_sample = {}, 0, []
@@ -184,8 +234,9 @@ def main():
             print(f"sample {s['id']} failed: {detail}")
 
     successful = len(samples) - failures
+    status = execution_status(len(samples), successful, failures)
     result = {
-        "status": execution_status(len(samples), successful, failures),
+        "status": status,
         "model": args.model,
         "attempted_samples": len(samples),
         "successful_inference_samples": successful,
@@ -197,10 +248,8 @@ def main():
         "caveat": "Field presence and normalized value correctness are NOT agreement-detection accuracy, "
                   "negation handling, or factual correctness. No translation is performed.",
     }
-    out = Path(args.out) / "extract-results.json"
-    out.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(json.dumps(result, indent=2, ensure_ascii=False))
-    return 0
+    write_result(args.out, result)
+    return exit_code_for(status)
 
 
 if __name__ == "__main__":

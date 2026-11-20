@@ -18,6 +18,10 @@ services:
 
 volumes:
   sie-hf-cache:
+    # Explicit stable name: the SAME cache volume is reused across every
+    # isolated Compose project name. Compose creates it if absent and reuses
+    # it if present. It is never removed by `down` without `-v`.
+    name: sie-hf-cache
 
 # Intended first-load targets, in increasing size order:
 #   sentence-transformers/all-MiniLM-L6-v2  (~90 MB, dense 384)

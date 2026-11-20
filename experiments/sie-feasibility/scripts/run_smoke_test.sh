@@ -8,9 +8,10 @@
 # Safety properties:
 #   - no Docker Desktop auto-start; no Windows/WSL setting changes
 #   - localhost-only binding and telemetry opt-out come from config/sie-cpu.yml
-#   - explicit isolated Compose project name per invocation
+#   - explicit isolated Compose project name per invocation (containers/network)
 #   - cleanup trap installed before startup; only this project is torn down
-#   - named model-cache volume is NEVER deleted (no `down -v`)
+#   - model cache uses the stable external-style name `sie-hf-cache` and is
+#     shared across project names; it is NEVER deleted (no `down -v`, no prune)
 #   - explicit authorization required: SIE_IMAGE_PULL_AUTHORIZED=1
 set -euo pipefail
 
@@ -51,6 +52,11 @@ fi
 if ! docker image inspect "$IMAGE" >/dev/null 2>&1; then
   echo "NOTICE: image $IMAGE is not present locally; authorized pull may occur"
 fi
+
+echo "[gate] second LIVE RAM check (immediately before startup)"
+"$PYTHON_BIN" "$ROOT/scripts/gate_check.py" --live-check --gate "$GATE_FILE" || {
+  echo "BLOCKED: second live RAM check failed; image will not be pulled, container will not start"; exit 2
+}
 
 echo "[run] starting isolated project '$PROJECT' on 127.0.0.1:8080"
 STARTED=1

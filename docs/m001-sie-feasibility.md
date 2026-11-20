@@ -176,3 +176,11 @@ The resource-gate BLOCKED decision is unchanged. The following defects were corr
 - `run_smoke_test.sh` installs cleanup before startup, uses an isolated per-invocation Compose project, handles partial starts/readiness/SDK/inference failures and interrupts, and never deletes the persistent model-cache volume.
 - The GLiNER artifact (~1.16 GB) is **smaller than both** RAM samples (2.23/2.83 GB). Phase 7 was blocked by the overall 8 GB gate failure, Docker engine unavailability, unmeasured overhead and the fact that CPU inference remains untested — not by GLiNER's own size.
 - Extraction results distinguish attempted, successful and failed samples and report `EXECUTED`/`PARTIAL`/`FAILED`; metrics are conditional on inference success and are not end-to-end accuracy.
+
+## Final safety findings closed (M001.3.3)
+
+- **Finite numbers only:** `gate_check.py` uses `math.isfinite()` for the threshold, recorded RAM and live RAM; NaN, +inf, -inf and booleans are rejected. Malformed diagnostics always produce BLOCKED.
+- **Effective live threshold:** `smoke_gate.py` compares live RAM against `max(8 GB, recorded threshold)`. The shell harness performs a second live RAM check after config/image inspection and immediately before `up -d`; failure prevents any pull or container start.
+- **Cache lifecycle:** `config/sie-cpu.yml` gives the model cache the explicit stable name `sie-hf-cache`, reused across isolated Compose projects. Teardown stops only that invocation's containers/network (`down --remove-orphans`); no `-v`, no volume prune, no volume deletion. Risks (disk growth, concurrent shared cache) are documented in the experiment README.
+- **Benchmark exit codes:** `benchmark_extract.py` returns 0/3/4 for EXECUTED/PARTIAL/FAILED, 2 for invalid dataset, 5 for SDK unavailable, and always writes an accurate result artifact.
+- Resource-gate status remains **BLOCKED**; no Docker, model download or inference was performed.
