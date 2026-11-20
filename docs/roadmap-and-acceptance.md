@@ -4,7 +4,12 @@
 
 ## M001 — Product Discovery & Technical Foundation
 
-**Status:** Draft documentation package; awaiting Product Owner review and official problem-statement fit.
+**Status:** Draft documentation package; awaiting Product Owner review and official problem-statement fit. **M001 is NOT complete.**
+
+Completed discovery documentation work (recorded, not an M001 exit):
+- M001.1–M001.2: imported and audited the M001 documentation baseline on `main` (commits `d5e5e18…`, `79afabf…`, `8d7f506…`).
+- M001.3–M001.3.4: SIE feasibility research and harness work on `research/m001-sie-feasibility` (commits `a90025c…`, `c5faa92…`, `a0fb64e…`, `6a91d19…`, `0823860…`). Resource gate **BLOCKED**; no inference or benchmark executed.
+- M001.4: Product Owner decision package prepared on `research/m001-product-review` (`docs/m001-product-owner-review.md`); all decisions remain PROPOSED.
 
 Deliverables: PRD, competitive/prior-art review, proposed architecture, ADR, risk assessment, cost/SIE feasibility and official brief fit review.
 
@@ -17,6 +22,25 @@ Exit criteria:
 - [ ] Security, data-handling and retention constraints approved.
 - [ ] Official brief fit confirmed (2026-12-05).
 - [ ] Product Owner approves implementation start.
+
+## M001.4 — Product Owner Review & Discovery Closure
+
+**Status:** Decision package prepared; awaiting independent architectural review and Product Owner decisions. This milestone does **not** authorize implementation.
+
+Deliverables: `docs/m001-product-owner-review.md` covering problem/user validation plan, competitive differentiation with primary-source checks (2026-11-21), recommended text-first MVP, architecture simplification, threat model, ₹0 feasibility, evaluation strategy and a Product Owner decision register with every decision `PROPOSED`.
+
+Exit criteria:
+- [ ] Product Owner records a decision for every D-PO item in the register.
+- [ ] Problem and primary workflow validated with real potential users.
+- [ ] Differentiation hypothesis accepted or revised with competitor caveats.
+- [ ] MVP scope and audio/OCR/multilingual exclusions approved.
+- [ ] Architecture/ADR changes approved after review.
+- [ ] SIE path accepted as blocked or re-tested successfully.
+- [ ] Security/data-handling and ₹0 fallback approved.
+- [ ] Official brief fit confirmed on/after 2026-12-05.
+- [ ] Explicit Product Owner authorization to begin M002.
+
+The M001 exit criteria above all remain open; this section adds a review milestone only.
 
 ## M002 — Engineering Foundation
 
