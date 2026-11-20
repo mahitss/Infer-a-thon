@@ -82,3 +82,10 @@ caches, credentials or Docker images**.
 
 ### Extraction benchmark exit codes
 `0` = EXECUTED, `3` = PARTIAL, `4` = FAILED inference, `2` = invalid dataset, `5` = SDK unavailable. An accurate JSON artifact is written for every outcome; a failed inference is never reported as a successful benchmark.
+
+## Corrections recorded in M001.3.4
+
+- `is_finite_number()` now safely returns `False` for enormous integers and for any value that makes `math.isfinite()` raise `OverflowError`, `TypeError` or `ValueError`. Booleans, NaN and both infinities remain rejected.
+- `generate_resource_gate.py` uses the finite validator at the diagnostic boundary and re-validates its own output before writing; a malformed diagnostic can only produce BLOCKED, never PASS. The 8 GB internal policy and 10-minute freshness window are unchanged.
+- `benchmark_extract.py` validates the whole JSONL dataset before SDK import or client creation: object rows, non-empty unique IDs, non-empty text, object ground truth, and documented label/value types. Duplicate IDs are rejected so they cannot corrupt metric evaluation. Invalid datasets write an accurate FAILED artifact and return exit 2 with zero attempted samples.
+- CLI outcome tests cover exit 0/3/4/2/5 with a mocked SDK boundary and verify the resulting JSON artifacts. **Mocked tests verify harness behaviour only; they do not demonstrate real SIE functionality.**

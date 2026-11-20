@@ -184,3 +184,9 @@ The resource-gate BLOCKED decision is unchanged. The following defects were corr
 - **Cache lifecycle:** `config/sie-cpu.yml` gives the model cache the explicit stable name `sie-hf-cache`, reused across isolated Compose projects. Teardown stops only that invocation's containers/network (`down --remove-orphans`); no `-v`, no volume prune, no volume deletion. Risks (disk growth, concurrent shared cache) are documented in the experiment README.
 - **Benchmark exit codes:** `benchmark_extract.py` returns 0/3/4 for EXECUTED/PARTIAL/FAILED, 2 for invalid dataset, 5 for SDK unavailable, and always writes an accurate result artifact.
 - Resource-gate status remains **BLOCKED**; no Docker, model download or inference was performed.
+
+## Independent-review findings closed (M001.3.4)
+
+- `is_finite_number()` returns `False` (never raises) for enormous integers and any value causing `math.isfinite()` to raise; booleans, NaN and +/-inf remain rejected. The generator applies this validator at the diagnostic boundary and re-validates its own output, so malformed diagnostics always yield BLOCKED. The 8 GB policy and 10-minute freshness window are unchanged.
+- `benchmark_extract.py` now runs a complete dataset-structure validation before SDK import/client creation (object rows, non-empty unique IDs, non-empty text, object ground truth with documented labels/string-or-null values). Invalid datasets produce an accurate FAILED artifact, exit 2 and zero attempted samples; duplicate IDs cannot corrupt metrics.
+- CLI-level tests exercise exit codes 0/3/4/2/5 and verify artifacts with a mocked SDK. These tests validate the harness only, not real SIE inference.

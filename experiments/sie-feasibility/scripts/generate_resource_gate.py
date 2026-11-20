@@ -27,8 +27,8 @@ def build_gate(runner=gate.default_runner, now=None):
     errors = []
     try:
         ram = gate.read_available_ram_gb(runner)
-        if not gate.is_number(ram):
-            errors.append("RAM diagnostic did not return a number")
+        if not gate.is_finite_number(ram):
+            errors.append(f"RAM diagnostic did not return a finite number: {ram!r}")
             ram = None
     except Exception as exc:  # noqa: BLE001
         errors.append(f"RAM diagnostic failed: {type(exc).__name__}: {exc}")
@@ -45,7 +45,7 @@ def build_gate(runner=gate.default_runner, now=None):
         )
 
     status = "PASS" if not errors else "BLOCKED"
-    return {
+    gate_data = {
         "check_id": "M001.3.2-generated-resource-gate",
         "checked_at": observed_at.isoformat().replace("+00:00", "Z"),
         "generated_by": "generate_resource_gate.py",
@@ -77,6 +77,16 @@ def build_gate(runner=gate.default_runner, now=None):
         "note": "Generated from live diagnostics; a gate alone is not proof of current availability. "
                 "The smoke test performs an independent live RAM recheck.",
     }
+
+    # Final safeguard: never serialize a PASS that fails our own validator.
+    if status == "PASS":
+        valid, problems = gate.validate_gate(gate_data, now=observed_at)
+        if not valid:
+            errors.append("generated gate failed internal validation: " + "; ".join(problems))
+            gate_data["status"] = "BLOCKED"
+            gate_data["criteria"]["physical_memory_headroom"] = "FAIL"
+            gate_data["reason"] = "; ".join(errors)
+    return gate_data
 
 
 def main():

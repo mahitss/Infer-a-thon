@@ -170,6 +170,48 @@ def write_result(out_dir, result):
     return path
 
 
+def validate_dataset(rows):
+    """Validate the complete JSONL dataset before any SDK/client use.
+
+    Return (samples, None) when valid, otherwise (None, reason). Malformed rows
+    are never skipped silently and duplicate IDs are rejected outright because
+    they would corrupt per-sample prediction lookup and metric evaluation.
+    """
+    if not isinstance(rows, list):
+        return None, "dataset must be a list of JSON objects"
+    if not rows:
+        return None, "dataset contains no samples"
+
+    seen = set()
+    for index, row in enumerate(rows, start=1):
+        if not isinstance(row, dict):
+            return None, f"row {index} is not a JSON object"
+        sample_id = row.get("id")
+        if not isinstance(sample_id, str) or not sample_id.strip():
+            return None, f"row {index} has a missing or non-string id"
+        if sample_id in seen:
+            return None, f"duplicate id {sample_id!r} at row {index}"
+        seen.add(sample_id)
+
+        text = row.get("text")
+        if not isinstance(text, str) or not text.strip():
+            return None, f"row {index} ({sample_id}) has a missing or empty text"
+
+        ground_truth = row.get("ground_truth")
+        if not isinstance(ground_truth, dict):
+            return None, f"row {index} ({sample_id}) ground_truth must be an object"
+        for key, value in ground_truth.items():
+            if key == "note":
+                if not isinstance(value, str):
+                    return None, f"row {index} ({sample_id}) note must be a string"
+            elif key in LABELS:
+                if value is not None and (not isinstance(value, str) or not value.strip()):
+                    return None, f"row {index} ({sample_id}) ground_truth[{key!r}] must be null or a non-empty string"
+            else:
+                return None, f"row {index} ({sample_id}) has unknown ground_truth label {key!r}"
+    return rows, None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="urchade/gliner_multi-v2.1")
@@ -177,26 +219,24 @@ def main():
     ap.add_argument("--out", default="../results")
     args = ap.parse_args()
 
-    samples = []
+    rows = []
     try:
         with open(args.data, encoding="utf-8") as fh:
             for line in fh:
                 if line.strip():
-                    row = json.loads(line)
-                    if not isinstance(row, dict) or "id" not in row or "text" not in row or "ground_truth" not in row:
-                        raise ValueError("sample must contain id, text and ground_truth")
-                    samples.append(row)
+                    rows.append(json.loads(line))
     except (OSError, ValueError) as exc:
         write_result(args.out, {
-            "status": "FAILED", "reason": f"invalid dataset: {type(exc).__name__}: {exc}",
+            "status": "FAILED", "reason": f"invalid dataset (JSONL parse): {type(exc).__name__}: {exc}",
             "attempted_samples": 0, "successful_inference_samples": 0,
             "failed_inference_samples": 0, "metrics": None,
         })
         return EXIT_INVALID_DATASET
 
-    if not samples:
+    samples, dataset_error = validate_dataset(rows)
+    if dataset_error is not None:
         write_result(args.out, {
-            "status": "FAILED", "reason": "dataset contains no samples",
+            "status": "FAILED", "reason": f"invalid dataset: {dataset_error}",
             "attempted_samples": 0, "successful_inference_samples": 0,
             "failed_inference_samples": 0, "metrics": None,
         })

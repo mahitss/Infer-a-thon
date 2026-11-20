@@ -16,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import yaml  # noqa: E402
 import gate_check as gate  # noqa: E402
+import generate_resource_gate as generator  # noqa: E402
 import smoke_gate  # noqa: E402
 import compose_policy  # noqa: E402
 import benchmark_extract as ext  # noqa: E402
@@ -310,6 +311,69 @@ class TestBenchmarkExitCodes(unittest.TestCase):
     def test_failed_inference_is_not_executed(self):
         self.assertEqual(ext.execution_status(3, 0, 3), "FAILED")
         self.assertEqual(ext.exit_code_for(ext.execution_status(3, 0, 3)), ext.EXIT_FAILED)
+
+
+class TestEnormousAndMalformedNumbers(unittest.TestCase):
+    def setUp(self):
+        self.now = datetime.now(timezone.utc)
+
+    def test_enormous_integer_threshold_rejected(self):
+        huge = 10 ** 400
+        self.assertFalse(gate.is_finite_number(huge))
+        ok, errors = gate.validate_gate(valid_gate(self.now, memory_safety_threshold_gb=huge), now=self.now)
+        self.assertFalse(ok, errors)
+
+    def test_enormous_integer_available_ram_rejected(self):
+        huge = 10 ** 400
+        self.assertFalse(gate.is_finite_number(huge))
+        ok, errors = gate.validate_gate(valid_gate(self.now, **{gate.RAM_FIELD: huge}), now=self.now)
+        self.assertFalse(ok, errors)
+
+    def test_nan_and_infinities_rejected(self):
+        for bad in (float("nan"), float("inf"), float("-inf")):
+            self.assertFalse(gate.is_finite_number(bad))
+
+    def test_booleans_rejected(self):
+        self.assertFalse(gate.is_finite_number(True))
+        self.assertFalse(gate.is_finite_number(False))
+
+    def test_finite_gb_conversion_of_huge_integer_raises(self):
+        with self.assertRaises(RuntimeError):
+            gate._finite_gb(10 ** 400, 1024.0, "RAM")
+
+    def test_generator_with_non_finite_diagnostic_is_blocked(self):
+        def runner(argv):
+            joined = " ".join(argv)
+            if "AvailableMBytes" in joined:
+                return gate.CommandResult(0, "nan\n")
+            if "version" in joined:
+                return gate.CommandResult(0, "29.9.3")
+            raise AssertionError(f"unexpected command: {argv}")
+
+        result = generator.build_gate(runner=runner, now=self.now)
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertNotEqual(result["observed"]["ram_available_gb"], 16.0)
+
+    def test_generator_with_malformed_diagnostic_is_blocked(self):
+        def runner(argv):
+            joined = " ".join(argv)
+            if "AvailableMBytes" in joined:
+                return gate.CommandResult(0, "not-a-number\n")
+            if "version" in joined:
+                return gate.CommandResult(0, "29.9.3")
+            raise AssertionError(f"unexpected command: {argv}")
+
+        result = generator.build_gate(runner=runner, now=self.now)
+        self.assertEqual(result["status"], "BLOCKED")
+
+    def test_malformed_never_valid_pass(self):
+        for bad in (float("nan"), float("inf"), float("-inf"), 10 ** 400, True, False):
+            data = valid_gate(self.now, memory_safety_threshold_gb=bad)
+            ok, errors = gate.validate_gate(data, now=self.now)
+            self.assertFalse(ok, (bad, errors))
+            data = valid_gate(self.now, **{gate.RAM_FIELD: bad})
+            ok, errors = gate.validate_gate(data, now=self.now)
+            self.assertFalse(ok, (bad, errors))
 
 
 if __name__ == "__main__":

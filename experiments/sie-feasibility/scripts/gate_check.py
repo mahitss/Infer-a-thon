@@ -48,8 +48,17 @@ def is_number(value):
 
 
 def is_finite_number(value):
-    """Finite numeric only: rejects bool, NaN, +inf and -inf."""
-    return is_number(value) and math.isfinite(value)
+    """Finite numeric only: rejects bool, NaN, +/-inf and huge ints.
+
+    math.isfinite() converts its argument to float, which raises OverflowError
+    for very large integers and TypeError/ValueError for other malformed
+    values. Any such failure means the value is not a usable measurement, so
+    return False rather than propagating an exception.
+    """
+    try:
+        return is_number(value) and math.isfinite(value)
+    except (OverflowError, TypeError, ValueError):
+        return False
 
 
 def parse_timestamp(raw):
@@ -72,7 +81,7 @@ def _finite_gb(raw_value, divisor, label):
     """Convert a diagnostic value to GB, rejecting any malformed result."""
     try:
         value = float(raw_value)
-    except (TypeError, ValueError) as exc:
+    except (TypeError, ValueError, OverflowError) as exc:
         raise RuntimeError(f"{label} diagnostic is not numeric: {raw_value!r}") from exc
     if not is_finite_number(value):
         raise RuntimeError(f"{label} diagnostic is not finite: {raw_value!r}")
