@@ -47,6 +47,7 @@ before fixing any numeric quality thresholds.
 
 **Proposed primary user (hypothesis):** owner, operations manager or accounts/procurement operator at a small distributor, wholesaler or manufacturer handling repeat B2B transactions.
 **Secondary user:** finance/audit reviewer needing to understand why a term was marked confirmed, disputed or unresolved.
+**Recommended validation segment:** start with **one** segment — small distributors handling repeat B2B transactions. Distributors, wholesalers and manufacturers are **not** a single validated market; expanding beyond one segment requires separate evidence.
 
 **Painful workflow to validate:** terms are negotiated across WhatsApp messages, voice notes, calls, quotations and documents; later POs, invoices and delivery records may not reflect the latest mutually accepted term. The operator manually reconstructs "what was actually agreed", usually from scattered artifacts, with no reliable provenance.
 
@@ -54,7 +55,9 @@ before fixing any numeric quality thresholds.
 
 ### Practical problem-validation plan (not yet executed)
 
-1. Recruit 5–8 operators/finance reviewers through Product Owner contacts; no claims of access yet.
+**Status: exploratory qualitative research, not market validation.** 5–8 interviews can reveal workflow, language and failure modes; they cannot establish demand, market size or generalisability.
+
+1. Recruit 5–8 operators/finance reviewers from the single recommended segment (small distributors) through Product Owner contacts; no claims of access yet.
 2. Use consented, redacted historical deal packets or synthetic analogues; obtain explicit data-processing consent before using real evidence.
 3. Task-based interviews: ask participants to reconstruct one deal's current terms from a packet, then show where their evidence came from and how they would resolve a deliberate conflict.
 4. Record observed steps, time, error types, and which artifacts were trusted. Compare with a baseline manual process.
@@ -70,11 +73,19 @@ Claims below were checked against primary sources on **2026-11-21**; status refl
 | Kinnow Contract Intelligence | Direct / closest adjacency | https://kinnow.ai/agents/contract-intelligence.html — HTTP 200; terms `commitment`, `promise`, `purchase order`, `goods receipt`, `contract` present | Commitment/promise tracking and comparison with PO/goods-receipt performance | **High** — strongest adjacent product; differentiation must be negotiation lineage from original conversations, not generic commitment tracking |
 | Redrawn Procurement | Adjacent | https://redrawn.ai/solutions/procurement — HTTP 200; page states voice/photo indents, quote comparison, drafted counter-offers, humans choose supplier | Quote comparison workflow | Do not differentiate on quote comparison or voice-to-indent |
 | TextMine | Adjacent / substitute | https://textmine.com/learn/how-to-build-invoice-dispute-evidence-packs — HTTP 200; `invoice`, `purchase order`, `delivery`, `contract`, `evidence pack`, `correspondence` present | Invoice dispute evidence packs | Generic dispute dossier creation is not unique |
-| Kendraa | Adjacent / forensic substitute | https://kendraa.co.in/ — HTTP 200; `WhatsApp`, `forensic`, `provenance`, `evidence`, `investigation` present | WhatsApp/document forensic investigation workspace | Generic WhatsApp forensic ingestion with provenance is not unique |
+| Kendraa | **Adjacent forensic/provenance product** (not a direct competitor without further evidence) | https://kendraa.co.in/whatsapp-investigations/ — HTTP 200, verified 2026-11-21; page shows a WhatsApp-investigation review interface with forensic/provenance language | WhatsApp/document forensic investigation workspace | Generic WhatsApp forensic ingestion with provenance is not unique; our transaction-reconstruction workflow has not been compared hands-on |
 | Riffit | Workflow substitute | https://www.riffit.in/ — HTTP 200; "WhatsApp Invoicing for Indian Freelancers", quotes/invoices from WhatsApp, contracts on dashboard | WhatsApp quote-to-invoice workflow | Do not build basic WhatsApp quote-to-invoice |
 | IJCAI 2025 survey | Prior art (academic) | https://ijcai.org/proceedings/2025/1159 — HTTP 200, DOI 10.24963/ijcai.2025/1159 | Survey of one-to-many negotiation, taxonomy of interdependency | Agreement detection is established research, not novel by itself |
 
-Additional sources from the original scan (Uttos, Munshi, Tagaada, Marker Invoice, BinaxPay, BrokWin ERP, UdyamNX, name collisions, the Rajya Sabha report and MSME Samadhaan dashboard) are listed in `docs/research-sources.md`; they were **not re-verified in this milestone** and must retain that limitation. The Rajya Sabha figures remain cited-by-document, not independently validated.
+Sources re-verified on 2026-11-21: the six pages in the table above plus Superlinked's `/about` and `/docs`. Additional sources from the original scan (Uttos, Munshi, Tagaada, Marker Invoice, BinaxPay, BrokWin ERP, UdyamNX, name collisions, the Rajya Sabha report and MSME Samadhaan dashboard) are listed in `docs/research-sources.md`; they were **not re-verified in this milestone** and retain that limitation. The Rajya Sabha figures remain cited-by-document, not independently validated. Public product-page statements above are **claims on public pages, not independently tested functionality**.
+
+### Academic prior art (related, not direct)
+
+- **IJCAI 2025** — Florijn, Yolum & Baarslag, *A Survey on One-To-Many Negotiation: A Taxonomy of Interdependency* (DOI 10.24963/ijcai.2025/1159): one-to-many **agent negotiation** and negotiation interdependencies. Verified HTTP 200 on 2026-11-21.
+- **Germesin & Wilson 2009** — *Agreement Detection in Multiparty Conversation*: agreement/disagreement detection and addressee identification in multiparty conversation. The cited PDF returned **HTTP 403 (Cloudflare)** on 2026-11-21, so full text was **not** re-verified; citation metadata is retained from the earlier scan.
+- **Purver et al. 2007** — *Detecting and Summarizing Action Items in Multi-Party Dialogue* (SIGDIAL 2007): action-item proposal, discussion and commitment detection in multiparty dialogue. Verified via ACL Anthology on 2026-11-21.
+
+These papers are **related prior art**. None directly demonstrates the proposed asynchronous B2B transaction-reconstruction workflow. They support the caution that agreement/action detection is an established research area; they do **not** support a novelty claim or a market gap.
 
 **Proposed differentiation:** (1) negotiation event ledger, (2) evidence-first deterministic state reducer, (3) cross-artifact reconciliation, (4) field-level provenance, (5) uncertainty as an explicit state, (6) bounded read-only agent with human approval.
 
@@ -84,7 +95,7 @@ Additional sources from the original scan (Uttos, Munshi, Tagaada, Marker Invoic
 
 **Essential (recommended for v1):**
 - One deal per investigation; bounded evidence packet with file type/size limits.
-- Text chat export plus born-digital PDF/office/tabular files that can be parsed locally and verified.
+- **First-build formats (narrow):** WhatsApp text export (`.txt`) and **born-digital PDF text extraction only**, using a locally verified parser. Office/tabular formats are added only after a parser is verified. **No scanned-document OCR and no image OCR** unless a real parser/model path is verified end to end.
 - SHA-256 of originals, immutable storage, provenance record.
 - Negotiation timeline with proposal / counteroffer / acceptance / rejection / revision / acknowledgement / unknown events.
 - Deterministic, versioned state transitions; silence and generic acknowledgement never imply acceptance.
@@ -95,6 +106,29 @@ Additional sources from the original scan (Uttos, Munshi, Tagaada, Marker Invoic
 **Optional / defer:** audio transcription; scanned-document OCR and image OCR; multilingual extraction beyond what verified models support; semantic reranking; agentic investigation loop; multi-workspace SaaS guarantees; live WhatsApp integration; ERP write-back; autonomous messaging; payment initiation; legal filing.
 
 **Audio/OCR/multilingual assessment:** all three should be **excluded from the first MVP** because SIE feasibility is BLOCKED, no OCR/transcription model was tested, and CPU-only support for dedicated OCR VLMs and Whisper is unverified. Including them would risk presenting untested capability as working. Add only after a real local inference gate passes and language coverage is verified against the brief.
+
+### First-build boundary precision
+
+- **Local single-user demo:** the first build is a **local, single-user demonstration** on synthetic data. It is not a multi-tenant service, not deployed publicly, and not evidence of production readiness.
+- **Append-only ≠ tamper-proof:** app-level append-only review history prevents ordinary accidental overwrites and supports auditability. It is **not** cryptographic tamper-evidence, not a trusted timestamp, and **not** legally admissible or forensically sound evidence.
+- **Born-digital PDF vs scan:** extracting embedded text from a born-digital PDF is text parsing; it is **not** OCR. Rasterised/scanned pages require an OCR path that has not been verified and is excluded.
+- **Interview scope:** the planned 5–8 interviews are exploratory qualitative research, not market validation, demand evidence or statistically generalisable findings.
+
+## 4A. Agentic product and competition fit (unresolved)
+
+The product is named an "Agent", but the recommended text-first MVP **defers the bounded investigation loop**. This creates an unresolved strategic and competition-fit question that must not be assumed away.
+
+**Tension:** a deterministic, evidence-first state engine is the correctness core, while agentic investigation is the product's stated differentiator and may be what a competition track rewards. The official track and judging criteria are unknown until the 2026-12-05 brief is released.
+
+**Minimum candidate agent behaviour (PROPOSED, not approved):**
+1. Search authorized evidence only.
+2. Fetch specific source fragments.
+3. Compare supporting and contradicting evidence.
+4. Investigate **one** unresolved term at a time.
+5. Draft an evidence-backed explanation or clarification.
+6. Require human review of every output; prohibit all external side effects.
+
+The agent remains bounded, read-only and auditable. This candidate behaviour is **not asserted to satisfy either competition track**; track selection and agent scope remain **PROPOSED** pending the official brief and Product Owner decisions (D-PO-16, D-PO-17).
 
 ## 5. Architecture recommendation
 
@@ -138,11 +172,14 @@ Unnecessary complexity to remove initially: pgvector, agent loop, multi-role wor
 |---|---|---|
 | Local source code, tests, SQLite, local HTTP server | **Free and genuinely local** | No payment method required |
 | PostgreSQL installed locally | **Free and genuinely local (setup cost)** | Not assumed free as a hosted service |
-| SIE self-hosted CPU image | **Free license, but UNVERIFIED on this laptop** | Gate BLOCKED; no pull or inference performed |
-| SIE Serverless / hosted model APIs | **Usage-priced** | Must not be assumed free; requires payment method |
+| Self-hosted SIE engine | **Apache 2.0 open source** | Confirmed on `https://superlinked.com/about` (verified 2026-11-21); **individual model licenses still require checking**. Engine license ≠ model license. |
+| SIE self-hosted CPU image | **Free engine license, but UNVERIFIED on this laptop** | Gate BLOCKED; no pull or inference performed. Image tag mutable; no digest recorded. |
+| SIE Serverless | **One-time, eligibility-dependent allowance, then usage-priced** | Official `/about` states new accounts get **$20 in free credits without a card; usage billed after credits are consumed**. Treat only as a possible one-time experiment allowance, **not a guaranteed permanent free tier**. No paid service authorized. |
 | Hosted Postgres / object storage / deployment | **Free-tier with restrictions or payment method required** | Not authorized; terms must be verified before use |
-| Local Ollama (already installed) | **Free/local license, currently UNUSABLE here** | 4B models present; RAM gate blocks loading; not tested |
+| Local Ollama (already installed) | **Free/local license; UNTESTED and resource-constrained** | 4B models present (3.3–3.4 GB **download** size). Actual runtime memory needs were **not** measured and no inference test was run. Available RAM (~1–1.6 GB) constrains feasibility; download size is not runtime memory. |
 | GPU-based OCR / generation images | **Requires hardware we lack** | No NVIDIA GPU; ₹0 path not available on this machine |
+
+Sources for the SIE entries: `https://superlinked.com/about` and `https://superlinked.com/docs` (accessed 2026-11-21). No payment method was provided or used.
 
 **Realistic local-demo fallback:** a deterministic, text-only, synthetic-data demo using local parsing, provenance and rule-based state transitions, with every inferred field labelled as provisional and model-derived where applicable. If no model runs, the demo must state that extraction is rule-based/limited rather than presenting mock inference as real. This fallback is a product decision requiring Product Owner approval.
 
@@ -186,5 +223,7 @@ All decisions below are **PROPOSED** and require Mahit's explicit approval. Stat
 | D-PO-13 | Approve evaluation approach? | Approve / revise | Approve plan; no thresholds yet | No labelled corpus | PROPOSED |
 | D-PO-14 | Re-evaluate after official brief? | Yes / no | Yes, on 2026-12-05 | Competition constraint | PROPOSED |
 | D-PO-15 | Authorize implementation start? | Authorize / defer | **DEFER** until all above gates close | M001 explicitly open | PROPOSED |
+| D-PO-16 | Define bounded agent scope for the MVP? | Include full loop / minimum candidate behaviour / defer | Minimum candidate behaviour (search, fetch, compare, investigate one term, draft with evidence, human review, no side effects) | Product is named an agent but MVP defers the loop; see section 4A | PROPOSED |
+| D-PO-17 | Select official competition track? | Track A / Track B / defer until brief | Defer until the 2026-12-05 brief and rubric are reviewed | No track assertion is defensible yet | PROPOSED |
 
-**Every Product Owner decision remains PROPOSED until Mahit explicitly approves it.**
+**Every Product Owner decision remains PROPOSED until Mahit explicitly approves it. M002 is not authorized.**
