@@ -186,14 +186,16 @@ Post-session withdrawal is offered **only** if the following process is actually
 
 ## 7. Analysis framework (5–8 exploratory interviews)
 
-Build a matrix with one row per participant and **separate columns for the two evidence types**. Never merge recalled workflow with observed task behaviour.
+Build a matrix with one row per participant (identified by opaque UUIDv4 token) and **separate columns for every evidence category**. Keep these distinct: participant-reported historical workflow (retrospective self-report), directly observed task behaviour and performance, participant-stated task-exercise self-reports, reported pain, researcher interpretation (labelled inference), and unverified assumptions. Never merge recalled workflow, observed behaviour, or self-reported confidence with one another, and do not imply that confidence is directly observed.
 
-| Participant | Participant-reported workflow (retrospective, NOT observed) | Directly observed task behaviour (synthetic packet) | Reported pain (quoted, with permission) | Researcher interpretation (clearly labelled inference) | Unverified assumptions |
-|---|---|---|---|---|---|
-| [opaque UUIDv4 token] | | | | | |
-| [opaque UUIDv4 token] | | | | | |
+| Participant (opaque UUIDv4 token) | Participant-reported historical workflow (retrospective, NOT observed) | Directly observed task behaviour and performance (synthetic packet) | Participant-stated task-exercise self-reports (NOT observed) | Reported pain (quoted, with permission) | Researcher interpretation (clearly labelled inference) | Unverified assumptions |
+|---|---|---|---|---|---|---|
+| [opaque UUIDv4 token] | | | | | | |
+| [opaque UUIDv4 token] | | | | | | |
 
-**Additional comparison views:** frequency of repeated behaviours across participants; contradictions between participants; which pain points appeared in **directly observed task behaviour** versus only in **participant-reported workflow**; which concept reactions were positive, negative or indifferent. Researcher interpretation remains inference in every case.
+**Column 4 — Participant-stated task-exercise self-reports (NOT observed)** records only what the participant *says*: (a) their stated confidence in the reconstructed answer, and (b) their stated perception of whether the result matches their own understanding. It does **not** record researcher-observed performance or accuracy; those belong in the directly observed column. Researcher interpretation remains a separate, labelled inference in its own column.
+
+**Additional comparison views:** frequency of repeated behaviours across participants; contradictions between participants; which pain points appeared in **directly observed task behaviour** versus only in **participant-reported workflow**; where **self-reported confidence** diverged from **observed task performance**; which concept reactions were positive, negative or indifferent. Researcher interpretation remains inference in every case.
 
 **Evidence that could DISPROVE the product hypothesis — record explicitly:**
 - Participants already solve this reliably with existing tools/processes.
