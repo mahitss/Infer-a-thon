@@ -65,14 +65,21 @@ Provide a **synthetic or properly redacted** evidence packet containing: a short
 
 Ask: "Using only this packet, tell me what you believe the current agreed terms are, and how you reached that conclusion."
 
-**Record without interpretation:**
+**Record in three separate categories; never mix them:**
+
+**A. Directly observed actions and performance metrics (researcher-recorded):**
 - Time taken to reach an answer.
 - Sources consulted and order consulted.
-- Statements the participant marked ambiguous.
+- Statements the participant marked ambiguous, as observed actions.
 - Conflicting terms noticed (and missed).
 - Mistakes, hesitation or self-corrections.
 - Manual tools used (paper, spreadsheet, calculator, notes app).
-- Whether the reconstructed result matches the participant's own understanding (ask them to rate confidence in their own words).
+
+**B. Participant-stated — SELF-REPORTED, NOT observed:**
+- Confidence in their own words.
+- Whether the reconstructed result matches their own understanding (as stated by the participant, not as independently verified).
+
+**C. Researcher interpretation:** record separately in the note template as labelled inference; do not merge it with A or B.
 
 Do not correct the participant or explain the "right" answer. Do not require disclosure of confidential information; if they start to do so, stop them and remind them of the boundary.
 
@@ -92,7 +99,10 @@ Record negative and indifferent reactions verbatim. Do not argue for the concept
 ## 5. Structured note-taking template (one per participant)
 
 ```
-Participant code: P-01 (anonymous; no name/phone/email/bank details)
+Participant token: [cryptographically generated UUIDv4, e.g. pt_9f1c2e7a-3b4d-4f8a-9c2e-6d5b0a1f3e7d]
+  (opaque, random, high-entropy; stored with these records and handed privately
+  to the participant; never derived from identity, organisation, initials or a
+  sequence; no name/phone/email/bank details)
 Date / interviewer:
 Role:
 Business segment: small distributor / other (specify) — exploratory only
@@ -132,7 +142,10 @@ DIRECTLY OBSERVED TASK BEHAVIOUR (synthetic packet exercise; observed, not recal
 - Conflicts noticed / missed:
 - Mistakes, hesitation, self-corrections:
 - Manual tools used:
-- Confidence stated (own words):
+
+PARTICIPANT-STATED — SELF-REPORTED (NOT observed; keep separate from the block above)
+- Confidence in own words:
+- Stated match with participant's own understanding:
 
 RESEARCHER INTERPRETATION (clearly separate; label every line as inference)
 -
@@ -155,19 +168,19 @@ Keep researcher interpretation visually separate from participant statements at 
 - Do **not** collect customer names, phone numbers, bank details, or private transaction documents. Do not photograph screens containing them.
 - Use only synthetic or properly redacted packets; if a participant begins disclosing confidential data, stop and redirect.
 - Do **not** upload participant data, notes, recordings or packets to any AI service or hosted tool.
-- Store notes locally with participant codes only; restrict access. Do **not** create an identity-to-code mapping.
+- Store notes locally with opaque participant tokens only; restrict access. Do **not** create an identity-to-token mapping.
 - No real evidence may be used for model training or evaluation without separate explicit legal/data-processing approval.
 
 ### 6A. Post-session withdrawal procedure (must be configured before recruitment)
 
 Post-session withdrawal is offered **only** if the following process is actually configured. If it is not configured, do **not** promise withdrawal after the session; offer only the right to stop during the session.
 
-1. **Random participant code:** before the session, assign each participant a random code (e.g. `P-01` generated from a random sequence, not from a name, initials, phone number or organisation). Use this code on all notes and recordings.
+1. **Opaque participant token:** before the session, generate each participant a **cryptographically random UUIDv4** (or equivalent high-entropy opaque token), e.g. `pt_9f1c2e7a-3b4d-4f8a-9c2e-6d5b0a1f3e7d`. It must be random, not derived from identity, organisation, initials, phone number, or sequential numbering. Store it with the participant's research records and hand it privately to the participant. Use this token on all notes and recordings.
 2. **Written withdrawal contact method:** give each participant a written contact method **at the start of the session**, configured by the research organiser before recruitment. It may be a generic study inbox, form, or equivalent channel chosen by the organiser. **No email address, phone number or contact identity is invented in this document** — the placeholder is `[withdrawal contact method — configured before recruitment]`.
-3. **How to request deletion:** the participant sends only their random participant code through that contact method with a request to withdraw. They do not need to reveal identity or a reason.
-4. **No identity mapping:** because identity/contact details are not linked to codes, a valid request is any message containing the participant code. Do not build a lookup table that defeats this separation.
+3. **How to request deletion:** the participant sends only their opaque participant token through that contact method with a request to withdraw. They do not need to reveal identity or a reason.
+4. **No identity mapping:** because identity/contact details are not linked to tokens, a valid request is any message containing the participant token. Do not build a lookup table that defeats this separation.
 5. **Deletion schedule:** before recruitment begins, define and record the withdrawal cutoff / final deletion date (e.g. analysis-end date) and tell the participant that date. The placeholder `[withdrawal cutoff / deletion date — configured before recruitment]` must be filled in before any recruitment.
-6. **What is deleted:** on a valid withdrawal request received before the cutoff, delete **all** notes, quotations, task-exercise records and recordings carrying that participant code, and remove any aggregated references to that code. Confirm deletion to the participant through the same contact method where feasible.
+6. **What is deleted:** on a valid withdrawal request received before the cutoff, delete **all** notes, quotations, task-exercise records and recordings carrying that participant token, and remove any aggregated references to that token. Confirm deletion to the participant through the same contact method where feasible.
 7. **After the cutoff:** once the documented deletion date passes, records can no longer be withdrawn individually; state this plainly to participants rather than implying indefinite withdrawal.
 8. **Precondition:** if steps 2 and 5 are not configured, post-session withdrawal is **not available** and the protocol must say so instead of promising it.
 
@@ -177,8 +190,8 @@ Build a matrix with one row per participant and **separate columns for the two e
 
 | Participant | Participant-reported workflow (retrospective, NOT observed) | Directly observed task behaviour (synthetic packet) | Reported pain (quoted, with permission) | Researcher interpretation (clearly labelled inference) | Unverified assumptions |
 |---|---|---|---|---|---|
-| P-01 | | | | | |
-| P-02 | | | | | |
+| [opaque UUIDv4 token] | | | | | |
+| [opaque UUIDv4 token] | | | | | |
 
 **Additional comparison views:** frequency of repeated behaviours across participants; contradictions between participants; which pain points appeared in **directly observed task behaviour** versus only in **participant-reported workflow**; which concept reactions were positive, negative or indifferent. Researcher interpretation remains inference in every case.
 
