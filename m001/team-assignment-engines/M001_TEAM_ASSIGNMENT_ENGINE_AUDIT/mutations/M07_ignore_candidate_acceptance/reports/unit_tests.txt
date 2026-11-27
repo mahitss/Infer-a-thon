@@ -1,0 +1,43 @@
+# unit_tests.txt
+
+Command: `C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe -m unittest discover -s tests -p test_validator.py -v`
+
+Working directory: `C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE`
+
+Exit code: 0
+
+stdout SHA-256: `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
+
+stderr bytes: 1871
+
+## stdout
+
+```text
+
+```
+
+## stderr
+
+```text
+test_duplicate_and_unknown_roles (test_validator.CompletenessTests.test_duplicate_and_unknown_roles) ... ok
+test_missing_candidate_acceptance (test_validator.CompletenessTests.test_missing_candidate_acceptance) ... ok
+test_missing_onboarding (test_validator.CompletenessTests.test_missing_onboarding) ... ok
+test_missing_product_owner_approval (test_validator.CompletenessTests.test_missing_product_owner_approval) ... ok
+test_other_state_requirements (test_validator.CompletenessTests.test_other_state_requirements) ... ok
+test_current_state_missing_appointments (test_validator.CurrentStateTests.test_current_state_missing_appointments) ... ok
+test_research_owner_not_promoted (test_validator.CurrentStateTests.test_research_owner_not_promoted) ... ok
+test_topology_warning (test_validator.CurrentStateTests.test_topology_warning) ... ok
+test_repeated_validation_identical (test_validator.DeterminismTests.test_repeated_validation_identical) ... ok
+test_current_state_conforms_to_schema (test_validator.SchemaTests.test_current_state_conforms_to_schema) ... ok
+test_missing_required_section_rejected (test_validator.SchemaTests.test_missing_required_section_rejected) ... ok
+test_conditional_evidence (test_validator.StaffingModelTests.test_conditional_evidence) ... ok
+test_discouraged_combinations_are_warnings (test_validator.StaffingModelTests.test_discouraged_combinations_are_warnings) ... ok
+test_hard_incompatibilities (test_validator.StaffingModelTests.test_hard_incompatibilities) ... ok
+test_invalid_three_person_has_hard_incompatibility (test_validator.StaffingModelTests.test_invalid_three_person_has_hard_incompatibility) ... ok
+test_valid_models_have_no_blocking_errors (test_validator.StaffingModelTests.test_valid_models_have_no_blocking_errors) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.028s
+
+OK
+```

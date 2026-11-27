@@ -1,0 +1,79 @@
+{
+  "baseline_exit": 0,
+  "baseline_output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN']\nPASS C3 evidence separation error | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 explicit CS error | ['E-COND-EXPLICIT-CS']\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding error | ['E-ONBOARDING']\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nPASS C10 five missing appointments | 5\nCANARY_PASS 10/10",
+  "mutants": [
+    {
+      "mutation": "M01_remove_moderator_analyst",
+      "kind": "policy",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "FAIL C1 hard Moderator+Analyst error | []\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN', 'E-HARD-MODERATOR-CUSTODIAN']\nPASS C3 evidence separation error | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 explicit CS error | ['E-COND-EXPLICIT-CS']\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding error | ['E-ONBOARDING']\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nPASS C10 five missing appointments | 5\nCANARY_PASS 9/10"
+    },
+    {
+      "mutation": "M02_remove_moderator_custodian",
+      "kind": "policy",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nFAIL C2 hard Moderator+Custodian error | []\nPASS C3 evidence separation error | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 explicit CS error | ['E-COND-EXPLICIT-CS']\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding error | ['E-ONBOARDING']\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nPASS C10 five missing appointments | 5\nCANARY_PASS 9/10"
+    },
+    {
+      "mutation": "M03_ignore_evidence_separation",
+      "kind": "validator",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN']\nFAIL C3 evidence separation error | []\nFAIL C4 explicit CS error | []\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding error | ['E-ONBOARDING']\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nPASS C10 five missing appointments | 5\nCANARY_PASS 8/10"
+    },
+    {
+      "mutation": "M04_ignore_explicit_cs",
+      "kind": "validator",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN']\nFAIL C3 evidence separation error | []\nFAIL C4 explicit CS error | []\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding error | ['E-ONBOARDING']\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nPASS C10 five missing appointments | 5\nCANARY_PASS 8/10"
+    },
+    {
+      "mutation": "M05_promote_conversation_to_formal",
+      "kind": "validator",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN']\nPASS C3 evidence separation error | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 explicit CS error | ['E-COND-EXPLICIT-CS']\nFAIL C5 RO not formal info | []\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding error | ['E-ONBOARDING']\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nPASS C10 five missing appointments | 5\nCANARY_PASS 9/10"
+    },
+    {
+      "mutation": "M06_ignore_po_approval",
+      "kind": "validator",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN']\nPASS C3 evidence separation error | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 explicit CS error | ['E-COND-EXPLICIT-CS']\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nFAIL C6 PO approval error | []\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding error | ['E-ONBOARDING']\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nPASS C10 five missing appointments | 5\nCANARY_PASS 9/10"
+    },
+    {
+      "mutation": "M07_ignore_candidate_acceptance",
+      "kind": "validator",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN']\nPASS C3 evidence separation error | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 explicit CS error | ['E-COND-EXPLICIT-CS']\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nFAIL C7 candidate acceptance error | []\nPASS C8 onboarding error | ['E-ONBOARDING']\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nPASS C10 five missing appointments | 5\nCANARY_PASS 9/10"
+    },
+    {
+      "mutation": "M08_ignore_onboarding",
+      "kind": "validator",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN']\nPASS C3 evidence separation error | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 explicit CS error | ['E-COND-EXPLICIT-CS']\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nFAIL C8 onboarding error | []\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nPASS C10 five missing appointments | 5\nCANARY_PASS 9/10"
+    },
+    {
+      "mutation": "M09_allow_discouraged_without_review",
+      "kind": "validator",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN']\nPASS C3 evidence separation error | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 explicit CS error | ['E-COND-EXPLICIT-CS']\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding error | ['E-ONBOARDING']\nFAIL C9 discouraged warning | []\nPASS C10 five missing appointments | 5\nCANARY_PASS 9/10"
+    },
+    {
+      "mutation": "M10_infer_appointments_from_topology",
+      "kind": "policy",
+      "detected": true,
+      "canary_exit": 1,
+      "output": "PASS C1 hard Moderator+Analyst error | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 hard Moderator+Custodian error | ['E-HARD-MODERATOR-CUSTODIAN']\nPASS C3 evidence separation error | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 explicit CS error | ['E-COND-EXPLICIT-CS']\nPASS C5 RO not formal info | ['I-RO-NOT-FORMAL']\nPASS C6 PO approval error | ['E-PO-APPROVAL']\nPASS C7 candidate acceptance error | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding error | ['E-ONBOARDING']\nPASS C9 discouraged warning | ['W-DISCOURAGED-RO-MODERATOR']\nFAIL C10 five missing appointments | 0\nCANARY_PASS 9/10"
+    }
+  ],
+  "total": 10,
+  "detected": 10,
+  "survived": []
+}

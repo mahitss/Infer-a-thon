@@ -1,0 +1,2325 @@
+{
+  "algorithm": {
+    "application_sites": [
+      {
+        "line": 304,
+        "text": "if not record.get('source_ref') or not meaningful_text(record.get('recording_authority')):"
+      },
+      {
+        "line": 343,
+        "text": "if not meaningful_text(decision_ref):"
+      },
+      {
+        "line": 364,
+        "text": "if not meaningful_text(ref) or (isinstance(ref, str) and ref != ref.strip()):"
+      },
+      {
+        "line": 486,
+        "text": "if not meaningful_text(appr.get('basis')):"
+      },
+      {
+        "line": 511,
+        "text": "if not meaningful_text(rec.get('escalation', {}).get('contact')):"
+      },
+      {
+        "line": 554,
+        "text": "if not meaningful_text(rationale):"
+      }
+    ],
+    "duplicate_signature": "        signature = (rec.get('evidence_type'), rec.get('source_ref'),\n                     rec.get('recording_authority'), rec.get('timestamp'),\n                     rec.get('subject'), rec.get('content_hash'),\n                     rec.get('role'), rec.get('appointment_ref'), rec.get('decision_ref'))\n        prior = seen_evidence.get(signature)",
+    "meaningful_text": [
+      "def meaningful_text(value):",
+      "    \"\"\"True only for a string containing at least one visually substantive character.",
+      "",
+      "    V2.2 F-007: str.strip() alone accepts strings made entirely of invisible",
+      "    Unicode format characters. The predicate never modifies, normalises or",
+      "    coerces the input; it only classifies it.",
+      "    \"\"\"",
+      "    if not isinstance(value, str):",
+      "        return False",
+      "    return any(unicodedata.category(ch) not in NON_CONTENT_CATEGORIES for ch in value)",
+      ""
+    ],
+    "non_content_categories": [
+      "NON_CONTENT_CATEGORIES = frozenset(('Cc', 'Cf', 'Zs', 'Zl', 'Zp'))"
+    ]
+  },
+  "f007": {
+    "boundary": [
+      {
+        "accepted": true,
+        "analysis_class": "FN_CANDIDATE",
+        "codes": [],
+        "field": "basis",
+        "id": "mn_only_acute_basis",
+        "meaningful_text": true,
+        "ready": true,
+        "unicode_categories": [
+          "Mn"
+        ],
+        "value": "U+0301U+0301U+0301U+0301U+0301"
+      },
+      {
+        "accepted": true,
+        "analysis_class": "FN_CANDIDATE",
+        "codes": [],
+        "field": "basis",
+        "id": "mc_only_devanagari_aa_basis",
+        "meaningful_text": true,
+        "ready": true,
+        "unicode_categories": [
+          "Mc"
+        ],
+        "value": "U+093EU+093EU+093E"
+      },
+      {
+        "accepted": true,
+        "analysis_class": "FN_CANDIDATE",
+        "codes": [],
+        "field": "basis",
+        "id": "me_only_enclosing_circle_basis",
+        "meaningful_text": true,
+        "ready": true,
+        "unicode_categories": [
+          "Me"
+        ],
+        "value": "U+20DDU+20DDU+20DD"
+      },
+      {
+        "accepted": true,
+        "analysis_class": "FN_CANDIDATE",
+        "codes": [],
+        "field": "basis",
+        "id": "private_use_only_basis",
+        "meaningful_text": true,
+        "ready": true,
+        "unicode_categories": [
+          "Co"
+        ],
+        "value": "U+E000U+E000U+E000"
+      },
+      {
+        "accepted": true,
+        "analysis_class": "FN_CANDIDATE",
+        "codes": [],
+        "field": "basis",
+        "id": "unassigned_only_basis",
+        "meaningful_text": true,
+        "ready": true,
+        "unicode_categories": [
+          "Cn"
+        ],
+        "value": "U+0378U+0378U+0378"
+      },
+      {
+        "accepted": true,
+        "analysis_class": "FN_CANDIDATE",
+        "codes": [],
+        "field": "basis",
+        "id": "surrogate_escaped_only_basis",
+        "meaningful_text": true,
+        "ready": true,
+        "unicode_categories": [
+          "Cs"
+        ],
+        "value": "U+D800U+D800U+D800"
+      },
+      {
+        "accepted": true,
+        "analysis_class": "FN_CANDIDATE",
+        "codes": [],
+        "field": "basis",
+        "id": "variation_selector_only_basis",
+        "meaningful_text": true,
+        "ready": true,
+        "unicode_categories": [
+          "Mn"
+        ],
+        "value": "U+FE0FU+FE0FU+FE0F"
+      },
+      {
+        "accepted": false,
+        "analysis_class": "EXPECTED_REJECT",
+        "codes": [
+          "E-DECISION-EVIDENCE-EMPTY"
+        ],
+        "field": "basis",
+        "id": "tag_chars_only_basis",
+        "meaningful_text": false,
+        "ready": false,
+        "unicode_categories": [
+          "Cf"
+        ],
+        "value": "U+E0020U+E0020U+E0020"
+      },
+      {
+        "accepted": false,
+        "analysis_class": "EXPECTED_REJECT",
+        "codes": [
+          "E-DECISION-EVIDENCE-EMPTY"
+        ],
+        "field": "basis",
+        "id": "u2028_only_basis",
+        "meaningful_text": false,
+        "ready": false,
+        "unicode_categories": [
+          "Zl"
+        ],
+        "value": "U+2028U+2028U+2028"
+      },
+      {
+        "accepted": false,
+        "analysis_class": "EXPECTED_REJECT",
+        "codes": [
+          "E-DECISION-EVIDENCE-EMPTY"
+        ],
+        "field": "basis",
+        "id": "u2029_only_basis",
+        "meaningful_text": false,
+        "ready": false,
+        "unicode_categories": [
+          "Zp"
+        ],
+        "value": "U+2029U+2029U+2029"
+      },
+      {
+        "accepted": true,
+        "analysis_class": "EXPECTED_PASS",
+        "codes": [],
+        "field": "basis",
+        "id": "meaningful_plus_u2028_basis",
+        "meaningful_text": true,
+        "ready": true,
+        "unicode_categories": [
+          "Ll",
+          "Lu",
+          "Zl",
+          "Zs"
+        ],
+        "value": "ApprovedU+2028by PO"
+      }
+    ],
+    "immutability": [
+      {
+        "basis_unchanged": true,
+        "candidate_ref_unchanged": true,
+        "contact_unchanged": true,
+        "decision_ref_unchanged": true,
+        "rationale_unchanged": true,
+        "result_codes": [],
+        "result_ready": true,
+        "source_ref_unchanged": true,
+        "whole_state_identical": true
+      }
+    ],
+    "meaningful": [
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "english_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "APPROVED by product owner for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "english_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "APPROVED by product owner for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "english_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "APPROVED by product owner for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "english_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "APPROVED by product owner for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "english_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "APPROVED by product owner for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "accented_latin_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "DU+00E9cision U+2014 CafU+00E9 U+00C9tudiant approuvU+00E9e"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "accented_latin_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "DU+00E9cision U+2014 CafU+00E9 U+00C9tudiant approuvU+00E9e"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "accented_latin_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "DU+00E9cision U+2014 CafU+00E9 U+00C9tudiant approuvU+00E9e"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "accented_latin_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "DU+00E9cision U+2014 CafU+00E9 U+00C9tudiant approuvU+00E9e"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "accented_latin_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "DU+00E9cision U+2014 CafU+00E9 U+00C9tudiant approuvU+00E9e"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "hindi_plain_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0909U+0924U+094DU+092AU+093EU+0926 U+0938U+094DU+0935U+093EU+092EU+0940 U+0915U+093E U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C U+0905U+0928U+0941U+092EU+094BU+0926U+0928"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "hindi_plain_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0909U+0924U+094DU+092AU+093EU+0926 U+0938U+094DU+0935U+093EU+092EU+0940 U+0915U+093E U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C U+0905U+0928U+0941U+092EU+094BU+0926U+0928"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "hindi_plain_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0909U+0924U+094DU+092AU+093EU+0926 U+0938U+094DU+0935U+093EU+092EU+0940 U+0915U+093E U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C U+0905U+0928U+0941U+092EU+094BU+0926U+0928"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "hindi_plain_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0909U+0924U+094DU+092AU+093EU+0926 U+0938U+094DU+0935U+093EU+092EU+0940 U+0915U+093E U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C U+0905U+0928U+0941U+092EU+094BU+0926U+0928"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "hindi_plain_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0909U+0924U+094DU+092AU+093EU+0926 U+0938U+094DU+0935U+093EU+092EU+0940 U+0915U+093E U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C U+0905U+0928U+0941U+092EU+094BU+0926U+0928"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "hindi_conjunct_virama_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 (U+0915U+094D+U+0937=U+0915U+094DU+0937)"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "hindi_conjunct_virama_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 (U+0915U+094D+U+0937=U+0915U+094DU+0937)"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "hindi_conjunct_virama_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 (U+0915U+094D+U+0937=U+0915U+094DU+0937)"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "hindi_conjunct_virama_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 (U+0915U+094D+U+0937=U+0915U+094DU+0937)"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "hindi_conjunct_virama_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 (U+0915U+094D+U+0937=U+0915U+094DU+0937)"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "hindi_conjunct_clean_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "hindi_conjunct_clean_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "hindi_conjunct_clean_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "hindi_conjunct_clean_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "hindi_conjunct_clean_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0915U+094DU+0937U+0947U+0924U+094DU+0930U+0940U+092F U+0905U+0928U+0941U+092EU+094BU+0926U+0928 U+0926U+0938U+094DU+0924U+093EU+0935U+0947U+091CU+093C"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "arabic_rtl_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "arabic_rtl_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "arabic_rtl_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "arabic_rtl_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "arabic_rtl_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "arabic_rtl_lrm_rlm_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+200EU+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629U+200F"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "arabic_rtl_lrm_rlm_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+200EU+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629U+200F"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "arabic_rtl_lrm_rlm_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+200EU+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629U+200F"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "arabic_rtl_lrm_rlm_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+200EU+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629U+200F"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "arabic_rtl_lrm_rlm_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+200EU+0645U+0648U+0627U+0641U+0642U+0629 U+0645U+0627U+0644U+0643 U+0627U+0644U+0645U+0646U+062AU+062C U+0645U+0648U+062BU+0642U+0629U+200F"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "zwj_emoji_technologist_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F469U+200DU+1F4BB"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "zwj_emoji_technologist_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F469U+200DU+1F4BB"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "zwj_emoji_technologist_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F469U+200DU+1F4BB"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "zwj_emoji_technologist_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F469U+200DU+1F4BB"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "zwj_emoji_technologist_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F469U+200DU+1F4BB"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "zwj_emoji_family_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F468U+200DU+1F469U+200DU+1F467U+200DU+1F466"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "zwj_emoji_family_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F468U+200DU+1F469U+200DU+1F467U+200DU+1F466"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "zwj_emoji_family_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F468U+200DU+1F469U+200DU+1F467U+200DU+1F466"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "zwj_emoji_family_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F468U+200DU+1F469U+200DU+1F467U+200DU+1F466"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "zwj_emoji_family_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "U+1F468U+200DU+1F469U+200DU+1F467U+200DU+1F466"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "meaningful_with_cf_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "ApprovedU+200Bby POU+200E for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "meaningful_with_cf_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "ApprovedU+200Bby POU+200E for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "meaningful_with_cf_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "ApprovedU+200Bby POU+200E for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "meaningful_with_cf_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "ApprovedU+200Bby POU+200E for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "meaningful_with_cf_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "ApprovedU+200Bby POU+200E for C-P1"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "meaningful_with_variation_selector_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "Decision U+2705U+FE0F approved"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "meaningful_with_variation_selector_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "Decision U+2705U+FE0F approved"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "meaningful_with_variation_selector_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "Decision U+2705U+FE0F approved"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "meaningful_with_variation_selector_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "Decision U+2705U+FE0F approved"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "meaningful_with_variation_selector_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "Decision U+2705U+FE0F approved"
+      },
+      {
+        "expected": "PASS",
+        "field": "basis",
+        "id": "decomposed_e_acute_basis",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "CafeU+0301 approuvee"
+      },
+      {
+        "expected": "PASS",
+        "field": "rationale",
+        "id": "decomposed_e_acute_rationale",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "CafeU+0301 approuvee"
+      },
+      {
+        "expected": "PASS",
+        "field": "contact",
+        "id": "decomposed_e_acute_contact",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "CafeU+0301 approuvee"
+      },
+      {
+        "expected": "PASS",
+        "field": "decision_ref",
+        "id": "decomposed_e_acute_decision_ref",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "CafeU+0301 approuvee"
+      },
+      {
+        "expected": "PASS",
+        "field": "recording_authority",
+        "id": "decomposed_e_acute_recording_authority",
+        "meaningful_text": true,
+        "observed": "ready=True codes=[]",
+        "result": "OK",
+        "target_code": "",
+        "target_code_present": false,
+        "value": "CafeU+0301 approuvee"
+      }
+    ],
+    "reject": [
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "zwsp_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+200BU+200BU+200BU+200BU+200B"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "zwsp_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+200BU+200BU+200BU+200BU+200B"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "zwsp_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+200BU+200BU+200BU+200BU+200B"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "zwsp_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+200BU+200BU+200BU+200BU+200B"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "zwsp_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+200BU+200BU+200BU+200BU+200B"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "zwsp_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+200BU+200BU+200BU+200BU+200B"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "lrm_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+200EU+200EU+200EU+200EU+200E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "lrm_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+200EU+200EU+200EU+200EU+200E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "lrm_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+200EU+200EU+200EU+200EU+200E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "lrm_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+200EU+200EU+200EU+200EU+200E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "lrm_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+200EU+200EU+200EU+200EU+200E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "lrm_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+200EU+200EU+200EU+200EU+200E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "wj_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+2060U+2060U+2060U+2060U+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "wj_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+2060U+2060U+2060U+2060U+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "wj_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+2060U+2060U+2060U+2060U+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "wj_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+2060U+2060U+2060U+2060U+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "wj_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+2060U+2060U+2060U+2060U+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "wj_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+2060U+2060U+2060U+2060U+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "bom_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+FEFFU+FEFFU+FEFF"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "bom_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+FEFFU+FEFFU+FEFF"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "bom_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+FEFFU+FEFFU+FEFF"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "bom_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+FEFFU+FEFFU+FEFF"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "bom_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+FEFFU+FEFFU+FEFF"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "bom_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+FEFFU+FEFFU+FEFF"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "ascii_invisible_mix_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "   U+200B  U+200E "
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "ascii_invisible_mix_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "   U+200B  U+200E "
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "ascii_invisible_mix_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "   U+200B  U+200E "
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "ascii_invisible_mix_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "   U+200B  U+200E "
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "ascii_invisible_mix_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "   U+200B  U+200E "
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "ascii_invisible_mix_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "   U+200B  U+200E "
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "zwj_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+200DU+200DU+200DU+200D"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "zwj_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+200DU+200DU+200DU+200D"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "zwj_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+200DU+200DU+200DU+200D"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "zwj_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+200DU+200DU+200DU+200D"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "zwj_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+200DU+200DU+200DU+200D"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "zwj_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+200DU+200DU+200DU+200D"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "soft_hyphen_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+00ADU+00ADU+00ADU+00AD"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "soft_hyphen_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+00ADU+00ADU+00ADU+00AD"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "soft_hyphen_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+00ADU+00ADU+00ADU+00AD"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "soft_hyphen_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+00ADU+00ADU+00ADU+00AD"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "soft_hyphen_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+00ADU+00ADU+00ADU+00AD"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "soft_hyphen_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+00ADU+00ADU+00ADU+00AD"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "mixed_cf_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+FEFFU+200BU+200EU+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "mixed_cf_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+FEFFU+200BU+200EU+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "mixed_cf_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+FEFFU+200BU+200EU+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "mixed_cf_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+FEFFU+200BU+200EU+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "mixed_cf_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+FEFFU+200BU+200EU+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "mixed_cf_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+FEFFU+200BU+200EU+2060"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "empty_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": ""
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "empty_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": ""
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "empty_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": ""
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "empty_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID', 'E-CANDIDATE-DUPLICATE']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": ""
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "empty_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": ""
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "empty_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": ""
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "ascii_ws_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "   "
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "ascii_ws_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "   "
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "ascii_ws_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "   "
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "ascii_ws_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "   "
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "ascii_ws_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "   "
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "ascii_ws_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "   "
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "nbsp_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+00A0U+00A0U+00A0"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "nbsp_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+00A0U+00A0U+00A0"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "nbsp_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+00A0U+00A0U+00A0"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "nbsp_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+00A0U+00A0U+00A0"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "nbsp_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+00A0U+00A0U+00A0"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "nbsp_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+00A0U+00A0U+00A0"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "u2028_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+2028U+2028U+2028"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "u2028_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+2028U+2028U+2028"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "u2028_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+2028U+2028U+2028"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "u2028_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+2028U+2028U+2028"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "u2028_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+2028U+2028U+2028"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "u2028_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+2028U+2028U+2028"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "u2029_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+2029U+2029U+2029"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "u2029_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+2029U+2029U+2029"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "u2029_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+2029U+2029U+2029"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "u2029_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+2029U+2029U+2029"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "u2029_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+2029U+2029U+2029"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "u2029_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+2029U+2029U+2029"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "tag_space_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+E0020U+E0020U+E0020"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "tag_space_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+E0020U+E0020U+E0020"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "tag_space_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+E0020U+E0020U+E0020"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "tag_space_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+E0020U+E0020U+E0020"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "tag_space_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+E0020U+E0020U+E0020"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "tag_space_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+E0020U+E0020U+E0020"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "arabic_letter_mark_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+061CU+061CU+061C"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "arabic_letter_mark_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+061CU+061CU+061C"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "arabic_letter_mark_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+061CU+061CU+061C"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "arabic_letter_mark_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+061CU+061CU+061C"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "arabic_letter_mark_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+061CU+061CU+061C"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "arabic_letter_mark_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+061CU+061CU+061C"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "mongolian_vowel_sep_only_basis",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "U+180EU+180EU+180E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "mongolian_vowel_sep_only_rationale",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "U+180EU+180EU+180E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "mongolian_vowel_sep_only_contact",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "U+180EU+180EU+180E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "mongolian_vowel_sep_only_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+180EU+180EU+180E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "decision_ref",
+        "id": "mongolian_vowel_sep_only_decision_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-ACCEPTANCE-DECISION']",
+        "result": "OK",
+        "target_code": "E-ACCEPTANCE-DECISION",
+        "target_code_present": true,
+        "value": "U+180EU+180EU+180E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "recording_authority",
+        "id": "mongolian_vowel_sep_only_recording_authority",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-EVIDENCE-INCOMPLETE']",
+        "result": "OK",
+        "target_code": "E-EVIDENCE-INCOMPLETE",
+        "target_code_present": true,
+        "value": "U+180EU+180EU+180E"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "null_basis",
+        "meaningful_text": null,
+        "observed": "ready=False codes=['E-DECISION-EVIDENCE-EMPTY']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": true,
+        "value": "None"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "null_rationale",
+        "meaningful_text": null,
+        "observed": "ready=False codes=['E-COMBINATION-RATIONALE']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": true,
+        "value": "None"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "null_contact",
+        "meaningful_text": null,
+        "observed": "ready=False codes=['E-ESCALATION-CONTACT']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": true,
+        "value": "None"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "null_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+200B"
+      },
+      {
+        "expected": "REJECT",
+        "field": "basis",
+        "id": "nonstring_int_basis",
+        "meaningful_text": null,
+        "note": "Fail-closed via E-SCHEMA (not target code); non-string rejected",
+        "observed": "ready=False codes=['E-SCHEMA']",
+        "result": "OK",
+        "target_code": "E-DECISION-EVIDENCE-EMPTY",
+        "target_code_present": false,
+        "value": "123"
+      },
+      {
+        "expected": "REJECT",
+        "field": "rationale",
+        "id": "nonstring_int_rationale",
+        "meaningful_text": null,
+        "note": "Fail-closed via E-SCHEMA (not target code); non-string rejected",
+        "observed": "ready=False codes=['E-SCHEMA']",
+        "result": "OK",
+        "target_code": "E-COMBINATION-RATIONALE",
+        "target_code_present": false,
+        "value": "123"
+      },
+      {
+        "expected": "REJECT",
+        "field": "contact",
+        "id": "nonstring_int_contact",
+        "meaningful_text": null,
+        "note": "Fail-closed via E-SCHEMA (not target code); non-string rejected",
+        "observed": "ready=False codes=['E-SCHEMA']",
+        "result": "OK",
+        "target_code": "E-ESCALATION-CONTACT",
+        "target_code_present": false,
+        "value": "123"
+      },
+      {
+        "expected": "REJECT",
+        "field": "candidate_ref",
+        "id": "nonstring_int_candidate_ref",
+        "meaningful_text": false,
+        "observed": "ready=False codes=['E-CANDIDATE-REF-INVALID']",
+        "result": "OK",
+        "target_code": "E-CANDIDATE-REF-INVALID",
+        "target_code_present": true,
+        "value": "U+200B"
+      }
+    ]
+  },
+  "meta": {
+    "baseline_issue_count": 0,
+    "baseline_ready": true,
+    "fixture_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2\\tests\\fixtures\\valid_four_person.json",
+    "jsonschema": true,
+    "python": "3.13.5",
+    "sha256_validator": "baa3634df3a82f9ecff158552f263843f97372dadbc16e0d65d6c6d884bc5b5f",
+    "validator_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2\\engine\\validator.py"
+  },
+  "n08": [
+    {
+      "all_codes": [
+        "E-EVIDENCE-DUPLICATE"
+      ],
+      "deterministic": true,
+      "duplicate_detected": true,
+      "duplicate_messages": [
+        "Evidence record e-acc-C-P1-RESEARCH_OWNER-copy duplicates e-acc-C-P1-RESEARCH_OWNER"
+      ],
+      "expected_duplicate": true,
+      "id": "exact_duplicate_acceptance",
+      "note": "deep copy under second ID, evidence_id updated",
+      "ready": false,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [
+        "E-EVIDENCE-DUPLICATE"
+      ],
+      "deterministic": true,
+      "duplicate_detected": true,
+      "duplicate_messages": [
+        "Evidence record e-po-C-P1-RESEARCH_OWNER-second duplicates e-po-C-P1-RESEARCH_OWNER"
+      ],
+      "expected_duplicate": true,
+      "id": "identical_content_different_ids",
+      "note": "non-acceptance clone; evidence_id excluded from signature",
+      "ready": false,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": false,
+      "id": "crlf_vs_lf_source_ref",
+      "note": "line-ending variant; no normalization",
+      "ready": true,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": false,
+      "id": "nfc_vs_nfd_source_ref",
+      "note": "NFC vs NFD source_ref; no normalization",
+      "ready": true,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": false,
+      "id": "whitespace_only_difference",
+      "note": "trailing space in authority",
+      "ready": true,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": false,
+      "id": "different_content_same_metadata",
+      "note": "distinct hash+source_ref",
+      "ready": true,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": false,
+      "id": "genuinely_distinct_acceptance",
+      "note": "distinct role-bound subject/decision/source/hash",
+      "ready": true,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": false,
+      "id": "inconsistent_source_metadata",
+      "note": "same source_ref, different timestamp/authority",
+      "ready": true,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [
+        "E-EVIDENCE-DUPLICATE"
+      ],
+      "deterministic": true,
+      "duplicate_detected": true,
+      "duplicate_messages": [
+        "Evidence record e-po-C-P1-RESEARCH_OWNER-nohash duplicates e-po-C-P1-RESEARCH_OWNER"
+      ],
+      "expected_duplicate": true,
+      "id": "ambiguous_null_hash",
+      "note": "two records, content_hash=None; no content anchor",
+      "ready": false,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": false,
+      "id": "canonical_tuple_role_tweak",
+      "note": "6 canonical fields equal, role differs -> NOT flagged",
+      "ready": true,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": false,
+      "id": "canonical_tuple_decisionref_tweak",
+      "note": "6 canonical fields equal, decision_ref differs -> NOT flagged",
+      "ready": true,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": false,
+      "id": "canonical_tuple_appointmentref_tweak",
+      "note": "6 canonical fields equal, appointment_ref differs -> NOT flagged",
+      "ready": true,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": true,
+      "id": "EXPLOIT_one_po_artifact_two_roles",
+      "note": "canonical tuple fields identical; role edited to evade signature",
+      "ready": true,
+      "result": "MISMATCH",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": true,
+      "id": "EXPLOIT_one_onboarding_artifact_two_roles",
+      "note": "onboarding clone; role edited to evade signature",
+      "ready": true,
+      "result": "MISMATCH",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [],
+      "deterministic": true,
+      "duplicate_detected": false,
+      "duplicate_messages": [],
+      "expected_duplicate": true,
+      "id": "EXPLOIT_one_formal_artifact_two_roles",
+      "note": "formal clone; role edited to evade signature",
+      "ready": true,
+      "result": "MISMATCH",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [
+        "E-EVIDENCE-DUPLICATE"
+      ],
+      "deterministic": true,
+      "duplicate_detected": true,
+      "duplicate_messages": [
+        "Evidence record e-acc-C-P1-RESEARCH_OWNER duplicates e-acc-C-P1-RESEARCH_OWNER-copy"
+      ],
+      "expected_duplicate": true,
+      "id": "reversed_insertion_order",
+      "note": "dict order reversed; detection must still fire",
+      "ready": false,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [
+        "E-EVIDENCE-DUPLICATE"
+      ],
+      "deterministic": true,
+      "duplicate_detected": true,
+      "duplicate_messages": [
+        "Evidence record e-acc-C-P1-RESEARCH_OWNER-copy duplicates e-acc-C-P1-RESEARCH_OWNER"
+      ],
+      "expected_duplicate": true,
+      "id": "evidence_state_immutable_before_after",
+      "note": "evidence registry identical before/after validate_state",
+      "ready": false,
+      "result": "OK",
+      "state_unchanged": true
+    },
+    {
+      "all_codes": [
+        "E-EVIDENCE-DUPLICATE"
+      ],
+      "deterministic": true,
+      "duplicate_detected": true,
+      "duplicate_messages": [
+        "Evidence record e-acc-C-P1-RESEARCH_OWNER-copy duplicates e-acc-C-P1-RESEARCH_OWNER"
+      ],
+      "expected_duplicate": true,
+      "id": "deterministic_repeat",
+      "note": "byte-identical to_dict across two runs",
+      "ready": false,
+      "result": "OK",
+      "state_unchanged": true
+    }
+  ],
+  "summary": {
+    "f007_boundary": {
+      "mismatch": 0,
+      "ok": 11,
+      "total": 11
+    },
+    "f007_boundary_accepted_categories": [
+      "mn_only_acute_basis",
+      "mc_only_devanagari_aa_basis",
+      "me_only_enclosing_circle_basis",
+      "private_use_only_basis",
+      "unassigned_only_basis",
+      "surrogate_escaped_only_basis",
+      "variation_selector_only_basis"
+    ],
+    "f007_immutability": {
+      "basis_unchanged": true,
+      "candidate_ref_unchanged": true,
+      "contact_unchanged": true,
+      "decision_ref_unchanged": true,
+      "rationale_unchanged": true,
+      "result_codes": [],
+      "result_ready": true,
+      "source_ref_unchanged": true,
+      "whole_state_identical": true
+    },
+    "f007_meaningful": {
+      "mismatch": 0,
+      "ok": 60,
+      "total": 60
+    },
+    "f007_reject": {
+      "mismatch": 0,
+      "ok": 104,
+      "total": 104
+    },
+    "n08": {
+      "mismatch": 3,
+      "mismatch_ids": [
+        "EXPLOIT_one_po_artifact_two_roles",
+        "EXPLOIT_one_onboarding_artifact_two_roles",
+        "EXPLOIT_one_formal_artifact_two_roles"
+      ],
+      "ok": 15,
+      "total": 18
+    }
+  }
+}

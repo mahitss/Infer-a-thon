@@ -1,0 +1,89 @@
+{
+  "adversarial": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m unittest discover -s tests/adversarial -p test_*.py -v",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_adv01_hard_moderator_analyst (test_audit_regression.AuditRegression.test_adv01_hard_moderator_analyst) ... ok\ntest_adv02_hard_moderator_custodian (test_audit_regression.AuditRegression.test_adv02_hard_moderator_custodian) ... ok\ntest_adv03_discouraged_ro_moderator (test_audit_regression.AuditRegression.test_adv03_discouraged_ro_moderator) ... ok\ntest_adv04_discouraged_custodian_analyst (test_audit_regression.AuditRegression.test_adv04_discouraged_custodian_analyst) ... ok\ntest_adv05_boolean_evidence_without_reference (test_audit_regression.AuditRegression.test_adv05_boolean_evidence_without_reference) ... ok\ntest_adv06_forged_evidence_reference (test_audit_regression.AuditRegression.test_adv06_forged_evidence_reference) ... ok\ntest_adv07_duplicate_candidate_identity (test_audit_regression.AuditRegression.test_adv07_duplicate_candidate_identity) ... ok\ntest_adv08_unknown_candidate_identity (test_audit_regression.AuditRegression.test_adv08_unknown_candidate_identity) ... ok\ntest_adv09_proposed_not_appointed (test_audit_regression.AuditRegression.test_adv09_proposed_not_appointed) ... ok\ntest_adv10_accepted_conversation_not_formal (test_audit_regression.AuditRegression.test_adv10_accepted_conversation_not_formal) ... ok\ntest_adv11_formal_state_formal_false (test_audit_regression.AuditRegression.test_adv11_formal_state_formal_false) ... ok\ntest_adv12_empty_approval_basis (test_audit_regression.AuditRegression.test_adv12_empty_approval_basis) ... ok\ntest_adv13_discouraged_without_review (test_audit_regression.AuditRegression.test_adv13_discouraged_without_review) ... ok\ntest_adv14_missing_timestamps (test_audit_regression.AuditRegression.test_adv14_missing_timestamps) ... ok\ntest_adv15_duplicate_json_keys (test_audit_regression.AuditRegression.test_adv15_duplicate_json_keys) ... ok\ntest_adv16_topology_unapproved_blocks_stage_b (test_audit_regression.AuditRegression.test_adv16_topology_unapproved_blocks_stage_b) ... ok\ntest_adv17_rejected_candidate_not_active (test_audit_regression.AuditRegression.test_adv17_rejected_candidate_not_active) ... ok\ntest_adv18_missing_onboarding (test_audit_regression.AuditRegression.test_adv18_missing_onboarding) ... ok\ntest_adv19_malformed_json (test_audit_regression.AuditRegression.test_adv19_malformed_json) ... ok\ntest_adv20_invalid_utf8 (test_audit_regression.AuditRegression.test_adv20_invalid_utf8) ... ok\ntest_adv21_missing_file (test_audit_regression.AuditRegression.test_adv21_missing_file) ... ok\ntest_adv22_no_authorization_inference (test_audit_regression.AuditRegression.test_adv22_no_authorization_inference) ... ok\ntest_adv23_different_combination_approval (test_audit_regression.AuditRegression.test_adv23_different_combination_approval) ... ok\ntest_adv24_deterministic (test_audit_regression.AuditRegression.test_adv24_deterministic) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 1.067s\n\nOK\n"
+  },
+  "regression": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m unittest discover -s tests/regression -p test_*.py -v",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_current_exit_one (test_cli.CLI.test_current_exit_one) ... ok\ntest_determinism_two_directories (test_cli.CLI.test_determinism_two_directories) ... ok\ntest_json_only_machine_readable (test_cli.CLI.test_json_only_machine_readable) ... ok\ntest_safe_input_errors_no_traceback (test_cli.CLI.test_safe_input_errors_no_traceback) ... ok\ntest_valid_four_exit_zero (test_cli.CLI.test_valid_four_exit_zero) ... ok\ntest_01_multi_role_without_po_combination_approval (test_explicit_scenarios.ExplicitScenarios.test_01_multi_role_without_po_combination_approval) ... ok\ntest_02_approval_for_different_combination (test_explicit_scenarios.ExplicitScenarios.test_02_approval_for_different_combination) ... ok\ntest_03_proposed_treated_as_appointed (test_explicit_scenarios.ExplicitScenarios.test_03_proposed_treated_as_appointed) ... ok\ntest_04_accepted_conversation_not_formal (test_explicit_scenarios.ExplicitScenarios.test_04_accepted_conversation_not_formal) ... ok\ntest_05_boolean_evidence_without_reference (test_explicit_scenarios.ExplicitScenarios.test_05_boolean_evidence_without_reference) ... ok\ntest_06_forged_evidence_identifier (test_explicit_scenarios.ExplicitScenarios.test_06_forged_evidence_identifier) ... ok\ntest_07_duplicate_candidate_identities (test_explicit_scenarios.ExplicitScenarios.test_07_duplicate_candidate_identities) ... ok\ntest_08_unknown_candidate_identity (test_explicit_scenarios.ExplicitScenarios.test_08_unknown_candidate_identity) ... ok\ntest_09_formally_appointed_with_missing_formal_approval (test_explicit_scenarios.ExplicitScenarios.test_09_formally_appointed_with_missing_formal_approval) ... ok\ntest_10_empty_approval_basis (test_explicit_scenarios.ExplicitScenarios.test_10_empty_approval_basis) ... ok\ntest_11_discouraged_combination_without_po_review (test_explicit_scenarios.ExplicitScenarios.test_11_discouraged_combination_without_po_review) ... ok\ntest_12_missing_timestamps (test_explicit_scenarios.ExplicitScenarios.test_12_missing_timestamps) ... ok\ntest_13_duplicate_json_keys (test_explicit_scenarios.ExplicitScenarios.test_13_duplicate_json_keys) ... ok\ntest_14_unapproved_topology_not_stage_b_ready (test_explicit_scenarios.ExplicitScenarios.test_14_unapproved_topology_not_stage_b_ready) ... ok\ntest_15_rejected_candidate_not_active (test_explicit_scenarios.ExplicitScenarios.test_15_rejected_candidate_not_active) ... ok\ntest_16_missing_onboarding (test_explicit_scenarios.ExplicitScenarios.test_16_missing_onboarding) ... ok\ntest_17_malformed_json (test_explicit_scenarios.ExplicitScenarios.test_17_malformed_json) ... ok\ntest_18_invalid_utf8 (test_explicit_scenarios.ExplicitScenarios.test_18_invalid_utf8) ... ok\ntest_19_missing_state_file (test_explicit_scenarios.ExplicitScenarios.test_19_missing_state_file) ... ok\ntest_20_no_authorization_from_passing_topology (test_explicit_scenarios.ExplicitScenarios.test_20_no_authorization_from_passing_topology) ... ok\ntest_current_state_remains_blocked (test_v2_regression.Regression.test_current_state_remains_blocked) ... ok\ntest_discouraged_with_exact_approval_passes (test_v2_regression.Regression.test_discouraged_with_exact_approval_passes) ... ok\ntest_hard_incompatibility_not_overridable (test_v2_regression.Regression.test_hard_incompatibility_not_overridable) ... ok\ntest_naive_timestamp_rejected (test_v2_regression.Regression.test_naive_timestamp_rejected) ... ok\ntest_separate_dimensions_present (test_v2_regression.Regression.test_separate_dimensions_present) ... ok\ntest_valid_four_five_six_stage_b_ready (test_v2_regression.Regression.test_valid_four_five_six_stage_b_ready) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 14.995s\n\nOK\n"
+  },
+  "cli_current": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe cli/validate.py --state state/current_assignment_state.json",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 1,
+    "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT\n",
+    "stderr": ""
+  },
+  "cli_valid_four": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe cli/validate.py --state tests/fixtures/valid_four_person.json",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 0,
+    "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: valid_four_person.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: PASS\nrole_compatibility: PASS\nstructural_topology_validity: PASS\nStage B role readiness: YES\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 0\nWarnings: 0\nEND REPORT\n",
+    "stderr": ""
+  },
+  "cli_malformed": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe cli/validate.py --state tests/fixtures/malformed.json",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 2,
+    "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: malformed.json\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-JSON-INVALID [dimension=input]: E-JSON-INVALID: malformed JSON\nEND REPORT\n",
+    "stderr": ""
+  },
+  "cli_bad_utf8": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe cli/validate.py --state tests/fixtures/invalid_utf8.bin",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 2,
+    "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: invalid_utf8.bin\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-ENCODING-INVALID [dimension=input]: E-ENCODING-INVALID: invalid UTF-8\nEND REPORT\n",
+    "stderr": ""
+  },
+  "cli_dup_key": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe cli/validate.py --state tests/fixtures/duplicate_json_key.json",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 2,
+    "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: duplicate_json_key.json\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-DUPLICATE-JSON-KEY [dimension=input]: E-DUPLICATE-JSON-KEY: schema_version\nEND REPORT\n",
+    "stderr": ""
+  },
+  "cli_no_file": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe cli/validate.py --state tests/fixtures/does_not_exist.json",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 2,
+    "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: does_not_exist.json\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-FILE-NOT-FOUND [dimension=input]: E-FILE-NOT-FOUND: FileNotFoundError\nEND REPORT\n",
+    "stderr": ""
+  },
+  "cli_recruit": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe cli/validate.py --state tests/fixtures/recruitment_inferred.json",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 1,
+    "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: recruitment_inferred.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: PASS\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 2\nWarnings: 0\nERROR E-AUTHORIZATION-STATE [dimension=structural_topology_validity]: Invalid authorization governance state\nERROR E-SCHEMA [dimension=structural_topology_validity]: governance/recruitment: 'AUTHORIZED' is not one of ['UNAUTHORIZED']\nEND REPORT\n",
+    "stderr": ""
+  },
+  "canary": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe tests/mutation/mutation_canary.py --root .",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 0,
+    "stdout": "PASS C1 hard incompatibility blocked | ['E-HARD-MODERATOR-ANALYST']\nPASS C2 discouraged review blocked | ['E-COMBINATION-APPROVAL-MISSING', 'E-DISCOURAGED-RO-MODERATOR']\nPASS C3 evidence separation blocked | ['E-COND-EVIDENCE-SEPARATION']\nPASS C4 multi-role approval blocked | ['E-COMBINATION-APPROVAL-MISSING', 'E-COND-EXPLICIT-CS', 'E-COMBINATION-APPROVAL-MISSING']\nPASS C5 PROPOSED/conversation not formal | ['E-TOPOLOGY-UNAPPROVED', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING']\nPASS C6 formal flag mismatch blocked | ['E-FORMAL-APPROVAL-MISMATCH']\nPASS C7 candidate acceptance blocked | ['E-CANDIDATE-ACCEPTANCE']\nPASS C8 onboarding blocked | ['E-ONBOARDING']\nPASS C9 unknown candidate blocked | ['E-CANDIDATE-UNKNOWN', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-APPOINTMENT-RECORD']\nPASS C10 broken evidence blocked | ['E-EVIDENCE-UNKNOWN']\nPASS C11 naive timestamp blocked | ['E-TIMESTAMP-MISSING']\nPASS C12 topology approval blocked | ['E-TOPOLOGY-UNAPPROVED']\nPASS C13 empty approval basis blocked | ['E-DECISION-EVIDENCE-EMPTY']\nPASS C14 duplicate candidate blocked | ['E-CANDIDATE-DUPLICATE', 'E-CANDIDATE-DUPLICATE', 'E-CANDIDATE-UNKNOWN', 'E-CANDIDATE-UNKNOWN', 'E-CANDIDATE-UNKNOWN', 'E-CANDIDATE-UNKNOWN']\nPASS C15 authorization state blocked | ['E-SCHEMA', 'E-AUTHORIZATION-STATE']\nPASS C16 valid model still passes | []\nPASS C17 hard MDC conflict blocked | ['E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-COMBINATION-APPROVAL-MISSING', 'E-HARD-MODERATOR-CUSTODIAN', 'E-COND-EVIDENCE-SEPARATION']\nPASS C18 role PO approval blocked | ['E-PO-APPROVAL']\nCANARY_PASS 18/18\n",
+    "stderr": ""
+  },
+  "mutation": {
+    "command": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe tests/mutation/mutation_harness.py",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2",
+    "exit_code": 0,
+    "stdout": "BASELINE_EXIT 0\nDETECTED 16/16\nDETECTED M01_remove_hard_MA exit=1\nDETECTED M02_remove_hard_MDC exit=1\nDETECTED M03_ignore_evidence_separation exit=1\nDETECTED M04_ignore_combination_approval exit=1\nDETECTED M05_promote_conversation_to_formal exit=1\nDETECTED M06_ignore_po_approval exit=1\nDETECTED M07_ignore_candidate_acceptance exit=1\nDETECTED M08_ignore_onboarding exit=1\nDETECTED M09_allow_discouraged_without_review exit=1\nDETECTED M10_allow_unknown_candidate exit=1\nDETECTED M11_allow_broken_evidence exit=1\nDETECTED M12_allow_naive_timestamp exit=1\nDETECTED M13_ignore_topology_approval exit=1\nDETECTED M14_allow_duplicate_candidate exit=1\nDETECTED M15_ignore_authorization_state exit=1\nDETECTED M16_allow_hard_incompatibility exit=1\n",
+    "stderr": ""
+  },
+  "determinism": {
+    "command": "current-state CLI from workspace root vs system temp cwd",
+    "exit_codes": [
+      1,
+      1
+    ],
+    "stdout_identical": true,
+    "stderr_identical": true,
+    "pass": true
+  }
+}

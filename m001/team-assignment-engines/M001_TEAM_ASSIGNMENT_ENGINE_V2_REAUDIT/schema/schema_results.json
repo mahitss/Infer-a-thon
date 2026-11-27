@@ -1,0 +1,393 @@
+{
+  "audit": {
+    "mission": "M001-TEAM-005",
+    "role": "independent schema conformance auditor (subagent)",
+    "date": "2026-11-27",
+    "workspace": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_REAUDIT",
+    "files_read_only": [
+      "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2\\schemas\\team_assignment.schema.json",
+      "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2\\engine\\validator.py",
+      "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2\\policy\\role_constraints.json"
+    ],
+    "files_written": [
+      "reports\\SCHEMA_AGENT_NOTES.md",
+      "schema\\schema_results.json"
+    ],
+    "method": "Executed Python 3.13.5 via stdin-fed scripts ($code = @'...'@; $code | python -); stdlib + installed jsonschema only; no installs, no network, no writes outside the two outputs.",
+    "trust_policy": "No V2 README or report was used as evidence; all findings are from execution and source line inspection."
+  },
+  "environment": {
+    "python": "3.13.5",
+    "jsonschema_version_via_importlib_metadata": "4.26.0",
+    "validator_class_selected_by_validator_for": "Draft202012Validator",
+    "validator_class_module": "jsonschema.validators",
+    "schema_dollar_schema": "https://json-schema.org/draft/2020-12/schema",
+    "schema_dollar_id": "m001-team-assignment-state-v2",
+    "check_schema_result": "PASS",
+    "check_schema_limitation": "Meta-schema check passes for schemas containing unresolvable local $ref; ref resolution is not checked.",
+    "format_checker_supplied_by_engine": false,
+    "format_checker_keys_available": ["date", "email", "idn-email", "idn-hostname", "ipv4", "ipv6", "json-pointer", "regex", "relative-json-pointer", "time", "uuid"],
+    "date_time_format_checker_installed": false
+  },
+  "schema_facts": {
+    "root_required": ["schema_version", "governance", "topology", "candidates", "evidence", "roles", "appointments", "combination_approvals"],
+    "root_additional_properties_false": true,
+    "additional_properties_key_occurrences": 20,
+    "additional_properties_false_count": 18,
+    "additional_properties_schema_valued_count": 2,
+    "additional_properties_false_locations": [
+      "root (L6)", "governance (L11)", "topology (L21)", "roles (L31)",
+      "$defs/candidate (L47)", "$defs/evidence (L56)", "$defs/roleRecord (L70)",
+      "$defs/roleRecord/recognition (L76)", "$defs/roleRecord/acceptance (L85)",
+      "$defs/roleRecord/approval (L93)", "$defs/roleRecord/formal (L103)",
+      "$defs/roleRecord/availability (L110)", "$defs/roleRecord/conflict_disclosure (L111)",
+      "$defs/roleRecord/confidentiality (L112)", "$defs/roleRecord/onboarding (L113)",
+      "$defs/roleRecord/escalation (L114)", "$defs/appointment (L118)",
+      "$defs/combinationApproval (L127)"
+    ],
+    "all_five_defs_have_additional_properties_false": true,
+    "map_like_additional_properties_with_ref": ["candidates -> #/$defs/candidate (L28)", "evidence -> #/$defs/evidence (L29)"],
+    "enum_count": 9,
+    "enum_locations": [
+      "schema_version [2.0] L9", "governance.m001_status [OPEN] L14",
+      "governance.m002_status [UNAUTHORIZED] L15", "governance.recruitment [UNAUTHORIZED] L16",
+      "governance.field_validation [NOT_STARTED] L17", "topology.status [PROPOSED,APPROVED] L24",
+      "topology.model [FOUR_PERSON,FIVE_PERSON,SIX_PERSON,OTHER] L25",
+      "roleRecord.state (7 values) L73", "combinationApproval.outcome [APPROVED,REJECTED] L132"
+    ],
+    "local_ref_count": 10,
+    "local_refs": ["#/$defs/candidate", "#/$defs/evidence", "#/$defs/roleRecord x6", "#/$defs/appointment", "#/$defs/combinationApproval"],
+    "local_ref_resolution_verified": true,
+    "items_count": 3,
+    "items_locations": ["appointments L42", "combination_approvals L43", "combinationApproval.roles L131"],
+    "conditional_keywords_present": {
+      "if": 0, "then": 0, "else": 0, "allOf": 0, "anyOf": 0, "oneOf": 0, "not": 0, "const": 0
+    },
+    "format_keyword_count": 0,
+    "pattern_keyword_count": 0,
+    "patternProperties_keyword_count": 0,
+    "uniqueItems_keyword_count": 0,
+    "minItems_keyword_count": 0,
+    "maxItems_keyword_count": 0,
+    "timestamp_fields": [
+      "$defs/evidence.timestamp L64", "roleRecord.recognition.decision_date L79",
+      "roleRecord.acceptance.candidate_accepted_at L89", "roleRecord.approval.product_owner_approved_at L99",
+      "roleRecord.formal.formal_appointed_at L107", "combinationApproval.decision_timestamp L136"
+    ],
+    "timestamp_constraints_in_schema": "type string-or-null only; no format, no pattern",
+    "timestamps_validated_by_json_schema": false,
+    "content_hash_schema_type": ["string", "null"],
+    "content_hash_has_pattern_constraint": false,
+    "content_hash_rule_location": "engine only: validator.py L242-245 re.fullmatch(r'[0-9a-fA-F]{64}', str(h))"
+  },
+  "checks": [
+    {"check": "installed version via importlib.metadata", "result": "4.26.0", "passed": true},
+    {"check": "validator_for(schema)", "result": "Draft202012Validator", "passed": true},
+    {"check": "check_schema(schema)", "result": "PASS", "passed": true},
+    {"check": "required properties (root and nested)", "result": "enforced by both validators; C02 and C15 rejected by both", "passed": true},
+    {"check": "additionalProperties=false root and nested $defs", "result": "enforced by both validators; C03, C07, C08 rejected by both", "passed": true},
+    {"check": "enum constraints", "result": "enforced by both validators; C05, C06, C13, C17 rejected by both", "passed": true},
+    {"check": "local $ref resolution", "result": "all 10 local refs resolve under both validators (C01, C08, C15, C16)", "passed": true},
+    {"check": "items", "result": "enforced by both validators; C16 rejected by both", "passed": true},
+    {"check": "conditionals present", "result": "none: if/then/else/allOf/anyOf/oneOf/not all zero", "passed": true},
+    {"check": "format keyword declared", "result": "zero declarations", "passed": true},
+    {"check": "timestamp validation by JSON Schema", "result": "none; naive timestamp accepted with and without a supplied FormatChecker", "passed": false},
+    {"check": "content_hash pattern constraint", "result": "none; invalid hash accepted by both validators", "passed": false},
+    {"check": "corpus parity (18 instances)", "result": "0 accept/reject gaps on shipped schema", "passed": true},
+    {"check": "structural_schema_errors uses full validator", "result": "exact validator_for(schema) calls=1, fallback calls=0, _JSONSCHEMA_AVAILABLE=True", "passed": true},
+    {"check": "fallback path reachable when jsonschema unavailable", "result": "forced _JSONSCHEMA_AVAILABLE=False produced output identical to validate_schema()", "passed": true},
+    {"check": "determinism", "result": "20/20 identical outputs for structural_schema_errors and validate_schema on 8-error instance", "passed": true}
+  ],
+  "baseline_instance": {
+    "schema_version": "2.0",
+    "governance": {"m001_status": "OPEN", "m002_status": "UNAUTHORIZED", "recruitment": "UNAUTHORIZED", "field_validation": "NOT_STARTED"},
+    "topology": {"status": "APPROVED", "model": "FOUR_PERSON"},
+    "candidates": {"c1": {"candidate_ref": "c1", "active": true, "fixture_marker": null}},
+    "evidence": {},
+    "roles": "<six roleRecords, each state=UNASSIGNED, candidate_ref=null, and fully populated nested sub-objects with all booleans false and all string fields null>",
+    "appointments": [],
+    "combination_approvals": []
+  },
+  "corpus": [
+    {
+      "id": "C01_valid_baseline", "description": "schema-valid full document",
+      "mutation": "none", "subset_errors": [], "full_errors": [],
+      "subset_accepts": true, "full_accepts": true, "parity_gap": false
+    },
+    {
+      "id": "C02_missing_required_root", "description": "delete root required 'roles'",
+      "mutation": "delete roles", "subset_errors": ["$: missing roles"],
+      "full_errors": ["$: 'roles' is a required property"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C03_extra_property_root", "description": "add unexpected root 'surprise': 1",
+      "mutation": "root.surprise = 1", "subset_errors": ["$: unexpected surprise"],
+      "full_errors": ["$: Additional properties are not allowed ('surprise' was unexpected)"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C04_wrong_type_root", "description": "topology set to string",
+      "mutation": "root.topology = 'APPROVED'", "subset_errors": ["$.topology: type mismatch"],
+      "full_errors": ["topology: 'APPROVED' is not of type 'object'"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C05_enum_mismatch", "description": "schema_version '1.0'",
+      "mutation": "root.schema_version = '1.0'", "subset_errors": ["$.schema_version: enum mismatch"],
+      "full_errors": ["schema_version: '1.0' is not one of ['2.0']"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C06_nested_wrong_type", "description": "roles.RESEARCH_OWNER.state = 123",
+      "mutation": "roles.RESEARCH_OWNER.state = 123",
+      "subset_errors": ["$.roles.RESEARCH_OWNER.state: type mismatch"],
+      "full_errors": [
+        "roles/RESEARCH_OWNER/state: 123 is not of type 'string'",
+        "roles/RESEARCH_OWNER/state: 123 is not one of ['UNASSIGNED', 'PROPOSED', 'ACCEPTED_IN_CONVERSATION', 'CANDIDATE_ACCEPTED', 'REJECTED', 'DEFERRED', 'FORMALLY_APPOINTED']"
+      ],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C07_nested_additional_property", "description": "roles.RESEARCH_OWNER.availability.extra = true",
+      "mutation": "roles.RESEARCH_OWNER.availability.extra = true",
+      "subset_errors": ["$.roles.RESEARCH_OWNER.availability: unexpected extra"],
+      "full_errors": ["roles/RESEARCH_OWNER/availability: Additional properties are not allowed ('extra' was unexpected)"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C08_evidence_extra_property", "description": "extra keyfoo in $defs/evidence record",
+      "mutation": "evidence.e1 = {evidence_id:e1, evidence_type:DECISION_BASIS, source_ref:s, content_hash:xyz-not-hex, recording_authority:po, timestamp:2026-01-01T00:00:00+00:00, verification_status:VERIFIED, subject:null, foo:bar}",
+      "subset_errors": ["$.evidence.e1: unexpected foo"],
+      "full_errors": ["evidence/e1: Additional properties are not allowed ('foo' was unexpected)"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C09_bad_hash_format", "description": "content_hash is not 64 hex chars",
+      "mutation": "evidence.e1.content_hash = 'not-a-64-hex-hash' (all other evidence fields valid)",
+      "subset_errors": [], "full_errors": [], "subset_accepts": true, "full_accepts": true, "parity_gap": false,
+      "note": "silently accepted by both schema validators; engine flags only when evidence is referenced"
+    },
+    {
+      "id": "C10_naive_timestamp", "description": "evidence timestamp has no timezone",
+      "mutation": "evidence.e1.timestamp = '2026-01-01T00:00:00'",
+      "subset_errors": [], "full_errors": [], "subset_accepts": true, "full_accepts": true, "parity_gap": false,
+      "note": "silently accepted by both schema validators, including with FormatChecker supplied"
+    },
+    {
+      "id": "C11_whitespace", "description": "candidate_ref is whitespace-only",
+      "mutation": "candidates.c1.candidate_ref = '   '",
+      "subset_errors": [], "full_errors": [], "subset_accepts": true, "full_accepts": true, "parity_gap": false,
+      "note": "engine rejects via E-CANDIDATE-DUPLICATE key/reference mismatch"
+    },
+    {
+      "id": "C12_duplicate_roles", "description": "two identical appointments",
+      "mutation": "appointments = [{candidate_ref:c1, role:MODERATOR, state:FORMALLY_APPOINTED} x2]",
+      "subset_errors": [], "full_errors": [], "subset_accepts": true, "full_accepts": true, "parity_gap": false,
+      "note": "no uniqueItems in schema; engine rejects duplicate appointments"
+    },
+    {
+      "id": "C13_numeric_vs_string", "description": "schema_version numeric 2.0",
+      "mutation": "root.schema_version = 2.0 (number)",
+      "subset_errors": ["$.schema_version: type mismatch"],
+      "full_errors": ["schema_version: 2.0 is not of type 'string'", "schema_version: 2.0 is not one of ['2.0']"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C14_numeric_in_boolean", "description": "candidates.c1.active = 1",
+      "mutation": "candidates.c1.active = 1 (number)",
+      "subset_errors": ["$.candidates.c1.active: type mismatch"],
+      "full_errors": ["candidates/c1/active: 1 is not of type 'boolean'"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C15_missing_required_nested", "description": "evidence record with only evidence_id",
+      "mutation": "evidence.e1 = {evidence_id: e1}",
+      "subset_errors": [
+        "$.evidence.e1: missing evidence_type", "$.evidence.e1: missing source_ref",
+        "$.evidence.e1: missing content_hash", "$.evidence.e1: missing recording_authority",
+        "$.evidence.e1: missing timestamp", "$.evidence.e1: missing verification_status",
+        "$.evidence.e1: missing subject"
+      ],
+      "full_errors": [
+        "evidence/e1: 'evidence_type' is a required property", "evidence/e1: 'source_ref' is a required property",
+        "evidence/e1: 'content_hash' is a required property", "evidence/e1: 'recording_authority' is a required property",
+        "evidence/e1: 'timestamp' is a required property", "evidence/e1: 'verification_status' is a required property",
+        "evidence/e1: 'subject' is a required property"
+      ],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C16_items_wrong_type", "description": "appointments[0] = string",
+      "mutation": "appointments = ['not-an-object']",
+      "subset_errors": ["$.appointments[0]: type mismatch"],
+      "full_errors": ["appointments/0: 'not-an-object' is not of type 'object'"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C17_role_enum_number", "description": "combination outcome numeric 1",
+      "mutation": "combination_approvals[0] = {candidate_ref:c1, roles:[MODERATOR], outcome:1, rationale:null, evidence_id:null, product_owner_approved:false, decision_timestamp:null}",
+      "subset_errors": ["$.combination_approvals[0].outcome: type mismatch"],
+      "full_errors": ["combination_approvals/0/outcome: 1 is not of type 'string'", "combination_approvals/0/outcome: 1 is not one of ['APPROVED', 'REJECTED']"],
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false
+    },
+    {
+      "id": "C18_bad_ref_schema", "description": "modified schema with unresolved local $ref (schema-level case)",
+      "mutation": "instance unchanged; schema.properties.topology replaced with {$ref: '#/$defs/DOES_NOT_EXIST'}",
+      "subset_errors": ["$.topology: unresolved $ref #/$defs/DOES_NOT_EXIST"],
+      "full_errors": null,
+      "full_exception": "_WrappedReferencingError: PointerToNowhere: '/$defs/DOES_NOT_EXIST' does not exist within {schema...}",
+      "subset_accepts": false, "full_accepts": false, "parity_gap": false,
+      "behavioral_divergence": true,
+      "note": "check_schema(badref)=PASS; structural_schema_errors(badref) raises uncaught; subset returns clean error string"
+    }
+  ],
+  "parity_gaps": {
+    "shipped_schema_accept_reject_gaps": [],
+    "shipped_schema_case_count": 18,
+    "shipped_schema_gap_count": 0,
+    "diagnostic_differences": [
+      "subset emits short custom strings with '$'/'dot' paths; full emits spec messages with '/' paths",
+      "full can emit two errors for one field (type + enum); subset stops after type mismatch",
+      "subset reports required fields in schema order; full reports sorted by path then message"
+    ],
+    "schema_level_error_handling_divergence": {
+      "case": "C18_bad_ref_schema",
+      "subset": "returns ['$.topology: unresolved $ref #/$defs/DOES_NOT_EXIST']",
+      "full": "raises _WrappedReferencingError (referencing.exceptions.PointerToNowhere); not caught by structural_schema_errors which catches only jsonschema.exceptions.SchemaError (validator.py L192)",
+      "check_schema_on_bad_schema": "PASS"
+    },
+    "latent_divergences_not_exercised_by_shipped_schema": [
+      {"keyword": "pattern", "schema": {"type": "object", "properties": {"x": {"type": "string", "pattern": "^A"}}}, "instance": {"x": "B"}, "subset_accepts": true, "full_accepts": false, "full_message": "'B' does not match '^A'"},
+      {"keyword": "enum (bool vs int)", "schema": {"enum": [1]}, "instance": true, "subset_accepts": true, "full_accepts": false, "full_message": "True is not one of [1]"},
+      {"keyword": "integer", "schema": {"type": "integer"}, "instance": 1.0, "subset_accepts": false, "full_accepts": true, "subset_error": "$: type mismatch"},
+      {"keyword": "if/then", "schema": {"if": {"properties": {"x": {"const": "A"}}}, "then": {"required": ["y"]}}, "instance": {"x": "A"}, "subset_accepts": true, "full_accepts": false, "full_message": "'y' is a required property"},
+      {"keyword": "allOf", "schema": {"allOf": [{"required": ["x"]}, {"required": ["y"]}]}, "instance": {"x": 1}, "subset_accepts": true, "full_accepts": false, "full_message": "'y' is a required property"},
+      {"keyword": "uniqueItems", "schema": {"type": "array", "uniqueItems": true}, "instance": [1, 1], "subset_accepts": true, "full_accepts": false, "full_message": "[1, 1] has non-unique elements"},
+      {"keyword": "minLength", "schema": {"type": "string", "minLength": 3}, "instance": "a", "subset_accepts": true, "full_accepts": false, "full_message": "'a' is too short"},
+      {"keyword": "boolean subschema false", "schema": {"properties": {"x": false}}, "instance": {"x": 1}, "subset_result": "RAISED TypeError: argument of type 'bool' is not iterable", "full_accepts": false, "full_message": "False schema does not allow 1"},
+      {"keyword": "$ref JSON Pointer escape", "schema": {"$defs": {"a/b": {"type": "integer"}}, "properties": {"x": {"$ref": "#/$defs/a~1b"}}}, "instance": {"x": 1}, "subset_accepts": false, "subset_error": "$.x: unresolved $ref #/$defs/a~1b", "full_accepts": true}
+    ]
+  },
+  "format_and_hash_determination": {
+    "format_keywords_in_schema": 0,
+    "engine_passes_format_checker": false,
+    "experiment": [
+      {"declared": "format=date-time on evidence.timestamp", "value": "not-a-timestamp-at-all", "full_default_errors": [], "full_with_format_checker": [], "subset_errors": [], "reason": "date-time checker not installed in jsonschema 4.26.0 environment"},
+      {"declared": "format=date on evidence.timestamp", "value": "not-a-timestamp-at-all", "full_default_errors": [], "full_with_format_checker": ["'not-a-timestamp-at-all' is not a 'date'"], "subset_errors": [], "reason": "date checker available; default validator still ignores format"},
+      {"declared": "none (shipped schema)", "value": "2026-01-01T00:00:00", "full_with_format_checker": [], "subset_errors": []}
+    ],
+    "timestamps_validated_by_json_schema": false,
+    "content_hash_pattern_constraint": false,
+    "content_hash_validated_only_in_engine": true
+  },
+  "engine_wiring": {
+    "structural_schema_errors_uses_full_validator_when_available": true,
+    "evidence": "exact validator_for(schema) calls=1; fallback calls=0; _JSONSCHEMA_AVAILABLE=True; errors=[]",
+    "source_lines": "validator.py L183-194 (availability check L183, validator_for L185, check_schema L186, sorted iter_errors L187-191, SchemaError catch L192, fallback L194)",
+    "fallback_reachable": true,
+    "fallback_evidence": "forcing _JSONSCHEMA_AVAILABLE=False yielded output identical to validate_schema()",
+    "determinism": {
+      "structural_schema_errors_20_runs_identical": true,
+      "validate_schema_20_runs_identical": true,
+      "test_instance": "extra root property 'surprise' plus evidence.e1 with only evidence_id (8 schema errors)",
+      "sort_key": "(absolute_path parts, message) at validator.py L189"
+    },
+    "engine_only_business_rules": [
+      "authorization posture recruitment=UNAUTHORIZED and field_validation=NOT_STARTED (L293-294; L453 always False)",
+      "topology APPROVED required for Stage B (L297-298)",
+      "evidence_type and verification_status policy membership and valid_timestamp (L305-310)",
+      "evidence_check type/status/source/authority/subject/hash (L217-246)",
+      "64-hex content_hash regex, referenced evidence only (L242-245)",
+      "timezone-aware timestamps and chronology accepted<=approved<=appointed (L197-210, L355-363, L418-419)",
+      "candidate key == candidate_ref, duplicate identity, active is True (L249-263)",
+      "role names in policy, appointment states in policy, FORMALLY_APPOINTED required (L319-329)",
+      "acceptance/PO approval/formal/basis/availability/conflict/confidentiality/onboarding/escalation (L336-375)",
+      "appointment duplicates, known candidate/role, formal role coverage (L377-400)",
+      "combination approval outcome/PO/rationale/evidence/timestamp and exact combination match (L402-419)",
+      "hard incompatibilities, discouraged and conditional combinations (L421-448)",
+      "Stage B dimension aggregation (L450-453)",
+      "duplicate JSON object key rejection in loader (L74-97)"
+    ],
+    "engine_probes": [
+      {"id": "E00", "case": "schema-valid baseline", "stage_b": false, "errors": 6, "codes": ["E-APPOINTMENT-MISSING x6"]},
+      {"id": "E01", "case": "dangling evidence with invalid hash", "stage_b": false, "errors": 6, "codes": ["E-APPOINTMENT-MISSING x6"], "finding": "no hash error; hash check only runs for referenced evidence"},
+      {"id": "E02", "case": "referenced evidence with invalid hash (COMBINATION_REVIEW evidence_id=e1)", "stage_b": false, "errors": 7, "codes": ["E-APPOINTMENT-MISSING x6", "E-EVIDENCE-HASH"]},
+      {"id": "E03", "case": "dangling evidence with naive timestamp", "stage_b": false, "errors": 7, "codes": ["E-APPOINTMENT-MISSING x6", "E-TIMESTAMP-INVALID"]},
+      {"id": "E04", "case": "candidate_ref whitespace", "stage_b": false, "errors": 7, "codes": ["E-APPOINTMENT-MISSING x6", "E-CANDIDATE-DUPLICATE"]},
+      {"id": "E05", "case": "duplicate appointments", "stage_b": false, "errors": 9, "codes": ["E-APPOINTMENT-MISSING x6", "E-CANDIDATE-DUPLICATE", "E-UNAPPROVED-APPOINTMENT x2"]},
+      {"id": "E06", "case": "evidence dict key e1 vs evidence_id field e999", "stage_b": false, "errors": 6, "codes": ["E-APPOINTMENT-MISSING x6"], "finding": "no key/field consistency check anywhere"}
+    ]
+  },
+  "limitations": {
+    "full_validator": [
+      "No format_checker supplied at validator.py L188; shipped schema declares no format",
+      "date-time checker absent from FormatChecker in this environment",
+      "check_schema does not validate $ref resolvability; only SchemaError caught at L192",
+      "No pattern for hashes, no uniqueItems/minItems, no conditionals in schema",
+      "Cannot express cross-record references, chronology, authorization or governance semantics",
+      "check_schema re-runs on every validation call (performance only)"
+    ],
+    "subset_validator": [
+      "Supports only $ref, type, required, properties, additionalProperties, enum, items",
+      "resolve() naive '#/' split; no JSON Pointer unescaping (~1/~0), no external or $id-relative refs",
+      "type_ok() rejects 1.0 for integer (JSON Schema accepts it)",
+      "enum uses Python membership: True == 1 and 1 == 1.0",
+      "crashes with TypeError on boolean subschemas",
+      "reports strings with different paths and fewer errors; not interchangeable diagnostics",
+      "never used while jsonschema is importable"
+    ]
+  },
+  "defects": [
+    {
+      "id": "D1", "severity_suggestion": "MEDIUM",
+      "title": "No timestamp lexical validation in schema or wired validator",
+      "evidence": "0 format/pattern declarations; naive timestamp accepted by both validators even with FormatChecker; date-time checker not installed",
+      "source_refs": ["schema L64, L79, L89, L99, L107, L136", "validator.py L185-188"]
+    },
+    {
+      "id": "D2", "severity_suggestion": "MEDIUM",
+      "title": "content_hash has no pattern constraint; engine hash check applies only to referenced evidence",
+      "evidence": "C09 both validators accept; E01 dangling bad hash produced no hash error; E02 referenced bad hash produced E-EVIDENCE-HASH",
+      "source_refs": ["schema L62", "validator.py L242-245, L341-346, L372, L416"]
+    },
+    {
+      "id": "D3", "severity_suggestion": "MEDIUM",
+      "title": "Unresolvable $ref passes check_schema then crashes structural_schema_errors",
+      "evidence": "check_schema(badref)=PASS; structural_schema_errors(badref) RAISED _WrappedReferencingError PointerToNowhere",
+      "source_refs": ["validator.py L183-194, especially L192"]
+    },
+    {
+      "id": "D4", "severity_suggestion": "MEDIUM (latent; only if jsonschema absent or schema extended)",
+      "title": "Subset fallback silently ignores pattern/if-then/allOf/uniqueItems/minLength/const/boolean schemas and has equality/crash defects",
+      "evidence": "9 synthetic probes with accept/reject gaps or TypeError; see parity_gaps.latent_divergences_not_exercised_by_shipped_schema",
+      "source_refs": ["validator.py L108-173 (resolve L116-124, type_ok L126-140, enum L153, walk L142-172)"]
+    },
+    {
+      "id": "D5", "severity_suggestion": "LOW",
+      "title": "Evidence dictionary key vs evidence_id field consistency unchecked",
+      "evidence": "E06 no error from schema or engine",
+      "source_refs": ["validator.py L300-310"]
+    },
+    {
+      "id": "D6", "severity_suggestion": "LOW",
+      "title": "Schema $id is a relative URI",
+      "evidence": "$id = 'm001-team-assignment-state-v2'; harmless for current local-only refs",
+      "source_refs": ["schema L3"]
+    },
+    {
+      "id": "D7", "severity_suggestion": "LOW",
+      "title": "No uniqueItems/minItems on appointments or combination_approvals arrays",
+      "evidence": "C12 duplicate appointments accepted by both validators; combination approval map silently overwrites by key",
+      "source_refs": ["schema L42-43, L131", "validator.py L408-409"]
+    }
+  ],
+  "commands_used": [
+    "python -c \"import sys, importlib.metadata as m; print('python', sys.version); print('jsonschema version', m.version('jsonschema'))\"",
+    "$code = @'<harness>'@; $code | python -  (harness: load schema via read_text, validator_for, check_schema, recursive keyword scan)",
+    "$code = @'<harness>'@; $code | python -  (harness: 18-case corpus, subset vs full iter_errors, exact messages)",
+    "$code = @'<harness>'@; $code | python -  (harness: FormatChecker experiments, routing instrumentation, 20-run determinism, bad-ref probe)",
+    "$code = @'<harness>'@; $code | python -  (harness: 7 engine validate_state probes and 9 synthetic latent-gap probes)"
+  ],
+  "detailed_notes": "reports\\SCHEMA_AGENT_NOTES.md"
+}

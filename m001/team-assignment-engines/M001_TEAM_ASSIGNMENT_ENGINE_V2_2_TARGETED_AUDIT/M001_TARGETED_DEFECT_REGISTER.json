@@ -1,0 +1,82 @@
+{
+  "package": "M001_V2_2_TARGETED_DEFECT_REGISTER",
+  "mission": "M001-TEAM-009",
+  "date": "2026-11-28",
+  "engine_sha256": "BAA3634DF3A82F9ECFF158552F263843F97372DADBC16E0D65D6C6D884BC5B5F",
+  "verdict": "CONDITIONAL PASS \u2014 FIVE REMEDIATIONS VERIFIED, RESIDUAL FINDINGS REMAIN",
+  "five_remediations": [
+    {
+      "id": "N-04",
+      "severity": "MEDIUM",
+      "status": "INDEPENDENTLY_VERIFIED_CLOSED",
+      "evidence": "missing/empty/ASCII/Unicode/invisible/non-string contact all rejected with E-ESCALATION-CONTACT; meaningful contact accepted; no fabricated value"
+    },
+    {
+      "id": "N-08",
+      "severity": "MEDIUM",
+      "status": "INDEPENDENTLY_VERIFIED_CLOSED",
+      "evidence": "deterministic 9-field duplicate signature; exact duplicate and copied-ID variants rejected with E-EVIDENCE-DUPLICATE; distinct evidence not rejected; provenance preserved"
+    },
+    {
+      "id": "N-11",
+      "severity": "MEDIUM",
+      "status": "INDEPENDENTLY_VERIFIED_CLOSED",
+      "evidence": "20 independent cases: timezone-aware max-acceptance ordering, >= boundary, naive/invalid/missing rejected, no wall-clock substitution"
+    },
+    {
+      "id": "N-12",
+      "severity": "MEDIUM",
+      "status": "INDEPENDENTLY_VERIFIED_CLOSED",
+      "evidence": "empty/whitespace/padded/invisible/unicode refs rejected; distinct international and case-variant refs not normalized; invalid identities cannot satisfy appointments"
+    },
+    {
+      "id": "F-007",
+      "severity": "MEDIUM",
+      "status": "INDEPENDENTLY_VERIFIED_CLOSED",
+      "evidence": "104 invisible/non-string reject cases and 60 meaningful Unicode cases all as expected; predicate consistent across basis, rationale, contact, refs; original text unchanged"
+    }
+  ],
+  "new_findings": [
+    {
+      "id": "D-01",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "classification": "A",
+      "title": "Appointment candidate_ref is not bound to formal role record candidate_ref",
+      "component": "engine/validator.py:515-538",
+      "reproduction": "valid_four_person + registry C-NEW + appointment (C-NEW, RESEARCH_OWNER)",
+      "observed": "stage_b_role_ready=true, issues=[], all eight dimensions PASS",
+      "impact": "unbacked candidate can be recorded as appointed to a role held by another candidate",
+      "affects_identity_or_evidence_integrity": true,
+      "affects_confidentiality": false,
+      "affects_operational_readiness": true
+    },
+    {
+      "id": "D-02",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "classification": "A",
+      "title": "Non-base Unicode characters satisfy meaningful_text()",
+      "evidence": "Mn/Mc/Me-only, U+FE0F-only, private-use, unassigned and escaped-surrogate basis strings yield Stage B YES with zero issues",
+      "affects_identity_or_evidence_integrity": false,
+      "affects_operational_readiness": true
+    },
+    {
+      "id": "D-03",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "classification": "A",
+      "title": "Duplicate-evidence signature bypass via unchecked role on non-acceptance evidence",
+      "evidence": "3 variants (PO approval, formal appointment, onboarding): clone evidence, change unvalidated role field, readiness YES with zero issues",
+      "affects_identity_or_evidence_integrity": true,
+      "affects_operational_readiness": true
+    }
+  ],
+  "remaining_findings": {
+    "total": 34,
+    "open": 29,
+    "verified_closed": 5,
+    "remediate_before_stage_b": 6
+  },
+  "scope_note": "Canonical reproductions of all five remediations verified fixed. D-01, D-02 and D-03 are new MEDIUM residuals requiring further engineering before Stage B reliance. Formal staffing, operational safeguards, recruitment and field validation remain unachieved."
+}

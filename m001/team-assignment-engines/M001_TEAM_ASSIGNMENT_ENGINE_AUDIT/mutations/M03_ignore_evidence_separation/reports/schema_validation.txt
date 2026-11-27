@@ -1,0 +1,38 @@
+# schema_validation.txt
+
+Command: `C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE\cli\validate_schema.py --state state/current_assignment_state.json --state fixtures\deterministic_state.json --state fixtures\discouraged_custodian_analyst.json --state fixtures\discouraged_ro_moderator.json --state fixtures\hard_moderator_analyst.json --state fixtures\hard_moderator_custodian.json --state fixtures\invalid_three_person.json --state fixtures\missing_candidate_acceptance.json --state fixtures\missing_evidence_separation.json --state fixtures\missing_explicit_cs.json --state fixtures\missing_onboarding.json --state fixtures\missing_po_approval.json --state fixtures\ro_accepted_others_unassigned.json --state fixtures\valid_five_person.json --state fixtures\valid_four_person.json --state fixtures\valid_six_person.json`
+
+Working directory: `C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE`
+
+Exit code: 0
+
+stdout SHA-256: `790cabc66ee58a62e7a118b0639293d64b6af79d3c60515f4a1e6baff10963ce`
+
+stderr bytes: 0
+
+## stdout
+
+```text
+PASS current_assignment_state.json errors=0
+PASS deterministic_state.json errors=0
+PASS discouraged_custodian_analyst.json errors=0
+PASS discouraged_ro_moderator.json errors=0
+PASS hard_moderator_analyst.json errors=0
+PASS hard_moderator_custodian.json errors=0
+PASS invalid_three_person.json errors=0
+PASS missing_candidate_acceptance.json errors=0
+PASS missing_evidence_separation.json errors=0
+PASS missing_explicit_cs.json errors=0
+PASS missing_onboarding.json errors=0
+PASS missing_po_approval.json errors=0
+PASS ro_accepted_others_unassigned.json errors=0
+PASS valid_five_person.json errors=0
+PASS valid_four_person.json errors=0
+PASS valid_six_person.json errors=0
+```
+
+## stderr
+
+```text
+
+```

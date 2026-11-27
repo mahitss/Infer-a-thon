@@ -1,0 +1,158 @@
+{
+  "checks": [
+    {
+      "check": "role_RESEARCH_OWNER",
+      "pass": true,
+      "detail": "ACCEPTED_IN_CONVERSATION"
+    },
+    {
+      "check": "role_MODERATOR",
+      "pass": true,
+      "detail": "UNASSIGNED"
+    },
+    {
+      "check": "role_NOTE_TAKER",
+      "pass": true,
+      "detail": "UNASSIGNED"
+    },
+    {
+      "check": "role_DATA_CUSTODIAN",
+      "pass": true,
+      "detail": "UNASSIGNED"
+    },
+    {
+      "check": "role_ANALYST",
+      "pass": true,
+      "detail": "UNASSIGNED"
+    },
+    {
+      "check": "role_CONTINUE_STOP_OWNER",
+      "pass": true,
+      "detail": "UNASSIGNED"
+    },
+    {
+      "check": "ro_not_formal",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "ro_formal_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "ro_no_candidate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no_cs_inference",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "empty_registries",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "topology_proposed",
+      "pass": true,
+      "detail": "{'status': 'PROPOSED', 'model': 'FOUR_PERSON'}"
+    },
+    {
+      "check": "m001_open",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "m002_unauthorized",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "recruitment_unauthorized",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "field_validation_not_started",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "stage_b_not_ready",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "recruitment_no",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "field_validation_no",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "six_missing",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "topology_error",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "passing_staffing_no_recruitment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "passing_staffing_no_field_validation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "eight_dimensions",
+      "pass": true,
+      "detail": "['evidence_integrity', 'formal_appointment_validity', 'human_candidate_acceptance', 'onboarding_readiness', 'product_owner_combination_approval', 'role_assignment_completeness', 'role_compatibility', 'structural_topology_validity']"
+    },
+    {
+      "check": "no_storage_or_consent_dimension",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no_positive_grant",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no_state_write",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cli_exit_1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cli_no_traceback",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "state_immutable",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "pass": 30,
+  "fail": 0,
+  "cli_stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT\n",
+  "cli_stderr": ""
+}

@@ -1,0 +1,77 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe -m unittest discover -s tests/regression -p test_*.py -v
+EXIT: 0
+--- STDOUT ---
+
+--- STDERR ---
+test_current_exit_one (test_cli.CLI.test_current_exit_one) ... ok
+test_determinism_two_directories (test_cli.CLI.test_determinism_two_directories) ... ok
+test_json_only_machine_readable (test_cli.CLI.test_json_only_machine_readable) ... ok
+test_safe_input_errors_no_traceback (test_cli.CLI.test_safe_input_errors_no_traceback) ... ok
+test_valid_four_exit_zero (test_cli.CLI.test_valid_four_exit_zero) ... ok
+test_01_multi_role_without_po_combination_approval (test_explicit_scenarios.ExplicitScenarios.test_01_multi_role_without_po_combination_approval) ... ok
+test_02_approval_for_different_combination (test_explicit_scenarios.ExplicitScenarios.test_02_approval_for_different_combination) ... ok
+test_03_proposed_treated_as_appointed (test_explicit_scenarios.ExplicitScenarios.test_03_proposed_treated_as_appointed) ... ok
+test_04_accepted_conversation_not_formal (test_explicit_scenarios.ExplicitScenarios.test_04_accepted_conversation_not_formal) ... ok
+test_05_boolean_evidence_without_reference (test_explicit_scenarios.ExplicitScenarios.test_05_boolean_evidence_without_reference) ... ok
+test_06_forged_evidence_identifier (test_explicit_scenarios.ExplicitScenarios.test_06_forged_evidence_identifier) ... ok
+test_07_duplicate_candidate_identities (test_explicit_scenarios.ExplicitScenarios.test_07_duplicate_candidate_identities) ... ok
+test_08_unknown_candidate_identity (test_explicit_scenarios.ExplicitScenarios.test_08_unknown_candidate_identity) ... ok
+test_09_formally_appointed_with_missing_formal_approval (test_explicit_scenarios.ExplicitScenarios.test_09_formally_appointed_with_missing_formal_approval) ... ok
+test_10_empty_approval_basis (test_explicit_scenarios.ExplicitScenarios.test_10_empty_approval_basis) ... ok
+test_11_discouraged_combination_without_po_review (test_explicit_scenarios.ExplicitScenarios.test_11_discouraged_combination_without_po_review) ... ok
+test_12_missing_timestamps (test_explicit_scenarios.ExplicitScenarios.test_12_missing_timestamps) ... ok
+test_13_duplicate_json_keys (test_explicit_scenarios.ExplicitScenarios.test_13_duplicate_json_keys) ... ok
+test_14_unapproved_topology_not_stage_b_ready (test_explicit_scenarios.ExplicitScenarios.test_14_unapproved_topology_not_stage_b_ready) ... ok
+test_15_rejected_candidate_not_active (test_explicit_scenarios.ExplicitScenarios.test_15_rejected_candidate_not_active) ... ok
+test_16_missing_onboarding (test_explicit_scenarios.ExplicitScenarios.test_16_missing_onboarding) ... ok
+test_17_malformed_json (test_explicit_scenarios.ExplicitScenarios.test_17_malformed_json) ... ok
+test_18_invalid_utf8 (test_explicit_scenarios.ExplicitScenarios.test_18_invalid_utf8) ... ok
+test_19_missing_state_file (test_explicit_scenarios.ExplicitScenarios.test_19_missing_state_file) ... ok
+test_20_no_authorization_from_passing_topology (test_explicit_scenarios.ExplicitScenarios.test_20_no_authorization_from_passing_topology) ... ok
+test_01_empty_approval_basis (test_v2_1_high_findings.V21HighFindings.test_01_empty_approval_basis) ... ok
+test_02_ascii_whitespace_approval_basis (test_v2_1_high_findings.V21HighFindings.test_02_ascii_whitespace_approval_basis) ... ok
+test_03_unicode_whitespace_approval_basis (test_v2_1_high_findings.V21HighFindings.test_03_unicode_whitespace_approval_basis) ... ok
+test_04_missing_approval_basis (test_v2_1_high_findings.V21HighFindings.test_04_missing_approval_basis) ... ok
+test_05_null_approval_basis (test_v2_1_high_findings.V21HighFindings.test_05_null_approval_basis) ... ok
+test_06_non_string_approval_basis (test_v2_1_high_findings.V21HighFindings.test_06_non_string_approval_basis) ... ok
+test_07_empty_rationale (test_v2_1_high_findings.V21HighFindings.test_07_empty_rationale) ... ok
+test_08_whitespace_only_rationale (test_v2_1_high_findings.V21HighFindings.test_08_whitespace_only_rationale) ... ok
+test_09_unicode_whitespace_rationale (test_v2_1_high_findings.V21HighFindings.test_09_unicode_whitespace_rationale) ... ok
+test_10_missing_rationale (test_v2_1_high_findings.V21HighFindings.test_10_missing_rationale) ... ok
+test_11_acceptance_evidence_wrong_role (test_v2_1_high_findings.V21HighFindings.test_11_acceptance_evidence_wrong_role) ... ok
+test_12_acceptance_evidence_wrong_candidate (test_v2_1_high_findings.V21HighFindings.test_12_acceptance_evidence_wrong_candidate) ... ok
+test_13_acceptance_evidence_another_appointment (test_v2_1_high_findings.V21HighFindings.test_13_acceptance_evidence_another_appointment) ... ok
+test_14_reused_acceptance_subject_mismatch (test_v2_1_high_findings.V21HighFindings.test_14_reused_acceptance_subject_mismatch) ... ok
+test_15_unverified_acceptance_evidence (test_v2_1_high_findings.V21HighFindings.test_15_unverified_acceptance_evidence) ... ok
+test_16_revoked_acceptance_evidence (test_v2_1_high_findings.V21HighFindings.test_16_revoked_acceptance_evidence) ... ok
+test_17_missing_acceptance_evidence (test_v2_1_high_findings.V21HighFindings.test_17_missing_acceptance_evidence) ... ok
+test_18_invalid_schema_structure (test_v2_1_high_findings.V21HighFindings.test_18_invalid_schema_structure) ... ok
+test_19_unresolvable_schema_reference (test_v2_1_high_findings.V21HighFindings.test_19_unresolvable_schema_reference) ... ok
+test_20_assignment_blocked_after_schema_failure (test_v2_1_high_findings.V21HighFindings.test_20_assignment_blocked_after_schema_failure) ... ok
+test_21_stable_cli_errors_without_tracebacks (test_v2_1_high_findings.V21HighFindings.test_21_stable_cli_errors_without_tracebacks) ... ok
+test_22_valid_matching_evidence_passes (test_v2_1_high_findings.V21HighFindings.test_22_valid_matching_evidence_passes) ... ok
+test_01_invisible_basis_chars (test_v2_2_blockers.V22Blockers.test_01_invisible_basis_chars) ... ok
+test_02_invisible_rationale_chars (test_v2_2_blockers.V22Blockers.test_02_invisible_rationale_chars) ... ok
+test_03_mixed_whitespace_invisible (test_v2_2_blockers.V22Blockers.test_03_mixed_whitespace_invisible) ... ok
+test_04_ascii_and_unicode_whitespace (test_v2_2_blockers.V22Blockers.test_04_ascii_and_unicode_whitespace) ... ok
+test_05_meaningful_unicode_content (test_v2_2_blockers.V22Blockers.test_05_meaningful_unicode_content) ... ok
+test_06_non_string_and_null (test_v2_2_blockers.V22Blockers.test_06_non_string_and_null) ... ok
+test_07_no_fabrication (test_v2_2_blockers.V22Blockers.test_07_no_fabrication) ... ok
+test_08_escalation_contact (test_v2_2_blockers.V22Blockers.test_08_escalation_contact) ... ok
+test_09_duplicate_evidence (test_v2_2_blockers.V22Blockers.test_09_duplicate_evidence) ... ok
+test_10_combination_before_acceptance (test_v2_2_blockers.V22Blockers.test_10_combination_before_acceptance) ... ok
+test_11_valid_ordering_still_passes (test_v2_2_blockers.V22Blockers.test_11_valid_ordering_still_passes) ... ok
+test_12_whitespace_candidate_reference (test_v2_2_blockers.V22Blockers.test_12_whitespace_candidate_reference) ... ok
+test_13_deterministic_repeated_execution (test_v2_2_blockers.V22Blockers.test_13_deterministic_repeated_execution) ... ok
+test_current_state_remains_blocked (test_v2_regression.Regression.test_current_state_remains_blocked) ... ok
+test_discouraged_with_exact_approval_passes (test_v2_regression.Regression.test_discouraged_with_exact_approval_passes) ... ok
+test_hard_incompatibility_not_overridable (test_v2_regression.Regression.test_hard_incompatibility_not_overridable) ... ok
+test_naive_timestamp_rejected (test_v2_regression.Regression.test_naive_timestamp_rejected) ... ok
+test_separate_dimensions_present (test_v2_regression.Regression.test_separate_dimensions_present) ... ok
+test_valid_four_five_six_stage_b_ready (test_v2_regression.Regression.test_valid_four_five_six_stage_b_ready) ... ok
+
+----------------------------------------------------------------------
+Ran 66 tests in 25.692s
+
+OK
+

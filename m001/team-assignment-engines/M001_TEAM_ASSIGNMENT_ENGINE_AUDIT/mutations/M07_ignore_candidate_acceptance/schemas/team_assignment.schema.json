@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "m001-team-assignment-state",
+  "title": "M001 Team Assignment State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "governance", "topology", "roles", "assignments"],
+  "properties": {
+    "schema_version": { "type": "string", "enum": ["1.0"] },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["m001_status", "m002_status", "recruitment", "field_validation"],
+      "properties": {
+        "m001_status": { "type": "string", "enum": ["OPEN"] },
+        "m002_status": { "type": "string", "enum": ["UNAUTHORIZED"] },
+        "recruitment": { "type": "string", "enum": ["UNAUTHORIZED"] },
+        "field_validation": { "type": "string", "enum": ["NOT_STARTED"] }
+      }
+    },
+    "topology": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "model"],
+      "properties": {
+        "status": { "type": "string", "enum": ["PROPOSED", "APPROVED"] },
+        "model": { "type": "string", "enum": ["FOUR_PERSON", "FIVE_PERSON", "SIX_PERSON", "OTHER"] }
+      }
+    },
+    "roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["RESEARCH_OWNER", "MODERATOR", "NOTE_TAKER", "DATA_CUSTODIAN", "ANALYST", "CONTINUE_STOP_OWNER"],
+      "properties": {
+        "RESEARCH_OWNER": { "$ref": "#/$defs/roleRecord" },
+        "MODERATOR": { "$ref": "#/$defs/roleRecord" },
+        "NOTE_TAKER": { "$ref": "#/$defs/roleRecord" },
+        "DATA_CUSTODIAN": { "$ref": "#/$defs/roleRecord" },
+        "ANALYST": { "$ref": "#/$defs/roleRecord" },
+        "CONTINUE_STOP_OWNER": { "$ref": "#/$defs/roleRecord" }
+      }
+    },
+    "assignments": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/assignment" }
+    }
+  },
+  "$defs": {
+    "roleRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "acceptance", "approval", "availability", "conflict_disclosure", "confidentiality", "onboarding", "escalation"],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": ["UNASSIGNED", "PROPOSED", "ACCEPTED_IN_CONVERSATION", "CANDIDATE_ACCEPTED", "FORMALLY_APPOINTED", "REJECTED", "DEFERRED"]
+        },
+        "candidate_id": { "type": ["string", "null"] },
+        "acceptance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["candidate_accepted", "evidence"],
+          "properties": {
+            "candidate_accepted": { "type": "boolean" },
+            "evidence": { "type": ["string", "null"] }
+          }
+        },
+        "approval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["product_owner_approved", "formal", "basis"],
+          "properties": {
+            "product_owner_approved": { "type": "boolean" },
+            "formal": { "type": "boolean" },
+            "basis": { "type": ["string", "null"] }
+          }
+        },
+        "availability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["confirmed"],
+          "properties": { "confirmed": { "type": "boolean" } }
+        },
+        "conflict_disclosure": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["provided"],
+          "properties": { "provided": { "type": "boolean" } }
+        },
+        "confidentiality": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["acknowledged"],
+          "properties": { "acknowledged": { "type": "boolean" } }
+        },
+        "onboarding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["completed"],
+          "properties": { "completed": { "type": "boolean" } }
+        },
+        "escalation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["contact"],
+          "properties": { "contact": { "type": ["string", "null"] } }
+        }
+      }
+    },
+    "assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["person_id", "roles"],
+      "properties": {
+        "person_id": { "type": "string" },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["RESEARCH_OWNER", "MODERATOR", "NOTE_TAKER", "DATA_CUSTODIAN", "ANALYST", "CONTINUE_STOP_OWNER"]
+          }
+        },
+        "conditional_evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "evidence_separation_documented": { "type": "boolean" },
+            "explicit_additional_appointment": { "type": "boolean" }
+          }
+        },
+        "resolutions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": { "rationale_documented": { "type": "boolean" } }
+          }
+        }
+      }
+    }
+  }
+}

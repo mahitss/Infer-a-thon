@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "m001-team-assignment-state-v2",
+  "title": "M001 Team Assignment State V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "governance", "topology", "candidates", "evidence", "roles", "appointments", "combination_approvals"],
+  "properties": {
+    "schema_version": {"type": "string", "enum": ["2.0"]},
+    "governance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["m001_status", "m002_status", "recruitment", "field_validation"],
+      "properties": {
+        "m001_status": {"type": "string", "enum": ["OPEN"]},
+        "m002_status": {"type": "string", "enum": ["UNAUTHORIZED"]},
+        "recruitment": {"type": "string", "enum": ["UNAUTHORIZED"]},
+        "field_validation": {"type": "string", "enum": ["NOT_STARTED"]}
+      }
+    },
+    "topology": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "model"],
+      "properties": {
+        "status": {"type": "string", "enum": ["PROPOSED", "APPROVED"]},
+        "model": {"type": "string", "enum": ["FOUR_PERSON", "FIVE_PERSON", "SIX_PERSON", "OTHER"]}
+      }
+    },
+    "candidates": {"type": "object", "additionalProperties": {"$ref": "#/$defs/candidate"}},
+    "evidence": {"type": "object", "additionalProperties": {"$ref": "#/$defs/evidence"}},
+    "roles": {
+      "type": "object", "additionalProperties": false,
+      "required": ["RESEARCH_OWNER", "MODERATOR", "NOTE_TAKER", "DATA_CUSTODIAN", "ANALYST", "CONTINUE_STOP_OWNER"],
+      "properties": {
+        "RESEARCH_OWNER": {"$ref": "#/$defs/roleRecord"},
+        "MODERATOR": {"$ref": "#/$defs/roleRecord"},
+        "NOTE_TAKER": {"$ref": "#/$defs/roleRecord"},
+        "DATA_CUSTODIAN": {"$ref": "#/$defs/roleRecord"},
+        "ANALYST": {"$ref": "#/$defs/roleRecord"},
+        "CONTINUE_STOP_OWNER": {"$ref": "#/$defs/roleRecord"}
+      }
+    },
+    "appointments": {"type": "array", "items": {"$ref": "#/$defs/appointment"}},
+    "combination_approvals": {"type": "array", "items": {"$ref": "#/$defs/combinationApproval"}}
+  },
+  "$defs": {
+    "candidate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["candidate_ref", "active", "fixture_marker"],
+      "properties": {
+        "candidate_ref": {"type": "string"},
+        "active": {"type": "boolean"},
+        "fixture_marker": {"type": ["string", "null"]}
+      }
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_id", "evidence_type", "source_ref", "content_hash", "recording_authority", "timestamp", "verification_status", "subject"],
+      "properties": {
+        "evidence_id": {"type": "string"},
+        "evidence_type": {"type": "string"},
+        "source_ref": {"type": ["string", "null"]},
+        "content_hash": {"type": ["string", "null"]},
+        "recording_authority": {"type": ["string", "null"]},
+        "timestamp": {"type": ["string", "null"]},
+        "verification_status": {"type": "string"},
+        "subject": {"type": ["string", "null"]}
+      }
+    },
+    "roleRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["state", "candidate_ref", "recognition", "acceptance", "approval", "formal", "availability", "conflict_disclosure", "confidentiality", "onboarding", "escalation"],
+      "properties": {
+        "state": {"type": "string", "enum": ["UNASSIGNED", "PROPOSED", "ACCEPTED_IN_CONVERSATION", "CANDIDATE_ACCEPTED", "REJECTED", "DEFERRED", "FORMALLY_APPOINTED"]},
+        "candidate_ref": {"type": ["string", "null"]},
+        "recognition": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "status": {"type": ["string", "null"]},
+            "decision_date": {"type": ["string", "null"]},
+            "formal": {"type": "boolean"},
+            "evidence_text": {"type": ["string", "null"]}
+          }
+        },
+        "acceptance": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "candidate_accepted": {"type": "boolean"},
+            "evidence_id": {"type": ["string", "null"]},
+            "candidate_accepted_at": {"type": ["string", "null"]}
+          }
+        },
+        "approval": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "product_owner_approved": {"type": "boolean"},
+            "formal": {"type": "boolean"},
+            "evidence_id": {"type": ["string", "null"]},
+            "basis": {"type": ["string", "null"]},
+            "product_owner_approved_at": {"type": ["string", "null"]}
+          }
+        },
+        "formal": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "formally_appointed": {"type": "boolean"},
+            "evidence_id": {"type": ["string", "null"]},
+            "formal_appointed_at": {"type": ["string", "null"]}
+          }
+        },
+        "availability": {"type": "object", "additionalProperties": false, "properties": {"confirmed": {"type": "boolean"}}},
+        "conflict_disclosure": {"type": "object", "additionalProperties": false, "properties": {"provided": {"type": "boolean"}}},
+        "confidentiality": {"type": "object", "additionalProperties": false, "properties": {"acknowledged": {"type": "boolean"}}},
+        "onboarding": {"type": "object", "additionalProperties": false, "properties": {"completed": {"type": "boolean"}, "evidence_id": {"type": ["string", "null"]}}},
+        "escalation": {"type": "object", "additionalProperties": false, "properties": {"contact": {"type": ["string", "null"]}}}
+      }
+    },
+    "appointment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["candidate_ref", "role", "state"],
+      "properties": {
+        "candidate_ref": {"type": ["string", "null"]},
+        "role": {"type": "string"},
+        "state": {"type": "string"}
+      }
+    },
+    "combinationApproval": {
+      "type": "object", "additionalProperties": false,
+      "required": ["candidate_ref", "roles", "outcome", "rationale", "evidence_id", "product_owner_approved", "decision_timestamp"],
+      "properties": {
+        "candidate_ref": {"type": "string"},
+        "roles": {"type": "array", "items": {"type": "string"}},
+        "outcome": {"type": "string", "enum": ["APPROVED", "REJECTED"]},
+        "rationale": {"type": ["string", "null"]},
+        "evidence_id": {"type": ["string", "null"]},
+        "product_owner_approved": {"type": "boolean"},
+        "decision_timestamp": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": "1.0",
+  "governance": {
+    "m001_status": "OPEN",
+    "m002_status": "UNAUTHORIZED",
+    "recruitment": "UNAUTHORIZED",
+    "field_validation": "NOT_STARTED"
+  },
+  "topology": {
+    "status": "APPROVED",
+    "model": "FIVE_PERSON"
+  },
+  "roles": {
+    "RESEARCH_OWNER": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_id": "P1",
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence": "synthetic acceptance"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "basis": "synthetic Product Owner decision"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true
+      },
+      "escalation": {
+        "contact": "ESC"
+      }
+    },
+    "MODERATOR": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_id": "P2",
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence": "synthetic acceptance"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "basis": "synthetic Product Owner decision"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true
+      },
+      "escalation": {
+        "contact": "ESC"
+      }
+    },
+    "NOTE_TAKER": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_id": "P3",
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence": "synthetic acceptance"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "basis": "synthetic Product Owner decision"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true
+      },
+      "escalation": {
+        "contact": "ESC"
+      }
+    },
+    "DATA_CUSTODIAN": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_id": "P4",
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence": "synthetic acceptance"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "basis": "synthetic Product Owner decision"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true
+      },
+      "escalation": {
+        "contact": "ESC"
+      }
+    },
+    "ANALYST": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_id": "P5",
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence": "synthetic acceptance"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "basis": "synthetic Product Owner decision"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true
+      },
+      "escalation": {
+        "contact": "ESC"
+      }
+    },
+    "CONTINUE_STOP_OWNER": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_id": "P6",
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence": "synthetic acceptance"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "basis": "synthetic Product Owner decision"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true
+      },
+      "escalation": {
+        "contact": "ESC"
+      }
+    }
+  },
+  "assignments": [
+    {
+      "person_id": "P1",
+      "roles": [
+        "RESEARCH_OWNER"
+      ]
+    },
+    {
+      "person_id": "P2",
+      "roles": [
+        "MODERATOR",
+        "DATA_CUSTODIAN"
+      ]
+    },
+    {
+      "person_id": "P3",
+      "roles": [
+        "NOTE_TAKER"
+      ]
+    },
+    {
+      "person_id": "P4",
+      "roles": [
+        "ANALYST"
+      ]
+    },
+    {
+      "person_id": "P5",
+      "roles": [
+        "CONTINUE_STOP_OWNER"
+      ]
+    }
+  ]
+}

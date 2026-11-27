@@ -1,0 +1,30 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe cli/validate.py --state state/current_assignment_state.json
+CWD: C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE_V2
+EXIT: 1
+--- STDOUT ---
+M001 TEAM ASSIGNMENT VALIDATION V2
+Source: current_assignment_state.json
+evidence_integrity: PASS
+formal_appointment_validity: PASS
+human_candidate_acceptance: PASS
+onboarding_readiness: PASS
+product_owner_combination_approval: PASS
+role_assignment_completeness: FAIL
+role_compatibility: PASS
+structural_topology_validity: FAIL
+Stage B role readiness: NO
+Recruitment authorized: NO
+Field validation authorized: NO
+Blocking errors: 7
+Warnings: 0
+ERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED
+ERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED
+ERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED
+ERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED
+ERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED
+ERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED
+ERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked
+END REPORT
+
+--- STDERR ---
+

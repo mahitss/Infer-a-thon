@@ -1,0 +1,17 @@
+# Determinism Verification
+
+Run A command: `C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE\cli\validate.py --state state/current_assignment_state.json`
+
+Run A directory: `C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE`
+
+Run B command: `C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE\cli\validate.py --state C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE\state\current_assignment_state.json`
+
+Run B directory: `C:\Users\pc\AppData\Local\Temp`
+
+Exit codes: 1, 1
+
+stdout byte-identical: True
+
+stderr byte-identical: True
+
+stdout SHA-256: `c7391df1ac1de4ad9c12c771181e4016dccf6bd1786569c2dd56c9f7781bfb5c`

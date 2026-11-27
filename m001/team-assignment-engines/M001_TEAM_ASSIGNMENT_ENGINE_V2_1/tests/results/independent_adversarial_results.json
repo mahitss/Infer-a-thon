@@ -1,0 +1,1508 @@
+{
+  "suite": "M001_TEAM005_INDEPENDENT_ADVERSARIAL",
+  "engine_root": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+  "policy_version": "2.1",
+  "policy_source": "M001_ROLE_ASSIGNMENT_DECISION_PACK, M001_TEAM_STAFFING_PACK, M001_ENGINE_INDEPENDENT_AUDIT defect register; V2.1 remediation of N-01, N-02, N-03, N-15",
+  "total_cases": 50,
+  "secure": 38,
+  "defects": 12,
+  "cases": [
+    {
+      "id": "COMB-01",
+      "category": "combination",
+      "description": "Approval contains an extra role not held by the candidate",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-COMBINATION-APPROVAL-MISSING"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-COMBINATION-APPROVAL-MISSING",
+          "E-COND-EXPLICIT-CS",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 3
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "COMB-02",
+      "category": "combination",
+      "description": "Approval roles reordered (same exact set)",
+      "expectation": "EXPECTED_PASS",
+      "expected_codes": [],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "COMB-03",
+      "category": "combination",
+      "description": "Approval roles duplicated within the same record",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-COMBINATION-APPROVAL-DUPLICATE"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "COMB-04",
+      "category": "combination",
+      "description": "Approval references another candidate",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-COMBINATION-APPROVAL-MISSING"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-COMBINATION-APPROVAL-MISSING",
+          "E-COND-EXPLICIT-CS",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 3
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "COMB-05",
+      "category": "combination",
+      "description": "Approval reuses evidence from another decision",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "COMB-06",
+      "category": "combination",
+      "description": "Approval is stale (timestamp years before appointment)",
+      "expectation": "BLOCK_STALE",
+      "expected_codes": [
+        "E-COMBINATION-APPROVAL-STALE"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "COMB-07",
+      "category": "combination",
+      "description": "Approval marked revoked (unsupported property)",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-SCHEMA"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-SCHEMA"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "FAIL",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "FAIL"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "COMB-08",
+      "category": "combination",
+      "description": "Approval outcome contradicts decision (REJECTED but PO approved)",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-COMBINATION-APPROVAL-REJECTED"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-COMBINATION-APPROVAL-REJECTED"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "COMB-09",
+      "category": "combination",
+      "description": "Approval evidence is unverified",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-UNVERIFIED"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-UNVERIFIED"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 2
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "COMB-10",
+      "category": "combination",
+      "description": "Approval names an unauthorized actor (unsupported property)",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-SCHEMA"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-SCHEMA"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "FAIL",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "FAIL"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "COMB-11",
+      "category": "combination",
+      "description": "Approval rationale contains whitespace only",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-COMBINATION-RATIONALE"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-COMBINATION-RATIONALE"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "COMB-12",
+      "category": "combination",
+      "description": "One valid approval reused for an unrelated second candidate combination",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-COMBINATION-APPROVAL-MISSING"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "EVID-01",
+      "category": "evidence",
+      "description": "Evidence subject resolves to a different candidate",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "EVID-02",
+      "category": "evidence",
+      "description": "Acceptance evidence is reused across roles of the same candidate",
+      "expectation": "BLOCK_IF_ROLE_BOUND",
+      "expected_codes": [
+        "E-ACCEPTANCE-ROLE",
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-ACCEPTANCE-APPOINTMENT",
+          "E-ACCEPTANCE-DECISION-REUSED",
+          "E-ACCEPTANCE-ROLE",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 4
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "EVID-03",
+      "category": "evidence",
+      "description": "Source hash does not match the referenced source (format still valid)",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-HASH"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "EVID-04",
+      "category": "evidence",
+      "description": "Evidence record duplicated under a second ID",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-DUPLICATE"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "EVID-05",
+      "category": "evidence",
+      "description": "Evidence record marked revoked (unsupported property)",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-SCHEMA",
+        "E-EVIDENCE-REVOKED"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-REVOKED"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "EVID-06",
+      "category": "evidence",
+      "description": "Evidence timestamp predates its claimed source/decision",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-STALE"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "EVID-07",
+      "category": "evidence",
+      "description": "Verification status inconsistent with required approval",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-UNVERIFIED"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-UNVERIFIED"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 2
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "EVID-08",
+      "category": "evidence",
+      "description": "Unverified evidence still leaves evidence_integrity dimension PASS",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-UNVERIFIED"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-UNVERIFIED"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 2
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "EVID-09",
+      "category": "evidence",
+      "description": "Empty content hash string",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-HASH"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-HASH"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "EVID-10",
+      "category": "evidence",
+      "description": "Unknown evidence type identifier",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-TYPE"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-TYPE"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 2
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ST-01",
+      "category": "appointment",
+      "description": "Candidate acceptance evidence belongs to another candidate",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-ACCEPTANCE-APPOINTMENT",
+          "E-ACCEPTANCE-DECISION-REUSED",
+          "E-ACCEPTANCE-ROLE",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 4
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "ST-02",
+      "category": "appointment",
+      "description": "Formal appointment references obsolete acceptance timestamp",
+      "expectation": "BLOCK_ORDER",
+      "expected_codes": [
+        "E-TIMESTAMP-ORDER"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ST-03",
+      "category": "appointment",
+      "description": "Combination approval timestamp precedes candidate acceptance",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ST-04",
+      "category": "appointment",
+      "description": "Rejected candidate retained in active appointment",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-APPOINTMENT-MISSING"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-APPOINTMENT-MISSING",
+          "E-CANDIDATE-DUPLICATE",
+          "E-UNAPPROVED-APPOINTMENT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 4
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ST-05",
+      "category": "appointment",
+      "description": "Deferred candidate assigned",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-APPOINTMENT-MISSING"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-APPOINTMENT-MISSING",
+          "E-UNAPPROVED-APPOINTMENT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 2
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ST-06",
+      "category": "appointment",
+      "description": "Formal appointment revoked but record remains active",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-SCHEMA"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-SCHEMA"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "FAIL",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "FAIL"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ST-07",
+      "category": "appointment",
+      "description": "Contradictory appointment history supplied",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-SCHEMA"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-SCHEMA"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "FAIL",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "FAIL"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ST-08",
+      "category": "appointment",
+      "description": "One candidate evidence reused for another candidate",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "ST-09",
+      "category": "appointment",
+      "description": "Approval basis contains whitespace only",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-DECISION-EVIDENCE-EMPTY"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-DECISION-EVIDENCE-EMPTY"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ST-10",
+      "category": "appointment",
+      "description": "Escalation contact is whitespace only",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-ESCALATION-CONTACT"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ID-01",
+      "category": "identity",
+      "description": "Case-only variant candidate reference consistent across records",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-ACCEPTANCE-APPOINTMENT",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 11
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "ID-02",
+      "category": "identity",
+      "description": "Unicode-equivalent candidate identifiers coexist",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-CANDIDATE-NORMALIZATION"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ID-03",
+      "category": "identity",
+      "description": "Whitespace-only candidate reference",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-CANDIDATE-REF-INVALID"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [
+          "E-ACCEPTANCE-APPOINTMENT",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 5
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "ID-04",
+      "category": "identity",
+      "description": "Duplicate candidate identity records",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-CANDIDATE-DUPLICATE"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-CANDIDATE-DUPLICATE"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 2
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ID-05",
+      "category": "identity",
+      "description": "Candidate inactive at appointment time",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-CANDIDATE-INACTIVE"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-CANDIDATE-INACTIVE"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ID-06",
+      "category": "identity",
+      "description": "Identity changed after approval (no history support)",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-CANDIDATE-DUPLICATE"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-CANDIDATE-DUPLICATE",
+          "E-CANDIDATE-UNKNOWN"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 5
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "ID-07",
+      "category": "identity",
+      "description": "One human split into two synthetic identities to avoid combination approval",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-IDENTITY-ALIAS"
+      ],
+      "verdict": "DEFECT",
+      "observed": {
+        "codes": [
+          "E-ACCEPTANCE-APPOINTMENT",
+          "E-COMBINATION-APPROVAL-MISSING",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 11
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "POL-01",
+      "category": "policy",
+      "description": "Hard Moderator+Analyst conflict with full approval",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-HARD-MODERATOR-ANALYST"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-ACCEPTANCE-APPOINTMENT",
+          "E-COMBINATION-APPROVAL-MISSING",
+          "E-EVIDENCE-SUBJECT",
+          "E-HARD-MODERATOR-ANALYST"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 7
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "POL-02",
+      "category": "policy",
+      "description": "Hard Moderator+Data Custodian conflict with full approval",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-HARD-MODERATOR-CUSTODIAN"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-ACCEPTANCE-APPOINTMENT",
+          "E-COMBINATION-APPROVAL-MISSING",
+          "E-EVIDENCE-SUBJECT",
+          "E-HARD-MODERATOR-CUSTODIAN"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 7
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "POL-03",
+      "category": "policy",
+      "description": "Discouraged combination classification preserved in policy",
+      "expectation": "EXPECTED_PASS",
+      "expected_codes": [],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "POL-04",
+      "category": "policy",
+      "description": "Conditional evidence separation with wrong subject",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-COND-EVIDENCE-SEPARATION"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-COND-EVIDENCE-SEPARATION"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "POL-05",
+      "category": "policy",
+      "description": "Approved topology cannot appoint an unassigned role",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-APPOINTMENT-MISSING"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-APPOINTMENT-MISSING",
+          "E-UNAPPROVED-APPOINTMENT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 2
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "POL-06",
+      "category": "policy",
+      "description": "Proposed topology blocks Stage B even when all roles are formal",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-TOPOLOGY-UNAPPROVED"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-TOPOLOGY-UNAPPROVED"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "FAIL"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "POL-07",
+      "category": "policy",
+      "description": "Combination evidence has wrong evidence type",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-TYPE"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-TYPE"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": "evidence_integrity=PASS while evidence errors present"
+    },
+    {
+      "id": "AUTH-01",
+      "category": "authorization",
+      "description": "Passing staffing result must not authorize recruitment",
+      "expectation": "EXPECTED_PASS",
+      "expected_codes": [],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": true,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 0
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "AUTH-02",
+      "category": "authorization",
+      "description": "Recruitment governance flag altered to AUTHORIZED",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-AUTHORIZATION-STATE",
+        "E-SCHEMA"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-SCHEMA"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "FAIL",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "FAIL"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "AUTH-03",
+      "category": "authorization",
+      "description": "Field validation governance flag altered to IN_PROGRESS",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-AUTHORIZATION-STATE",
+        "E-SCHEMA"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-SCHEMA"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "FAIL",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "FAIL"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 1
+      },
+      "dimension_note": ""
+    },
+    {
+      "id": "DIM-01",
+      "category": "dimension",
+      "description": "Evidence error present while evidence_integrity dimension reports PASS",
+      "expectation": "BLOCK",
+      "expected_codes": [
+        "E-EVIDENCE-UNVERIFIED"
+      ],
+      "verdict": "SECURE",
+      "observed": {
+        "codes": [
+          "E-EVIDENCE-UNVERIFIED"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "stage_b_role_ready": false,
+        "recruitment_authorized": false,
+        "field_validation_authorized": false,
+        "blocking_error_count": 2
+      },
+      "dimension_note": ""
+    }
+  ]
+}

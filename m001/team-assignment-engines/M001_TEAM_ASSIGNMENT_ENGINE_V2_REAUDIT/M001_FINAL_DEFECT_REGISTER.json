@@ -1,0 +1,297 @@
+{
+  "package": "M001_V2_INDEPENDENT_REAUDIT_DEFECTS",
+  "mission": "M001-TEAM-005",
+  "date": "2026-11-27",
+  "independence_note": "All findings below were reproduced by executing the auditor's own harnesses against read-only V2 source. No V2 test result or report was accepted as proof.",
+  "verdict": "FAIL — CRITICAL OR HIGH DEFECTS FOUND",
+  "severity_counts": {
+    "CRITICAL": 0,
+    "HIGH": 4,
+    "MEDIUM": 17,
+    "LOW": 7
+  },
+  "original_findings": {
+    "note": "Independently verified by the closure stream; see M001_ORIGINAL_FINDING_CLOSURE_MATRIX.md and reports/CLOSURE_AGENT_NOTES.md.",
+    "F-01": "CLOSED",
+    "F-02": "CLOSED",
+    "F-03": "CLOSED",
+    "F-04": "CLOSED",
+    "F-05": "CLOSED",
+    "F-06": "CLOSED",
+    "F-07": "CLOSED",
+    "F-08": "CLOSED",
+    "F-09": "CLOSED",
+    "F-10": "CLOSED",
+    "F-11": "CLOSED",
+    "F-12": "CLOSED",
+    "F-13": "CLOSED",
+    "F-14": "CLOSED",
+    "F-15": "CLOSED",
+    "F-16": "CLOSED"
+  },
+  "new_findings": [
+    {
+      "id": "N-01",
+      "severity": "HIGH",
+      "title": "Whitespace-only Product Owner approval basis satisfies formal appointment",
+      "source": "engine/validator.py:351",
+      "reproduction": "ST-09 refined: roles.RESEARCH_OWNER.approval.basis = '  \\t\\n '",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "expected": "Blocking error for empty-in-substance approval basis",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-02",
+      "severity": "HIGH",
+      "title": "Whitespace-only combination rationale satisfies multi-role combination approval",
+      "source": "engine/validator.py:414",
+      "reproduction": "COMB-11 refined: combination_approvals[0].rationale = '  \\t\\n '",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "expected": "Blocking error for whitespace-only rationale",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-03",
+      "severity": "HIGH",
+      "title": "Acceptance evidence is not role-bound; one record satisfies two roles of one candidate",
+      "source": "engine/validator.py:341-345; evidence subject convention",
+      "reproduction": "EVID-02 refined: one CANDIDATE_ACCEPTANCE evidence record referenced by RESEARCH_OWNER and CONTINUE_STOP_OWNER",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "expected": "Role-specific evidence subject required; cross-role reuse rejected",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-04",
+      "severity": "MEDIUM",
+      "title": "Whitespace-only escalation contact accepted",
+      "source": "engine/validator.py:374",
+      "reproduction": "ST-10: escalation.contact = '   '",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-05",
+      "severity": "MEDIUM",
+      "title": "Duplicate roles inside a combination approval are accepted",
+      "source": "engine/validator.py:213,408",
+      "reproduction": "COMB-03 refined: roles=['RESEARCH_OWNER','CONTINUE_STOP_OWNER','CONTINUE_STOP_OWNER']",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-06",
+      "severity": "MEDIUM",
+      "title": "evidence_integrity dimension reports PASS while evidence errors exist",
+      "source": "engine/validator.py:217-246 versus 301-310",
+      "reproduction": "DIM-02 unknown evidence ID; DIM-03 subject mismatch",
+      "observed": "E-EVIDENCE-UNKNOWN / E-EVIDENCE-SUBJECT present, evidence_integrity=PASS",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-07",
+      "severity": "MEDIUM",
+      "title": "Content hash is format-checked only and dangling evidence escapes hash checks",
+      "source": "engine/validator.py:242-245; schema L62",
+      "reproduction": "EVID-03: valid-format hash not matching source; schema agent E01",
+      "observed": "stage_b_role_ready=True for referenced mismatch; dangling bad hash accepted",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-08",
+      "severity": "MEDIUM",
+      "title": "Duplicate evidence records under different IDs are not detected",
+      "source": "engine/validator.py:300-310",
+      "reproduction": "EVID-04: identical evidence under e-acc-C-P1-copy",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-09",
+      "severity": "MEDIUM",
+      "title": "Evidence timestamp is not checked against its source or supported decision",
+      "source": "engine/validator.py:236-238",
+      "reproduction": "EVID-06: formal evidence timestamp 1999 for 2026 appointment",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-10",
+      "severity": "MEDIUM",
+      "title": "No freshness or expiry model for acceptance, approval and appointment",
+      "source": "engine/validator.py:355-363,418",
+      "reproduction": "ST-02 stale acceptance; COMB-06 stale approval",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-11",
+      "severity": "MEDIUM",
+      "title": "Combination decision timestamp is not ordered against candidate acceptance",
+      "source": "engine/validator.py:418",
+      "reproduction": "ST-03: decision 2026-11-26 before acceptance 2026-11-27",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-12",
+      "severity": "MEDIUM",
+      "title": "Whitespace-only candidate reference accepted",
+      "source": "engine/validator.py:256",
+      "reproduction": "ID-03 refined: consistent whitespace-only candidate ref",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-13",
+      "severity": "MEDIUM",
+      "title": "No canonical identity linkage; one human can be represented as several identities to avoid combination approval",
+      "source": "engine/validator.py:249-263",
+      "reproduction": "ID-07 refined: six distinct identities, zero combination approvals, all formal",
+      "observed": "stage_b_role_ready=True, issues=[]",
+      "status": "OPEN_LIMITATION"
+    },
+    {
+      "id": "N-14",
+      "severity": "MEDIUM",
+      "title": "No revocation or decision-history semantics",
+      "source": "schema additionalProperties:false; engine has no revoked field",
+      "reproduction": "COMB-07, EVID-05, ST-06, ST-07",
+      "observed": "blocked via E-SCHEMA rather than evaluated as revocation",
+      "status": "OPEN_LIMITATION"
+    },
+    {
+      "id": "S-01",
+      "severity": "MEDIUM",
+      "title": "No timestamp format/pattern in schema and no FormatChecker; timestamps not validated by JSON Schema",
+      "source": "schema L64,L79,L89,L99,L107,L136; engine L185-188",
+      "reproduction": "schema agent C10 and format experiment",
+      "observed": "naive timestamp accepted by both validators",
+      "status": "OPEN"
+    },
+    {
+      "id": "S-02",
+      "severity": "MEDIUM",
+      "title": "content_hash has no schema pattern; engine regex applies only to referenced evidence",
+      "source": "schema L62; engine L242-245",
+      "reproduction": "schema agent E01/E02",
+      "observed": "dangling bad-hash evidence accepted",
+      "status": "OPEN"
+    },
+    {
+      "id": "S-03",
+      "severity": "MEDIUM",
+      "title": "Unresolvable local $ref raises unhandled _WrappedReferencingError",
+      "source": "engine/validator.py:183-194",
+      "reproduction": "schema agent C18",
+      "observed": "check_schema PASS; structural_schema_errors raised exception",
+      "status": "OPEN"
+    },
+    {
+      "id": "S-04",
+      "severity": "MEDIUM",
+      "title": "Fallback subset silently ignores several JSON Schema keywords and can crash on boolean subschemas",
+      "source": "engine/validator.py:108-173",
+      "reproduction": "schema agent latent LATENT_* cases",
+      "observed": "nine latent gaps proven",
+      "status": "OPEN_LATENT"
+    },
+    {
+      "id": "S-05",
+      "severity": "LOW",
+      "title": "Evidence dict key vs evidence_id field consistency unchecked",
+      "source": "engine/validator.py:74-97,300-310",
+      "reproduction": "schema agent E06",
+      "observed": "no error emitted",
+      "status": "OPEN"
+    },
+    {
+      "id": "S-06",
+      "severity": "LOW",
+      "title": "Schema $id is a relative URI",
+      "source": "schema L3",
+      "reproduction": "schema agent §1",
+      "observed": "acceptable for local refs only",
+      "status": "OPEN"
+    },
+    {
+      "id": "S-07",
+      "severity": "LOW",
+      "title": "No uniqueItems/minItems on appointments or approvals; duplicate approvals overwrite by key",
+      "source": "schema L42-43,L131; engine L408-409",
+      "reproduction": "schema agent C12",
+      "observed": "schema-legal; engine last-wins",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-15",
+      "severity": "HIGH",
+      "title": "Schema type errors are non-fatal; nested non-object values crash unguarded .get() calls",
+      "source": "engine/validator.py:288-289,293,297,339; cli/validate.py:38-49",
+      "reproduction": "auditor re-run: python V2/cli/validate.py --state <REAUDIT>/tests/cases/c06g_governance_null.json (also c06h, c06i)",
+      "observed": "exit 1, empty stdout, AttributeError traceback on stderr (independently reproduced)",
+      "expected": "Clean E-SCHEMA rejection with no traceback",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-16",
+      "severity": "MEDIUM",
+      "title": "Uncaught RecursionError on deeply nested JSON",
+      "source": "engine/validator.py:93; cli/validate.py:38-49",
+      "reproduction": "c02_deep_5000_arrays.json / c02b_deep_5000_objects.json (10-30 KB)",
+      "observed": "exit 1, empty stdout, RecursionError traceback (independently reproduced)",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-17",
+      "severity": "MEDIUM",
+      "title": "UnicodeEncodeError on lone surrogate escape echoed into human report",
+      "source": "cli/validate.py:57; engine/validator.py:456-473",
+      "reproduction": "c04d_json_lone_surrogate_escape.json on cp1252 stdout (--json-only is safe)",
+      "observed": "exit 1, empty stdout, UnicodeEncodeError traceback (independently reproduced)",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-18",
+      "severity": "LOW",
+      "title": "Relative --state anchored to V2; ../ escapes root (read-only)",
+      "source": "cli/validate.py:33-36",
+      "reproduction": "CLI agent C10/C10b",
+      "observed": "read-only, deterministic; documented limitation",
+      "status": "OPEN_LIMITATION"
+    },
+    {
+      "id": "N-19",
+      "severity": "LOW",
+      "title": "All OSError variants collapsed to E-FILE-NOT-FOUND",
+      "source": "engine/validator.py:77-80",
+      "reproduction": "CLI agent C08/C08b",
+      "observed": "missing file and directory both exit 2 with same code",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-20",
+      "severity": "LOW",
+      "title": "Duplicate-key error omits JSON nesting path",
+      "source": "engine/validator.py:85-91",
+      "reproduction": "CLI agent C01/C01b",
+      "observed": "only key name reported",
+      "status": "OPEN"
+    },
+    {
+      "id": "N-21",
+      "severity": "LOW",
+      "title": "Declared policy fields are never consumed by the validator; policy provenance partly self-referential",
+      "source": "policy/role_constraints.json L3,L7,L20,L23,L25; engine/validator.py",
+      "reproduction": "closure stream R-2: grep for missing_appointment_states, require_combination_approval_for_multi_role, evidence_fields, timestamp_fields, review_requirement",
+      "observed": "no reads found; source cites the audit defect register",
+      "status": "OPEN"
+    }
+  ],
+  "independent_confirmations": [
+    "Research Owner remains ACCEPTED_IN_CONVERSATION; five roles UNASSIGNED; topology PROPOSED; Stage B NOT READY; both authorizations NO (36/36 checks)",
+    "V1, V2, previous audit and git repository unchanged against audit-start hashes",
+    "V2 SHA256 manifest verified: 75 declared files, 0 mismatches",
+    "Independent mutation harness: 30 introduced, 30 detected, 0 survived, 3 excluded; final canary 44/44",
+    "All 16 original F-01..F-16 independently CLOSED; hard incompatibilities genuinely unoverridable"
+  ]
+}

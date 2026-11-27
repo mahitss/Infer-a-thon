@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0",
+  "governance": {
+    "m001_status": "OPEN",
+    "m002_status": "UNAUTHORIZED",
+    "recruitment": "UNAUTHORIZED",
+    "field_validation": "NOT_STARTED"
+  },
+  "topology": {
+    "status": "PROPOSED",
+    "model": "FOUR_PERSON"
+  },
+  "roles": {
+    "RESEARCH_OWNER": {
+      "state": "ACCEPTED_IN_CONVERSATION",
+      "candidate_id": null,
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence": "Explicit written confirmation by Product Owner on 2026-11-26; formal signature NOT PROVIDED; official register update NOT AUTHORIZED"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": false,
+        "basis": "Explicit Product Owner acceptance in conversation, 2026-11-26"
+      },
+      "availability": {
+        "confirmed": false
+      },
+      "conflict_disclosure": {
+        "provided": false
+      },
+      "confidentiality": {
+        "acknowledged": false
+      },
+      "onboarding": {
+        "completed": false
+      },
+      "escalation": {
+        "contact": null
+      }
+    },
+    "MODERATOR": {
+      "state": "UNASSIGNED",
+      "candidate_id": null,
+      "acceptance": {
+        "candidate_accepted": false,
+        "evidence": null
+      },
+      "approval": {
+        "product_owner_approved": false,
+        "formal": false,
+        "basis": null
+      },
+      "availability": {
+        "confirmed": false
+      },
+      "conflict_disclosure": {
+        "provided": false
+      },
+      "confidentiality": {
+        "acknowledged": false
+      },
+      "onboarding": {
+        "completed": false
+      },
+      "escalation": {
+        "contact": null
+      }
+    },
+    "NOTE_TAKER": {
+      "state": "UNASSIGNED",
+      "candidate_id": null,
+      "acceptance": {
+        "candidate_accepted": false,
+        "evidence": null
+      },
+      "approval": {
+        "product_owner_approved": false,
+        "formal": false,
+        "basis": null
+      },
+      "availability": {
+        "confirmed": false
+      },
+      "conflict_disclosure": {
+        "provided": false
+      },
+      "confidentiality": {
+        "acknowledged": false
+      },
+      "onboarding": {
+        "completed": false
+      },
+      "escalation": {
+        "contact": null
+      }
+    },
+    "DATA_CUSTODIAN": {
+      "state": "UNASSIGNED",
+      "candidate_id": null,
+      "acceptance": {
+        "candidate_accepted": false,
+        "evidence": null
+      },
+      "approval": {
+        "product_owner_approved": false,
+        "formal": false,
+        "basis": null
+      },
+      "availability": {
+        "confirmed": false
+      },
+      "conflict_disclosure": {
+        "provided": false
+      },
+      "confidentiality": {
+        "acknowledged": false
+      },
+      "onboarding": {
+        "completed": false
+      },
+      "escalation": {
+        "contact": null
+      }
+    },
+    "ANALYST": {
+      "state": "UNASSIGNED",
+      "candidate_id": null,
+      "acceptance": {
+        "candidate_accepted": false,
+        "evidence": null
+      },
+      "approval": {
+        "product_owner_approved": false,
+        "formal": false,
+        "basis": null
+      },
+      "availability": {
+        "confirmed": false
+      },
+      "conflict_disclosure": {
+        "provided": false
+      },
+      "confidentiality": {
+        "acknowledged": false
+      },
+      "onboarding": {
+        "completed": false
+      },
+      "escalation": {
+        "contact": null
+      }
+    },
+    "CONTINUE_STOP_OWNER": {
+      "state": "UNASSIGNED",
+      "candidate_id": null,
+      "acceptance": {
+        "candidate_accepted": false,
+        "evidence": null
+      },
+      "approval": {
+        "product_owner_approved": false,
+        "formal": false,
+        "basis": null
+      },
+      "availability": {
+        "confirmed": false
+      },
+      "conflict_disclosure": {
+        "provided": false
+      },
+      "confidentiality": {
+        "acknowledged": false
+      },
+      "onboarding": {
+        "completed": false
+      },
+      "escalation": {
+        "contact": null
+      }
+    }
+  },
+  "assignments": []
+}

@@ -1,0 +1,15 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe tests/independent/independent_adversarial_v21.py
+EXIT: 0
+--- STDOUT ---
+TOTAL 50 SECURE 43 DEFECT 7
+DEFECT COMB-03 Approval roles duplicated within the same record | observed: []
+DEFECT COMB-12 One valid approval reused for an unrelated second candidate combination | observed: []
+DEFECT EVID-03 Source hash does not match the referenced source (format still valid) | observed: []
+DEFECT EVID-06 Evidence timestamp predates its claimed source/decision | observed: []
+DEFECT ST-02 Formal appointment references obsolete acceptance timestamp | observed: []
+DEFECT ID-02 Unicode-equivalent candidate identifiers coexist | observed: []
+DEFECT ID-07 One human split into two synthetic identities to avoid combination approval | observed: ['E-ACCEPTANCE-APPOINTMENT', 'E-COMBINATION-APPROVAL-MISSING', 'E-EVIDENCE-SUBJECT']
+wrote C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE_V2_2\tests\results\independent_adversarial_results.json
+
+--- STDERR ---
+

@@ -1,0 +1,37 @@
+{
+  "baseline_exit": 0,
+  "baseline_output": "PASS B00 valid synthetic state passes | \nPASS B01 ASCII whitespace basis blocked | \nPASS B02 Unicode whitespace basis blocked | \nPASS B03 whitespace rationale blocked | \nPASS B04 wrong-role acceptance blocked | \nPASS B05 revoked acceptance evidence blocked | \nPASS B06 schema failure controlled and terminal | \nPASS B07 unresolvable schema ref controlled | \nCANARY_PASS 8/8",
+  "total": 4,
+  "detected": 4,
+  "survived": [],
+  "mutants": [
+    {
+      "mutation": "M1_basis_check_removed",
+      "detected": true,
+      "exit": 1,
+      "output": "PASS B00 valid synthetic state passes | \nFAIL B01 ASCII whitespace basis blocked | \nFAIL B02 Unicode whitespace basis blocked | \nPASS B03 whitespace rationale blocked | \nPASS B04 wrong-role acceptance blocked | \nPASS B05 revoked acceptance evidence blocked | \nPASS B06 schema failure controlled and terminal | \nPASS B07 unresolvable schema ref controlled | \nCANARY_PASS 6/8",
+      "error": ""
+    },
+    {
+      "mutation": "M2_rationale_check_removed",
+      "detected": true,
+      "exit": 1,
+      "output": "PASS B00 valid synthetic state passes | \nPASS B01 ASCII whitespace basis blocked | \nPASS B02 Unicode whitespace basis blocked | \nFAIL B03 whitespace rationale blocked | \nPASS B04 wrong-role acceptance blocked | \nPASS B05 revoked acceptance evidence blocked | \nPASS B06 schema failure controlled and terminal | \nPASS B07 unresolvable schema ref controlled | \nCANARY_PASS 7/8",
+      "error": ""
+    },
+    {
+      "mutation": "M3_acceptance_role_binding_removed",
+      "detected": true,
+      "exit": 1,
+      "output": "FAIL B00 valid synthetic state passes | \nPASS B01 ASCII whitespace basis blocked | \nPASS B02 Unicode whitespace basis blocked | \nPASS B03 whitespace rationale blocked | \nPASS B04 wrong-role acceptance blocked | \nPASS B05 revoked acceptance evidence blocked | \nPASS B06 schema failure controlled and terminal | \nPASS B07 unresolvable schema ref controlled | \nCANARY_PASS 7/8",
+      "error": ""
+    },
+    {
+      "mutation": "M4_schema_terminal_return_removed",
+      "detected": true,
+      "exit": 1,
+      "output": "",
+      "error": ""
+    }
+  ]
+}

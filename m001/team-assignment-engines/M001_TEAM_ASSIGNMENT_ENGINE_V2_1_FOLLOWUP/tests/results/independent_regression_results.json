@@ -1,0 +1,592 @@
+{
+  "mission": "M001-TEAM-007",
+  "role": "independent security auditor",
+  "task": "Independent regression evidence for V2.1",
+  "captured_utc": "2026-11-27T18:13:05.361494+00:00",
+  "environment": {
+    "python_version": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "PYTHONDONTWRITEBYTECODE": "1 for every executed command",
+    "installs": "none",
+    "network": "none"
+  },
+  "boundaries": {
+    "writes_outside_followup": "none",
+    "v2_1_root_used_for_read_only_commands_only": true,
+    "disposable_root": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21",
+    "relocated_runners": [
+      "IND_ADV",
+      "REFINED",
+      "MUTATION"
+    ],
+    "relocation_reason": "Those scripts write result/mutant files into their own ROOT (parents[2] of the script). Executing them with cwd=V2_1 would write into the preserved V2_1 workspace, which the mission forbids. Byte-identical script copies were run from the FOLLOWUP disposable mirror; the independent scripts still hardcode and READ the real V2_1 engine."
+  },
+  "summary": {
+    "adversarial_tests": {
+      "ran": 24,
+      "passed": 24,
+      "failed": 0,
+      "verdict": "PASS"
+    },
+    "regression_tests": {
+      "ran": 53,
+      "passed": 53,
+      "failed": 0,
+      "remediation_cases": 22,
+      "verdict": "PASS"
+    },
+    "independent_adversarial": {
+      "total": 50,
+      "secure": 38,
+      "defect": 12,
+      "verdict": "REPRODUCED_WITH_RESIDUAL_DEFECTS"
+    },
+    "refined_cases": {
+      "cases": 14,
+      "verdict": "REPRODUCED"
+    },
+    "canary": {
+      "passed": 8,
+      "total": 8,
+      "verdict": "PASS"
+    },
+    "mutation": {
+      "detected": 4,
+      "total": 4,
+      "survived": 0,
+      "verdict": "PASS"
+    },
+    "cli_cases": {
+      "total": 8,
+      "passed": 6,
+      "verdict": "PASS"
+    },
+    "determinism": {
+      "verdict": "PASS",
+      "note": "corrected absolute-path run"
+    },
+    "integrity": {
+      "v21_unchanged": true,
+      "all_preserved_roots_unchanged": true,
+      "git_repo_unchanged": true
+    },
+    "not_executed": []
+  },
+  "commands": {
+    "adversarial": {
+      "id": "ADV",
+      "label": "adversarial unittest discover",
+      "command": "python -m unittest discover -s tests/adversarial -p test_*.py -v",
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/adversarial",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+      "env_PYTHONDONTWRITEBYTECODE": "1",
+      "started_utc": "2026-11-27T18:11:57.237888+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_adv01_hard_moderator_analyst (test_audit_regression.AuditRegression.test_adv01_hard_moderator_analyst) ... ok\ntest_adv02_hard_moderator_custodian (test_audit_regression.AuditRegression.test_adv02_hard_moderator_custodian) ... ok\ntest_adv03_discouraged_ro_moderator (test_audit_regression.AuditRegression.test_adv03_discouraged_ro_moderator) ... ok\ntest_adv04_discouraged_custodian_analyst (test_audit_regression.AuditRegression.test_adv04_discouraged_custodian_analyst) ... ok\ntest_adv05_boolean_evidence_without_reference (test_audit_regression.AuditRegression.test_adv05_boolean_evidence_without_reference) ... ok\ntest_adv06_forged_evidence_reference (test_audit_regression.AuditRegression.test_adv06_forged_evidence_reference) ... ok\ntest_adv07_duplicate_candidate_identity (test_audit_regression.AuditRegression.test_adv07_duplicate_candidate_identity) ... ok\ntest_adv08_unknown_candidate_identity (test_audit_regression.AuditRegression.test_adv08_unknown_candidate_identity) ... ok\ntest_adv09_proposed_not_appointed (test_audit_regression.AuditRegression.test_adv09_proposed_not_appointed) ... ok\ntest_adv10_accepted_conversation_not_formal (test_audit_regression.AuditRegression.test_adv10_accepted_conversation_not_formal) ... ok\ntest_adv11_formal_state_formal_false (test_audit_regression.AuditRegression.test_adv11_formal_state_formal_false) ... ok\ntest_adv12_empty_approval_basis (test_audit_regression.AuditRegression.test_adv12_empty_approval_basis) ... ok\ntest_adv13_discouraged_without_review (test_audit_regression.AuditRegression.test_adv13_discouraged_without_review) ... ok\ntest_adv14_missing_timestamps (test_audit_regression.AuditRegression.test_adv14_missing_timestamps) ... ok\ntest_adv15_duplicate_json_keys (test_audit_regression.AuditRegression.test_adv15_duplicate_json_keys) ... ok\ntest_adv16_topology_unapproved_blocks_stage_b (test_audit_regression.AuditRegression.test_adv16_topology_unapproved_blocks_stage_b) ... ok\ntest_adv17_rejected_candidate_not_active (test_audit_regression.AuditRegression.test_adv17_rejected_candidate_not_active) ... ok\ntest_adv18_missing_onboarding (test_audit_regression.AuditRegression.test_adv18_missing_onboarding) ... ok\ntest_adv19_malformed_json (test_audit_regression.AuditRegression.test_adv19_malformed_json) ... ok\ntest_adv20_invalid_utf8 (test_audit_regression.AuditRegression.test_adv20_invalid_utf8) ... ok\ntest_adv21_missing_file (test_audit_regression.AuditRegression.test_adv21_missing_file) ... ok\ntest_adv22_no_authorization_inference (test_audit_regression.AuditRegression.test_adv22_no_authorization_inference) ... ok\ntest_adv23_different_combination_approval (test_audit_regression.AuditRegression.test_adv23_different_combination_approval) ... ok\ntest_adv24_deterministic (test_audit_regression.AuditRegression.test_adv24_deterministic) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 1.437s\n\nOK\n",
+      "stdout_tail": "",
+      "stderr_tail": "test_adv01_hard_moderator_analyst (test_audit_regression.AuditRegression.test_adv01_hard_moderator_analyst) ... ok\ntest_adv02_hard_moderator_custodian (test_audit_regression.AuditRegression.test_adv02_hard_moderator_custodian) ... ok\ntest_adv03_discouraged_ro_moderator (test_audit_regression.AuditRegression.test_adv03_discouraged_ro_moderator) ... ok\ntest_adv04_discouraged_custodian_analyst (test_audit_regression.AuditRegression.test_adv04_discouraged_custodian_analyst) ... ok\ntest_adv05_boolean_evidence_without_reference (test_audit_regression.AuditRegression.test_adv05_boolean_evidence_without_reference) ... ok\ntest_adv06_forged_evidence_reference (test_audit_regression.AuditRegression.test_adv06_forged_evidence_reference) ... ok\ntest_adv07_duplicate_candidate_identity (test_audit_regression.AuditRegression.test_adv07_duplicate_candidate_identity) ... ok\ntest_adv08_unknown_candidate_identity (test_audit_regression.AuditRegression.test_adv08_unknown_candidate_identity) ... ok\ntest_adv09_proposed_not_appointed (test_audit_regression.AuditRegression.test_adv09_proposed_not_appointed) ... ok\ntest_adv10_accepted_conversation_not_formal (test_audit_regression.AuditRegression.test_adv10_accepted_conversation_not_formal) ... ok\ntest_adv11_formal_state_formal_false (test_audit_regression.AuditRegression.test_adv11_formal_state_formal_false) ... ok\ntest_adv12_empty_approval_basis (test_audit_regression.AuditRegression.test_adv12_empty_approval_basis) ... ok\ntest_adv13_discouraged_without_review (test_audit_regression.AuditRegression.test_adv13_discouraged_without_review) ... ok\ntest_adv14_missing_timestamps (test_audit_regression.AuditRegression.test_adv14_missing_timestamps) ... ok\ntest_adv15_duplicate_json_keys (test_audit_regression.AuditRegression.test_adv15_duplicate_json_keys) ... ok\ntest_adv16_topology_unapproved_blocks_stage_b (test_audit_regression.AuditRegression.test_adv16_topology_unapproved_blocks_stage_b) ... ok\ntest_adv17_rejected_candidate_not_active (test_audit_regression.AuditRegression.test_adv17_rejected_candidate_not_active) ... ok\ntest_adv18_missing_onboarding (test_audit_regression.AuditRegression.test_adv18_missing_onboarding) ... ok\ntest_adv19_malformed_json (test_audit_regression.AuditRegression.test_adv19_malformed_json) ... ok\ntest_adv20_invalid_utf8 (test_audit_regression.AuditRegression.test_adv20_invalid_utf8) ... ok\ntest_adv21_missing_file (test_audit_regression.AuditRegression.test_adv21_missing_file) ... ok\ntest_adv22_no_authorization_inference (test_audit_regression.AuditRegression.test_adv22_no_authorization_inference) ... ok\ntest_adv23_different_combination_approval (test_audit_regression.AuditRegression.test_adv23_different_combination_approval) ... ok\ntest_adv24_deterministic (test_audit_regression.AuditRegression.test_adv24_deterministic) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 1.437s\n\nOK",
+      "note": "",
+      "expected": "exit 0, 24 tests, OK",
+      "verdict": "PASS",
+      "detail": "Observed: Ran 24 tests in 1.437s / OK. Full stderr captured below."
+    },
+    "regression": {
+      "id": "REG",
+      "label": "regression unittest discover",
+      "command": "python -m unittest discover -s tests/regression -p test_*.py -v",
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/regression",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+      "env_PYTHONDONTWRITEBYTECODE": "1",
+      "started_utc": "2026-11-27T18:12:00.430510+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_current_exit_one (test_cli.CLI.test_current_exit_one) ... ok\ntest_determinism_two_directories (test_cli.CLI.test_determinism_two_directories) ... ok\ntest_json_only_machine_readable (test_cli.CLI.test_json_only_machine_readable) ... ok\ntest_safe_input_errors_no_traceback (test_cli.CLI.test_safe_input_errors_no_traceback) ... ok\ntest_valid_four_exit_zero (test_cli.CLI.test_valid_four_exit_zero) ... ok\ntest_01_multi_role_without_po_combination_approval (test_explicit_scenarios.ExplicitScenarios.test_01_multi_role_without_po_combination_approval) ... ok\ntest_02_approval_for_different_combination (test_explicit_scenarios.ExplicitScenarios.test_02_approval_for_different_combination) ... ok\ntest_03_proposed_treated_as_appointed (test_explicit_scenarios.ExplicitScenarios.test_03_proposed_treated_as_appointed) ... ok\ntest_04_accepted_conversation_not_formal (test_explicit_scenarios.ExplicitScenarios.test_04_accepted_conversation_not_formal) ... ok\ntest_05_boolean_evidence_without_reference (test_explicit_scenarios.ExplicitScenarios.test_05_boolean_evidence_without_reference) ... ok\ntest_06_forged_evidence_identifier (test_explicit_scenarios.ExplicitScenarios.test_06_forged_evidence_identifier) ... ok\ntest_07_duplicate_candidate_identities (test_explicit_scenarios.ExplicitScenarios.test_07_duplicate_candidate_identities) ... ok\ntest_08_unknown_candidate_identity (test_explicit_scenarios.ExplicitScenarios.test_08_unknown_candidate_identity) ... ok\ntest_09_formally_appointed_with_missing_formal_approval (test_explicit_scenarios.ExplicitScenarios.test_09_formally_appointed_with_missing_formal_approval) ... ok\ntest_10_empty_approval_basis (test_explicit_scenarios.ExplicitScenarios.test_10_empty_approval_basis) ... ok\ntest_11_discouraged_combination_without_po_review (test_explicit_scenarios.ExplicitScenarios.test_11_discouraged_combination_without_po_review) ... ok\ntest_12_missing_timestamps (test_explicit_scenarios.ExplicitScenarios.test_12_missing_timestamps) ... ok\ntest_13_duplicate_json_keys (test_explicit_scenarios.ExplicitScenarios.test_13_duplicate_json_keys) ... ok\ntest_14_unapproved_topology_not_stage_b_ready (test_explicit_scenarios.ExplicitScenarios.test_14_unapproved_topology_not_stage_b_ready) ... ok\ntest_15_rejected_candidate_not_active (test_explicit_scenarios.ExplicitScenarios.test_15_rejected_candidate_not_active) ... ok\ntest_16_missing_onboarding (test_explicit_scenarios.ExplicitScenarios.test_16_missing_onboarding) ... ok\ntest_17_malformed_json (test_explicit_scenarios.ExplicitScenarios.test_17_malformed_json) ... ok\ntest_18_invalid_utf8 (test_explicit_scenarios.ExplicitScenarios.test_18_invalid_utf8) ... ok\ntest_19_missing_state_file (test_explicit_scenarios.ExplicitScenarios.test_19_missing_state_file) ... ok\ntest_20_no_authorization_from_passing_topology (test_explicit_scenarios.ExplicitScenarios.test_20_no_authorization_from_passing_topology) ... ok\ntest_01_empty_approval_basis (test_v2_1_high_findings.V21HighFindings.test_01_empty_approval_basis) ... ok\ntest_02_ascii_whitespace_approval_basis (test_v2_1_high_findings.V21HighFindings.test_02_ascii_whitespace_approval_basis) ... ok\ntest_03_unicode_whitespace_approval_basis (test_v2_1_high_findings.V21HighFindings.test_03_unicode_whitespace_approval_basis) ... ok\ntest_04_missing_approval_basis (test_v2_1_high_findings.V21HighFindings.test_04_missing_approval_basis) ... ok\ntest_05_null_approval_basis (test_v2_1_high_findings.V21HighFindings.test_05_null_approval_basis) ... ok\ntest_06_non_string_approval_basis (test_v2_1_high_findings.V21HighFindings.test_06_non_string_approval_basis) ... ok\ntest_07_empty_rationale (test_v2_1_high_findings.V21HighFindings.test_07_empty_rationale) ... ok\ntest_08_whitespace_only_rationale (test_v2_1_high_findings.V21HighFindings.test_08_whitespace_only_rationale) ... ok\ntest_09_unicode_whitespace_rationale (test_v2_1_high_findings.V21HighFindings.test_09_unicode_whitespace_rationale) ... ok\ntest_10_missing_rationale (test_v2_1_high_findings.V21HighFindings.test_10_missing_rationale) ... ok\ntest_11_acceptance_evidence_wrong_role (test_v2_1_high_findings.V21HighFindings.test_11_acceptance_evidence_wrong_role) ... ok\ntest_12_acceptance_evidence_wrong_candidate (test_v2_1_high_findings.V21HighFindings.test_12_acceptance_evidence_wrong_candidate) ... ok\ntest_13_acceptance_evidence_another_appointment (test_v2_1_high_findings.V21HighFindings.test_13_acceptance_evidence_another_appointment) ... ok\ntest_14_reused_acceptance_subject_mismatch (test_v2_1_high_findings.V21HighFindings.test_14_reused_acceptance_subject_mismatch) ... ok\ntest_15_unverified_acceptance_evidence (test_v2_1_high_findings.V21HighFindings.test_15_unverified_acceptance_evidence) ... ok\ntest_16_revoked_acceptance_evidence (test_v2_1_high_findings.V21HighFindings.test_16_revoked_acceptance_evidence) ... ok\ntest_17_missing_acceptance_evidence (test_v2_1_high_findings.V21HighFindings.test_17_missing_acceptance_evidence) ... ok\ntest_18_invalid_schema_structure (test_v2_1_high_findings.V21HighFindings.test_18_invalid_schema_structure) ... ok\ntest_19_unresolvable_schema_reference (test_v2_1_high_findings.V21HighFindings.test_19_unresolvable_schema_reference) ... ok\ntest_20_assignment_blocked_after_schema_failure (test_v2_1_high_findings.V21HighFindings.test_20_assignment_blocked_after_schema_failure) ... ok\ntest_21_stable_cli_errors_without_tracebacks (test_v2_1_high_findings.V21HighFindings.test_21_stable_cli_errors_without_tracebacks) ... ok\ntest_22_valid_matching_evidence_passes (test_v2_1_high_findings.V21HighFindings.test_22_valid_matching_evidence_passes) ... ok\ntest_current_state_remains_blocked (test_v2_regression.Regression.test_current_state_remains_blocked) ... ok\ntest_discouraged_with_exact_approval_passes (test_v2_regression.Regression.test_discouraged_with_exact_approval_passes) ... ok\ntest_hard_incompatibility_not_overridable (test_v2_regression.Regression.test_hard_incompatibility_not_overridable) ... ok\ntest_naive_timestamp_rejected (test_v2_regression.Regression.test_naive_timestamp_rejected) ... ok\ntest_separate_dimensions_present (test_v2_regression.Regression.test_separate_dimensions_present) ... ok\ntest_valid_four_five_six_stage_b_ready (test_v2_regression.Regression.test_valid_four_five_six_stage_b_ready) ... ok\n\n----------------------------------------------------------------------\nRan 53 tests in 21.424s\n\nOK\n",
+      "stdout_tail": "",
+      "stderr_tail": "test_14_unapproved_topology_not_stage_b_ready (test_explicit_scenarios.ExplicitScenarios.test_14_unapproved_topology_not_stage_b_ready) ... ok\ntest_15_rejected_candidate_not_active (test_explicit_scenarios.ExplicitScenarios.test_15_rejected_candidate_not_active) ... ok\ntest_16_missing_onboarding (test_explicit_scenarios.ExplicitScenarios.test_16_missing_onboarding) ... ok\ntest_17_malformed_json (test_explicit_scenarios.ExplicitScenarios.test_17_malformed_json) ... ok\ntest_18_invalid_utf8 (test_explicit_scenarios.ExplicitScenarios.test_18_invalid_utf8) ... ok\ntest_19_missing_state_file (test_explicit_scenarios.ExplicitScenarios.test_19_missing_state_file) ... ok\ntest_20_no_authorization_from_passing_topology (test_explicit_scenarios.ExplicitScenarios.test_20_no_authorization_from_passing_topology) ... ok\ntest_01_empty_approval_basis (test_v2_1_high_findings.V21HighFindings.test_01_empty_approval_basis) ... ok\ntest_02_ascii_whitespace_approval_basis (test_v2_1_high_findings.V21HighFindings.test_02_ascii_whitespace_approval_basis) ... ok\ntest_03_unicode_whitespace_approval_basis (test_v2_1_high_findings.V21HighFindings.test_03_unicode_whitespace_approval_basis) ... ok\ntest_04_missing_approval_basis (test_v2_1_high_findings.V21HighFindings.test_04_missing_approval_basis) ... ok\ntest_05_null_approval_basis (test_v2_1_high_findings.V21HighFindings.test_05_null_approval_basis) ... ok\ntest_06_non_string_approval_basis (test_v2_1_high_findings.V21HighFindings.test_06_non_string_approval_basis) ... ok\ntest_07_empty_rationale (test_v2_1_high_findings.V21HighFindings.test_07_empty_rationale) ... ok\ntest_08_whitespace_only_rationale (test_v2_1_high_findings.V21HighFindings.test_08_whitespace_only_rationale) ... ok\ntest_09_unicode_whitespace_rationale (test_v2_1_high_findings.V21HighFindings.test_09_unicode_whitespace_rationale) ... ok\ntest_10_missing_rationale (test_v2_1_high_findings.V21HighFindings.test_10_missing_rationale) ... ok\ntest_11_acceptance_evidence_wrong_role (test_v2_1_high_findings.V21HighFindings.test_11_acceptance_evidence_wrong_role) ... ok\ntest_12_acceptance_evidence_wrong_candidate (test_v2_1_high_findings.V21HighFindings.test_12_acceptance_evidence_wrong_candidate) ... ok\ntest_13_acceptance_evidence_another_appointment (test_v2_1_high_findings.V21HighFindings.test_13_acceptance_evidence_another_appointment) ... ok\ntest_14_reused_acceptance_subject_mismatch (test_v2_1_high_findings.V21HighFindings.test_14_reused_acceptance_subject_mismatch) ... ok\ntest_15_unverified_acceptance_evidence (test_v2_1_high_findings.V21HighFindings.test_15_unverified_acceptance_evidence) ... ok\ntest_16_revoked_acceptance_evidence (test_v2_1_high_findings.V21HighFindings.test_16_revoked_acceptance_evidence) ... ok\ntest_17_missing_acceptance_evidence (test_v2_1_high_findings.V21HighFindings.test_17_missing_acceptance_evidence) ... ok\ntest_18_invalid_schema_structure (test_v2_1_high_findings.V21HighFindings.test_18_invalid_schema_structure) ... ok\ntest_19_unresolvable_schema_reference (test_v2_1_high_findings.V21HighFindings.test_19_unresolvable_schema_reference) ... ok\ntest_20_assignment_blocked_after_schema_failure (test_v2_1_high_findings.V21HighFindings.test_20_assignment_blocked_after_schema_failure) ... ok\ntest_21_stable_cli_errors_without_tracebacks (test_v2_1_high_findings.V21HighFindings.test_21_stable_cli_errors_without_tracebacks) ... ok\ntest_22_valid_matching_evidence_passes (test_v2_1_high_findings.V21HighFindings.test_22_valid_matching_evidence_passes) ... ok\ntest_current_state_remains_blocked (test_v2_regression.Regression.test_current_state_remains_blocked) ... ok\ntest_discouraged_with_exact_approval_passes (test_v2_regression.Regression.test_discouraged_with_exact_approval_passes) ... ok\ntest_hard_incompatibility_not_overridable (test_v2_regression.Regression.test_hard_incompatibility_not_overridable) ... ok\ntest_naive_timestamp_rejected (test_v2_regression.Regression.test_naive_timestamp_rejected) ... ok\ntest_separate_dimensions_present (test_v2_regression.Regression.test_separate_dimensions_present) ... ok\ntest_valid_four_five_six_stage_b_ready (test_v2_regression.Regression.test_valid_four_five_six_stage_b_ready) ... ok\n\n----------------------------------------------------------------------\nRan 53 tests in 21.424s\n\nOK",
+      "note": "",
+      "expected": "exit 0, 53 tests, OK, 22 remediation cases",
+      "verdict": "PASS",
+      "detail": "Observed: Ran 53 tests in 21.424s / OK; test_v2_1_high_findings contributed test_01..test_22."
+    },
+    "independent_adversarial": {
+      "id": "IND_ADV",
+      "label": "independent adversarial 50-case corpus",
+      "command": "python tests/independent/independent_adversarial_v21.py",
+      "argv": [
+        "python",
+        "tests/independent/independent_adversarial_v21.py"
+      ],
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21",
+      "env_PYTHONDONTWRITEBYTECODE": "1",
+      "started_utc": "2026-11-27T18:12:23.453861+00:00",
+      "exit_code": 0,
+      "stdout": "TOTAL 50 SECURE 38 DEFECT 12\nDEFECT COMB-03 Approval roles duplicated within the same record | observed: []\nDEFECT COMB-06 Approval is stale (timestamp years before appointment) | observed: []\nDEFECT COMB-12 One valid approval reused for an unrelated second candidate combination | observed: []\nDEFECT EVID-03 Source hash does not match the referenced source (format still valid) | observed: []\nDEFECT EVID-04 Evidence record duplicated under a second ID | observed: []\nDEFECT EVID-06 Evidence timestamp predates its claimed source/decision | observed: []\nDEFECT ST-02 Formal appointment references obsolete acceptance timestamp | observed: []\nDEFECT ST-03 Combination approval timestamp precedes candidate acceptance | observed: []\nDEFECT ST-10 Escalation contact is whitespace only | observed: []\nDEFECT ID-02 Unicode-equivalent candidate identifiers coexist | observed: []\nDEFECT ID-03 Whitespace-only candidate reference | observed: ['E-ACCEPTANCE-APPOINTMENT', 'E-EVIDENCE-SUBJECT']\nDEFECT ID-07 One human split into two synthetic identities to avoid combination approval | observed: ['E-ACCEPTANCE-APPOINTMENT', 'E-COMBINATION-APPROVAL-MISSING', 'E-EVIDENCE-SUBJECT']\nwrote C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21\\tests\\results\\independent_adversarial_results.json\n",
+      "stderr": "",
+      "stdout_tail": "TOTAL 50 SECURE 38 DEFECT 12\nDEFECT COMB-03 Approval roles duplicated within the same record | observed: []\nDEFECT COMB-06 Approval is stale (timestamp years before appointment) | observed: []\nDEFECT COMB-12 One valid approval reused for an unrelated second candidate combination | observed: []\nDEFECT EVID-03 Source hash does not match the referenced source (format still valid) | observed: []\nDEFECT EVID-04 Evidence record duplicated under a second ID | observed: []\nDEFECT EVID-06 Evidence timestamp predates its claimed source/decision | observed: []\nDEFECT ST-02 Formal appointment references obsolete acceptance timestamp | observed: []\nDEFECT ST-03 Combination approval timestamp precedes candidate acceptance | observed: []\nDEFECT ST-10 Escalation contact is whitespace only | observed: []\nDEFECT ID-02 Unicode-equivalent candidate identifiers coexist | observed: []\nDEFECT ID-03 Whitespace-only candidate reference | observed: ['E-ACCEPTANCE-APPOINTMENT', 'E-EVIDENCE-SUBJECT']\nDEFECT ID-07 One human split into two synthetic identities to avoid combination approval | observed: ['E-ACCEPTANCE-APPOINTMENT', 'E-COMBINATION-APPROVAL-MISSING', 'E-EVIDENCE-SUBJECT']\nwrote C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21\\tests\\results\\independent_adversarial_results.json",
+      "stderr_tail": "",
+      "note": "Relocated runner: the script hardcodes V2_1 as its READ target but writes results to parents[2]. Run from the disposable mirror so the write lands in FOLLOWUP, never in V2_1. Script bytes are identical to V2_1/tests/independent/independent_adversarial_v21.py.",
+      "expected": "exit 0, 50-case corpus completes",
+      "verdict": "REPRODUCED_WITH_RESIDUAL_DEFECTS",
+      "detail": "Observed: TOTAL 50 SECURE 38 DEFECT 12. Identical to V2.1 claimed result file. The 12 DEFECT verdicts are residual engine weaknesses reported by the suite itself, not a harness failure; they are called out in the notes."
+    },
+    "refined_cases": {
+      "id": "REFINED",
+      "label": "refined cases",
+      "command": "python tests/independent/refined_cases_v21.py",
+      "argv": [
+        "python",
+        "tests/independent/refined_cases_v21.py"
+      ],
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21",
+      "env_PYTHONDONTWRITEBYTECODE": "1",
+      "started_utc": "2026-11-27T18:12:29.800084+00:00",
+      "exit_code": 0,
+      "stdout": "DIM-02_unknown_evidence_id | ready= False | codes= ['E-EVIDENCE-UNKNOWN'] | evidence_integrity= PASS\nDIM-03_subject_mismatch | ready= False | codes= ['E-EVIDENCE-SUBJECT'] | evidence_integrity= PASS\nST-02_stale_acceptance_order_valid | ready= True | codes= [] | evidence_integrity= PASS\nCOMB-12_approval_reused_other_candidate | ready= False | codes= ['E-COMBINATION-APPROVAL-MISSING', 'E-COND-EXPLICIT-CS', 'E-EVIDENCE-SUBJECT'] | evidence_integrity= PASS\nEVID-02_shared_acceptance_two_roles | ready= False | codes= ['E-ACCEPTANCE-APPOINTMENT', 'E-ACCEPTANCE-DECISION-REUSED', 'E-ACCEPTANCE-ROLE', 'E-EVIDENCE-SUBJECT'] | evidence_integrity= PASS\nID-03_whitespace_ref_consistent | ready= True | codes= [] | evidence_integrity= PASS\nID-02_unicode_equivalent_split | ready= False | codes= ['E-ACCEPTANCE-APPOINTMENT', 'E-ACCEPTANCE-DECISION-REUSED', 'E-ACCEPTANCE-ROLE', 'E-COMBINATION-APPROVAL-MISSING', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-TYPE'] | evidence_integrity= PASS\nID-07_six_distinct_identities | ready= True | codes= [] | evidence_integrity= PASS\nCOMB-03_duplicate_roles_approval | ready= True | codes= [] | evidence_integrity= PASS\nST-09_whitespace_basis | ready= False | codes= ['E-DECISION-EVIDENCE-EMPTY'] | evidence_integrity= PASS\nCOMB-11_whitespace_rationale | ready= False | codes= ['E-COMBINATION-RATIONALE'] | evidence_integrity= PASS\nEVID-03_hash_mismatch | ready= True | codes= [] | evidence_integrity= PASS\nEVID-04_duplicate_evidence | ready= True | codes= [] | evidence_integrity= PASS\nEVID-06_evidence_predates_source | ready= True | codes= [] | evidence_integrity= PASS\nwrote C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21\\tests\\results\\refined_case_results.json\n",
+      "stderr": "",
+      "stdout_tail": "DIM-02_unknown_evidence_id | ready= False | codes= ['E-EVIDENCE-UNKNOWN'] | evidence_integrity= PASS\nDIM-03_subject_mismatch | ready= False | codes= ['E-EVIDENCE-SUBJECT'] | evidence_integrity= PASS\nST-02_stale_acceptance_order_valid | ready= True | codes= [] | evidence_integrity= PASS\nCOMB-12_approval_reused_other_candidate | ready= False | codes= ['E-COMBINATION-APPROVAL-MISSING', 'E-COND-EXPLICIT-CS', 'E-EVIDENCE-SUBJECT'] | evidence_integrity= PASS\nEVID-02_shared_acceptance_two_roles | ready= False | codes= ['E-ACCEPTANCE-APPOINTMENT', 'E-ACCEPTANCE-DECISION-REUSED', 'E-ACCEPTANCE-ROLE', 'E-EVIDENCE-SUBJECT'] | evidence_integrity= PASS\nID-03_whitespace_ref_consistent | ready= True | codes= [] | evidence_integrity= PASS\nID-02_unicode_equivalent_split | ready= False | codes= ['E-ACCEPTANCE-APPOINTMENT', 'E-ACCEPTANCE-DECISION-REUSED', 'E-ACCEPTANCE-ROLE', 'E-COMBINATION-APPROVAL-MISSING', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-TYPE'] | evidence_integrity= PASS\nID-07_six_distinct_identities | ready= True | codes= [] | evidence_integrity= PASS\nCOMB-03_duplicate_roles_approval | ready= True | codes= [] | evidence_integrity= PASS\nST-09_whitespace_basis | ready= False | codes= ['E-DECISION-EVIDENCE-EMPTY'] | evidence_integrity= PASS\nCOMB-11_whitespace_rationale | ready= False | codes= ['E-COMBINATION-RATIONALE'] | evidence_integrity= PASS\nEVID-03_hash_mismatch | ready= True | codes= [] | evidence_integrity= PASS\nEVID-04_duplicate_evidence | ready= True | codes= [] | evidence_integrity= PASS\nEVID-06_evidence_predates_source | ready= True | codes= [] | evidence_integrity= PASS\nwrote C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21\\tests\\results\\refined_case_results.json",
+      "stderr_tail": "",
+      "note": "Relocated runner for the same no-write reason as IND_ADV.",
+      "expected": "exit 0, 14 refined cases complete",
+      "verdict": "REPRODUCED",
+      "detail": "Observed 14 case lines; identical to V2.1 claimed result file."
+    },
+    "canary": {
+      "id": "CANARY",
+      "label": "mutation canary baseline",
+      "command": "python tests/mutation/canary_v21.py --root .",
+      "argv": [
+        "python",
+        "tests/mutation/canary_v21.py",
+        "--root",
+        "."
+      ],
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+      "env_PYTHONDONTWRITEBYTECODE": "1",
+      "started_utc": "2026-11-27T18:12:31.591986+00:00",
+      "exit_code": 0,
+      "stdout": "PASS B00 valid synthetic state passes | \nPASS B01 ASCII whitespace basis blocked | \nPASS B02 Unicode whitespace basis blocked | \nPASS B03 whitespace rationale blocked | \nPASS B04 wrong-role acceptance blocked | \nPASS B05 revoked acceptance evidence blocked | \nPASS B06 schema failure controlled and terminal | \nPASS B07 unresolvable schema ref controlled | \nCANARY_PASS 8/8\n",
+      "stderr": "",
+      "stdout_tail": "PASS B00 valid synthetic state passes | \nPASS B01 ASCII whitespace basis blocked | \nPASS B02 Unicode whitespace basis blocked | \nPASS B03 whitespace rationale blocked | \nPASS B04 wrong-role acceptance blocked | \nPASS B05 revoked acceptance evidence blocked | \nPASS B06 schema failure controlled and terminal | \nPASS B07 unresolvable schema ref controlled | \nCANARY_PASS 8/8",
+      "stderr_tail": "",
+      "note": "",
+      "expected": "exit 0, CANARY_PASS 8/8",
+      "verdict": "PASS",
+      "detail": "Observed 8 PASS lines and CANARY_PASS 8/8."
+    },
+    "mutation": {
+      "id": "MUTATION",
+      "label": "mutation harness (disposable copy)",
+      "command": "python tests/mutation/mutation_harness_v21.py",
+      "argv": [
+        "python",
+        "tests/mutation/mutation_harness_v21.py"
+      ],
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21",
+      "env_PYTHONDONTWRITEBYTECODE": "1",
+      "started_utc": "2026-11-27T18:12:34.072624+00:00",
+      "exit_code": 0,
+      "stdout": "BASELINE_EXIT 0\nDETECTED 4/4\nDETECTED M1_basis_check_removed exit=1\nDETECTED M2_rationale_check_removed exit=1\nDETECTED M3_acceptance_role_binding_removed exit=1\nDETECTED M4_schema_terminal_return_removed exit=1\n",
+      "stderr": "",
+      "stdout_tail": "BASELINE_EXIT 0\nDETECTED 4/4\nDETECTED M1_basis_check_removed exit=1\nDETECTED M2_rationale_check_removed exit=1\nDETECTED M3_acceptance_role_binding_removed exit=1\nDETECTED M4_schema_terminal_return_removed exit=1",
+      "stderr_tail": "",
+      "note": "Harness writes mutants and results into its ROOT; executed in the disposable mirror so V2_1 is untouched.",
+      "expected": "exit 0, DETECTED 4/4",
+      "verdict": "PASS",
+      "detail": "BASELINE_EXIT 0, DETECTED 4/4, all four mutants detected; identical to V2.1 claimed result file."
+    },
+    "cli": [
+      {
+        "id": "CLI_CURRENT",
+        "label": "current state",
+        "command": "python cli/validate.py --state state/current_assignment_state.json",
+        "argv": [
+          "python",
+          "cli/validate.py",
+          "--state",
+          "state/current_assignment_state.json"
+        ],
+        "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+        "env_PYTHONDONTWRITEBYTECODE": "1",
+        "started_utc": "2026-11-27T18:12:45.738142+00:00",
+        "exit_code": 1,
+        "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT\n",
+        "stderr": "",
+        "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT",
+        "stderr_tail": "",
+        "note": "",
+        "expected": {
+          "exit_code": 1,
+          "empty_stderr": true,
+          "no_traceback": true,
+          "stdout_contains": "E-APPOINTMENT-MISSING / E-TOPOLOGY-UNAPPROVED"
+        },
+        "verdict": "FAIL"
+      },
+      {
+        "id": "CLI_VALID4",
+        "label": "valid_four_person",
+        "command": "python cli/validate.py --state tests/fixtures/valid_four_person.json",
+        "argv": [
+          "python",
+          "cli/validate.py",
+          "--state",
+          "tests/fixtures/valid_four_person.json"
+        ],
+        "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+        "env_PYTHONDONTWRITEBYTECODE": "1",
+        "started_utc": "2026-11-27T18:12:49.213248+00:00",
+        "exit_code": 0,
+        "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: valid_four_person.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: PASS\nrole_compatibility: PASS\nstructural_topology_validity: PASS\nStage B role readiness: YES\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 0\nWarnings: 0\nEND REPORT\n",
+        "stderr": "",
+        "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: valid_four_person.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: PASS\nrole_compatibility: PASS\nstructural_topology_validity: PASS\nStage B role readiness: YES\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 0\nWarnings: 0\nEND REPORT",
+        "stderr_tail": "",
+        "note": "",
+        "expected": {
+          "exit_code": 0,
+          "empty_stderr": true,
+          "no_traceback": true,
+          "stdout_contains": "Stage B role readiness: YES"
+        },
+        "verdict": "PASS"
+      },
+      {
+        "id": "CLI_SCHEMA_INVALID",
+        "label": "schema_invalid_assignment",
+        "command": "python cli/validate.py --state tests/fixtures/schema_invalid_assignment.json",
+        "argv": [
+          "python",
+          "cli/validate.py",
+          "--state",
+          "tests/fixtures/schema_invalid_assignment.json"
+        ],
+        "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+        "env_PYTHONDONTWRITEBYTECODE": "1",
+        "started_utc": "2026-11-27T18:12:52.017184+00:00",
+        "exit_code": 1,
+        "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: schema_invalid_assignment.json\nevidence_integrity: FAIL\nformal_appointment_validity: FAIL\nhuman_candidate_acceptance: FAIL\nonboarding_readiness: FAIL\nproduct_owner_combination_approval: FAIL\nrole_assignment_completeness: FAIL\nrole_compatibility: FAIL\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 8\nWarnings: 0\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: governance: None is not of type 'object'\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'ANALYST' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'CONTINUE_STOP_OWNER' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'DATA_CUSTODIAN' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'MODERATOR' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'NOTE_TAKER' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'RESEARCH_OWNER' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: topology: 'APPROVED' is not of type 'object'\nEND REPORT\n",
+        "stderr": "",
+        "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: schema_invalid_assignment.json\nevidence_integrity: FAIL\nformal_appointment_validity: FAIL\nhuman_candidate_acceptance: FAIL\nonboarding_readiness: FAIL\nproduct_owner_combination_approval: FAIL\nrole_assignment_completeness: FAIL\nrole_compatibility: FAIL\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 8\nWarnings: 0\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: governance: None is not of type 'object'\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'ANALYST' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'CONTINUE_STOP_OWNER' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'DATA_CUSTODIAN' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'MODERATOR' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'NOTE_TAKER' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'RESEARCH_OWNER' is a required property\nERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: topology: 'APPROVED' is not of type 'object'\nEND REPORT",
+        "stderr_tail": "",
+        "note": "",
+        "expected": {
+          "exit_code": 1,
+          "empty_stderr": true,
+          "no_traceback": true,
+          "stdout_contains": "E-SCHEMA, all dimensions FAIL"
+        },
+        "verdict": "FAIL"
+      },
+      {
+        "id": "CLI_MALFORMED",
+        "label": "malformed.json",
+        "command": "python cli/validate.py --state tests/fixtures/malformed.json",
+        "argv": [
+          "python",
+          "cli/validate.py",
+          "--state",
+          "tests/fixtures/malformed.json"
+        ],
+        "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+        "env_PYTHONDONTWRITEBYTECODE": "1",
+        "started_utc": "2026-11-27T18:12:55.467428+00:00",
+        "exit_code": 2,
+        "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: malformed.json\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-JSON-INVALID [dimension=input]: E-JSON-INVALID: malformed JSON\nEND REPORT\n",
+        "stderr": "",
+        "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: malformed.json\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-JSON-INVALID [dimension=input]: E-JSON-INVALID: malformed JSON\nEND REPORT",
+        "stderr_tail": "",
+        "note": "",
+        "expected": {
+          "exit_code": 2,
+          "empty_stderr": true,
+          "no_traceback": true,
+          "stdout_contains": "E-JSON-INVALID"
+        },
+        "verdict": "PASS"
+      },
+      {
+        "id": "CLI_INVALID_UTF8",
+        "label": "invalid_utf8.bin",
+        "command": "python cli/validate.py --state tests/fixtures/invalid_utf8.bin",
+        "argv": [
+          "python",
+          "cli/validate.py",
+          "--state",
+          "tests/fixtures/invalid_utf8.bin"
+        ],
+        "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+        "env_PYTHONDONTWRITEBYTECODE": "1",
+        "started_utc": "2026-11-27T18:12:56.950150+00:00",
+        "exit_code": 2,
+        "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: invalid_utf8.bin\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-ENCODING-INVALID [dimension=input]: E-ENCODING-INVALID: invalid UTF-8\nEND REPORT\n",
+        "stderr": "",
+        "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: invalid_utf8.bin\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-ENCODING-INVALID [dimension=input]: E-ENCODING-INVALID: invalid UTF-8\nEND REPORT",
+        "stderr_tail": "",
+        "note": "",
+        "expected": {
+          "exit_code": 2,
+          "empty_stderr": true,
+          "no_traceback": true,
+          "stdout_contains": "E-ENCODING-INVALID"
+        },
+        "verdict": "PASS"
+      },
+      {
+        "id": "CLI_DUP_KEY",
+        "label": "duplicate_json_key.json",
+        "command": "python cli/validate.py --state tests/fixtures/duplicate_json_key.json",
+        "argv": [
+          "python",
+          "cli/validate.py",
+          "--state",
+          "tests/fixtures/duplicate_json_key.json"
+        ],
+        "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+        "env_PYTHONDONTWRITEBYTECODE": "1",
+        "started_utc": "2026-11-27T18:12:59.419725+00:00",
+        "exit_code": 2,
+        "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: duplicate_json_key.json\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-DUPLICATE-JSON-KEY [dimension=input]: E-DUPLICATE-JSON-KEY: schema_version\nEND REPORT\n",
+        "stderr": "",
+        "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: duplicate_json_key.json\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-DUPLICATE-JSON-KEY [dimension=input]: E-DUPLICATE-JSON-KEY: schema_version\nEND REPORT",
+        "stderr_tail": "",
+        "note": "",
+        "expected": {
+          "exit_code": 2,
+          "empty_stderr": true,
+          "no_traceback": true,
+          "stdout_contains": "E-DUPLICATE-JSON-KEY"
+        },
+        "verdict": "PASS"
+      },
+      {
+        "id": "CLI_MISSING",
+        "label": "does_not_exist",
+        "command": "python cli/validate.py --state tests/fixtures/does_not_exist",
+        "argv": [
+          "python",
+          "cli/validate.py",
+          "--state",
+          "tests/fixtures/does_not_exist"
+        ],
+        "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+        "env_PYTHONDONTWRITEBYTECODE": "1",
+        "started_utc": "2026-11-27T18:13:00.354554+00:00",
+        "exit_code": 2,
+        "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: does_not_exist\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-FILE-NOT-FOUND [dimension=input]: E-FILE-NOT-FOUND: FileNotFoundError\nEND REPORT\n",
+        "stderr": "",
+        "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: does_not_exist\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-FILE-NOT-FOUND [dimension=input]: E-FILE-NOT-FOUND: FileNotFoundError\nEND REPORT",
+        "stderr_tail": "",
+        "note": "",
+        "expected": {
+          "exit_code": 2,
+          "empty_stderr": true,
+          "no_traceback": true,
+          "stdout_contains": "E-FILE-NOT-FOUND"
+        },
+        "verdict": "PASS"
+      },
+      {
+        "id": "CLI_MISSING_JSON",
+        "label": "does_not_exist.json (regression-suite spelling)",
+        "command": "python cli/validate.py --state tests/fixtures/does_not_exist.json",
+        "argv": [
+          "python",
+          "cli/validate.py",
+          "--state",
+          "tests/fixtures/does_not_exist.json"
+        ],
+        "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+        "env_PYTHONDONTWRITEBYTECODE": "1",
+        "started_utc": "2026-11-27T18:13:02.709510+00:00",
+        "exit_code": 2,
+        "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: does_not_exist.json\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-FILE-NOT-FOUND [dimension=input]: E-FILE-NOT-FOUND: FileNotFoundError\nEND REPORT\n",
+        "stderr": "",
+        "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: does_not_exist.json\ninput: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 1\nWarnings: 0\nERROR E-FILE-NOT-FOUND [dimension=input]: E-FILE-NOT-FOUND: FileNotFoundError\nEND REPORT",
+        "stderr_tail": "",
+        "note": "",
+        "expected": {
+          "exit_code": 2,
+          "empty_stderr": true,
+          "no_traceback": true,
+          "stdout_contains": "E-FILE-NOT-FOUND"
+        },
+        "verdict": "PASS"
+      }
+    ]
+  },
+  "determinism": {
+    "initial_attempt": {
+      "status": "EXECUTED_BUT_INVALID",
+      "runs": [
+        {
+          "index": 0,
+          "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+          "cmd": [
+            "python",
+            "cli/validate.py",
+            "--state",
+            "state/current_assignment_state.json"
+          ],
+          "exit_code": 1,
+          "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT\n",
+          "stderr": "",
+          "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT",
+          "stderr_tail": ""
+        },
+        {
+          "index": 1,
+          "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp",
+          "cmd": [
+            "python",
+            "cli/validate.py",
+            "--state",
+            "state/current_assignment_state.json"
+          ],
+          "exit_code": 2,
+          "stdout": "",
+          "stderr": "python: can't open file 'C:\\\\Users\\\\pc\\\\AppData\\\\Local\\\\Temp\\\\cli\\\\validate.py': [Errno 2] No such file or directory\n",
+          "stdout_tail": "",
+          "stderr_tail": "python: can't open file 'C:\\\\Users\\\\pc\\\\AppData\\\\Local\\\\Temp\\\\cli\\\\validate.py': [Errno 2] No such file or directory"
+        }
+      ],
+      "stdout_equal": false,
+      "stderr_equal": false,
+      "exit_equal": false,
+      "verdict": "INVALID_HARNESS_PATH"
+    },
+    "corrected": {
+      "status": "EXECUTED_CORRECTED",
+      "note": "First attempt used a relative script path (python cli/validate.py) from the second cwd; Python could not open the script there (exit 2, stderr can't open file). This was a harness path error, not an engine defect. Re-run with absolute script and state paths.",
+      "runs": [
+        {
+          "index": 0,
+          "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1",
+          "cmd": "python C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1\\cli\\validate.py --state C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1\\state\\current_assignment_state.json",
+          "exit_code": 1,
+          "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT\n",
+          "stderr": "",
+          "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT",
+          "stderr_tail": ""
+        },
+        {
+          "index": 1,
+          "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp",
+          "cmd": "python C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1\\cli\\validate.py --state C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1\\state\\current_assignment_state.json",
+          "exit_code": 1,
+          "stdout": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT\n",
+          "stderr": "",
+          "stdout_tail": "M001 TEAM ASSIGNMENT VALIDATION V2\nSource: current_assignment_state.json\nevidence_integrity: PASS\nformal_appointment_validity: PASS\nhuman_candidate_acceptance: PASS\nonboarding_readiness: PASS\nproduct_owner_combination_approval: PASS\nrole_assignment_completeness: FAIL\nrole_compatibility: PASS\nstructural_topology_validity: FAIL\nStage B role readiness: NO\nRecruitment authorized: NO\nField validation authorized: NO\nBlocking errors: 7\nWarnings: 0\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=ANALYST]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=CONTINUE_STOP_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=DATA_CUSTODIAN]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=MODERATOR]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=NOTE_TAKER]: Role is not FORMALLY_APPOINTED\nERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED\nERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked\nEND REPORT",
+          "stderr_tail": ""
+        }
+      ],
+      "stdout_equal": true,
+      "stderr_equal": true,
+      "exit_equal": true,
+      "verdict": "PASS"
+    }
+  },
+  "integrity": {
+    "v21_state_sha_before": "E6DDC93C94506BA499878D642CBD29E71E1930409F4FBC9498FAE6A3009D094F",
+    "v21_state_sha_after": "E6DDC93C94506BA499878D642CBD29E71E1930409F4FBC9498FAE6A3009D094F",
+    "v21_state_identical": true,
+    "pre_vs_post": {
+      "V1": {
+        "changed": [],
+        "pre_count": 43,
+        "post_count": 43
+      },
+      "V2": {
+        "changed": [],
+        "pre_count": 76,
+        "post_count": 76
+      },
+      "AUDIT": {
+        "changed": [],
+        "pre_count": 83,
+        "post_count": 83
+      },
+      "V21": {
+        "changed": [],
+        "pre_count": 108,
+        "post_count": 108
+      },
+      "repository_head_changed": false,
+      "repository_status_changed": false,
+      "repo_status_pre": "",
+      "repo_status_post": ""
+    },
+    "baseline_vs_final": {
+      "V1": {
+        "changed": [],
+        "baseline_count": 43,
+        "current_count": 43
+      },
+      "V2": {
+        "changed": [],
+        "baseline_count": 76,
+        "current_count": 76
+      },
+      "AUDIT": {
+        "changed": [],
+        "baseline_count": 83,
+        "current_count": 83
+      },
+      "V21": {
+        "changed": [],
+        "baseline_count": 108,
+        "current_count": 108
+      },
+      "repository_head_match": true,
+      "repository_status_match": true
+    }
+  },
+  "claimed_vs_executed": {
+    "independent_adversarial_v21.py": {
+      "claimed_file": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1\\tests\\results\\independent_adversarial_results.json",
+      "claimed_sha256": "1635BE1977E6641296AC007753865119AD35C56CE0A5039B6D446A13AB77A0B2",
+      "executed_file": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21\\tests\\results\\independent_adversarial_results.json",
+      "executed_sha256": "1635BE1977E6641296AC007753865119AD35C56CE0A5039B6D446A13AB77A0B2",
+      "byte_identical": true
+    },
+    "refined_cases_v21.py": {
+      "claimed_file": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1\\tests\\results\\refined_case_results.json",
+      "claimed_sha256": "37DC03625B26BA06272972F80122E90A7658931C544625967A4993DA027DD932",
+      "executed_file": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21\\tests\\results\\refined_case_results.json",
+      "executed_sha256": "37DC03625B26BA06272972F80122E90A7658931C544625967A4993DA027DD932",
+      "byte_identical": true
+    },
+    "mutation_harness_v21.py": {
+      "claimed_file": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1\\tests\\results\\mutation_results.json",
+      "claimed_sha256": "9461E0A3AA32BEE6502BF00740A6D0E3B731B1C7F012E0081719BEC1DFE8DD56",
+      "executed_file": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v21\\tests\\results\\mutation_results.json",
+      "executed_sha256": "9461E0A3AA32BEE6502BF00740A6D0E3B731B1C7F012E0081719BEC1DFE8DD56",
+      "byte_identical": true
+    }
+  },
+  "deviations_and_limitations": [
+    "IND_ADV, REFINED and MUTATION were not executed with cwd=V2_1 verbatim; see boundaries.relocation_reason.",
+    "CLI determinism: the first harness attempt was invalid due to a relative script path; corrected run is reported and passes.",
+    "The 12 DEFECT verdicts in the 50-case corpus and the refined-case outcomes (ST-02, EVID-03, EVID-04, EVID-06 ready=True) are reproduced engine behaviour, not evidence that V2.1 fixed those vectors.",
+    "No installs and no network were used."
+  ]
+}

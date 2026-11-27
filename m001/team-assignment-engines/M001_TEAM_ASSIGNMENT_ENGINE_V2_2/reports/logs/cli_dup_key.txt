@@ -1,0 +1,16 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe cli/validate.py --state tests/fixtures/duplicate_json_key.json
+EXIT: 2
+--- STDOUT ---
+M001 TEAM ASSIGNMENT VALIDATION V2
+Source: duplicate_json_key.json
+input: FAIL
+Stage B role readiness: NO
+Recruitment authorized: NO
+Field validation authorized: NO
+Blocking errors: 1
+Warnings: 0
+ERROR E-DUPLICATE-JSON-KEY [dimension=input]: E-DUPLICATE-JSON-KEY: schema_version
+END REPORT
+
+--- STDERR ---
+

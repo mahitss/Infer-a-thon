@@ -1,0 +1,42 @@
+{
+  "commands": {
+    "cli_current_state": {
+      "exit": 1,
+      "stderr_bytes": 0,
+      "stdout_sha256": "c7391df1ac1de4ad9c12c771181e4016dccf6bd1786569c2dd56c9f7781bfb5c"
+    },
+    "cli_valid_four": {
+      "exit": 0,
+      "stderr_bytes": 0,
+      "stdout_sha256": "c0b487abeaee343c32b3f5fa37c88ddbefae1a52eac44ed370bb548c523ad52f"
+    },
+    "integration_tests": {
+      "exit": 0,
+      "stderr_bytes": 614,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "schema_validation": {
+      "exit": 0,
+      "stderr_bytes": 0,
+      "stdout_sha256": "790cabc66ee58a62e7a118b0639293d64b6af79d3c60515f4a1e6baff10963ce"
+    },
+    "unit_tests": {
+      "exit": 0,
+      "stderr_bytes": 1871,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "determinism": {
+    "stderr_identical": true,
+    "stdout_identical": true,
+    "stdout_sha256": "c7391df1ac1de4ad9c12c771181e4016dccf6bd1786569c2dd56c9f7781bfb5c"
+  },
+  "integration_tests": 4,
+  "limitations": [
+    "Standard-library JSON Schema subset validator; not a complete JSON Schema validator.",
+    "No application parser, UI or field research was executed.",
+    "Unittest timing lines are naturally non-deterministic; determinism is asserted on CLI output only."
+  ],
+  "python": "3.13.5",
+  "unit_tests": 16
+}

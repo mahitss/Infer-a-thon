@@ -1,0 +1,16 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe cli/validate.py --state tests/fixtures/malformed.json
+EXIT: 2
+--- STDOUT ---
+M001 TEAM ASSIGNMENT VALIDATION V2
+Source: malformed.json
+input: FAIL
+Stage B role readiness: NO
+Recruitment authorized: NO
+Field validation authorized: NO
+Blocking errors: 1
+Warnings: 0
+ERROR E-JSON-INVALID [dimension=input]: E-JSON-INVALID: malformed JSON
+END REPORT
+
+--- STDERR ---
+

@@ -1,0 +1,241 @@
+{
+  "DIM-02_unknown_evidence_id": {
+    "codes": [
+      "E-EVIDENCE-UNKNOWN"
+    ],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": false,
+    "errors": 1
+  },
+  "DIM-03_subject_mismatch": {
+    "codes": [
+      "E-EVIDENCE-SUBJECT"
+    ],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": false,
+    "errors": 1
+  },
+  "ST-02_stale_acceptance_order_valid": {
+    "codes": [],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": true,
+    "errors": 0
+  },
+  "COMB-12_approval_reused_other_candidate": {
+    "codes": [
+      "E-COMBINATION-APPROVAL-MISSING",
+      "E-COND-EXPLICIT-CS",
+      "E-EVIDENCE-SUBJECT"
+    ],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "FAIL",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "FAIL",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": false,
+    "errors": 3
+  },
+  "EVID-02_shared_acceptance_two_roles": {
+    "codes": [
+      "E-ACCEPTANCE-APPOINTMENT",
+      "E-ACCEPTANCE-DECISION-REUSED",
+      "E-ACCEPTANCE-ROLE",
+      "E-EVIDENCE-DUPLICATE",
+      "E-EVIDENCE-SUBJECT"
+    ],
+    "dimensions": {
+      "evidence_integrity": "FAIL",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": false,
+    "errors": 5
+  },
+  "ID-03_whitespace_ref_consistent": {
+    "codes": [
+      "E-CANDIDATE-REF-INVALID"
+    ],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "FAIL",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": false,
+    "errors": 1
+  },
+  "ID-02_unicode_equivalent_split": {
+    "codes": [
+      "E-ACCEPTANCE-APPOINTMENT",
+      "E-ACCEPTANCE-DECISION-REUSED",
+      "E-ACCEPTANCE-ROLE",
+      "E-COMBINATION-APPROVAL-MISSING",
+      "E-EVIDENCE-SUBJECT",
+      "E-EVIDENCE-TYPE"
+    ],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "FAIL",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": false,
+    "errors": 9
+  },
+  "ID-07_six_distinct_identities": {
+    "codes": [],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": true,
+    "errors": 0
+  },
+  "COMB-03_duplicate_roles_approval": {
+    "codes": [],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": true,
+    "errors": 0
+  },
+  "ST-09_whitespace_basis": {
+    "codes": [
+      "E-DECISION-EVIDENCE-EMPTY"
+    ],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "FAIL",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": false,
+    "errors": 1
+  },
+  "COMB-11_whitespace_rationale": {
+    "codes": [
+      "E-COMBINATION-RATIONALE"
+    ],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "FAIL",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": false,
+    "errors": 1
+  },
+  "EVID-03_hash_mismatch": {
+    "codes": [],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": true,
+    "errors": 0
+  },
+  "EVID-04_duplicate_evidence": {
+    "codes": [
+      "E-EVIDENCE-DUPLICATE"
+    ],
+    "dimensions": {
+      "evidence_integrity": "FAIL",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": false,
+    "errors": 1
+  },
+  "EVID-06_evidence_predates_source": {
+    "codes": [],
+    "dimensions": {
+      "evidence_integrity": "PASS",
+      "formal_appointment_validity": "PASS",
+      "human_candidate_acceptance": "PASS",
+      "onboarding_readiness": "PASS",
+      "product_owner_combination_approval": "PASS",
+      "role_assignment_completeness": "PASS",
+      "role_compatibility": "PASS",
+      "structural_topology_validity": "PASS"
+    },
+    "ready": true,
+    "errors": 0
+  }
+}

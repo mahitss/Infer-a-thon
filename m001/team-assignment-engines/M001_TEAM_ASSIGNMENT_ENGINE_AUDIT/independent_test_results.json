@@ -1,0 +1,146 @@
+[
+  {
+    "id": "ADV-01",
+    "claim": "hard incompatibility is blocking",
+    "status": "PASS",
+    "detail": "codes=['E-HARD-MODERATOR-ANALYST'] valid=False"
+  },
+  {
+    "id": "ADV-02",
+    "claim": "hard incompatibility is blocking",
+    "status": "PASS",
+    "detail": "codes=['E-HARD-MODERATOR-CUSTODIAN'] valid=False"
+  },
+  {
+    "id": "ADV-03",
+    "claim": "discouraged combination requires PO-documented review",
+    "status": "FAIL",
+    "detail": "valid=True errors=[] warnings=['W-DISCOURAGED-RO-MODERATOR']"
+  },
+  {
+    "id": "ADV-04",
+    "claim": "discouraged combination requires PO-documented review",
+    "status": "FAIL",
+    "detail": "valid=True errors=[] warnings=['W-DISCOURAGED-CUSTODIAN-ANALYST']"
+  },
+  {
+    "id": "ADV-05",
+    "claim": "true boolean without evidence reference is rejected",
+    "status": "FAIL",
+    "detail": "valid=True errors=[]"
+  },
+  {
+    "id": "ADV-06",
+    "claim": "true boolean without evidence reference is rejected",
+    "status": "FAIL",
+    "detail": "valid=True errors=[]"
+  },
+  {
+    "id": "ADV-07",
+    "claim": "multi-role assignment requires explicit PO combination approval",
+    "status": "FAIL",
+    "detail": "valid=True errors=[]"
+  },
+  {
+    "id": "ADV-08",
+    "claim": "duplicate candidate identifier across roles is rejected",
+    "status": "FAIL",
+    "detail": "valid=True errors=[]"
+  },
+  {
+    "id": "ADV-09",
+    "claim": "unknown human reference is rejected",
+    "status": "FAIL",
+    "detail": "valid=True errors=[]"
+  },
+  {
+    "id": "ADV-10",
+    "claim": "PROPOSED role is not treated as appointed",
+    "status": "FAIL",
+    "detail": "valid=True errors=[]"
+  },
+  {
+    "id": "ADV-11",
+    "claim": "FORMALLY_APPOINTED with approval.formal=false is rejected",
+    "status": "FAIL",
+    "detail": "valid=True errors=[]"
+  },
+  {
+    "id": "ADV-12",
+    "claim": "REJECTED candidate still assigned is rejected",
+    "status": "PASS",
+    "detail": "errors=['E-APPOINTMENT-MISSING']"
+  },
+  {
+    "id": "ADV-13",
+    "claim": "DEFERRED candidate still assigned is rejected",
+    "status": "PASS",
+    "detail": "errors=['E-APPOINTMENT-MISSING']"
+  },
+  {
+    "id": "ADV-14",
+    "claim": "empty Product Owner decision basis is rejected",
+    "status": "FAIL",
+    "detail": "valid=True errors=[]"
+  },
+  {
+    "id": "ADV-15",
+    "claim": "structured decision timestamps are required",
+    "status": "FAIL",
+    "detail": "timestamp_fields_present=False"
+  },
+  {
+    "id": "ADV-16",
+    "claim": "unapproved topology blocks Stage B readiness",
+    "status": "FAIL",
+    "detail": "valid=True warnings=['W-TOPOLOGY-PROPOSED']"
+  },
+  {
+    "id": "ADV-17",
+    "claim": "current state is blocked with five missing appointments",
+    "status": "PASS",
+    "detail": "errors=['E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING']"
+  },
+  {
+    "id": "ADV-18",
+    "claim": "Research Owner not promoted to formal appointment",
+    "status": "PASS",
+    "detail": "info=['I-RO-NOT-FORMAL']"
+  },
+  {
+    "id": "ADV-19",
+    "claim": "valid fixture conforms to schema",
+    "status": "PASS",
+    "detail": "[]"
+  },
+  {
+    "id": "ADV-20",
+    "claim": "duplicate JSON keys are detected",
+    "status": "FAIL",
+    "detail": "last_wins_value=9.9"
+  },
+  {
+    "id": "ADV-21",
+    "claim": "CLI handles invalid input cleanly",
+    "status": "FAIL",
+    "detail": "exit=1 stderr_head=Traceback (most recent call last):   File \"C:\\Users\\pc\\AppData\\Local\\Temp\\openco"
+  },
+  {
+    "id": "ADV-22",
+    "claim": "CLI handles invalid input cleanly",
+    "status": "FAIL",
+    "detail": "exit=1 stderr_head=Traceback (most recent call last):   File \"C:\\Users\\pc\\AppData\\Local\\Temp\\openco"
+  },
+  {
+    "id": "ADV-23",
+    "claim": "CLI handles invalid input cleanly",
+    "status": "FAIL",
+    "detail": "exit=1 stderr_head=Traceback (most recent call last):   File \"C:\\Users\\pc\\AppData\\Local\\Temp\\openco"
+  },
+  {
+    "id": "ADV-24",
+    "claim": "repeated validation is deterministic",
+    "status": "PASS",
+    "detail": ""
+  }
+]

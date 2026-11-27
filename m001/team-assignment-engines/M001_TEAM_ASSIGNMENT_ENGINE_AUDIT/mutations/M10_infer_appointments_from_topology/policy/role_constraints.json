@@ -1,0 +1,131 @@
+{
+  "version": "1.0",
+  "source": "M001_ROLE_ASSIGNMENT_DECISION_PACK and M001_TEAM_STAFFING_PACK",
+  "roles": [
+    "RESEARCH_OWNER",
+    "MODERATOR",
+    "NOTE_TAKER",
+    "DATA_CUSTODIAN",
+    "ANALYST",
+    "CONTINUE_STOP_OWNER"
+  ],
+  "appointment_states": [
+    "UNASSIGNED",
+    "PROPOSED",
+    "ACCEPTED_IN_CONVERSATION",
+    "CANDIDATE_ACCEPTED",
+    "FORMALLY_APPOINTED",
+    "REJECTED",
+    "DEFERRED"
+  ],
+  "hard_incompatibilities": [
+    {
+      "roles": [
+        "MODERATOR",
+        "ANALYST"
+      ],
+      "classification": "HARD_INCOMPATIBILITY",
+      "code": "E-HARD-MODERATOR-ANALYST",
+      "message": "Moderator and Analyst cannot be combined: interviewer would interpret own data."
+    },
+    {
+      "roles": [
+        "MODERATOR",
+        "DATA_CUSTODIAN"
+      ],
+      "classification": "HARD_INCOMPATIBILITY",
+      "code": "E-HARD-MODERATOR-CUSTODIAN",
+      "message": "Moderator and Data Custodian cannot be combined: privacy control and participant interaction conflict."
+    }
+  ],
+  "discouraged_combinations": [
+    {
+      "roles": [
+        "RESEARCH_OWNER",
+        "MODERATOR"
+      ],
+      "classification": "DISCOURAGED",
+      "code": "W-DISCOURAGED-RO-MODERATOR",
+      "message": "Research Owner and Moderator is not recommended: accountability and neutrality conflict."
+    },
+    {
+      "roles": [
+        "DATA_CUSTODIAN",
+        "ANALYST"
+      ],
+      "classification": "DISCOURAGED",
+      "code": "W-DISCOURAGED-CUSTODIAN-ANALYST",
+      "message": "Data Custodian and Analyst is not recommended: raw access and interpretation create privacy and bias risk."
+    }
+  ],
+  "conditional_combinations": [
+    {
+      "roles": [
+        "MODERATOR",
+        "NOTE_TAKER"
+      ],
+      "classification": "CONDITIONAL",
+      "requirement": "evidence_separation_documented",
+      "code": "E-COND-EVIDENCE-SEPARATION",
+      "message": "Moderator and Note-taker requires documented evidence-type separation."
+    },
+    {
+      "roles": [
+        "RESEARCH_OWNER",
+        "CONTINUE_STOP_OWNER"
+      ],
+      "classification": "CONDITIONAL",
+      "requirement": "explicit_additional_appointment",
+      "code": "E-COND-EXPLICIT-CS",
+      "message": "Research Owner acceptance does not imply Continue/Stop Owner appointment; explicit additional appointment required."
+    }
+  ],
+  "state_requirements": {
+    "UNASSIGNED": [],
+    "PROPOSED": [
+      "candidate_id"
+    ],
+    "ACCEPTED_IN_CONVERSATION": [
+      "acceptance_evidence",
+      "product_owner_approval"
+    ],
+    "CANDIDATE_ACCEPTED": [
+      "candidate_id",
+      "candidate_acceptance",
+      "product_owner_approval",
+      "availability_confirmation",
+      "conflict_disclosure",
+      "confidentiality_acknowledgement",
+      "escalation_contact"
+    ],
+    "FORMALLY_APPOINTED": [
+      "candidate_id",
+      "candidate_acceptance",
+      "product_owner_approval",
+      "availability_confirmation",
+      "conflict_disclosure",
+      "confidentiality_acknowledgement",
+      "escalation_contact",
+      "onboarding_completion"
+    ],
+    "REJECTED": [],
+    "DEFERRED": []
+  },
+  "requirement_codes": {
+    "candidate_id": "E-CANDIDATE-ID",
+    "acceptance_evidence": "E-ACCEPTANCE-EVIDENCE",
+    "candidate_acceptance": "E-CANDIDATE-ACCEPTANCE",
+    "product_owner_approval": "E-PO-APPROVAL",
+    "availability_confirmation": "E-AVAILABILITY",
+    "conflict_disclosure": "E-CONFLICT-DISCLOSURE",
+    "confidentiality_acknowledgement": "E-CONFIDENTIALITY",
+    "escalation_contact": "E-ESCALATION-CONTACT",
+    "onboarding_completion": "E-ONBOARDING"
+  },
+  "missing_appointment_states": [],
+  "accepted_formal_states": [
+    "CANDIDATE_ACCEPTED",
+    "FORMALLY_APPOINTED",
+    "ACCEPTED_IN_CONVERSATION"
+  ]
+}

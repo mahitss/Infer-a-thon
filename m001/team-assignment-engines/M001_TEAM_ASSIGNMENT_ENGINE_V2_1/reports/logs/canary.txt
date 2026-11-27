@@ -1,0 +1,15 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe tests/mutation/canary_v21.py --root .
+EXIT: 0
+--- STDOUT ---
+PASS B00 valid synthetic state passes | 
+PASS B01 ASCII whitespace basis blocked | 
+PASS B02 Unicode whitespace basis blocked | 
+PASS B03 whitespace rationale blocked | 
+PASS B04 wrong-role acceptance blocked | 
+PASS B05 revoked acceptance evidence blocked | 
+PASS B06 schema failure controlled and terminal | 
+PASS B07 unresolvable schema ref controlled | 
+CANARY_PASS 8/8
+
+--- STDERR ---
+

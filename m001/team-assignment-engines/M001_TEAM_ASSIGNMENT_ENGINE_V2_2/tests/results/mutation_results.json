@@ -1,0 +1,44 @@
+{
+  "baseline_exit": 0,
+  "baseline_output": "PASS B00 valid state passes | \nPASS B01 invisible basis rejected | \nPASS B02 invisible rationale rejected | \nPASS B03 meaningful ZWJ emoji text accepted | \nPASS B04 whitespace escalation contact rejected | \nPASS B05 duplicate evidence rejected | \nPASS B06 combination before acceptance rejected | \nPASS B07 whitespace candidate ref rejected | \nCANARY_PASS 8/8",
+  "total": 5,
+  "detected": 5,
+  "survived": [],
+  "mutants": [
+    {
+      "mutation": "M1_F007_predicate_reverted",
+      "detected": true,
+      "exit": 1,
+      "output": "PASS B00 valid state passes | \nFAIL B01 invisible basis rejected | \nFAIL B02 invisible rationale rejected | \nPASS B03 meaningful ZWJ emoji text accepted | \nFAIL B04 whitespace escalation contact rejected | \nPASS B05 duplicate evidence rejected | \nPASS B06 combination before acceptance rejected | \nPASS B07 whitespace candidate ref rejected | \nCANARY_PASS 5/8",
+      "error": ""
+    },
+    {
+      "mutation": "M2_N04_escalation_check_removed",
+      "detected": true,
+      "exit": 1,
+      "output": "PASS B00 valid state passes | \nPASS B01 invisible basis rejected | \nPASS B02 invisible rationale rejected | \nPASS B03 meaningful ZWJ emoji text accepted | \nFAIL B04 whitespace escalation contact rejected | \nPASS B05 duplicate evidence rejected | \nPASS B06 combination before acceptance rejected | \nPASS B07 whitespace candidate ref rejected | \nCANARY_PASS 7/8",
+      "error": ""
+    },
+    {
+      "mutation": "M3_N08_duplicate_check_removed",
+      "detected": true,
+      "exit": 1,
+      "output": "PASS B00 valid state passes | \nPASS B01 invisible basis rejected | \nPASS B02 invisible rationale rejected | \nPASS B03 meaningful ZWJ emoji text accepted | \nPASS B04 whitespace escalation contact rejected | \nFAIL B05 duplicate evidence rejected | \nPASS B06 combination before acceptance rejected | \nPASS B07 whitespace candidate ref rejected | \nCANARY_PASS 7/8",
+      "error": ""
+    },
+    {
+      "mutation": "M4_N11_ordering_check_removed",
+      "detected": true,
+      "exit": 1,
+      "output": "PASS B00 valid state passes | \nPASS B01 invisible basis rejected | \nPASS B02 invisible rationale rejected | \nPASS B03 meaningful ZWJ emoji text accepted | \nPASS B04 whitespace escalation contact rejected | \nPASS B05 duplicate evidence rejected | \nFAIL B06 combination before acceptance rejected | \nPASS B07 whitespace candidate ref rejected | \nCANARY_PASS 7/8",
+      "error": ""
+    },
+    {
+      "mutation": "M5_N12_ref_check_removed",
+      "detected": true,
+      "exit": 1,
+      "output": "PASS B00 valid state passes | \nPASS B01 invisible basis rejected | \nPASS B02 invisible rationale rejected | \nPASS B03 meaningful ZWJ emoji text accepted | \nPASS B04 whitespace escalation contact rejected | \nPASS B05 duplicate evidence rejected | \nPASS B06 combination before acceptance rejected | \nFAIL B07 whitespace candidate ref rejected | \nCANARY_PASS 7/8",
+      "error": ""
+    }
+  ]
+}

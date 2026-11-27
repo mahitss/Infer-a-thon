@@ -1,0 +1,25 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe cli/validate.py --state tests/fixtures/recruitment_inferred.json
+CWD: C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE_V2
+EXIT: 1
+--- STDOUT ---
+M001 TEAM ASSIGNMENT VALIDATION V2
+Source: recruitment_inferred.json
+evidence_integrity: PASS
+formal_appointment_validity: PASS
+human_candidate_acceptance: PASS
+onboarding_readiness: PASS
+product_owner_combination_approval: PASS
+role_assignment_completeness: PASS
+role_compatibility: PASS
+structural_topology_validity: FAIL
+Stage B role readiness: NO
+Recruitment authorized: NO
+Field validation authorized: NO
+Blocking errors: 2
+Warnings: 0
+ERROR E-AUTHORIZATION-STATE [dimension=structural_topology_validity]: Invalid authorization governance state
+ERROR E-SCHEMA [dimension=structural_topology_validity]: governance/recruitment: 'AUTHORIZED' is not one of ['UNAUTHORIZED']
+END REPORT
+
+--- STDERR ---
+

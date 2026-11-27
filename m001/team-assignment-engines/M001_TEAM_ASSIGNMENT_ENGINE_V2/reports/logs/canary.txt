@@ -1,0 +1,26 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe tests/mutation/mutation_canary.py --root .
+CWD: C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE_V2
+EXIT: 0
+--- STDOUT ---
+PASS C1 hard incompatibility blocked | ['E-HARD-MODERATOR-ANALYST']
+PASS C2 discouraged review blocked | ['E-COMBINATION-APPROVAL-MISSING', 'E-DISCOURAGED-RO-MODERATOR']
+PASS C3 evidence separation blocked | ['E-COND-EVIDENCE-SEPARATION']
+PASS C4 multi-role approval blocked | ['E-COMBINATION-APPROVAL-MISSING', 'E-COND-EXPLICIT-CS', 'E-COMBINATION-APPROVAL-MISSING']
+PASS C5 PROPOSED/conversation not formal | ['E-TOPOLOGY-UNAPPROVED', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING', 'E-APPOINTMENT-MISSING']
+PASS C6 formal flag mismatch blocked | ['E-FORMAL-APPROVAL-MISMATCH']
+PASS C7 candidate acceptance blocked | ['E-CANDIDATE-ACCEPTANCE']
+PASS C8 onboarding blocked | ['E-ONBOARDING']
+PASS C9 unknown candidate blocked | ['E-CANDIDATE-UNKNOWN', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-APPOINTMENT-RECORD']
+PASS C10 broken evidence blocked | ['E-EVIDENCE-UNKNOWN']
+PASS C11 naive timestamp blocked | ['E-TIMESTAMP-MISSING']
+PASS C12 topology approval blocked | ['E-TOPOLOGY-UNAPPROVED']
+PASS C13 empty approval basis blocked | ['E-DECISION-EVIDENCE-EMPTY']
+PASS C14 duplicate candidate blocked | ['E-CANDIDATE-DUPLICATE', 'E-CANDIDATE-DUPLICATE', 'E-CANDIDATE-UNKNOWN', 'E-CANDIDATE-UNKNOWN', 'E-CANDIDATE-UNKNOWN', 'E-CANDIDATE-UNKNOWN']
+PASS C15 authorization state blocked | ['E-SCHEMA', 'E-AUTHORIZATION-STATE']
+PASS C16 valid model still passes | []
+PASS C17 hard MDC conflict blocked | ['E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-SUBJECT', 'E-COMBINATION-APPROVAL-MISSING', 'E-HARD-MODERATOR-CUSTODIAN', 'E-COND-EVIDENCE-SEPARATION']
+PASS C18 role PO approval blocked | ['E-PO-APPROVAL']
+CANARY_PASS 18/18
+
+--- STDERR ---
+

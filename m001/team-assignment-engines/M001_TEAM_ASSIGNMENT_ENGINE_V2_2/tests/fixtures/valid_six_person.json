@@ -1,0 +1,700 @@
+{
+  "schema_version": "2.0",
+  "governance": {
+    "m001_status": "OPEN",
+    "m002_status": "UNAUTHORIZED",
+    "recruitment": "UNAUTHORIZED",
+    "field_validation": "NOT_STARTED"
+  },
+  "topology": {
+    "status": "APPROVED",
+    "model": "SIX_PERSON"
+  },
+  "candidates": {
+    "C-P1": {
+      "candidate_ref": "C-P1",
+      "active": true,
+      "fixture_marker": "SYNTHETIC_TEST_DATA"
+    },
+    "C-P2": {
+      "candidate_ref": "C-P2",
+      "active": true,
+      "fixture_marker": "SYNTHETIC_TEST_DATA"
+    },
+    "C-P3": {
+      "candidate_ref": "C-P3",
+      "active": true,
+      "fixture_marker": "SYNTHETIC_TEST_DATA"
+    },
+    "C-P4": {
+      "candidate_ref": "C-P4",
+      "active": true,
+      "fixture_marker": "SYNTHETIC_TEST_DATA"
+    },
+    "C-P5": {
+      "candidate_ref": "C-P5",
+      "active": true,
+      "fixture_marker": "SYNTHETIC_TEST_DATA"
+    },
+    "C-P6": {
+      "candidate_ref": "C-P6",
+      "active": true,
+      "fixture_marker": "SYNTHETIC_TEST_DATA"
+    }
+  },
+  "evidence": {
+    "e-acc-C-P1-RESEARCH_OWNER": {
+      "evidence_id": "e-acc-C-P1-RESEARCH_OWNER",
+      "evidence_type": "CANDIDATE_ACCEPTANCE",
+      "source_ref": "synthetic://e-acc-C-P1-RESEARCH_OWNER",
+      "content_hash": "0c0333b353ad28f61fba92e65cf445c8e2700011f6939cba9e895eefd0cfaf11",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P1:RESEARCH_OWNER",
+      "role": "RESEARCH_OWNER",
+      "appointment_ref": "C-P1:RESEARCH_OWNER",
+      "decision_ref": "acc-decision-C-P1-RESEARCH_OWNER",
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-po-C-P1-RESEARCH_OWNER": {
+      "evidence_id": "e-po-C-P1-RESEARCH_OWNER",
+      "evidence_type": "PRODUCT_OWNER_APPROVAL",
+      "source_ref": "synthetic://e-po-C-P1-RESEARCH_OWNER",
+      "content_hash": "c956f4671d55d93f9a613130eee305508e9c7f46924c0c70287ae959015fe452",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P1",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-form-C-P1-RESEARCH_OWNER": {
+      "evidence_id": "e-form-C-P1-RESEARCH_OWNER",
+      "evidence_type": "FORMAL_APPOINTMENT",
+      "source_ref": "synthetic://e-form-C-P1-RESEARCH_OWNER",
+      "content_hash": "8f909a633ae39d3ade6747994f420f2192970bfd3b6563a0223f2c86560064a1",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P1",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-onb-C-P1-RESEARCH_OWNER": {
+      "evidence_id": "e-onb-C-P1-RESEARCH_OWNER",
+      "evidence_type": "ONBOARDING",
+      "source_ref": "synthetic://e-onb-C-P1-RESEARCH_OWNER",
+      "content_hash": "875a2cc42547dd7a568019a04ca924143c2a25f09542b77dbcb8cf58d091161d",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P1",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-acc-C-P2-MODERATOR": {
+      "evidence_id": "e-acc-C-P2-MODERATOR",
+      "evidence_type": "CANDIDATE_ACCEPTANCE",
+      "source_ref": "synthetic://e-acc-C-P2-MODERATOR",
+      "content_hash": "46d7f69bdac6383b02de1187795db40272f9b1d5d10f841c2be25f757556ca3c",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P2:MODERATOR",
+      "role": "MODERATOR",
+      "appointment_ref": "C-P2:MODERATOR",
+      "decision_ref": "acc-decision-C-P2-MODERATOR",
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-po-C-P2-MODERATOR": {
+      "evidence_id": "e-po-C-P2-MODERATOR",
+      "evidence_type": "PRODUCT_OWNER_APPROVAL",
+      "source_ref": "synthetic://e-po-C-P2-MODERATOR",
+      "content_hash": "3758291fc99d1de013d747d8c8974f3bb441c96e81435513531f253253d04225",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P2",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-form-C-P2-MODERATOR": {
+      "evidence_id": "e-form-C-P2-MODERATOR",
+      "evidence_type": "FORMAL_APPOINTMENT",
+      "source_ref": "synthetic://e-form-C-P2-MODERATOR",
+      "content_hash": "c6e03419b9386878c148dd8dd2de220c5879216ff7ff1b49e54c74504d5587d5",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P2",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-onb-C-P2-MODERATOR": {
+      "evidence_id": "e-onb-C-P2-MODERATOR",
+      "evidence_type": "ONBOARDING",
+      "source_ref": "synthetic://e-onb-C-P2-MODERATOR",
+      "content_hash": "16ec48cc4644584dce977d6e00071a249e329f38f6045725da4b6fb83c67fcfe",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P2",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-acc-C-P3-NOTE_TAKER": {
+      "evidence_id": "e-acc-C-P3-NOTE_TAKER",
+      "evidence_type": "CANDIDATE_ACCEPTANCE",
+      "source_ref": "synthetic://e-acc-C-P3-NOTE_TAKER",
+      "content_hash": "1e033cbc31b0d475fa1210cf6ec433cd8fdedded91e0ee47425a29bc4463ae23",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P3:NOTE_TAKER",
+      "role": "NOTE_TAKER",
+      "appointment_ref": "C-P3:NOTE_TAKER",
+      "decision_ref": "acc-decision-C-P3-NOTE_TAKER",
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-po-C-P3-NOTE_TAKER": {
+      "evidence_id": "e-po-C-P3-NOTE_TAKER",
+      "evidence_type": "PRODUCT_OWNER_APPROVAL",
+      "source_ref": "synthetic://e-po-C-P3-NOTE_TAKER",
+      "content_hash": "ab38076e940f50122aac1a008b0de64871f7249ea5564667c5f85c638084f65b",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P3",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-form-C-P3-NOTE_TAKER": {
+      "evidence_id": "e-form-C-P3-NOTE_TAKER",
+      "evidence_type": "FORMAL_APPOINTMENT",
+      "source_ref": "synthetic://e-form-C-P3-NOTE_TAKER",
+      "content_hash": "6ff8adc08101b469557bbc1d99c6ccac9f1dcbd3c9edea7008fd1a678e18a9b0",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P3",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-onb-C-P3-NOTE_TAKER": {
+      "evidence_id": "e-onb-C-P3-NOTE_TAKER",
+      "evidence_type": "ONBOARDING",
+      "source_ref": "synthetic://e-onb-C-P3-NOTE_TAKER",
+      "content_hash": "028942fe53f63ff946802cb5f939f2da38487773a6893bc9479a48de88a8959c",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P3",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-acc-C-P4-DATA_CUSTODIAN": {
+      "evidence_id": "e-acc-C-P4-DATA_CUSTODIAN",
+      "evidence_type": "CANDIDATE_ACCEPTANCE",
+      "source_ref": "synthetic://e-acc-C-P4-DATA_CUSTODIAN",
+      "content_hash": "995c361b5cdc4d36bcaecfe6214cbda975ef5beca3a2dd020f7910fad783181a",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P4:DATA_CUSTODIAN",
+      "role": "DATA_CUSTODIAN",
+      "appointment_ref": "C-P4:DATA_CUSTODIAN",
+      "decision_ref": "acc-decision-C-P4-DATA_CUSTODIAN",
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-po-C-P4-DATA_CUSTODIAN": {
+      "evidence_id": "e-po-C-P4-DATA_CUSTODIAN",
+      "evidence_type": "PRODUCT_OWNER_APPROVAL",
+      "source_ref": "synthetic://e-po-C-P4-DATA_CUSTODIAN",
+      "content_hash": "3e02d5b446ce28c9bfdd2eeb2032bfba1a0d64b5987f175b1a79fb18af77207e",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P4",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-form-C-P4-DATA_CUSTODIAN": {
+      "evidence_id": "e-form-C-P4-DATA_CUSTODIAN",
+      "evidence_type": "FORMAL_APPOINTMENT",
+      "source_ref": "synthetic://e-form-C-P4-DATA_CUSTODIAN",
+      "content_hash": "b142909f099bd99e612bb084e9238879c2c9854966d198e60dc842addbaf2c96",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P4",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-onb-C-P4-DATA_CUSTODIAN": {
+      "evidence_id": "e-onb-C-P4-DATA_CUSTODIAN",
+      "evidence_type": "ONBOARDING",
+      "source_ref": "synthetic://e-onb-C-P4-DATA_CUSTODIAN",
+      "content_hash": "47f5989b707909165cf203efefb4d3447120c6ee0fd0550f29f077d5033caee7",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P4",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-acc-C-P5-ANALYST": {
+      "evidence_id": "e-acc-C-P5-ANALYST",
+      "evidence_type": "CANDIDATE_ACCEPTANCE",
+      "source_ref": "synthetic://e-acc-C-P5-ANALYST",
+      "content_hash": "df583874871f2148b8ec2aca26f278eb374b25ae0d703be837ae46cf61c551ce",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P5:ANALYST",
+      "role": "ANALYST",
+      "appointment_ref": "C-P5:ANALYST",
+      "decision_ref": "acc-decision-C-P5-ANALYST",
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-po-C-P5-ANALYST": {
+      "evidence_id": "e-po-C-P5-ANALYST",
+      "evidence_type": "PRODUCT_OWNER_APPROVAL",
+      "source_ref": "synthetic://e-po-C-P5-ANALYST",
+      "content_hash": "b121cf8bd3f316692b9a76b628f1780a99882af44ead33d99e756b76c5c4f284",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P5",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-form-C-P5-ANALYST": {
+      "evidence_id": "e-form-C-P5-ANALYST",
+      "evidence_type": "FORMAL_APPOINTMENT",
+      "source_ref": "synthetic://e-form-C-P5-ANALYST",
+      "content_hash": "8669745681c7e9489a2118dee8a9eeb05c9a84804aa92fd76a960ac0012a4da1",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P5",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-onb-C-P5-ANALYST": {
+      "evidence_id": "e-onb-C-P5-ANALYST",
+      "evidence_type": "ONBOARDING",
+      "source_ref": "synthetic://e-onb-C-P5-ANALYST",
+      "content_hash": "de3a53c3be48bbaa75793f5280671b8e6b12c7d523f3e9a9cd95b19f8bad731d",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P5",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-acc-C-P6-CONTINUE_STOP_OWNER": {
+      "evidence_id": "e-acc-C-P6-CONTINUE_STOP_OWNER",
+      "evidence_type": "CANDIDATE_ACCEPTANCE",
+      "source_ref": "synthetic://e-acc-C-P6-CONTINUE_STOP_OWNER",
+      "content_hash": "cf6d3d1ef3860d2da9b8a6d4442217c9e9119990638a47d7a3797f8cb4b905b8",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P6:CONTINUE_STOP_OWNER",
+      "role": "CONTINUE_STOP_OWNER",
+      "appointment_ref": "C-P6:CONTINUE_STOP_OWNER",
+      "decision_ref": "acc-decision-C-P6-CONTINUE_STOP_OWNER",
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-po-C-P6-CONTINUE_STOP_OWNER": {
+      "evidence_id": "e-po-C-P6-CONTINUE_STOP_OWNER",
+      "evidence_type": "PRODUCT_OWNER_APPROVAL",
+      "source_ref": "synthetic://e-po-C-P6-CONTINUE_STOP_OWNER",
+      "content_hash": "38ecd412f234bda5de1e4bd8e70b32651966e68fb64ea27054040d0a97565c48",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P6",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-form-C-P6-CONTINUE_STOP_OWNER": {
+      "evidence_id": "e-form-C-P6-CONTINUE_STOP_OWNER",
+      "evidence_type": "FORMAL_APPOINTMENT",
+      "source_ref": "synthetic://e-form-C-P6-CONTINUE_STOP_OWNER",
+      "content_hash": "35e8cf099e53b1b9703f14824281b72975fc031b8b5f4006a69b711bb2d23268",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P6",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    },
+    "e-onb-C-P6-CONTINUE_STOP_OWNER": {
+      "evidence_id": "e-onb-C-P6-CONTINUE_STOP_OWNER",
+      "evidence_type": "ONBOARDING",
+      "source_ref": "synthetic://e-onb-C-P6-CONTINUE_STOP_OWNER",
+      "content_hash": "2c8f9036a6f1e01bfce949872f4a165ce5261fe44ba982de034aa02718b0c4d7",
+      "recording_authority": "SYNTHETIC_TEST_DATA",
+      "timestamp": "2026-11-27T00:00:00+00:00",
+      "verification_status": "VERIFIED",
+      "subject": "C-P6",
+      "role": null,
+      "appointment_ref": null,
+      "decision_ref": null,
+      "revoked": false,
+      "revoked_at": null
+    }
+  },
+  "roles": {
+    "RESEARCH_OWNER": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_ref": "C-P1",
+      "recognition": {
+        "status": null,
+        "decision_date": null,
+        "formal": false,
+        "evidence_text": null
+      },
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence_id": "e-acc-C-P1-RESEARCH_OWNER",
+        "candidate_accepted_at": "2026-11-27T00:00:00+00:00"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "evidence_id": "e-po-C-P1-RESEARCH_OWNER",
+        "basis": "SYNTHETIC_TEST_DATA documented approval for C-P1:RESEARCH_OWNER",
+        "product_owner_approved_at": "2026-11-27T01:00:00+00:00"
+      },
+      "formal": {
+        "formally_appointed": true,
+        "evidence_id": "e-form-C-P1-RESEARCH_OWNER",
+        "formal_appointed_at": "2026-11-27T02:00:00+00:00"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true,
+        "evidence_id": "e-onb-C-P1-RESEARCH_OWNER"
+      },
+      "escalation": {
+        "contact": "synthetic-escalation-C-P1"
+      }
+    },
+    "MODERATOR": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_ref": "C-P2",
+      "recognition": {
+        "status": null,
+        "decision_date": null,
+        "formal": false,
+        "evidence_text": null
+      },
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence_id": "e-acc-C-P2-MODERATOR",
+        "candidate_accepted_at": "2026-11-27T00:00:00+00:00"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "evidence_id": "e-po-C-P2-MODERATOR",
+        "basis": "SYNTHETIC_TEST_DATA documented approval for C-P2:MODERATOR",
+        "product_owner_approved_at": "2026-11-27T01:00:00+00:00"
+      },
+      "formal": {
+        "formally_appointed": true,
+        "evidence_id": "e-form-C-P2-MODERATOR",
+        "formal_appointed_at": "2026-11-27T02:00:00+00:00"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true,
+        "evidence_id": "e-onb-C-P2-MODERATOR"
+      },
+      "escalation": {
+        "contact": "synthetic-escalation-C-P2"
+      }
+    },
+    "NOTE_TAKER": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_ref": "C-P3",
+      "recognition": {
+        "status": null,
+        "decision_date": null,
+        "formal": false,
+        "evidence_text": null
+      },
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence_id": "e-acc-C-P3-NOTE_TAKER",
+        "candidate_accepted_at": "2026-11-27T00:00:00+00:00"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "evidence_id": "e-po-C-P3-NOTE_TAKER",
+        "basis": "SYNTHETIC_TEST_DATA documented approval for C-P3:NOTE_TAKER",
+        "product_owner_approved_at": "2026-11-27T01:00:00+00:00"
+      },
+      "formal": {
+        "formally_appointed": true,
+        "evidence_id": "e-form-C-P3-NOTE_TAKER",
+        "formal_appointed_at": "2026-11-27T02:00:00+00:00"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true,
+        "evidence_id": "e-onb-C-P3-NOTE_TAKER"
+      },
+      "escalation": {
+        "contact": "synthetic-escalation-C-P3"
+      }
+    },
+    "DATA_CUSTODIAN": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_ref": "C-P4",
+      "recognition": {
+        "status": null,
+        "decision_date": null,
+        "formal": false,
+        "evidence_text": null
+      },
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence_id": "e-acc-C-P4-DATA_CUSTODIAN",
+        "candidate_accepted_at": "2026-11-27T00:00:00+00:00"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "evidence_id": "e-po-C-P4-DATA_CUSTODIAN",
+        "basis": "SYNTHETIC_TEST_DATA documented approval for C-P4:DATA_CUSTODIAN",
+        "product_owner_approved_at": "2026-11-27T01:00:00+00:00"
+      },
+      "formal": {
+        "formally_appointed": true,
+        "evidence_id": "e-form-C-P4-DATA_CUSTODIAN",
+        "formal_appointed_at": "2026-11-27T02:00:00+00:00"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true,
+        "evidence_id": "e-onb-C-P4-DATA_CUSTODIAN"
+      },
+      "escalation": {
+        "contact": "synthetic-escalation-C-P4"
+      }
+    },
+    "ANALYST": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_ref": "C-P5",
+      "recognition": {
+        "status": null,
+        "decision_date": null,
+        "formal": false,
+        "evidence_text": null
+      },
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence_id": "e-acc-C-P5-ANALYST",
+        "candidate_accepted_at": "2026-11-27T00:00:00+00:00"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "evidence_id": "e-po-C-P5-ANALYST",
+        "basis": "SYNTHETIC_TEST_DATA documented approval for C-P5:ANALYST",
+        "product_owner_approved_at": "2026-11-27T01:00:00+00:00"
+      },
+      "formal": {
+        "formally_appointed": true,
+        "evidence_id": "e-form-C-P5-ANALYST",
+        "formal_appointed_at": "2026-11-27T02:00:00+00:00"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true,
+        "evidence_id": "e-onb-C-P5-ANALYST"
+      },
+      "escalation": {
+        "contact": "synthetic-escalation-C-P5"
+      }
+    },
+    "CONTINUE_STOP_OWNER": {
+      "state": "FORMALLY_APPOINTED",
+      "candidate_ref": "C-P6",
+      "recognition": {
+        "status": null,
+        "decision_date": null,
+        "formal": false,
+        "evidence_text": null
+      },
+      "acceptance": {
+        "candidate_accepted": true,
+        "evidence_id": "e-acc-C-P6-CONTINUE_STOP_OWNER",
+        "candidate_accepted_at": "2026-11-27T00:00:00+00:00"
+      },
+      "approval": {
+        "product_owner_approved": true,
+        "formal": true,
+        "evidence_id": "e-po-C-P6-CONTINUE_STOP_OWNER",
+        "basis": "SYNTHETIC_TEST_DATA documented approval for C-P6:CONTINUE_STOP_OWNER",
+        "product_owner_approved_at": "2026-11-27T01:00:00+00:00"
+      },
+      "formal": {
+        "formally_appointed": true,
+        "evidence_id": "e-form-C-P6-CONTINUE_STOP_OWNER",
+        "formal_appointed_at": "2026-11-27T02:00:00+00:00"
+      },
+      "availability": {
+        "confirmed": true
+      },
+      "conflict_disclosure": {
+        "provided": true
+      },
+      "confidentiality": {
+        "acknowledged": true
+      },
+      "onboarding": {
+        "completed": true,
+        "evidence_id": "e-onb-C-P6-CONTINUE_STOP_OWNER"
+      },
+      "escalation": {
+        "contact": "synthetic-escalation-C-P6"
+      }
+    }
+  },
+  "appointments": [
+    {
+      "candidate_ref": "C-P1",
+      "role": "RESEARCH_OWNER",
+      "state": "FORMALLY_APPOINTED"
+    },
+    {
+      "candidate_ref": "C-P2",
+      "role": "MODERATOR",
+      "state": "FORMALLY_APPOINTED"
+    },
+    {
+      "candidate_ref": "C-P3",
+      "role": "NOTE_TAKER",
+      "state": "FORMALLY_APPOINTED"
+    },
+    {
+      "candidate_ref": "C-P4",
+      "role": "DATA_CUSTODIAN",
+      "state": "FORMALLY_APPOINTED"
+    },
+    {
+      "candidate_ref": "C-P5",
+      "role": "ANALYST",
+      "state": "FORMALLY_APPOINTED"
+    },
+    {
+      "candidate_ref": "C-P6",
+      "role": "CONTINUE_STOP_OWNER",
+      "state": "FORMALLY_APPOINTED"
+    }
+  ],
+  "combination_approvals": []
+}

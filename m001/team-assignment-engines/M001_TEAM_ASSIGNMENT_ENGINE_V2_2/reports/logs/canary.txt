@@ -1,0 +1,15 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe tests/mutation/canary_v22.py --root .
+EXIT: 0
+--- STDOUT ---
+PASS B00 valid state passes | 
+PASS B01 invisible basis rejected | 
+PASS B02 invisible rationale rejected | 
+PASS B03 meaningful ZWJ emoji text accepted | 
+PASS B04 whitespace escalation contact rejected | 
+PASS B05 duplicate evidence rejected | 
+PASS B06 combination before acceptance rejected | 
+PASS B07 whitespace candidate ref rejected | 
+CANARY_PASS 8/8
+
+--- STDERR ---
+

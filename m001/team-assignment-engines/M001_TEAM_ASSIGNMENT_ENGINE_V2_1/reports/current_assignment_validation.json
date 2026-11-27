@@ -1,0 +1,77 @@
+{
+  "blocking_error_count": 7,
+  "dimensions": {
+    "evidence_integrity": "PASS",
+    "formal_appointment_validity": "PASS",
+    "human_candidate_acceptance": "PASS",
+    "onboarding_readiness": "PASS",
+    "product_owner_combination_approval": "PASS",
+    "role_assignment_completeness": "FAIL",
+    "role_compatibility": "PASS",
+    "structural_topology_validity": "FAIL"
+  },
+  "engine": "M001_TEAM_ASSIGNMENT_ENGINE_V2",
+  "field_validation_authorized": false,
+  "issues": [
+    {
+      "candidate": "",
+      "code": "E-APPOINTMENT-MISSING",
+      "dimension": "role_assignment_completeness",
+      "message": "Role is not FORMALLY_APPOINTED",
+      "role": "ANALYST",
+      "severity": "ERROR"
+    },
+    {
+      "candidate": "",
+      "code": "E-APPOINTMENT-MISSING",
+      "dimension": "role_assignment_completeness",
+      "message": "Role is not FORMALLY_APPOINTED",
+      "role": "CONTINUE_STOP_OWNER",
+      "severity": "ERROR"
+    },
+    {
+      "candidate": "",
+      "code": "E-APPOINTMENT-MISSING",
+      "dimension": "role_assignment_completeness",
+      "message": "Role is not FORMALLY_APPOINTED",
+      "role": "DATA_CUSTODIAN",
+      "severity": "ERROR"
+    },
+    {
+      "candidate": "",
+      "code": "E-APPOINTMENT-MISSING",
+      "dimension": "role_assignment_completeness",
+      "message": "Role is not FORMALLY_APPOINTED",
+      "role": "MODERATOR",
+      "severity": "ERROR"
+    },
+    {
+      "candidate": "",
+      "code": "E-APPOINTMENT-MISSING",
+      "dimension": "role_assignment_completeness",
+      "message": "Role is not FORMALLY_APPOINTED",
+      "role": "NOTE_TAKER",
+      "severity": "ERROR"
+    },
+    {
+      "candidate": "",
+      "code": "E-APPOINTMENT-MISSING",
+      "dimension": "role_assignment_completeness",
+      "message": "Role is not FORMALLY_APPOINTED",
+      "role": "RESEARCH_OWNER",
+      "severity": "ERROR"
+    },
+    {
+      "candidate": "",
+      "code": "E-TOPOLOGY-UNAPPROVED",
+      "dimension": "structural_topology_validity",
+      "message": "Topology is PROPOSED; Stage B role readiness blocked",
+      "role": "",
+      "severity": "ERROR"
+    }
+  ],
+  "recruitment_authorized": false,
+  "source": "current_assignment_state.json",
+  "stage_b_role_ready": false,
+  "warning_count": 0
+}

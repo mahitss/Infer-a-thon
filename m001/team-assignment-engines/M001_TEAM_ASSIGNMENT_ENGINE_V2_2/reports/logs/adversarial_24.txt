@@ -1,0 +1,35 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe -m unittest discover -s tests/adversarial -p test_*.py -v
+EXIT: 0
+--- STDOUT ---
+
+--- STDERR ---
+test_adv01_hard_moderator_analyst (test_audit_regression.AuditRegression.test_adv01_hard_moderator_analyst) ... ok
+test_adv02_hard_moderator_custodian (test_audit_regression.AuditRegression.test_adv02_hard_moderator_custodian) ... ok
+test_adv03_discouraged_ro_moderator (test_audit_regression.AuditRegression.test_adv03_discouraged_ro_moderator) ... ok
+test_adv04_discouraged_custodian_analyst (test_audit_regression.AuditRegression.test_adv04_discouraged_custodian_analyst) ... ok
+test_adv05_boolean_evidence_without_reference (test_audit_regression.AuditRegression.test_adv05_boolean_evidence_without_reference) ... ok
+test_adv06_forged_evidence_reference (test_audit_regression.AuditRegression.test_adv06_forged_evidence_reference) ... ok
+test_adv07_duplicate_candidate_identity (test_audit_regression.AuditRegression.test_adv07_duplicate_candidate_identity) ... ok
+test_adv08_unknown_candidate_identity (test_audit_regression.AuditRegression.test_adv08_unknown_candidate_identity) ... ok
+test_adv09_proposed_not_appointed (test_audit_regression.AuditRegression.test_adv09_proposed_not_appointed) ... ok
+test_adv10_accepted_conversation_not_formal (test_audit_regression.AuditRegression.test_adv10_accepted_conversation_not_formal) ... ok
+test_adv11_formal_state_formal_false (test_audit_regression.AuditRegression.test_adv11_formal_state_formal_false) ... ok
+test_adv12_empty_approval_basis (test_audit_regression.AuditRegression.test_adv12_empty_approval_basis) ... ok
+test_adv13_discouraged_without_review (test_audit_regression.AuditRegression.test_adv13_discouraged_without_review) ... ok
+test_adv14_missing_timestamps (test_audit_regression.AuditRegression.test_adv14_missing_timestamps) ... ok
+test_adv15_duplicate_json_keys (test_audit_regression.AuditRegression.test_adv15_duplicate_json_keys) ... ok
+test_adv16_topology_unapproved_blocks_stage_b (test_audit_regression.AuditRegression.test_adv16_topology_unapproved_blocks_stage_b) ... ok
+test_adv17_rejected_candidate_not_active (test_audit_regression.AuditRegression.test_adv17_rejected_candidate_not_active) ... ok
+test_adv18_missing_onboarding (test_audit_regression.AuditRegression.test_adv18_missing_onboarding) ... ok
+test_adv19_malformed_json (test_audit_regression.AuditRegression.test_adv19_malformed_json) ... ok
+test_adv20_invalid_utf8 (test_audit_regression.AuditRegression.test_adv20_invalid_utf8) ... ok
+test_adv21_missing_file (test_audit_regression.AuditRegression.test_adv21_missing_file) ... ok
+test_adv22_no_authorization_inference (test_audit_regression.AuditRegression.test_adv22_no_authorization_inference) ... ok
+test_adv23_different_combination_approval (test_audit_regression.AuditRegression.test_adv23_different_combination_approval) ... ok
+test_adv24_deterministic (test_audit_regression.AuditRegression.test_adv24_deterministic) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.914s
+
+OK
+

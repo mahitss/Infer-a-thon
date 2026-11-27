@@ -1,0 +1,20 @@
+{
+  "blocking_error_count": 0,
+  "dimensions": {
+    "evidence_integrity": "PASS",
+    "formal_appointment_validity": "PASS",
+    "human_candidate_acceptance": "PASS",
+    "onboarding_readiness": "PASS",
+    "product_owner_combination_approval": "PASS",
+    "role_assignment_completeness": "PASS",
+    "role_compatibility": "PASS",
+    "structural_topology_validity": "PASS"
+  },
+  "engine": "M001_TEAM_ASSIGNMENT_ENGINE_V2",
+  "field_validation_authorized": false,
+  "issues": [],
+  "recruitment_authorized": false,
+  "source": "valid_four_person.json",
+  "stage_b_role_ready": true,
+  "warning_count": 0
+}

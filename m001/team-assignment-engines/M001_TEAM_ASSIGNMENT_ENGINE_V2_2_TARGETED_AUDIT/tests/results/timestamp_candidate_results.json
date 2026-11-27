@@ -1,0 +1,2347 @@
+{
+  "auditor": "independent security subagent",
+  "cases": [
+    {
+      "classification": "reproduced-secure",
+      "description": "baseline valid combination decision",
+      "expectation": {
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-INVALID",
+          "E-TIMESTAMP-ORDER"
+        ],
+        "ready": true
+      },
+      "group": "N-11",
+      "id": "N11-01",
+      "mutation": "unmodified valid_five_person.json; decision 2026-11-27T01:00:00+00:00, acceptances 00:00:00+00:00",
+      "notes": ">= boundary accepts a decision strictly after both acceptances",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; >= boundary accepts a decision strictly after both acceptances"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "decision before first-role acceptance",
+      "expectation": {
+        "dim": {
+          "product_owner_combination_approval": "FAIL"
+        },
+        "must": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-02",
+      "mutation": "decision 2026-11-26T23:00:00+00:00; both acceptances 2026-11-27T00:00:00+00:00",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER": 1
+        },
+        "codes": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision predates candidate acceptance for a held role",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "decision before last-role acceptance (two roles, different acceptance times)",
+      "expectation": {
+        "must": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "must_not": [
+          "E-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-03",
+      "mutation": "MODERATOR acceptance 00:00, NOTE_TAKER acceptance 00:30, decision 00:15 (UTC)",
+      "notes": "uses max(accepted); no false E-TIMESTAMP-ORDER side effect",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER": 1
+        },
+        "codes": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision predates candidate acceptance for a held role",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; uses max(accepted); no false E-TIMESTAMP-ORDER side effect"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "valid decision after all acceptances",
+      "expectation": {
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-INVALID"
+        ],
+        "ready": true
+      },
+      "group": "N-11",
+      "id": "N11-04",
+      "mutation": "acceptances 00:00 / 00:30, decision 00:45 UTC",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "missing decision timestamp represented as JSON null",
+      "expectation": {
+        "dim": {
+          "product_owner_combination_approval": "FAIL"
+        },
+        "must": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-05",
+      "mutation": "combination_approvals[0].decision_timestamp = null (schema permits null)",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-TIMESTAMP-INVALID": 1
+        },
+        "codes": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-TIMESTAMP-INVALID",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision timestamp invalid",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "missing decision_timestamp key (schema terminal)",
+      "expectation": {
+        "dim": {
+          "structural_topology_validity": "FAIL"
+        },
+        "must": [
+          "E-SCHEMA"
+        ],
+        "must_not": [
+          "E-TIMESTAMP-INVALID",
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-06",
+      "mutation": "removed required key decision_timestamp",
+      "notes": "schema validation is terminal; engine does not dereference absent field",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-SCHEMA": 1
+        },
+        "codes": [
+          "E-SCHEMA"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "FAIL",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "FAIL"
+        },
+        "issues": [
+          {
+            "candidate": "",
+            "code": "E-SCHEMA",
+            "dimension": "structural_topology_validity",
+            "message": "E-SCHEMA: combination_approvals/0: 'decision_timestamp' is a required property",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; schema validation is terminal; engine does not dereference absent field"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "naive decision timestamp (no timezone)",
+      "expectation": {
+        "must": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-07",
+      "mutation": "decision 2026-11-27T01:00:00 with no offset",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-TIMESTAMP-INVALID": 1
+        },
+        "codes": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-TIMESTAMP-INVALID",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision timestamp invalid",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "equivalent instant, different UTC offset, at equality",
+      "expectation": {
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-INVALID"
+        ],
+        "ready": true
+      },
+      "group": "N-11",
+      "id": "N11-08",
+      "mutation": "acceptance 02:00:00+00:00, decision 03:00:00+01:00 (same instant)",
+      "notes": "timezone-aware comparison; >= accepted at equal instant across offsets",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; timezone-aware comparison; >= accepted at equal instant across offsets"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "equivalent-offset decision strictly after acceptance",
+      "expectation": {
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": true
+      },
+      "group": "N-11",
+      "id": "N11-09",
+      "mutation": "acceptance 02:00:00+00:00, decision 03:30:00+01:00 (=02:30 UTC)",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "cross-offset decision before acceptance",
+      "expectation": {
+        "must": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-10",
+      "mutation": "acceptance 02:00:00+00:00, decision 02:00:00+01:00 (=01:00 UTC)",
+      "notes": "local wall-clock string ordering must not be used",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER": 1
+        },
+        "codes": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision predates candidate acceptance for a held role",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; local wall-clock string ordering must not be used"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "equal timestamps across acceptance/approval/formal/decision",
+      "expectation": {
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-MISSING"
+        ],
+        "ready": true
+      },
+      "group": "N-11",
+      "id": "N11-11",
+      "mutation": "all four timestamps exactly 2026-11-27T01:00:00+00:00",
+      "notes": "deterministic >= semantics at equality; no spurious failures",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; deterministic >= semantics at equality; no spurious failures"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invalid ISO decision string: not-a-timestamp",
+      "expectation": {
+        "must": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-12.1",
+      "mutation": "decision_timestamp='not-a-timestamp'",
+      "notes": "no exception escapes; rejected deterministically",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-TIMESTAMP-INVALID": 1
+        },
+        "codes": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-TIMESTAMP-INVALID",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision timestamp invalid",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; no exception escapes; rejected deterministically"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invalid ISO decision string: out-of-range",
+      "expectation": {
+        "must": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-12.2",
+      "mutation": "decision_timestamp='2026-13-45T99:99:99+00:00'",
+      "notes": "no exception escapes; rejected deterministically",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-TIMESTAMP-INVALID": 1
+        },
+        "codes": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-TIMESTAMP-INVALID",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision timestamp invalid",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; no exception escapes; rejected deterministically"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invalid ISO decision string: empty-string",
+      "expectation": {
+        "must": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-12.3",
+      "mutation": "decision_timestamp=''",
+      "notes": "no exception escapes; rejected deterministically",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-TIMESTAMP-INVALID": 1
+        },
+        "codes": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-TIMESTAMP-INVALID",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision timestamp invalid",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; no exception escapes; rejected deterministically"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invalid ISO decision string: date-only",
+      "expectation": {
+        "must": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-12.4",
+      "mutation": "decision_timestamp='2026-11-27'",
+      "notes": "no exception escapes; rejected deterministically",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-TIMESTAMP-INVALID": 1
+        },
+        "codes": [
+          "E-TIMESTAMP-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-TIMESTAMP-INVALID",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision timestamp invalid",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; no exception escapes; rejected deterministically"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "contradictory role chronology (acceptance after PO approval)",
+      "expectation": {
+        "dim": {
+          "formal_appointment_validity": "FAIL"
+        },
+        "must": [
+          "E-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-13",
+      "mutation": "MODERATOR acceptance 03:00 after approval 01:00 and formal 02:00",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 2,
+        "code_counts": {
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER": 1,
+          "E-TIMESTAMP-ORDER": 1
+        },
+        "codes": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-ORDER"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision predates candidate acceptance for a held role",
+            "role": "",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "",
+            "code": "E-TIMESTAMP-ORDER",
+            "dimension": "formal_appointment_validity",
+            "message": "Contradictory decision sequence",
+            "role": "MODERATOR",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "reused approval record with an old decision timestamp",
+      "expectation": {
+        "count": {
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER": 2
+        },
+        "must": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-14",
+      "mutation": "two identical combination approval records, both decision_timestamp 2026-11-26T00:00:00+00:00",
+      "notes": "order check executes for every approval record; reuse does not launder an old timestamp",
+      "observed": {
+        "blocking_error_count": 2,
+        "code_counts": {
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER": 2
+        },
+        "codes": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P2",
+            "code": "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision predates candidate acceptance for a held role",
+            "role": "",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "C-P2",
+            "code": "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+            "dimension": "product_owner_combination_approval",
+            "message": "Combination decision predates candidate acceptance for a held role",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; order check executes for every approval record; reuse does not launder an old timestamp"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "decision with unparseable acceptance timestamps",
+      "expectation": {
+        "must": [
+          "E-TIMESTAMP-MISSING"
+        ],
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER"
+        ],
+        "ready": false
+      },
+      "group": "N-11",
+      "id": "N11-15",
+      "mutation": "both acceptances null, decision 2026-11-26T00:00:00+00:00",
+      "notes": "N-11 skips comparison when no acceptance instant parses; role-level missing-timestamp errors still block authorization",
+      "observed": {
+        "blocking_error_count": 2,
+        "code_counts": {
+          "E-TIMESTAMP-MISSING": 2
+        },
+        "codes": [
+          "E-TIMESTAMP-MISSING"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "",
+            "code": "E-TIMESTAMP-MISSING",
+            "dimension": "formal_appointment_validity",
+            "message": "Missing timezone-aware timestamp candidate_accepted_at",
+            "role": "MODERATOR",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "",
+            "code": "E-TIMESTAMP-MISSING",
+            "dimension": "formal_appointment_validity",
+            "message": "Missing timezone-aware timestamp candidate_accepted_at",
+            "role": "NOTE_TAKER",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; N-11 skips comparison when no acceptance instant parses; role-level missing-timestamp errors still block authorization"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "far-future decision timestamp (no wall-clock substitution)",
+      "expectation": {
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-INVALID"
+        ],
+        "ready": true
+      },
+      "group": "N-11",
+      "id": "N11-16",
+      "mutation": "decision 2099-01-01T00:00:00+00:00, acceptances 2026-11-27T00:00:00+00:00",
+      "notes": "verdict depends only on stored fields; combined with N11-02 this rules out datetime.now() substitution",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; verdict depends only on stored fields; combined with N11-02 this rules out datetime.now() substitution"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "Z-suffixed UTC decision timestamp",
+      "expectation": {
+        "must_not": [
+          "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER",
+          "E-TIMESTAMP-INVALID"
+        ],
+        "ready": true
+      },
+      "group": "N-11",
+      "id": "N11-17",
+      "mutation": "decision 2026-11-27T01:00:00Z",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "baseline meaningful refs",
+      "expectation": {
+        "must_not": [
+          "E-CANDIDATE-REF-INVALID",
+          "E-CANDIDATE-DUPLICATE",
+          "E-CANDIDATE-UNKNOWN"
+        ],
+        "ready": true
+      },
+      "group": "N-12",
+      "id": "N12-01",
+      "mutation": "unmodified fixture refs C-P1..C-P5",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "empty candidate reference",
+      "expectation": {
+        "dim": {
+          "human_candidate_acceptance": "FAIL"
+        },
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-02",
+      "mutation": "renamed C-P1 to empty string across registry/roles/appointments/combination/evidence subjects",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 2,
+        "code_counts": {
+          "E-CANDIDATE-DUPLICATE": 1,
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-DUPLICATE",
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "",
+            "code": "E-CANDIDATE-DUPLICATE",
+            "dimension": "candidate data",
+            "message": "Candidate key/reference mismatch",
+            "role": "",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "ASCII whitespace-only candidate reference",
+      "expectation": {
+        "dim": {
+          "human_candidate_acceptance": "FAIL"
+        },
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-03",
+      "mutation": "renamed C-P1 to three spaces",
+      "notes": "invalid identity cannot authorize appointments",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "   ",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; invalid identity cannot authorize appointments"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "leading/trailing whitespace padding",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-04",
+      "mutation": "renamed C-P1 to ' C-P1 ' (content present but padded)",
+      "notes": "padding check rejects even when str.strip() would leave substantive content",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": " C-P1 ",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; padding check rejects even when str.strip() would leave substantive content"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "Unicode/ASCII separator-or-control-only ref: NBSP U+00A0",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-05.1",
+      "mutation": "renamed C-P1 to NBSP U+00A0",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "\u00a0",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "Unicode/ASCII separator-or-control-only ref: IDEOGRAPHIC SPACE U+3000",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-05.2",
+      "mutation": "renamed C-P1 to IDEOGRAPHIC SPACE U+3000",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "\u3000",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "Unicode/ASCII separator-or-control-only ref: TAB U+0009",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-05.3",
+      "mutation": "renamed C-P1 to TAB U+0009",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "\t",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invisible format-character-only ref: ZWSP U+200B",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-06.1",
+      "mutation": "renamed C-P1 to ZWSP U+200B",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "\u200b",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invisible format-character-only ref: BOM U+FEFF",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-06.2",
+      "mutation": "renamed C-P1 to BOM U+FEFF",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "\ufeff",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invisible format-character-only ref: LRM U+200E",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-06.3",
+      "mutation": "renamed C-P1 to LRM U+200E",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "\u200e",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invisible format-character-only ref: WORD JOINER U+2060",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-06.4",
+      "mutation": "renamed C-P1 to WORD JOINER U+2060",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "\u2060",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invisible format-character-only ref: ZWSP+LRM",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-06.5",
+      "mutation": "renamed C-P1 to ZWSP+LRM",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "\u200b\u200e",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "null candidate_ref (schema terminal)",
+      "expectation": {
+        "dim": {
+          "structural_topology_validity": "FAIL"
+        },
+        "must": [
+          "E-SCHEMA"
+        ],
+        "must_not": [
+          "E-CANDIDATE-REF-INVALID",
+          "E-CANDIDATE-DUPLICATE"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-07",
+      "mutation": "candidates['C-P1'].candidate_ref = null",
+      "notes": "schema type check rejects null before registry dereference; no crash",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-SCHEMA": 1
+        },
+        "codes": [
+          "E-SCHEMA"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "FAIL",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "FAIL"
+        },
+        "issues": [
+          {
+            "candidate": "",
+            "code": "E-SCHEMA",
+            "dimension": "structural_topology_validity",
+            "message": "E-SCHEMA: candidates/C-P1/candidate_ref: None is not of type 'string'",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; schema type check rejects null before registry dereference; no crash"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "non-string candidate_ref (schema terminal)",
+      "expectation": {
+        "must": [
+          "E-SCHEMA"
+        ],
+        "must_not": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-08",
+      "mutation": "candidates['C-P1'].candidate_ref = 123",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-SCHEMA": 1
+        },
+        "codes": [
+          "E-SCHEMA"
+        ],
+        "dimensions": {
+          "evidence_integrity": "FAIL",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "FAIL",
+          "product_owner_combination_approval": "FAIL",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "FAIL",
+          "structural_topology_validity": "FAIL"
+        },
+        "issues": [
+          {
+            "candidate": "",
+            "code": "E-SCHEMA",
+            "dimension": "structural_topology_validity",
+            "message": "E-SCHEMA: candidates/C-P1/candidate_ref: 123 is not of type 'string'",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "duplicate candidate reference under a different key",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-DUPLICATE"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-09",
+      "mutation": "added candidates['C-P1-DUP'] with candidate_ref 'C-P1'",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 2,
+        "code_counts": {
+          "E-CANDIDATE-DUPLICATE": 2
+        },
+        "codes": [
+          "E-CANDIDATE-DUPLICATE"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P1",
+            "code": "E-CANDIDATE-DUPLICATE",
+            "dimension": "candidate data",
+            "message": "Duplicate candidate identity",
+            "role": "",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "C-P1-DUP",
+            "code": "E-CANDIDATE-DUPLICATE",
+            "dimension": "candidate data",
+            "message": "Candidate key/reference mismatch",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "case-only collision preserved as distinct identity",
+      "expectation": {
+        "must_not": [
+          "E-CANDIDATE-DUPLICATE",
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": true
+      },
+      "group": "N-12",
+      "id": "N12-10",
+      "mutation": "added key/ref 'c-p1' alongside 'C-P1'",
+      "notes": "no case folding; distinct identities neither merged nor silently normalized",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; no case folding; distinct identities neither merged nor silently normalized"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "NFC/NFD collision preserved as distinct identities",
+      "expectation": {
+        "must_not": [
+          "E-CANDIDATE-DUPLICATE",
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": true
+      },
+      "group": "N-12",
+      "id": "N12-11",
+      "mutation": "added NFD 'Cafe\\u0301' and NFC 'Caf\\u00e9' as separate registry entries",
+      "notes": "no unicodedata.normalize applied; no silent identity merge",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; no unicodedata.normalize applied; no silent identity merge"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "fullwidth reference preserved as distinct identity",
+      "expectation": {
+        "must_not": [
+          "E-CANDIDATE-DUPLICATE",
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": true
+      },
+      "group": "N-12",
+      "id": "N12-12",
+      "mutation": "added fullwidth '\\uff23\\uff0d\\uff10\\uff11' alongside ASCII 'C-P1'",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "international (CJK) reference remains valid in a real appointment",
+      "expectation": {
+        "must_not": [
+          "E-CANDIDATE-REF-INVALID",
+          "E-CANDIDATE-UNKNOWN",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "ready": true
+      },
+      "group": "N-12",
+      "id": "N12-13",
+      "mutation": "renamed C-P1 to CJK ref and propagated to role/appointment/combination/evidence subjects",
+      "notes": "non-Latin script characters are treated as substantive content",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; non-Latin script characters are treated as substantive content"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "international (Arabic-Indic) reference remains valid",
+      "expectation": {
+        "must_not": [
+          "E-CANDIDATE-REF-INVALID",
+          "E-CANDIDATE-DUPLICATE"
+        ]
+      },
+      "group": "N-12",
+      "id": "N12-14",
+      "mutation": "added unused registry entry with Arabic/Hindi-digit ref",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "ZWJ emoji and accented reference remain valid",
+      "expectation": {
+        "must_not": [
+          "E-CANDIDATE-REF-INVALID",
+          "E-CANDIDATE-DUPLICATE"
+        ]
+      },
+      "group": "N-12",
+      "id": "N12-15",
+      "mutation": "added registry entries with emoji-ZWJ sequence and accented letter",
+      "notes": "ZWJ (Cf) alone is non-content but embedded in substantive emoji sequence",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; ZWJ (Cf) alone is non-content but embedded in substantive emoji sequence"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "invisible-only identity cannot satisfy an appointment",
+      "expectation": {
+        "dim": {
+          "human_candidate_acceptance": "FAIL"
+        },
+        "must": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-16",
+      "mutation": "renamed C-P1 to ZWSP across all consumers",
+      "notes": "registry membership alone is insufficient: an ERROR always blocks authorization",
+      "observed": {
+        "blocking_error_count": 1,
+        "code_counts": {
+          "E-CANDIDATE-REF-INVALID": 1
+        },
+        "codes": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "\u200b",
+            "code": "E-CANDIDATE-REF-INVALID",
+            "dimension": "candidate data",
+            "message": "Candidate reference is empty, whitespace-only or padded",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; registry membership alone is insufficient: an ERROR always blocks authorization"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "unknown candidate reference in appointment",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-UNKNOWN"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-17",
+      "mutation": "appointment[0].candidate_ref = C-UNKNOWN (not in registry)",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 2,
+        "code_counts": {
+          "E-APPOINTMENT-RECORD": 1,
+          "E-CANDIDATE-UNKNOWN": 1
+        },
+        "codes": [
+          "E-APPOINTMENT-RECORD",
+          "E-CANDIDATE-UNKNOWN"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P1",
+            "code": "E-APPOINTMENT-RECORD",
+            "dimension": "role_assignment_completeness",
+            "message": "Formal role lacks appointment record",
+            "role": "RESEARCH_OWNER",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "C-UNKNOWN",
+            "code": "E-CANDIDATE-UNKNOWN",
+            "dimension": "human_candidate_acceptance",
+            "message": "Appointment references unknown candidate",
+            "role": "RESEARCH_OWNER",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "null candidate_ref in role record",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-UNKNOWN"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-18",
+      "mutation": "roles['RESEARCH_OWNER'].candidate_ref = null (schema allows null)",
+      "notes": "role-level null cannot resolve to any registry identity",
+      "observed": {
+        "blocking_error_count": 4,
+        "code_counts": {
+          "E-ACCEPTANCE-APPOINTMENT": 1,
+          "E-APPOINTMENT-RECORD": 1,
+          "E-CANDIDATE-UNKNOWN": 1,
+          "E-EVIDENCE-SUBJECT": 1
+        },
+        "codes": [
+          "E-ACCEPTANCE-APPOINTMENT",
+          "E-APPOINTMENT-RECORD",
+          "E-CANDIDATE-UNKNOWN",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "FAIL",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "None",
+            "code": "E-ACCEPTANCE-APPOINTMENT",
+            "dimension": "evidence_integrity",
+            "message": "Acceptance evidence is for a different appointment",
+            "role": "RESEARCH_OWNER",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "None",
+            "code": "E-APPOINTMENT-RECORD",
+            "dimension": "role_assignment_completeness",
+            "message": "Formal role lacks appointment record",
+            "role": "RESEARCH_OWNER",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "None",
+            "code": "E-CANDIDATE-UNKNOWN",
+            "dimension": "formal_appointment_validity",
+            "message": "Unknown candidate",
+            "role": "RESEARCH_OWNER",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "",
+            "code": "E-EVIDENCE-SUBJECT",
+            "dimension": "evidence_integrity",
+            "message": "Evidence subject mismatch: e-acc-C-P1-RESEARCH_OWNER",
+            "role": "",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; role-level null cannot resolve to any registry identity"
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "null candidate_ref in appointment record",
+      "expectation": {
+        "must": [
+          "E-CANDIDATE-UNKNOWN"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-19",
+      "mutation": "appointments[0].candidate_ref = null",
+      "notes": "",
+      "observed": {
+        "blocking_error_count": 2,
+        "code_counts": {
+          "E-APPOINTMENT-RECORD": 1,
+          "E-CANDIDATE-UNKNOWN": 1
+        },
+        "codes": [
+          "E-APPOINTMENT-RECORD",
+          "E-CANDIDATE-UNKNOWN"
+        ],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "FAIL",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "FAIL",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [
+          {
+            "candidate": "C-P1",
+            "code": "E-APPOINTMENT-RECORD",
+            "dimension": "role_assignment_completeness",
+            "message": "Formal role lacks appointment record",
+            "role": "RESEARCH_OWNER",
+            "severity": "ERROR"
+          },
+          {
+            "candidate": "None",
+            "code": "E-CANDIDATE-UNKNOWN",
+            "dimension": "human_candidate_acceptance",
+            "message": "Appointment references unknown candidate",
+            "role": "RESEARCH_OWNER",
+            "severity": "ERROR"
+          }
+        ],
+        "ready": false,
+        "warning_count": 0
+      },
+      "reason": "All expected secure behaviours observed; "
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "trailing ZWSP appended to an otherwise substantive reference",
+      "expectation": {
+        "must_not": [
+          "E-CANDIDATE-REF-INVALID",
+          "E-CANDIDATE-DUPLICATE"
+        ],
+        "ready": true
+      },
+      "group": "N-12",
+      "id": "N12-20",
+      "mutation": "renamed C-P1 to C-P1 + U+200B and propagated across all consumers",
+      "notes": "Note: this is permitted by design so ZWJ emoji sequences remain valid; it is not a defect under the stated N-12 criteria.",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "Embedded Cf characters remain valid content by documented F-007 policy; distinct identity preserved; no silent normalization."
+    },
+    {
+      "classification": "reproduced-secure",
+      "description": "combining mark alone as registry reference",
+      "expectation": {
+        "must_not": [
+          "E-CANDIDATE-REF-INVALID"
+        ],
+        "ready": true
+      },
+      "group": "N-12",
+      "id": "N12-21",
+      "mutation": "added registry entry whose ref is a single U+0301 COMBINING ACUTE ACCENT (category Mn)",
+      "notes": "Observation only: such a ref is visually subtle; not in scope of 'invisible format characters alone' (Cf).",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "Combining marks are deliberately classified as substantive content by NON_CONTENT_CATEGORIES; no collapse or normalization occurs."
+    },
+    {
+      "classification": "defect",
+      "description": "NEW DEFECT D-01: case-variant identity can create an unbacked appointment",
+      "expectation": {
+        "must": [
+          "E-APPOINTMENT-RECORD"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-22",
+      "mutation": "added valid registry entry 'c-p1' and an appointment (c-p1, RESEARCH_OWNER) while the formal role record for RESEARCH_OWNER binds 'C-P1'",
+      "notes": "Adjacent to N-12 (candidate_ref consumption); not a failure of the N-12 registry-validity predicate itself.",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "Expected a candidate/role binding error; observed zero issues and stage_b_role_ready=true. The appointments loop never compares ap.candidate_ref with role_records[role].candidate_ref."
+    },
+    {
+      "classification": "defect",
+      "description": "NEW DEFECT D-01 confirmation with an unrelated valid identity",
+      "expectation": {
+        "must": [
+          "E-APPOINTMENT-RECORD"
+        ],
+        "ready": false
+      },
+      "group": "N-12",
+      "id": "N12-23",
+      "mutation": "added valid registry entry 'C-NEW' (no acceptance evidence) and appointment (C-NEW, RESEARCH_OWNER)",
+      "notes": "Impact: appointment records are not proof-bound to the formal role record; a candidate can be recorded as appointed without matching acceptance/formal evidence.",
+      "observed": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "ready": true,
+        "warning_count": 0
+      },
+      "reason": "Confirms the gap is not case-variant specific: a fresh valid registry identity is accepted as appointed to a role formally held by another candidate, with all dimensions PASS and no issues."
+    }
+  ],
+  "engine_path": "C:/Users/pc/AppData/Local/Temp/opencode/M001_TEAM_ASSIGNMENT_ENGINE_V2_2/engine/validator.py",
+  "engine_sha256": "baa3634df3a82f9ecff158552f263843f97372dadbc16e0d65d6c6d884bc5b5f",
+  "environment": {
+    "jsonschema_available": true,
+    "jsonschema_version": "4.26.0",
+    "python": "3.13.5",
+    "pythondontwritebytecode": "1"
+  },
+  "fixture_path": "C:/Users/pc/AppData/Local/Temp/opencode/M001_TEAM_ASSIGNMENT_ENGINE_V2_2/tests/fixtures/valid_five_person.json",
+  "fixture_sha256": "ae7ad33b6c6dce3fa0759f9ac2952275891ba42fd50512994082460601172f85",
+  "mission": "M001-TEAM-009 independent targeted audit of N-11 and N-12",
+  "new_defects": [
+    {
+      "affected_lines": "engine/validator.py lines 515-538 (appointments loop and formal-role reconciliation)",
+      "finding_type": "new defect (adjacent to N-12 candidate_ref consumption)",
+      "id": "D-01",
+      "observed": "stage_b_role_ready=true; blocking_error_count=0; all eight dimensions PASS; no E-APPOINTMENT-RECORD / E-CANDIDATE-UNKNOWN / E-UNAPPROVED-APPOINTMENT",
+      "recommended_fix": "In the appointments loop, add: if ap.candidate_ref != role_records.get(role,{}).get('candidate_ref'): fail('role_assignment_completeness','E-APPOINTMENT-CANDIDATE-MISMATCH',...) . Also reject any appointment whose (candidate_ref, role) is not the authoritative pair for that role.",
+      "reproduction": [
+        "load valid_five_person.json into an in-memory deep copy",
+        "add candidates['C-NEW']={'candidate_ref':'C-NEW','active':true,'fixture_marker':'SYNTHETIC_TEST_DATA'}",
+        "append appointments entry {'candidate_ref':'C-NEW','role':'RESEARCH_OWNER','state':'FORMALLY_APPOINTED'}",
+        "call validate_state -> stage_b_role_ready=true, issues=[]"
+      ],
+      "root_cause": "The appointments loop validates that ap.candidate_ref is a registry key, that ap.role is known and that the role is in a formal state, but never asserts ap.candidate_ref == role_records[ap.role].candidate_ref. The reconciliation at lines 534-538 only checks that the role record's own ref has an appointment; it does not reject extra appointments for other candidates under the same role.",
+      "scope_note": "The N-11 and N-12 checks as specified all reproduce secure. D-01 was found while inspecting all candidate_ref consumption sites required by the N-12 instructions; it is reported as a new defect rather than a failure of N-11/N-12.",
+      "security_impact": "A candidate with no acceptance, approval, formal-appointment or onboarding evidence can be recorded as appointed to a formally filled role and the state still passes. Undermines the guarantee that appointments are backed by role-bound acceptance evidence, and enables visually confusable identities (c-p1 vs C-P1) to appear as co-appointees without detection.",
+      "severity": "MEDIUM",
+      "title": "Appointment records are not bound to the candidate_ref of the formal role record"
+    }
+  ],
+  "policy_sha256": "8f4b186ed5fd5aed060c7e4773b436443a1965ab473cbd956ba5e11907f11609",
+  "probes": {
+    "equivalent_instant_equality": {
+      "p1_eq_p2": true,
+      "p1_lt_p2": false,
+      "p2_lt_p1": false
+    },
+    "exact_identity_registry_keys_preserved": true,
+    "meaningful_text": {
+      "accented": {
+        "meaningful_text": true,
+        "value_repr": "'Caf\u00e9'"
+      },
+      "arabic": {
+        "meaningful_text": true,
+        "value_repr": "'\u0645\u0631\u0634\u062d-\u0661'"
+      },
+      "ascii": {
+        "meaningful_text": true,
+        "value_repr": "'C-P1'"
+      },
+      "cjk": {
+        "meaningful_text": true,
+        "value_repr": "'\u5019\u88dc-\u7532'"
+      },
+      "emoji_zwj": {
+        "meaningful_text": true,
+        "value_repr": "'C-\ud83d\udc68\\u200d\ud83d\udc69\\u200d\ud83d\udc67'"
+      },
+      "empty": {
+        "meaningful_text": false,
+        "value_repr": "''"
+      },
+      "leading_space": {
+        "meaningful_text": true,
+        "value_repr": "' C-P1'"
+      },
+      "nbsp_only": {
+        "meaningful_text": false,
+        "value_repr": "'\\xa0'"
+      },
+      "none": {
+        "meaningful_text": false,
+        "value_repr": "None"
+      },
+      "nonstring": {
+        "meaningful_text": false,
+        "value_repr": "123"
+      },
+      "zwsp_only": {
+        "meaningful_text": false,
+        "value_repr": "'\\u200b'"
+      }
+    },
+    "registry_issue_codes": [],
+    "registry_keys": [
+      "C-P1",
+      "Cafe\u0301",
+      "Caf\u00e9",
+      "c-p1",
+      "\u0645\u0631\u0634\u062d-\u0661",
+      "\uff23\uff0d\uff10\uff11"
+    ],
+    "timestamp_parser": {
+      "aware_offset": {
+        "parsed": "datetime.datetime(2026, 11, 27, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600)))",
+        "repr": "'2026-11-27T03:00:00+01:00'",
+        "valid": true
+      },
+      "aware_utc": {
+        "parsed": "datetime.datetime(2026, 11, 27, 2, 0, tzinfo=datetime.timezone.utc)",
+        "repr": "'2026-11-27T02:00:00+00:00'",
+        "valid": true
+      },
+      "garbage": {
+        "parsed": "None",
+        "repr": "'not-a-date'",
+        "valid": false
+      },
+      "naive": {
+        "parsed": "None",
+        "repr": "'2026-11-27T02:00:00'",
+        "valid": false
+      },
+      "zulu": {
+        "parsed": "datetime.datetime(2026, 11, 27, 2, 0, tzinfo=datetime.timezone.utc)",
+        "repr": "'2026-11-27T02:00:00Z'",
+        "valid": true
+      }
+    }
+  },
+  "schema_sha256": "b66687bbd18230e4f589037ca653fed768ae22ff841a9ff2bda49b72b1b4a259",
+  "scope": "read-only import of V2.2 validator; in-memory deep-copy mutations of V2.2 fixtures",
+  "source_review": {
+    "n11_clock_calls": [],
+    "n11_error_codes": {
+      "invalid_or_naive_decision_timestamp": "E-TIMESTAMP-INVALID (dimension product_owner_combination_approval)",
+      "ordering_violation": "E-COMBINATION-APPROVAL-TIMESTAMP-ORDER (dimension product_owner_combination_approval)"
+    },
+    "n11_loop_lines": "540-585",
+    "n11_predicate": "decision_ts < max(accepted) where accepted = parse_timestamp(role.acceptance.candidate_accepted_at) for roles in ca.roles whose role_record.candidate_ref == ca.candidate_ref",
+    "n12_additional_consumer_gap": "appointments loop (515-533) does not bind ap.candidate_ref to role_records[role].candidate_ref -> see D-01",
+    "n12_consumers": [
+      "engine/validator.py:candidate_registry_check",
+      "engine/validator.py:validate_state roles candidate_ref lookup (line 469-471)",
+      "engine/validator.py:validate_state appointments candidate_ref lookup (line 522-528)",
+      "engine/validator.py:validate_state formal role -> appointment reconciliation (line 534-538)",
+      "engine/validator.py:identity_subject / evidence subject binding (line 73-75, 328-341, 565-566)",
+      "cli/validate.py: passes state through to validate_state only"
+    ],
+    "n12_function_lines": "355-375",
+    "n12_predicate": "meaningful_text(ref) and not (isinstance(ref,str) and ref != ref.strip()) and ref == key and ref truthy and ref not previously seen"
+  },
+  "summary": {
+    "defect": 2,
+    "inconclusive": 0,
+    "not_applicable": 0,
+    "reproduced_secure": 47,
+    "total": 49
+  }
+}

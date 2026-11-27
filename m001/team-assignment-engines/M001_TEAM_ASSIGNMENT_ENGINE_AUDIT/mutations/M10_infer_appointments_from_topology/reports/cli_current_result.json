@@ -1,0 +1,58 @@
+{
+  "blocking_error_count": 5,
+  "info_count": 1,
+  "issues": [
+    {
+      "code": "E-APPOINTMENT-MISSING",
+      "message": "Role is not appointed",
+      "person": "",
+      "role": "ANALYST",
+      "severity": "ERROR"
+    },
+    {
+      "code": "E-APPOINTMENT-MISSING",
+      "message": "Role is not appointed",
+      "person": "",
+      "role": "CONTINUE_STOP_OWNER",
+      "severity": "ERROR"
+    },
+    {
+      "code": "E-APPOINTMENT-MISSING",
+      "message": "Role is not appointed",
+      "person": "",
+      "role": "DATA_CUSTODIAN",
+      "severity": "ERROR"
+    },
+    {
+      "code": "E-APPOINTMENT-MISSING",
+      "message": "Role is not appointed",
+      "person": "",
+      "role": "MODERATOR",
+      "severity": "ERROR"
+    },
+    {
+      "code": "E-APPOINTMENT-MISSING",
+      "message": "Role is not appointed",
+      "person": "",
+      "role": "NOTE_TAKER",
+      "severity": "ERROR"
+    },
+    {
+      "code": "W-TOPOLOGY-PROPOSED",
+      "message": "Team topology remains PROPOSED; no staffing model is approved",
+      "person": "",
+      "role": "",
+      "severity": "WARNING"
+    },
+    {
+      "code": "I-RO-NOT-FORMAL",
+      "message": "ACCEPTED_IN_CONVERSATION is not FORMALLY_APPOINTED",
+      "person": "",
+      "role": "RESEARCH_OWNER",
+      "severity": "INFO"
+    }
+  ],
+  "source": "current_assignment_state.json",
+  "valid": false,
+  "warning_count": 1
+}

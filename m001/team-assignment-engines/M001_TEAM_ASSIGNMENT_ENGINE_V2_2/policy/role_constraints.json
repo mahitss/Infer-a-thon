@@ -1,0 +1,28 @@
+{
+  "version": "2.2",
+  "source": "M001_ROLE_ASSIGNMENT_DECISION_PACK, M001_TEAM_STAFFING_PACK, M001_ENGINE_INDEPENDENT_AUDIT defect register; V2.1 remediation of N-01/N-02/N-03/N-15; V2.2 remediation of N-04/N-08/N-11/N-12/F-007",
+  "roles": ["RESEARCH_OWNER", "MODERATOR", "NOTE_TAKER", "DATA_CUSTODIAN", "ANALYST", "CONTINUE_STOP_OWNER"],
+  "appointment_states": ["UNASSIGNED", "PROPOSED", "ACCEPTED_IN_CONVERSATION", "CANDIDATE_ACCEPTED", "REJECTED", "DEFERRED", "FORMALLY_APPOINTED"],
+  "formal_appointment_states": ["FORMALLY_APPOINTED"],
+  "missing_appointment_states": ["UNASSIGNED", "PROPOSED", "ACCEPTED_IN_CONVERSATION", "CANDIDATE_ACCEPTED", "REJECTED", "DEFERRED"],
+  "hard_incompatibilities": [
+    {"roles": ["MODERATOR", "ANALYST"], "classification": "HARD_INCOMPATIBILITY", "code": "E-HARD-MODERATOR-ANALYST"},
+    {"roles": ["MODERATOR", "DATA_CUSTODIAN"], "classification": "HARD_INCOMPATIBILITY", "code": "E-HARD-MODERATOR-CUSTODIAN"}
+  ],
+  "discouraged_combinations": [
+    {"roles": ["RESEARCH_OWNER", "MODERATOR"], "classification": "NOT_RECOMMENDED", "review_requirement": "product_owner_combination_review", "code": "E-DISCOURAGED-RO-MODERATOR"},
+    {"roles": ["DATA_CUSTODIAN", "ANALYST"], "classification": "NOT_RECOMMENDED", "review_requirement": "product_owner_combination_review", "code": "E-DISCOURAGED-CUSTODIAN-ANALYST"}
+  ],
+  "conditional_combinations": [
+    {"roles": ["MODERATOR", "NOTE_TAKER"], "classification": "CONDITIONAL", "requirement": "evidence_separation", "code": "E-COND-EVIDENCE-SEPARATION"},
+    {"roles": ["RESEARCH_OWNER", "CONTINUE_STOP_OWNER"], "classification": "CONDITIONAL", "requirement": "explicit_additional_appointment", "code": "E-COND-EXPLICIT-CS"}
+  ],
+  "evidence_types": ["CANDIDATE_ACCEPTANCE", "PRODUCT_OWNER_APPROVAL", "FORMAL_APPOINTMENT", "COMBINATION_REVIEW", "EVIDENCE_SEPARATION", "DECISION_BASIS", "ONBOARDING"],
+  "evidence_fields": ["evidence_id", "evidence_type", "source_ref", "content_hash", "recording_authority", "timestamp", "verification_status", "subject", "role", "appointment_ref", "decision_ref", "revoked", "revoked_at"],
+  "acceptance_evidence_binding": ["candidate_ref", "role", "appointment_ref", "decision_ref", "evidence_id", "evidence_type", "verification_status", "timestamp", "recording_authority"],
+  "verification_statuses": ["VERIFIED"],
+  "timestamp_fields": ["candidate_accepted_at", "product_owner_approved_at", "formal_appointed_at", "decision_timestamp", "review_timestamp", "timestamp"],
+  "require_topology_approved_for_stage_b": true,
+  "require_combination_approval_for_multi_role": true,
+  "stage_b_dimensions": ["structural_topology_validity", "role_assignment_completeness", "human_candidate_acceptance", "formal_appointment_validity", "product_owner_combination_approval", "evidence_integrity", "role_compatibility", "onboarding_readiness"]
+}

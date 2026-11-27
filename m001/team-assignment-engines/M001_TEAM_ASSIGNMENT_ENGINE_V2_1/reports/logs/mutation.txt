@@ -1,0 +1,12 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe tests/mutation/mutation_harness_v21.py
+EXIT: 0
+--- STDOUT ---
+BASELINE_EXIT 0
+DETECTED 4/4
+DETECTED M1_basis_check_removed exit=1
+DETECTED M2_rationale_check_removed exit=1
+DETECTED M3_acceptance_role_binding_removed exit=1
+DETECTED M4_schema_terminal_return_removed exit=1
+
+--- STDERR ---
+

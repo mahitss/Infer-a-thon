@@ -1,0 +1,38 @@
+# cli_current_state.txt
+
+Command: `C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE\cli\validate.py --state state/current_assignment_state.json --json-out reports/cli_current_result.json`
+
+Working directory: `C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE`
+
+Exit code: 1
+
+stdout SHA-256: `c7391df1ac1de4ad9c12c771181e4016dccf6bd1786569c2dd56c9f7781bfb5c`
+
+stderr bytes: 0
+
+## stdout
+
+```text
+M001 TEAM ASSIGNMENT VALIDATION
+Source: current_assignment_state.json
+Valid: NO
+Blocking errors: 5
+Warnings: 1
+Info: 1
+
+ERROR E-APPOINTMENT-MISSING role=ANALYST: Role is not appointed
+ERROR E-APPOINTMENT-MISSING role=CONTINUE_STOP_OWNER: Role is not appointed
+ERROR E-APPOINTMENT-MISSING role=DATA_CUSTODIAN: Role is not appointed
+ERROR E-APPOINTMENT-MISSING role=MODERATOR: Role is not appointed
+ERROR E-APPOINTMENT-MISSING role=NOTE_TAKER: Role is not appointed
+WARNING W-TOPOLOGY-PROPOSED: Team topology remains PROPOSED; no staffing model is approved
+INFO I-RO-NOT-FORMAL role=RESEARCH_OWNER: ACCEPTED_IN_CONVERSATION is not FORMALLY_APPOINTED
+
+END REPORT
+```
+
+## stderr
+
+```text
+
+```

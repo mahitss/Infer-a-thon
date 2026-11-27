@@ -1,0 +1,43 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe -m unittest discover -s tests/regression -p test_*.py -v
+CWD: C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE_V2
+EXIT: 0
+--- STDOUT ---
+
+--- STDERR ---
+test_current_exit_one (test_cli.CLI.test_current_exit_one) ... ok
+test_determinism_two_directories (test_cli.CLI.test_determinism_two_directories) ... ok
+test_json_only_machine_readable (test_cli.CLI.test_json_only_machine_readable) ... ok
+test_safe_input_errors_no_traceback (test_cli.CLI.test_safe_input_errors_no_traceback) ... ok
+test_valid_four_exit_zero (test_cli.CLI.test_valid_four_exit_zero) ... ok
+test_01_multi_role_without_po_combination_approval (test_explicit_scenarios.ExplicitScenarios.test_01_multi_role_without_po_combination_approval) ... ok
+test_02_approval_for_different_combination (test_explicit_scenarios.ExplicitScenarios.test_02_approval_for_different_combination) ... ok
+test_03_proposed_treated_as_appointed (test_explicit_scenarios.ExplicitScenarios.test_03_proposed_treated_as_appointed) ... ok
+test_04_accepted_conversation_not_formal (test_explicit_scenarios.ExplicitScenarios.test_04_accepted_conversation_not_formal) ... ok
+test_05_boolean_evidence_without_reference (test_explicit_scenarios.ExplicitScenarios.test_05_boolean_evidence_without_reference) ... ok
+test_06_forged_evidence_identifier (test_explicit_scenarios.ExplicitScenarios.test_06_forged_evidence_identifier) ... ok
+test_07_duplicate_candidate_identities (test_explicit_scenarios.ExplicitScenarios.test_07_duplicate_candidate_identities) ... ok
+test_08_unknown_candidate_identity (test_explicit_scenarios.ExplicitScenarios.test_08_unknown_candidate_identity) ... ok
+test_09_formally_appointed_with_missing_formal_approval (test_explicit_scenarios.ExplicitScenarios.test_09_formally_appointed_with_missing_formal_approval) ... ok
+test_10_empty_approval_basis (test_explicit_scenarios.ExplicitScenarios.test_10_empty_approval_basis) ... ok
+test_11_discouraged_combination_without_po_review (test_explicit_scenarios.ExplicitScenarios.test_11_discouraged_combination_without_po_review) ... ok
+test_12_missing_timestamps (test_explicit_scenarios.ExplicitScenarios.test_12_missing_timestamps) ... ok
+test_13_duplicate_json_keys (test_explicit_scenarios.ExplicitScenarios.test_13_duplicate_json_keys) ... ok
+test_14_unapproved_topology_not_stage_b_ready (test_explicit_scenarios.ExplicitScenarios.test_14_unapproved_topology_not_stage_b_ready) ... ok
+test_15_rejected_candidate_not_active (test_explicit_scenarios.ExplicitScenarios.test_15_rejected_candidate_not_active) ... ok
+test_16_missing_onboarding (test_explicit_scenarios.ExplicitScenarios.test_16_missing_onboarding) ... ok
+test_17_malformed_json (test_explicit_scenarios.ExplicitScenarios.test_17_malformed_json) ... ok
+test_18_invalid_utf8 (test_explicit_scenarios.ExplicitScenarios.test_18_invalid_utf8) ... ok
+test_19_missing_state_file (test_explicit_scenarios.ExplicitScenarios.test_19_missing_state_file) ... ok
+test_20_no_authorization_from_passing_topology (test_explicit_scenarios.ExplicitScenarios.test_20_no_authorization_from_passing_topology) ... ok
+test_current_state_remains_blocked (test_v2_regression.Regression.test_current_state_remains_blocked) ... ok
+test_discouraged_with_exact_approval_passes (test_v2_regression.Regression.test_discouraged_with_exact_approval_passes) ... ok
+test_hard_incompatibility_not_overridable (test_v2_regression.Regression.test_hard_incompatibility_not_overridable) ... ok
+test_naive_timestamp_rejected (test_v2_regression.Regression.test_naive_timestamp_rejected) ... ok
+test_separate_dimensions_present (test_v2_regression.Regression.test_separate_dimensions_present) ... ok
+test_valid_four_five_six_stage_b_ready (test_v2_regression.Regression.test_valid_four_five_six_stage_b_ready) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 14.995s
+
+OK
+

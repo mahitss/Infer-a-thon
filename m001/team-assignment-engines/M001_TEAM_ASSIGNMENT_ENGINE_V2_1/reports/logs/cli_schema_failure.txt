@@ -1,0 +1,30 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe cli/validate.py --state tests/fixtures/schema_invalid_assignment.json
+EXIT: 1
+--- STDOUT ---
+M001 TEAM ASSIGNMENT VALIDATION V2
+Source: schema_invalid_assignment.json
+evidence_integrity: FAIL
+formal_appointment_validity: FAIL
+human_candidate_acceptance: FAIL
+onboarding_readiness: FAIL
+product_owner_combination_approval: FAIL
+role_assignment_completeness: FAIL
+role_compatibility: FAIL
+structural_topology_validity: FAIL
+Stage B role readiness: NO
+Recruitment authorized: NO
+Field validation authorized: NO
+Blocking errors: 8
+Warnings: 0
+ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: governance: None is not of type 'object'
+ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'ANALYST' is a required property
+ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'CONTINUE_STOP_OWNER' is a required property
+ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'DATA_CUSTODIAN' is a required property
+ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'MODERATOR' is a required property
+ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'NOTE_TAKER' is a required property
+ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'RESEARCH_OWNER' is a required property
+ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: topology: 'APPROVED' is not of type 'object'
+END REPORT
+
+--- STDERR ---
+

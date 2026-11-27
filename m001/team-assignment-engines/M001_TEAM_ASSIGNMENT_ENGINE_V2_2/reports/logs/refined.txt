@@ -1,0 +1,21 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe tests/independent/refined_cases_v21.py
+EXIT: 0
+--- STDOUT ---
+DIM-02_unknown_evidence_id | ready= False | codes= ['E-EVIDENCE-UNKNOWN'] | evidence_integrity= PASS
+DIM-03_subject_mismatch | ready= False | codes= ['E-EVIDENCE-SUBJECT'] | evidence_integrity= PASS
+ST-02_stale_acceptance_order_valid | ready= True | codes= [] | evidence_integrity= PASS
+COMB-12_approval_reused_other_candidate | ready= False | codes= ['E-COMBINATION-APPROVAL-MISSING', 'E-COND-EXPLICIT-CS', 'E-EVIDENCE-SUBJECT'] | evidence_integrity= PASS
+EVID-02_shared_acceptance_two_roles | ready= False | codes= ['E-ACCEPTANCE-APPOINTMENT', 'E-ACCEPTANCE-DECISION-REUSED', 'E-ACCEPTANCE-ROLE', 'E-EVIDENCE-DUPLICATE', 'E-EVIDENCE-SUBJECT'] | evidence_integrity= FAIL
+ID-03_whitespace_ref_consistent | ready= False | codes= ['E-CANDIDATE-REF-INVALID'] | evidence_integrity= PASS
+ID-02_unicode_equivalent_split | ready= False | codes= ['E-ACCEPTANCE-APPOINTMENT', 'E-ACCEPTANCE-DECISION-REUSED', 'E-ACCEPTANCE-ROLE', 'E-COMBINATION-APPROVAL-MISSING', 'E-EVIDENCE-SUBJECT', 'E-EVIDENCE-TYPE'] | evidence_integrity= PASS
+ID-07_six_distinct_identities | ready= True | codes= [] | evidence_integrity= PASS
+COMB-03_duplicate_roles_approval | ready= True | codes= [] | evidence_integrity= PASS
+ST-09_whitespace_basis | ready= False | codes= ['E-DECISION-EVIDENCE-EMPTY'] | evidence_integrity= PASS
+COMB-11_whitespace_rationale | ready= False | codes= ['E-COMBINATION-RATIONALE'] | evidence_integrity= PASS
+EVID-03_hash_mismatch | ready= True | codes= [] | evidence_integrity= PASS
+EVID-04_duplicate_evidence | ready= False | codes= ['E-EVIDENCE-DUPLICATE'] | evidence_integrity= FAIL
+EVID-06_evidence_predates_source | ready= True | codes= [] | evidence_integrity= PASS
+wrote C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE_V2_2\tests\results\refined_case_results.json
+
+--- STDERR ---
+

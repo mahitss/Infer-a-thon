@@ -1,0 +1,783 @@
+{
+  "mission": "M001-TEAM-005",
+  "artifact": "M001_TEAM_ASSIGNMENT_ENGINE_V2_REAUDIT/tests/results/finding_closure_results.json",
+  "auditor_role": "Independent closure auditor (did not use V2 remediation matrix as evidence)",
+  "scope": {
+    "read_only_inputs": [
+      "V1 engine/validator.py",
+      "V1 policy/role_constraints.json",
+      "V1 adversarial_fixtures",
+      "AUDIT/M001_DEFECT_REGISTER.json",
+      "V2 engine/validator.py",
+      "V2 policy/role_constraints.json",
+      "V2 schemas/team_assignment.schema.json",
+      "V2 cli/validate.py",
+      "V2 state/current_assignment_state.json",
+      "V2 tests/fixtures",
+      "V2 reports/defect_remediation_matrix.md (read only, not relied on)"
+    ],
+    "writes": [
+      "this file",
+      "../reports/CLOSURE_AGENT_NOTES.md"
+    ],
+    "environment": "Python 3.13.5; jsonschema 4.26.0 installed, so V2 structural_schema_errors uses full Draft 2020-12 validation"
+  },
+  "method": "Imported V2 validator via importlib.util.spec_from_file_location; built/mutated states in memory (deep copies / from-scratch schema-valid states); called validate_state(state, V2 policy, V2 schema); exercised loader via patched Path.read_bytes with in-memory bytes; exercised CLI via subprocess on read-only V2 fixtures; compared with V1 validator called read-only on V1 adversarial fixtures. No file outside the two outputs was written.",
+  "baseline_check": {
+    "probe": "six distinct candidates, all formally appointed, topology approved",
+    "stage_b_role_ready": true,
+    "codes": [],
+    "all_dimensions": "PASS"
+  },
+  "summary": {
+    "CLOSED": 16,
+    "PARTIAL": 0,
+    "NOT_CLOSED": 0,
+    "total": 16
+  },
+  "findings": [
+    {
+      "id": "F-01",
+      "test": "ADV-03",
+      "severity": "HIGH",
+      "title": "Discouraged Research Owner+Moderator passes with warning only",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/policy/role_constraints.json",
+          "lines": "12-15",
+          "quote": "\"discouraged_combinations\": [\n  {\"roles\": [\"RESEARCH_OWNER\", \"MODERATOR\"], \"classification\": \"NOT_RECOMMENDED\", \"review_requirement\": \"product_owner_combination_review\", \"code\": \"E-DISCOURAGED-RO-MODERATOR\"}, ...]"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "421-428",
+          "quote": "for candidate, held in by_candidate.items():\n    if len(held) <= 1: continue\n    key = (candidate, pair_key(held))\n    ca = approval_map.get(key)\n    if not ca:\n        fail('product_owner_combination_approval','E-COMBINATION-APPROVAL-MISSING',...)"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "432-434",
+          "quote": "for combo in policy['discouraged_combinations']:\n    if set(combo['roles']).issubset(held) and not ca:\n        fail('role_compatibility',combo['code'],message='Discouraged combination lacks PO review')"
+        }
+      ],
+      "independent_check": {
+        "method": "In-memory state built from scratch (6 candidates); RO and MODERATOR assigned to C1; all combination_approvals removed; validate_state(state, V2 policy, V2 schema)",
+        "codes": [
+          "E-COMBINATION-APPROVAL-MISSING",
+          "E-DISCOURAGED-RO-MODERATOR"
+        ],
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "product_owner_combination_approval",
+          "role_compatibility"
+        ],
+        "governing_dimension": "role_compatibility (FAIL)",
+        "blocking_error_count": 2
+      },
+      "v1_reproduction": "V1 validate_state(discouraged_ro_moderator.json) -> valid=True, issues=[W-DISCOURAGED-RO-MODERATOR] (WARNING only).",
+      "assessment": "Vulnerable path unreachable: combination is an ERROR and the governing dimension is FAIL; no warning-only path. Nuance: if a matching approval record exists but outcome=REJECTED, E-DISCOURAGED-RO-MODERATOR is suppressed by 'not ca', but E-COMBINATION-APPROVAL-REJECTED still fails product_owner_combination_approval and stage_b=False (verified)."
+    },
+    {
+      "id": "F-02",
+      "test": "ADV-04",
+      "severity": "HIGH",
+      "title": "Discouraged Data Custodian+Analyst passes with warning only",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/policy/role_constraints.json",
+          "lines": "14",
+          "quote": "{\"roles\": [\"DATA_CUSTODIAN\", \"ANALYST\"], \"classification\": \"NOT_RECOMMENDED\", \"review_requirement\": \"product_owner_combination_review\", \"code\": \"E-DISCOURAGED-CUSTODIAN-ANALYST\"}"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "432-434",
+          "quote": "if set(combo['roles']).issubset(held) and not ca: fail('role_compatibility',combo['code'],message='Discouraged combination lacks PO review')"
+        }
+      ],
+      "independent_check": {
+        "method": "In-memory state; DATA_CUSTODIAN and ANALYST assigned to C5; combination_approvals emptied",
+        "codes": [
+          "E-COMBINATION-APPROVAL-MISSING",
+          "E-DISCOURAGED-CUSTODIAN-ANALYST"
+        ],
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "product_owner_combination_approval",
+          "role_compatibility"
+        ],
+        "governing_dimension": "role_compatibility (FAIL)",
+        "blocking_error_count": 2
+      },
+      "v1_reproduction": "V1 validate_state(discouraged_custodian_analyst.json) -> valid=True, issues=[W-DISCOURAGED-CUSTODIAN-ANALYST].",
+      "assessment": "Same control as F-01 with the second discouraged pair; ERROR + FAIL confirmed."
+    },
+    {
+      "id": "F-03",
+      "test": "ADV-05",
+      "severity": "HIGH",
+      "title": "Boolean evidence flag without evidence reference accepted",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/policy/role_constraints.json",
+          "lines": "16-18",
+          "quote": "\"conditional_combinations\": [{\"roles\": [\"MODERATOR\", \"NOTE_TAKER\"], \"classification\": \"CONDITIONAL\", \"requirement\": \"evidence_separation\", \"code\": \"E-COND-EVIDENCE-SEPARATION\"}, ...]"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "435-445",
+          "quote": "if combo['requirement'] == 'evidence_separation':\n    found = any(e.get('evidence_type')=='EVIDENCE_SEPARATION' and e.get('subject')=='%s:%s' % (candidate, pair_key(held)) and e.get('verification_status')=='VERIFIED' for e in evidence.values() if isinstance(e, dict))\n    if not found: fail('role_compatibility','E-COND-EVIDENCE-SEPARATION',...)"
+        },
+        {
+          "file": "V2/schemas/team_assignment.schema.json",
+          "lines": "55-68",
+          "quote": "evidence record requires evidence_id, evidence_type, source_ref, content_hash, recording_authority, timestamp, verification_status, subject; additionalProperties=false"
+        }
+      ],
+      "independent_check": {
+        "method": "In-memory state; MOD+NOTE on C3 with a valid exact combination approval but no EVIDENCE_SEPARATION record; second probe injects legacy boolean conditional_evidence at state level",
+        "codes": [
+          "E-COND-EVIDENCE-SEPARATION"
+        ],
+        "codes_with_legacy_boolean": [
+          "E-COND-EVIDENCE-SEPARATION",
+          "E-SCHEMA"
+        ],
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "role_compatibility"
+        ],
+        "governing_dimension": "role_compatibility (FAIL)"
+      },
+      "v1_reproduction": "V1 validate_state(false_evidence_moderator_notetaker.json) -> valid=True, issues=[].",
+      "assessment": "Boolean cannot satisfy the condition: the check requires a VERIFIED EVIDENCE_SEPARATION record with exact subject 'candidate:PAIRKEY'; injecting the legacy boolean produces an additional E-SCHEMA error. Caveat from residual observation R-1: generic evidence_check() ERRORs do not flip evidence_integrity to FAIL, though stage_b_role_ready stays False."
+    },
+    {
+      "id": "F-04",
+      "test": "ADV-06",
+      "severity": "HIGH",
+      "title": "Explicit Continue/Stop flag without evidence accepted",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/policy/role_constraints.json",
+          "lines": "18",
+          "quote": "{\"roles\": [\"RESEARCH_OWNER\", \"CONTINUE_STOP_OWNER\"], \"classification\": \"CONDITIONAL\", \"requirement\": \"explicit_additional_appointment\", \"code\": \"E-COND-EXPLICIT-CS\"}"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "446-448",
+          "quote": "if combo['requirement'] == 'explicit_additional_appointment':\n    if role_records.get('CONTINUE_STOP_OWNER',{}).get('state') not in formal_states or not ca:\n        fail('role_compatibility','E-COND-EXPLICIT-CS',...)"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "327-330",
+          "quote": "if st not in formal_states: fail('role_assignment_completeness','E-APPOINTMENT-MISSING',...); continue"
+        }
+      ],
+      "independent_check": {
+        "method": "Two variants: (a) RO+CS on C1 with CS role state=PROPOSED but combo approval present; (b) CS formal but approvals removed",
+        "codes_variant_a": [
+          "E-APPOINTMENT-MISSING",
+          "E-UNAPPROVED-APPOINTMENT",
+          "E-COND-EXPLICIT-CS"
+        ],
+        "codes_variant_b": [
+          "E-COMBINATION-APPROVAL-MISSING",
+          "E-COND-EXPLICIT-CS"
+        ],
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "role_compatibility",
+          "role_assignment_completeness"
+        ],
+        "governing_dimension": "role_compatibility (FAIL)"
+      },
+      "v1_reproduction": "V1 validate_state(false_evidence_continue_stop.json) -> valid=True, issues=[].",
+      "assessment": "A flag/boolean is insufficient: both a formal CS appointment record and an exact approval are required; E-COND-EXPLICIT-CS fails role_compatibility."
+    },
+    {
+      "id": "F-05",
+      "test": "ADV-07",
+      "severity": "CRITICAL",
+      "title": "Compatible multi-role assignment without PO combination approval passes",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "402-409",
+          "quote": "approvals = state.get('combination_approvals', []) ...\nfor ca in approvals:\n    key = (ca.get('candidate_ref'), pair_key(ca.get('roles', [])))\n    approval_map[key] = ca"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "421-428",
+          "quote": "for candidate, held in by_candidate.items():\n    if len(held) <= 1: continue\n    key = (candidate, pair_key(held))\n    if not approval_map.get(key): fail('product_owner_combination_approval','E-COMBINATION-APPROVAL-MISSING',...)"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "416-419",
+          "quote": "evidence_check(evidence, ca.get('evidence_id'), 'COMBINATION_REVIEW', '%s:%s' % (ca.get('candidate_ref'), key[1]), 'evidence_integrity', issues); if not valid_timestamp(ca.get('decision_timestamp')): fail('product_owner_combination_approval','E-TIMESTAMP-INVALID',...)"
+        },
+        {
+          "file": "V2/policy/role_constraints.json",
+          "lines": "25",
+          "quote": "\"require_combination_approval_for_multi_role\": true (declarative only; not read by validator.py)"
+        }
+      ],
+      "independent_check": {
+        "method": "In-memory state with compatible pairs NOTE_TAKER+DATA_CUSTODIAN (C1) and ANALYST+CONTINUE_STOP_OWNER (C2); all combination_approvals removed",
+        "codes": [
+          "E-COMBINATION-APPROVAL-MISSING"
+        ],
+        "issue_count": 2,
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "product_owner_combination_approval"
+        ],
+        "governing_dimension": "product_owner_combination_approval (FAIL)"
+      },
+      "v1_reproduction": "V1 validate_state(compatible_combination_no_approval.json) -> valid=True, issues=[].",
+      "assessment": "Every person with >1 role now requires an exact approval keyed by (candidate_ref, sorted role set); 2 blocking errors emitted and governing dimension FAIL. Note: require_combination_approval_for_multi_role flag is inert; the rule is hardcoded."
+    },
+    {
+      "id": "F-06",
+      "test": "ADV-08",
+      "severity": "HIGH",
+      "title": "Duplicate candidate identifier across roles accepted",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "249-263",
+          "quote": "candidate_registry_check: if ref != key or not ref: fail E-CANDIDATE-DUPLICATE; if ref in seen: fail E-CANDIDATE-DUPLICATE ('Duplicate candidate identity')"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "315-316",
+          "quote": "if any(i.code.startswith('E-CANDIDATE-') for i in issues): dims['human_candidate_acceptance'] = 'FAIL'"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "386-388",
+          "quote": "key = (ref, role); if key in seen_app: fail('role_assignment_completeness','E-CANDIDATE-DUPLICATE',...message='Duplicate appointment')"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "429-431",
+          "quote": "for combo in policy['hard_incompatibilities']: if set(combo['roles']).issubset(held): fail('role_compatibility',combo['code'],message='Hard incompatibility cannot be approved')"
+        }
+      ],
+      "independent_check": {
+        "method": "(a) added second registry key C-DUP with candidate_ref=C1 (duplicate identity); (b) appended duplicate appointment record (C1, RESEARCH_OWNER); (c) original V1 case MOD+ANALYST shared id with a fully valid approval",
+        "codes_a": [
+          "E-CANDIDATE-DUPLICATE"
+        ],
+        "codes_b": [
+          "E-CANDIDATE-DUPLICATE"
+        ],
+        "codes_c": [
+          "E-HARD-MODERATOR-ANALYST"
+        ],
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "human_candidate_acceptance",
+          "role_assignment_completeness",
+          "role_compatibility"
+        ],
+        "governing_dimension": "human_candidate_acceptance (FAIL) / role_compatibility (FAIL)"
+      },
+      "v1_reproduction": "V1 validate_state(duplicate_candidate_identifier.json) -> valid=True; MODERATOR and ANALYST share P-DUP.",
+      "assessment": "Original exploit unreachable. Semantic shift: V2 does not treat sharing one human across roles as an identity duplicate; it requires an exact PO approval (or hard block). The exact V1 case (MOD+ANALYST) is a hard incompatibility and is blocked even with a valid approval (E-HARD-MODERATOR-ANALYST)."
+    },
+    {
+      "id": "F-07",
+      "test": "ADV-09",
+      "severity": "HIGH",
+      "title": "Unknown human reference accepted",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/schemas/team_assignment.schema.json",
+          "lines": "46-54",
+          "quote": "candidate requires candidate_ref, active, fixture_marker; candidates map is checked against role/appointment refs"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "333-335",
+          "quote": "ref = rec.get('candidate_ref'); if ref not in candidates: fail('formal_appointment_validity','E-CANDIDATE-UNKNOWN',...)"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "389-390",
+          "quote": "if ref not in candidates: fail('human_candidate_acceptance','E-CANDIDATE-UNKNOWN',...message='Appointment references unknown candidate')"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "261-262",
+          "quote": "if rec.get('active') is not True: fail('E-CANDIDATE-INACTIVE')"
+        }
+      ],
+      "independent_check": {
+        "method": "In-memory state; RESEARCH_OWNER role record and appointment ref changed to UNKNOWN-HUMAN absent from candidates registry",
+        "codes": [
+          "E-CANDIDATE-UNKNOWN",
+          "E-EVIDENCE-SUBJECT"
+        ],
+        "issue_count": 6,
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "formal_appointment_validity",
+          "human_candidate_acceptance"
+        ],
+        "governing_dimension": "formal_appointment_validity (FAIL)"
+      },
+      "v1_reproduction": "V1 validate_state(unknown_human_reference.json) -> valid=True for candidate_id UNKNOWN-HUMAN.",
+      "assessment": "Unknown refs now fail both the role record and appointment checks; evidence subject mismatch adds further ERRORs. No roster is invented - the in-state candidates registry is the authoritative roster."
+    },
+    {
+      "id": "F-08",
+      "test": "ADV-10",
+      "severity": "CRITICAL",
+      "title": "PROPOSED role treated as appointed",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/policy/role_constraints.json",
+          "lines": "5-7",
+          "quote": "formal_appointment_states = [\"FORMALLY_APPOINTED\"]; missing_appointment_states includes PROPOSED, ACCEPTED_IN_CONVERSATION, CANDIDATE_ACCEPTED, REJECTED, DEFERRED"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "327-330",
+          "quote": "if st not in formal_states: fail('role_assignment_completeness','E-APPOINTMENT-MISSING',...); continue"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "393-394",
+          "quote": "if role_records.get(role,{}).get('state') not in formal_states: fail('role_assignment_completeness','E-UNAPPROVED-APPOINTMENT',...)"
+        }
+      ],
+      "independent_check": {
+        "method": "In-memory state; MODERATOR state changed from FORMALLY_APPOINTED to PROPOSED while appointment retained",
+        "codes": [
+          "E-APPOINTMENT-MISSING",
+          "E-UNAPPROVED-APPOINTMENT"
+        ],
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "role_assignment_completeness"
+        ],
+        "governing_dimension": "role_assignment_completeness (FAIL)"
+      },
+      "v1_reproduction": "V1 validate_state(proposed_treated_as_appointed.json) -> valid=True with MODERATOR PROPOSED and assignment present.",
+      "assessment": "Only FORMALLY_APPOINTED satisfies readiness. Note: validator uses formal_appointment_states, not the declared missing_appointment_states field (which is inert)."
+    },
+    {
+      "id": "F-09",
+      "test": "ADV-11",
+      "severity": "HIGH",
+      "title": "FORMALLY_APPOINTED with approval.formal=false accepted",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "347-352",
+          "quote": "if appr.get('product_owner_approved') is not True: fail(...'E-PO-APPROVAL'...)\nif appr.get('formal') is not True: fail('formal_appointment_validity','E-FORMAL-APPROVAL-MISMATCH',...)\nif not appr.get('basis'): fail(...'E-DECISION-EVIDENCE-EMPTY'...)"
+        }
+      ],
+      "independent_check": {
+        "method": "In-memory state; MODERATOR approval.formal set to false while state remains FORMALLY_APPOINTED",
+        "codes": [
+          "E-FORMAL-APPROVAL-MISMATCH"
+        ],
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "formal_appointment_validity"
+        ],
+        "governing_dimension": "formal_appointment_validity (FAIL)"
+      },
+      "v1_reproduction": "V1 validate_state(formal_state_formal_approval_false.json) -> valid=True.",
+      "assessment": "Direct contradiction check fails closed."
+    },
+    {
+      "id": "F-10",
+      "test": "ADV-14",
+      "severity": "HIGH",
+      "title": "Empty Product Owner decision basis accepted",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "351-352",
+          "quote": "if not appr.get('basis'): fail('formal_appointment_validity','E-DECISION-EVIDENCE-EMPTY',role=role,message='Approval basis empty')"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "343-344",
+          "quote": "evidence_check(evidence, appr.get('evidence_id'), 'PRODUCT_OWNER_APPROVAL', ref, 'evidence_integrity', issues)"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "218-221",
+          "quote": "if not eid: issues.append(Issue('ERROR', code_prefix + '-MISSING', dimension, message='Evidence reference is empty'))"
+        }
+      ],
+      "independent_check": {
+        "method": "In-memory state; MODERATOR approval.basis set to empty string",
+        "codes": [
+          "E-DECISION-EVIDENCE-EMPTY"
+        ],
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "formal_appointment_validity"
+        ],
+        "governing_dimension": "formal_appointment_validity (FAIL)"
+      },
+      "v1_reproduction": "V1 validate_state(weak_decision_evidence.json) -> valid=True with approval.basis=\"\".",
+      "assessment": "Empty basis fails closed. Code name is E-DECISION-EVIDENCE-EMPTY (original expectation said E-DECISION-EVIDENCE-MISSING) but severity/dimension are correct. Generic evidence-reference errors still emit ERRORs without flipping evidence_integrity (residual R-1)."
+    },
+    {
+      "id": "F-11",
+      "test": "ADV-15",
+      "severity": "MEDIUM",
+      "title": "No structured decision timestamps",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/schemas/team_assignment.schema.json",
+          "lines": "84-114",
+          "quote": "roleRecord requires acceptance.candidate_accepted_at, approval.product_owner_approved_at, formal.formal_appointed_at; evidence requires timestamp; combinationApproval requires decision_timestamp"
+        },
+        {
+          "file": "V2/policy/role_constraints.json",
+          "lines": "23",
+          "quote": "\"timestamp_fields\": [\"candidate_accepted_at\", \"product_owner_approved_at\", \"formal_appointed_at\", \"decision_timestamp\", \"review_timestamp\", \"timestamp\"]"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "197-210",
+          "quote": "valid_timestamp requires non-empty string, ISO-8601 parseable and tzinfo/utcoffset present (naive rejected)"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "355-363",
+          "quote": "for tfield in ['candidate_accepted_at','product_owner_approved_at','formal_appointed_at']: if not valid_timestamp(...): fail('formal_appointment_validity','E-TIMESTAMP-MISSING',...); if not (ts_a <= ts_p <= ts_f): fail('formal_appointment_validity','E-TIMESTAMP-ORDER',...)"
+        }
+      ],
+      "independent_check": {
+        "method": "Four in-memory variants: missing candidate_accepted_at; naive timestamp; out-of-order formal appointment; naive evidence timestamp",
+        "codes": {
+          "missing": [
+            "E-TIMESTAMP-MISSING"
+          ],
+          "naive_role": [
+            "E-TIMESTAMP-MISSING"
+          ],
+          "order": [
+            "E-TIMESTAMP-ORDER"
+          ],
+          "naive_evidence": [
+            "E-TIMESTAMP-INVALID"
+          ]
+        },
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "formal_appointment_validity",
+          "evidence_integrity"
+        ],
+        "governing_dimension": "formal_appointment_validity (FAIL) / evidence_integrity (FAIL)"
+      },
+      "v1_reproduction": "Original V1 fixtures contain no timestamp fields at all (register ADV-15).",
+      "assessment": "Timezone-aware timestamps are structurally required and checked for ordering; four independent mutations all fail closed."
+    },
+    {
+      "id": "F-12",
+      "test": "ADV-16",
+      "severity": "MEDIUM",
+      "title": "Unapproved topology does not block Stage B readiness",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/policy/role_constraints.json",
+          "lines": "24",
+          "quote": "\"require_topology_approved_for_stage_b\": true"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "296-298",
+          "quote": "topology = state.get('topology', {}); if topology.get('status') != 'APPROVED' and policy.get('require_topology_approved_for_stage_b'): fail('structural_topology_validity','E-TOPOLOGY-UNAPPROVED',...)"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "450-453",
+          "quote": "stage_b = (topology.get('status')=='APPROVED' and all(dims.get(k)=='PASS' for k in policy['stage_b_dimensions']) and not issues)"
+        }
+      ],
+      "independent_check": {
+        "method": "In-memory baseline with all roles formally appointed; topology.status changed to PROPOSED",
+        "codes": [
+          "E-TOPOLOGY-UNAPPROVED"
+        ],
+        "stage_b_role_ready": false,
+        "failed_dimensions": [
+          "structural_topology_validity"
+        ],
+        "governing_dimension": "structural_topology_validity (FAIL)"
+      },
+      "v1_reproduction": "V1 validate_state(topology_proposed_all_formal.json) -> valid=True, issues=[W-TOPOLOGY-PROPOSED] (WARNING only).",
+      "assessment": "Topology readiness is separated from appointment validity and explicitly gates stage_b_role_ready. V2's shipped state/current_assignment_state.json has topology PROPOSED and multiple non-formal roles, so it correctly reports not-ready."
+    },
+    {
+      "id": "F-13",
+      "test": "ADV-20",
+      "severity": "MEDIUM",
+      "title": "Duplicate JSON keys silently resolved last-wins",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "25-26",
+          "quote": "class DuplicateKeyError(ValueError): pass"
+        },
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "74-97",
+          "quote": "def load_json_strict(path): raw=p.read_bytes(); text=raw.decode('utf-8'); def no_dupes(pairs): ... if k in out: raise DuplicateKeyError('E-DUPLICATE-JSON-KEY: %s' % k) ... json.loads(text, object_pairs_hook=no_dupes)"
+        },
+        {
+          "file": "V2/cli/validate.py",
+          "lines": "38-49",
+          "quote": "try: ... except (DuplicateKeyError, ValueError) as exc: code = str(exc).split(':',1)[0]; error_result(...)"
+        }
+      ],
+      "independent_check": {
+        "method": "Called V2 load_json_strict on in-memory bytes b'{\"schema_version\":\"1.0\",\"schema_version\":\"9.9\"}' via a patched Path.read_bytes (no file written); plus V2 CLI on tests/fixtures/duplicate_json_key.json",
+        "codes": [
+          "E-DUPLICATE-JSON-KEY"
+        ],
+        "exception": "DuplicateKeyError: E-DUPLICATE-JSON-KEY: schema_version",
+        "cli_exit_code": 2,
+        "cli_stderr": "",
+        "stage_b_role_ready": false,
+        "governing_dimension": "input (FAIL)"
+      },
+      "v1_reproduction": "V1 load_json(duplicate_json_key.json) -> parsed schema_version '9.9' (last duplicate wins).",
+      "assessment": "Duplicate keys now raise before validation; CLI emits stable code with exit 2 and empty stderr."
+    },
+    {
+      "id": "F-14",
+      "test": "ADV-21",
+      "severity": "LOW",
+      "title": "Malformed JSON produces unhandled traceback",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "92-97",
+          "quote": "try: return json.loads(text, object_pairs_hook=no_dupes) ... except json.JSONDecodeError: raise ValueError('E-JSON-INVALID: malformed JSON')"
+        },
+        {
+          "file": "V2/cli/validate.py",
+          "lines": "17-23",
+          "quote": "def error_result(code, message, source): Issue('ERROR', code, 'input', ...) ValidationResult(..., stage_b_role_ready=False)"
+        },
+        {
+          "file": "V2/cli/validate.py",
+          "lines": "46-49",
+          "quote": "except (DuplicateKeyError, ValueError) as exc: ... exit_code = 2"
+        }
+      ],
+      "independent_check": {
+        "method": "Called V2 load_json_strict on in-memory malformed bytes; V2 CLI --json-only on tests/fixtures/malformed.json",
+        "codes": [
+          "E-JSON-INVALID"
+        ],
+        "exception": "ValueError: E-JSON-INVALID: malformed JSON",
+        "cli_exit_code": 2,
+        "cli_stderr": "",
+        "stage_b_role_ready": false,
+        "governing_dimension": "input (FAIL)"
+      },
+      "v1_reproduction": "V1 CLI on malformed.json -> Traceback on stderr ending in json.decoder.JSONDecodeError; exit 1.",
+      "assessment": "Clean deterministic error, no traceback."
+    },
+    {
+      "id": "F-15",
+      "test": "ADV-22",
+      "severity": "LOW",
+      "title": "Missing input file produces unhandled traceback",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "76-80",
+          "quote": "p = Path(path); try: raw = p.read_bytes() except OSError as exc: raise ValueError('E-FILE-NOT-FOUND: %s' % exc.__class__.__name__)"
+        },
+        {
+          "file": "V2/cli/validate.py",
+          "lines": "46-49",
+          "quote": "except (DuplicateKeyError, ValueError) as exc: code = str(exc).split(':',1)[0]; exit_code = 2"
+        }
+      ],
+      "independent_check": {
+        "method": "Called V2 load_json_strict with in-memory OSError(FileNotFoundError); V2 CLI --json-only with a non-existent state path",
+        "codes": [
+          "E-FILE-NOT-FOUND"
+        ],
+        "exception": "ValueError: E-FILE-NOT-FOUND: FileNotFoundError",
+        "cli_exit_code": 2,
+        "cli_stderr": "",
+        "stage_b_role_ready": false,
+        "governing_dimension": "input (FAIL)"
+      },
+      "v1_reproduction": "V1 load_json on a missing path raises FileNotFoundError (unhandled in V1 CLI).",
+      "assessment": "Clean deterministic error, no traceback."
+    },
+    {
+      "id": "F-16",
+      "test": "ADV-23",
+      "severity": "LOW",
+      "title": "Invalid UTF-8 produces unhandled traceback",
+      "status": "CLOSED",
+      "control_source_lines": [
+        {
+          "file": "V2/engine/validator.py",
+          "lines": "81-84",
+          "quote": "try: text = raw.decode('utf-8') except UnicodeDecodeError: raise ValueError('E-ENCODING-INVALID: invalid UTF-8')"
+        },
+        {
+          "file": "V2/cli/validate.py",
+          "lines": "46-49",
+          "quote": "except (DuplicateKeyError, ValueError) as exc: ... exit_code = 2"
+        }
+      ],
+      "independent_check": {
+        "method": "Called V2 load_json_strict on in-memory bytes b'\\xff\\xfe{\"a\":1}'; V2 CLI --json-only on tests/fixtures/invalid_utf8.bin",
+        "codes": [
+          "E-ENCODING-INVALID"
+        ],
+        "exception": "ValueError: E-ENCODING-INVALID: invalid UTF-8",
+        "cli_exit_code": 2,
+        "cli_stderr": "",
+        "stage_b_role_ready": false,
+        "governing_dimension": "input (FAIL)"
+      },
+      "v1_reproduction": "V1 load_json(invalid_utf8.bin) -> UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 24 (unhandled in V1 CLI).",
+      "assessment": "Clean deterministic error, no traceback."
+    }
+  ],
+  "policy_version_findings": {
+    "v1": {
+      "version": "1.0",
+      "source": "M001_ROLE_ASSIGNMENT_DECISION_PACK and M001_TEAM_STAFFING_PACK",
+      "discouraged_classification": "DISCOURAGED",
+      "discouraged_codes": [
+        "W-DISCOURAGED-RO-MODERATOR",
+        "W-DISCOURAGED-CUSTODIAN-ANALYST"
+      ],
+      "conditional_requirement_keys": [
+        "evidence_separation_documented",
+        "explicit_additional_appointment"
+      ],
+      "missing_appointment_states": [
+        "UNASSIGNED",
+        "DEFERRED",
+        "REJECTED"
+      ],
+      "fields": [
+        "roles",
+        "appointment_states",
+        "hard_incompatibilities",
+        "discouraged_combinations",
+        "conditional_combinations",
+        "state_requirements",
+        "requirement_codes",
+        "missing_appointment_states",
+        "accepted_formal_states"
+      ]
+    },
+    "v2": {
+      "version": "2.0",
+      "source": "M001_ROLE_ASSIGNMENT_DECISION_PACK, M001_TEAM_STAFFING_PACK, M001_ENGINE_INDEPENDENT_AUDIT defect register",
+      "discouraged_classification": "NOT_RECOMMENDED",
+      "discouraged_codes": [
+        "E-DISCOURAGED-RO-MODERATOR",
+        "E-DISCOURAGED-CUSTODIAN-ANALYST"
+      ],
+      "new_review_requirement_field": "product_owner_combination_review",
+      "conditional_requirement_keys": [
+        "evidence_separation",
+        "explicit_additional_appointment"
+      ],
+      "formal_appointment_states": [
+        "FORMALLY_APPOINTED"
+      ],
+      "missing_appointment_states": [
+        "UNASSIGNED",
+        "PROPOSED",
+        "ACCEPTED_IN_CONVERSATION",
+        "CANDIDATE_ACCEPTED",
+        "REJECTED",
+        "DEFERRED"
+      ],
+      "new_fields": [
+        "formal_appointment_states",
+        "review_requirement",
+        "evidence_types",
+        "evidence_fields",
+        "verification_statuses",
+        "timestamp_fields",
+        "require_topology_approved_for_stage_b",
+        "require_combination_approval_for_multi_role",
+        "stage_b_dimensions"
+      ],
+      "removed_fields": [
+        "state_requirements",
+        "requirement_codes",
+        "accepted_formal_states",
+        "per-combination message"
+      ]
+    },
+    "authoritative_source": {
+      "charter": "M001_ROLE_ASSIGNMENT_DECISION_PACK/M001_RESEARCH_ROLE_CHARTER.md lines 14-25: 'Not recommended' (RO+M, DC+A), 'Unacceptable' (M+A, M+DC), 'Acceptable with documentation' (M+N), 'Acceptable only if explicitly appointed' (RO+CS), and 'One person may hold multiple roles only where explicitly documented by the Product Owner.'",
+      "staffing_pack": "M001_TEAM_STAFFING_PACK/M001_MINIMUM_TEAM_STAFFING_MODELS.md lines 9-18 uses UNACCEPTABLE / NOT RECOMMENDED / 'Conditionally acceptable with documented evidence separation' / 'explicit appointment'; line 32 requires written evidence-separation procedure.",
+      "assessment": [
+        "V1's DISCOURAGED wording was not the authoritative wording; V2's NOT_RECOMMENDED matches the packs, but V2 changed advisory 'not recommended' into a blocking error (per audit-register correction, not per the packs).",
+        "V2's source field now lists the audit defect register as a policy source - remediation provenance is self-referential rather than purely governance-authoritative.",
+        "No override mechanism appears in authoritative source; V2 invents none for hard incompatibilities.",
+        "V2 invents a precise machine schema for 'Product Owner combination review': exact sorted role set, outcome APPROVED, product_owner_approved=true, non-empty rationale, timezone-aware decision_timestamp, and a COMBINATION_REVIEW evidence record with source_ref, 64-hex content_hash, recording_authority, verification_status VERIFIED and subject literally 'candidate:PAIRKEY'. Authoritative source only says 'explicitly documented by the Product Owner'.",
+        "Several V2 policy fields are declarative only and are never read by validator.py: missing_appointment_states, require_combination_approval_for_multi_role, evidence_fields, timestamp_fields, review_requirement. The engine reads discouraged_combinations[].code but not its classification string. Changing these policy values would not change engine behaviour."
+      ]
+    }
+  },
+  "residual_observations": [
+    {
+      "id": "R-1",
+      "severity": "MEDIUM",
+      "title": "evidence_check() ERRORs do not flip evidence_integrity dimension",
+      "evidence": "source lines 217-246 append Issue('ERROR', ..., 'evidence_integrity', ...) without calling fail(); lines 279-282 are the only dimension setter. Demonstrated: forged combination evidence id -> E-EVIDENCE-UNKNOWN, evidence_integrity=PASS, blocking_error_count=1; bad content hash -> E-EVIDENCE-HASH, evidence_integrity=PASS. stage_b_role_ready stays False because line 452 requires 'not issues'.",
+      "impact": "Machine consumers reading the dimensions object alone can be misled; only stage_b_role_ready / issues are trustworthy."
+    },
+    {
+      "id": "R-2",
+      "severity": "LOW",
+      "title": "Policy is partly inert / self-referential source",
+      "evidence": "grep of V2 validator.py found no use of missing_appointment_states, require_combination_approval_for_multi_role, evidence_fields, timestamp_fields or review_requirement; classification strings are not read; policy source field includes the audit defect register.",
+      "impact": "Policy-version changes may not be enforced; authoritative provenance is mixed."
+    },
+    {
+      "id": "R-3",
+      "severity": "LOW",
+      "title": "Discouraged-block suppression by any matching approval record",
+      "evidence": "line 433 suppresses E-DISCOURAGED-* when approval_map has a record for the exact key, even if outcome=REJECTED. Verified probe: E-COMBINATION-APPROVAL-REJECTED is emitted instead, product_owner_combination_approval=FAIL, stage_b=False.",
+      "impact": "Specific E-DISCOURAGED code is not a reliable signal on its own; no security regression because another blocking error fires."
+    },
+    {
+      "id": "R-4",
+      "severity": "INFO",
+      "title": "Hard incompatibilities are genuinely unoverridable",
+      "evidence": "lines 429-431 emit E-HARD-* unconditionally when the pair is held, independent of ca. Verified with fully valid approvals for MOD+ANALYST and MOD+DATA_CUSTODIAN: both E-HARD-* emitted, role_compatibility=FAIL, stage_b=False. No override field exists in policy V2 or in the V2 schema.",
+      "impact": "Positive confirmation, not a defect."
+    }
+  ]
+}

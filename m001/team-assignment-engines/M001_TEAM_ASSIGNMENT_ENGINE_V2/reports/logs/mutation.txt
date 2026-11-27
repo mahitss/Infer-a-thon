@@ -1,0 +1,25 @@
+COMMAND: C:\Users\pc\AppData\Local\Programs\Python\Python313\python.exe tests/mutation/mutation_harness.py
+CWD: C:\Users\pc\AppData\Local\Temp\opencode\M001_TEAM_ASSIGNMENT_ENGINE_V2
+EXIT: 0
+--- STDOUT ---
+BASELINE_EXIT 0
+DETECTED 16/16
+DETECTED M01_remove_hard_MA exit=1
+DETECTED M02_remove_hard_MDC exit=1
+DETECTED M03_ignore_evidence_separation exit=1
+DETECTED M04_ignore_combination_approval exit=1
+DETECTED M05_promote_conversation_to_formal exit=1
+DETECTED M06_ignore_po_approval exit=1
+DETECTED M07_ignore_candidate_acceptance exit=1
+DETECTED M08_ignore_onboarding exit=1
+DETECTED M09_allow_discouraged_without_review exit=1
+DETECTED M10_allow_unknown_candidate exit=1
+DETECTED M11_allow_broken_evidence exit=1
+DETECTED M12_allow_naive_timestamp exit=1
+DETECTED M13_ignore_topology_approval exit=1
+DETECTED M14_allow_duplicate_candidate exit=1
+DETECTED M15_ignore_authorization_state exit=1
+DETECTED M16_allow_hard_incompatibility exit=1
+
+--- STDERR ---
+

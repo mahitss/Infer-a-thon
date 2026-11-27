@@ -1,0 +1,429 @@
+{
+  "audit": {
+    "mission": "M001-TEAM-009",
+    "task": "Independent regression and mutation evidence for V2.2",
+    "role": "independent auditor",
+    "date": "2026-11-28",
+    "method": "Commands executed independently with subprocess/PowerShell; V2.2's own reports were treated as untrusted claims and regenerated where applicable."
+  },
+  "environment": {
+    "python_version": "3.13.5",
+    "python_executable": "C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "env": "PYTHONDONTWRITEBYTECODE=1 inherited by every command and subprocess",
+    "installs": "none",
+    "network": "none",
+    "v22_root": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2",
+    "audit_root": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2_TARGETED_AUDIT",
+    "disposable_root": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2_TARGETED_AUDIT\\tests\\disposable_v22"
+  },
+  "boundary_handling": {
+    "read_only_from_v22_root": [
+      "unittest discover (adversarial, regression, v2_1_high_findings, v2_2_blockers)",
+      "canary_v22.py --root .",
+      "all seven CLI checks",
+      "determinism two-cwd check"
+    ],
+    "relocated_to_disposable_copy": [
+      "tests/independent/independent_adversarial_v21.py",
+      "tests/independent/refined_cases_v21.py (supporting evidence for case classification)",
+      "tests/mutation/mutation_harness_v22.py"
+    ],
+    "reason": "Inspection of source shows these three runners write into their own ROOT/parents[2]: two write tests/results/*.json and the mutation harness deletes/recreates tests/mutation/mutants and copies source trees. Byte-identical copies of engine, policy, schemas, tests, cli and state (572 files) were placed in tests/disposable_v22 and the scripts were run there. The independent scripts still hardcode V2 = the real preserved V2.2 root, so the engine and fixtures under test remain the real V2.2 files; only the writes were redirected.",
+    "v22_written": false
+  },
+  "runs": {
+    "1_adversarial": {
+      "command": "python -m unittest discover -s tests/adversarial -p 'test_*.py' -v",
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2",
+      "exit_code": 0,
+      "stdout_tail": [],
+      "stdout_lines": 0,
+      "stderr_stream": "unittest verbose output is written to stderr",
+      "stderr_full_lines": 29,
+      "stderr_tail": [
+        "test_adv22_no_authorization_inference (test_audit_regression.AuditRegression.test_adv22_no_authorization_inference) ... ok",
+        "test_adv23_different_combination_approval (test_audit_regression.AuditRegression.test_adv23_different_combination_approval) ... ok",
+        "test_adv24_deterministic (test_audit_regression.AuditRegression.test_adv24_deterministic) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 24 tests in 1.296s",
+        "",
+        "OK"
+      ],
+      "stderr_has_traceback": false,
+      "tests_executed": 24,
+      "tests_passed": 24,
+      "tests_failed": 0,
+      "claim_check": "V2.2 claim of 24 checks confirmed"
+    },
+    "2_regression": {
+      "command": "python -m unittest discover -s tests/regression -p 'test_*.py' -v",
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2",
+      "exit_code": 0,
+      "stdout_tail": [],
+      "stdout_lines": 0,
+      "stderr_full_lines": 71,
+      "stderr_tail": [
+        "test_naive_timestamp_rejected (test_v2_regression.Regression.test_naive_timestamp_rejected) ... ok",
+        "test_separate_dimensions_present (test_v2_regression.Regression.test_separate_dimensions_present) ... ok",
+        "test_valid_four_five_six_stage_b_ready (test_v2_regression.Regression.test_valid_four_five_six_stage_b_ready) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 66 tests in 28.490s",
+        "",
+        "OK"
+      ],
+      "stderr_has_traceback": false,
+      "tests_executed": 66,
+      "tests_passed": 66,
+      "tests_failed": 0,
+      "claim_check": "V2.2 claim of 66 tests confirmed (53 original + 13 blockers)"
+    },
+    "3_independent_adversarial_50_case": {
+      "command": "python tests/independent/independent_adversarial_v21.py",
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2_TARGETED_AUDIT\\tests\\disposable_v22",
+      "exit_code": 0,
+      "stdout": [
+        "TOTAL 50 SECURE 43 DEFECT 7",
+        "DEFECT COMB-03 Approval roles duplicated within the same record | observed: []",
+        "DEFECT COMB-12 One valid approval reused for an unrelated second candidate combination | observed: []",
+        "DEFECT EVID-03 Source hash does not match the referenced source (format still valid) | observed: []",
+        "DEFECT EVID-06 Evidence timestamp predates its claimed source/decision | observed: []",
+        "DEFECT ST-02 Formal appointment references obsolete acceptance timestamp | observed: []",
+        "DEFECT ID-02 Unicode-equivalent candidate identifiers coexist | observed: []",
+        "DEFECT ID-07 One human split into two synthetic identities to avoid combination approval | observed: ['E-ACCEPTANCE-APPOINTMENT', 'E-COMBINATION-APPROVAL-MISSING', 'E-EVIDENCE-SUBJECT']",
+        "wrote ...\\tests\\disposable_v22\\tests\\results\\independent_adversarial_results.json"
+      ],
+      "stderr": "",
+      "secure": 43,
+      "defects": 7,
+      "generated_result_sha256": "BAD4DB5169A37CC3C98BDF9EFB63EF7F93FCB7D238E5DB1216AA7F53ACF3B900",
+      "v22_claim_result_sha256": "BAD4DB5169A37CC3C98BDF9EFB63EF7F93FCB7D238E5DB1216AA7F53ACF3B900",
+      "byte_identical_to_v22_claim": true,
+      "defect_ids": ["COMB-03", "COMB-12", "EVID-03", "EVID-06", "ST-02", "ID-02", "ID-07"]
+    },
+    "4_v2_1_high_findings": {
+      "command": "python -m unittest discover -s tests/regression -p 'test_v2_1_high_findings.py' -v",
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2",
+      "exit_code": 0,
+      "stdout_tail": [],
+      "stderr_full_lines": 27,
+      "stderr_tail": [
+        "test_20_assignment_blocked_after_schema_failure (test_v2_1_high_findings.V21HighFindings.test_20_assignment_blocked_after_schema_failure) ... ok",
+        "test_21_stable_cli_errors_without_tracebacks (test_v2_1_high_findings.V21HighFindings.test_21_stable_cli_errors_without_tracebacks) ... ok",
+        "test_22_valid_matching_evidence_passes (test_v2_1_high_findings.V21HighFindings.test_22_valid_matching_evidence_passes) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 22 tests in 9.400s",
+        "",
+        "OK"
+      ],
+      "stderr_has_traceback": false,
+      "tests_executed": 22,
+      "tests_passed": 22,
+      "tests_failed": 0
+    },
+    "5_v2_2_blockers": {
+      "command": "python -m unittest discover -s tests/regression -p 'test_v2_2_blockers.py' -v",
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2",
+      "exit_code": 0,
+      "stdout_tail": [],
+      "stderr_full_lines": 18,
+      "stderr_tail": [
+        "test_11_valid_ordering_still_passes (test_v2_2_blockers.V22Blockers.test_11_valid_ordering_still_passes) ... ok",
+        "test_12_whitespace_candidate_reference (test_v2_2_blockers.V22Blockers.test_12_whitespace_candidate_reference) ... ok",
+        "test_13_deterministic_repeated_execution (test_v2_2_blockers.V22Blockers.test_13_deterministic_repeated_execution) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 13 tests in 2.441s",
+        "",
+        "OK"
+      ],
+      "stderr_has_traceback": false,
+      "tests_executed": 13,
+      "tests_passed": 13,
+      "tests_failed": 0
+    },
+    "6a_canary": {
+      "command": "python tests/mutation/canary_v22.py --root .",
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2",
+      "exit_code": 0,
+      "stdout_tail": [
+        "PASS B00 valid state passes | ",
+        "PASS B01 invisible basis rejected | ",
+        "PASS B02 invisible rationale rejected | ",
+        "PASS B03 meaningful ZWJ emoji text accepted | ",
+        "PASS B04 whitespace escalation contact rejected | ",
+        "PASS B05 duplicate evidence rejected | ",
+        "PASS B06 combination before acceptance rejected | ",
+        "PASS B07 whitespace candidate ref rejected | ",
+        "CANARY_PASS 8/8"
+      ],
+      "stderr": "",
+      "canary_pass": "8/8"
+    },
+    "6b_mutation_harness": {
+      "command": "python tests/mutation/mutation_harness_v22.py",
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2_TARGETED_AUDIT\\tests\\disposable_v22",
+      "exit_code": 0,
+      "stdout_tail": [
+        "BASELINE_EXIT 0",
+        "DETECTED 5/5",
+        "DETECTED M1_F007_predicate_reverted exit=1",
+        "DETECTED M2_N04_escalation_check_removed exit=1",
+        "DETECTED M3_N08_duplicate_check_removed exit=1",
+        "DETECTED M4_N11_ordering_check_removed exit=1",
+        "DETECTED M5_N12_ref_check_removed exit=1"
+      ],
+      "stderr": "",
+      "introduced": 5,
+      "detected": 5,
+      "survived": 0,
+      "generated_result_sha256": "9A82B967D5993B6216609DAA5D70B4A47A713DC129CEBFCFDEDF209F3F679EC9",
+      "v22_claim_result_sha256": "9A82B967D5993B6216609DAA5D70B4A47A713DC129CEBFCFDEDF209F3F679EC9",
+      "byte_identical_to_v22_claim": true
+    },
+    "supporting_refined_cases": {
+      "command": "python tests/independent/refined_cases_v21.py",
+      "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2_TARGETED_AUDIT\\tests\\disposable_v22",
+      "exit_code": 0,
+      "stderr": "",
+      "cases_reproduced": 14,
+      "generated_result_sha256": "F6F2069194E0D47F6D46B43828511972CDABC418181D037FA1ADD78CF38009E6",
+      "v22_claim_result_sha256": "F6F2069194E0D47F6D46B43828511972CDABC418181D037FA1ADD78CF38009E6",
+      "byte_identical_to_v22_claim": true,
+      "note": "Not explicitly assigned; executed as supporting evidence to classify the seven open corpus cases."
+    }
+  },
+  "cli_checks": {
+    "command_template": "python cli/validate.py --state <state>",
+    "cwd": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2",
+    "all_stderr_empty": true,
+    "all_traceback_free": true,
+    "cases": [
+      {
+        "name": "current_state",
+        "command": "python cli/validate.py --state state/current_assignment_state.json",
+        "expected_exit": 1,
+        "observed_exit": 1,
+        "stdout_tail": [
+          "ERROR E-APPOINTMENT-MISSING [dimension=role_assignment_completeness, role=RESEARCH_OWNER]: Role is not FORMALLY_APPOINTED",
+          "ERROR E-TOPOLOGY-UNAPPROVED [dimension=structural_topology_validity]: Topology is PROPOSED; Stage B role readiness blocked",
+          "END REPORT"
+        ],
+        "stderr": "",
+        "traceback": false,
+        "verdict": "PASS"
+      },
+      {
+        "name": "valid_four",
+        "command": "python cli/validate.py --state tests/fixtures/valid_four_person.json",
+        "expected_exit": 0,
+        "observed_exit": 0,
+        "stdout_tail": ["Blocking errors: 0", "Warnings: 0", "END REPORT"],
+        "stderr": "",
+        "traceback": false,
+        "verdict": "PASS"
+      },
+      {
+        "name": "schema_invalid_assignment",
+        "command": "python cli/validate.py --state tests/fixtures/schema_invalid_assignment.json",
+        "expected_exit": 1,
+        "observed_exit": 1,
+        "stdout_tail": [
+          "ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: roles: 'RESEARCH_OWNER' is a required property",
+          "ERROR E-SCHEMA [dimension=structural_topology_validity]: E-SCHEMA: topology: 'APPROVED' is not of type 'object'",
+          "END REPORT"
+        ],
+        "stderr": "",
+        "traceback": false,
+        "verdict": "PASS"
+      },
+      {
+        "name": "malformed",
+        "command": "python cli/validate.py --state tests/fixtures/malformed.json",
+        "expected_exit": 2,
+        "observed_exit": 2,
+        "stdout_tail": [
+          "Warnings: 0",
+          "ERROR E-JSON-INVALID [dimension=input]: E-JSON-INVALID: malformed JSON",
+          "END REPORT"
+        ],
+        "stderr": "",
+        "traceback": false,
+        "verdict": "PASS"
+      },
+      {
+        "name": "invalid_utf8",
+        "command": "python cli/validate.py --state tests/fixtures/invalid_utf8.bin",
+        "expected_exit": 2,
+        "observed_exit": 2,
+        "stdout_tail": [
+          "Warnings: 0",
+          "ERROR E-ENCODING-INVALID [dimension=input]: E-ENCODING-INVALID: invalid UTF-8",
+          "END REPORT"
+        ],
+        "stderr": "",
+        "traceback": false,
+        "verdict": "PASS"
+      },
+      {
+        "name": "duplicate_json_key",
+        "command": "python cli/validate.py --state tests/fixtures/duplicate_json_key.json",
+        "expected_exit": 2,
+        "observed_exit": 2,
+        "stdout_tail": [
+          "Warnings: 0",
+          "ERROR E-DUPLICATE-JSON-KEY [dimension=input]: E-DUPLICATE-JSON-KEY: schema_version",
+          "END REPORT"
+        ],
+        "stderr": "",
+        "traceback": false,
+        "verdict": "PASS"
+      },
+      {
+        "name": "missing_file",
+        "command": "python cli/validate.py --state tests/fixtures/does_not_exist.json",
+        "expected_exit": 2,
+        "observed_exit": 2,
+        "stdout_tail": [
+          "Warnings: 0",
+          "ERROR E-FILE-NOT-FOUND [dimension=input]: E-FILE-NOT-FOUND: FileNotFoundError",
+          "END REPORT"
+        ],
+        "stderr": "",
+        "traceback": false,
+        "verdict": "PASS"
+      }
+    ]
+  },
+  "determinism": {
+    "command": "python C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2\\cli\\validate.py --state C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2\\state\\current_assignment_state.json",
+    "cwd_1": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2",
+    "cwd_2": "C:\\Users\\pc\\AppData\\Local\\Temp",
+    "exit_1": 1,
+    "exit_2": 1,
+    "stdout_equal": true,
+    "stderr_equal": true,
+    "exit_equal": true,
+    "stdout_chars": 1300,
+    "stderr_1": "",
+    "stderr_2": "",
+    "verdict": "PASS",
+    "note": "Absolute script and state paths used in both cwds; no harness path error."
+  },
+  "open_corpus_cases": [
+    {
+      "id": "COMB-03",
+      "matrix_label": "duplicate approval roles",
+      "description": "Approval roles duplicated within the same record",
+      "mutation": "combination_approvals[0].roles = ['RESEARCH_OWNER','CONTINUE_STOP_OWNER','CONTINUE_STOP_OWNER']",
+      "expected_by_corpus": {"expectation": "BLOCK", "codes": ["E-COMBINATION-APPROVAL-DUPLICATE"]},
+      "observed": {"codes": [], "stage_b_role_ready": true, "blocking_error_count": 0, "all_dimensions": "PASS"},
+      "evaluator_verdict": "DEFECT",
+      "classification": "expectation artifact",
+      "evidence": "pair_key() canonicalises roles with sorted(set(roles)), so the duplicate collapses to the legitimate 'CONTINUE_STOP_OWNER+RESEARCH_OWNER' key. E-COMBINATION-APPROVAL-DUPLICATE is not implemented anywhere in engine/validator.py, policy or schema. The engine intentionally uses set semantics for approvals.",
+      "caveat": "A stricter integrity rule could reject malformed approval records, but no documented contract requires it; as executed this is not a demonstrated policy violation."
+    },
+    {
+      "id": "COMB-12",
+      "matrix_label": "approval reuse for unrelated combinations",
+      "description": "One valid approval reused for an unrelated second candidate combination",
+      "mutation": "Adds candidate C-P5 and appends a deepcopy of combination_approvals[0]",
+      "expected_by_corpus": {"expectation": "BLOCK", "codes": ["E-COMBINATION-APPROVAL-MISSING"]},
+      "observed": {"codes": [], "stage_b_role_ready": true, "blocking_error_count": 0, "all_dimensions": "PASS"},
+      "evaluator_verdict": "DEFECT",
+      "classification": "expectation artifact",
+      "evidence": "The appended approval deepcopy retains candidate_ref='C-P1'; the new C-P5 holds no roles, so no approval is required for it and C-P1's exact approval remains. The described 'unrelated second candidate combination' was never constructed. The refined variant (candidate_ref changed to C-P2) does block with E-COMBINATION-APPROVAL-MISSING, E-COND-EXPLICIT-CS and E-EVIDENCE-SUBJECT.",
+      "caveat": "Inconclusive as to the real attack; the corpus mutation is a construction defect rather than a genuine residual."
+    },
+    {
+      "id": "EVID-03",
+      "matrix_label": "source-hash correspondence",
+      "description": "Source hash does not match the referenced source (format still valid)",
+      "mutation": "evidence['e-acc-C-P1-RESEARCH_OWNER'].content_hash = '0'*64",
+      "expected_by_corpus": {"expectation": "BLOCK", "codes": ["E-EVIDENCE-HASH"]},
+      "observed": {"codes": [], "stage_b_role_ready": true, "blocking_error_count": 0, "all_dimensions": "PASS"},
+      "evaluator_verdict": "DEFECT",
+      "classification": "genuine residual",
+      "evidence": "evidence_check() validates the hash only as re.fullmatch(r'[0-9a-fA-F]{64}', str(h)). '0'*64 is well-formed, so it is accepted; E-EVIDENCE-HASH is emitted only for format-invalid hashes. No recomputation against referenced source content is performed, and no source bytes exist in the state to compare.",
+      "caveat": "The expected code name exists only for format errors, so the corpus's specific expectation cannot be satisfied by the current data model; the underlying absence of hash-to-content verification is the residual."
+    },
+    {
+      "id": "EVID-06",
+      "matrix_label": "evidence timestamp vs source",
+      "description": "Evidence timestamp predates its claimed source/decision",
+      "mutation": "evidence['e-form-C-P1-RESEARCH_OWNER'].timestamp = '1999-01-01T00:00:00+00:00'",
+      "expected_by_corpus": {"expectation": "BLOCK", "codes": ["E-EVIDENCE-STALE"]},
+      "observed": {"codes": [], "stage_b_role_ready": true, "blocking_error_count": 0, "all_dimensions": "PASS"},
+      "evaluator_verdict": "DEFECT",
+      "classification": "genuine residual",
+      "evidence": "Evidence timestamps receive only valid_timestamp() (ISO-8601 plus timezone) checking. There is no E-EVIDENCE-STALE code and no ordering check between an evidence record's timestamp and the appointment/decision timeline (the engine only orders candidate_accepted_at <= product_owner_approved_at <= formal_appointed_at).",
+      "caveat": "Verification would need an authoritative source/decision timestamp that the state model does not provide; as executed, the stale evidence is accepted."
+    },
+    {
+      "id": "ST-02",
+      "matrix_label": "stale acceptance",
+      "description": "Formal appointment references obsolete acceptance timestamp",
+      "mutation": "roles['RESEARCH_OWNER'].acceptance.candidate_accepted_at = '2020-01-01T00:00:00+00:00'",
+      "expected_by_corpus": {"expectation": "BLOCK_ORDER", "codes": ["E-TIMESTAMP-ORDER"]},
+      "observed": {"codes": [], "stage_b_role_ready": true, "blocking_error_count": 0, "all_dimensions": "PASS"},
+      "evaluator_verdict": "DEFECT",
+      "classification": "expectation artifact",
+      "evidence": "The engine's E-TIMESTAMP-ORDER check verifies only candidate_accepted_at <= product_owner_approved_at <= formal_appointed_at. Changing acceptance to 2020 while PO/formal remain in 2026 preserves that order, so the check correctly does not fire. No freshness/absence check is part of the engine's documented contract, and no independent timestamp exists to compare against.",
+      "caveat": "If a freshness policy is actually required, that would be an unimplemented feature rather than a failure of the implemented ordering rule; the refined case is explicitly labelled 'ordering still valid'."
+    },
+    {
+      "id": "ID-02",
+      "matrix_label": "Unicode-equivalent identifiers",
+      "description": "Unicode-equivalent candidate identifiers coexist",
+      "mutation": "Adds candidate registry key 'C-P１' (fullwidth digit) alongside 'C-P1'",
+      "expected_by_corpus": {"expectation": "BLOCK", "codes": ["E-CANDIDATE-NORMALIZATION"]},
+      "observed": {"codes": [], "stage_b_role_ready": true, "blocking_error_count": 0, "all_dimensions": "PASS"},
+      "evaluator_verdict": "DEFECT",
+      "classification": "genuine residual",
+      "evidence": "candidate_registry_check() compares refs by exact equality only; there is no unicodedata.normalize-based collision detection and no E-CANDIDATE-NORMALIZATION code in the engine. Two visually equivalent identities ('C-P1' and 'C-P１') coexist in the registry and Stage B remains ready.",
+      "caveat": "The added candidate is not referenced by any role in this case, so no concrete conflict is exercised; the identity-collision check itself is nevertheless absent."
+    },
+    {
+      "id": "ID-07",
+      "matrix_label": "split identities",
+      "description": "One human split into two synthetic identities to avoid combination approval",
+      "mutation": "_split_identity(): C-P1a and C-P1b replace C-P1 for two roles; combination_approvals emptied",
+      "expected_by_corpus": {"expectation": "BLOCK", "codes": ["E-IDENTITY-ALIAS"]},
+      "observed": {"codes": ["E-ACCEPTANCE-APPOINTMENT", "E-COMBINATION-APPROVAL-MISSING", "E-EVIDENCE-SUBJECT"], "stage_b_role_ready": false, "blocking_error_count": 11, "dimensions": {"product_owner_combination_approval": "FAIL", "others": "PASS"}},
+      "evaluator_verdict": "DEFECT",
+      "classification": "inconclusive",
+      "evidence": "The state is blocked (ready=False, 11 errors) but the blocking comes from stale evidence bindings and an approval gap left by the mutation, not from any identity-alias detection: E-IDENTITY-ALIAS does not exist in the engine. The corpus evaluator marks DEFECT solely because its expected code is absent.",
+      "caveat": "Cannot conclude the alias-splitting attack is remediated: if an attacker rewrote all evidence/appointment references consistently, no alias check would stop it. Observed block is incidental to an incompletely constructed mutation."
+    }
+  ],
+  "preservation": {
+    "baseline_source": "C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_2_TARGETED_AUDIT\\evidence\\BASELINE_START.json",
+    "hash_method": "SHA-256 of every file, excluding __pycache__, mutants, independent_mutants, disposable_v2, disposable_v21 and *.pyc, matching capture_baseline.py",
+    "before": {"tracked_files": 132, "missing": 0, "added": 0, "changed": 0, "state_sha256": "E6DDC93C94506BA499878D642CBD29E71E1930409F4FBC9498FAE6A3009D094F", "validator_sha256": "BAA3634DF3A82F9ECFF158552F263843F97372DADBC16E0D65D6C6D884BC5B5F"},
+    "after": {"tracked_files": 132, "missing": 0, "added": 0, "changed": 0, "state_sha256": "E6DDC93C94506BA499878D642CBD29E71E1930409F4FBC9498FAE6A3009D094F", "validator_sha256": "BAA3634DF3A82F9ECFF158552F263843F97372DADBC16E0D65D6C6D884BC5B5F"},
+    "v22_result_files_unchanged": {
+      "tests/results/independent_adversarial_results.json": "BAD4DB5169A37CC3C98BDF9EFB63EF7F93FCB7D238E5DB1216AA7F53ACF3B900",
+      "tests/results/mutation_results.json": "9A82B967D5993B6216609DAA5D70B4A47A713DC129CEBFCFDEDF209F3F679EC9",
+      "tests/results/refined_case_results.json": "F6F2069194E0D47F6D46B43828511972CDABC418181D037FA1ADD78CF38009E6"
+    },
+    "git_repo": {"head": "30db9a1929bbccf73a538f6657cb10f49758688e", "head_matches_baseline": true, "status_porcelain": ""},
+    "no_pyc_written": true
+  },
+  "tests_not_executed": [
+    "None of the assigned suites were skipped. The three writing runners (independent_adversarial_v21.py, mutation_harness_v22.py and the supporting refined_cases_v21.py) were not run verbatim with cwd=V2.2 by design; they were run from tests/disposable_v22 so their writes could not touch the preserved V2.2 workspace. The engine under test remained the real V2.2 engine."
+  ],
+  "summary": {
+    "adversarial_tests": "24/24 pass",
+    "regression_tests": "66/66 pass",
+    "independent_corpus": "43 secure / 7 defect (7 open cases classified individually)",
+    "v2_1_high_findings": "22/22 pass",
+    "v2_2_blockers": "13/13 pass",
+    "canary": "8/8 pass",
+    "mutation": "5/5 detected, 0 survived",
+    "cli": "7/7 expected exit codes, empty stderr, no Traceback",
+    "determinism": "byte-identical across two cwds",
+    "preservation": "V2.2 unchanged: 132 files, 0 changed before and after"
+  }
+}

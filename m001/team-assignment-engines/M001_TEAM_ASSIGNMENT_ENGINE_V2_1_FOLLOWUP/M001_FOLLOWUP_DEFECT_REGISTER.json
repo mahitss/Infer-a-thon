@@ -1,0 +1,55 @@
+{
+  "package": "M001_V2_1_FOCUSED_FOLLOWUP_DEFECTS",
+  "mission": "M001-TEAM-007",
+  "date": "2026-11-27",
+  "canonical_source": "V2_REAUDIT/M001_FINAL_DEFECT_REGISTER.json (unchanged)",
+  "verdict": "CONDITIONAL PASS — HIGH FINDINGS CLOSED, RESIDUAL BLOCKERS REMAIN",
+  "high_findings": [
+    {"id": "N-01", "severity": "HIGH", "status": "INDEPENDENTLY_CLOSED",
+     "evidence": "V2 ready=True on whitespace basis vs V2.1 E-DECISION-EVIDENCE-EMPTY; ASCII/Unicode/null/non-string all blocked; meaningful Unicode still passes; no placeholder substituted"},
+    {"id": "N-02", "severity": "HIGH", "status": "INDEPENDENTLY_CLOSED",
+     "evidence": "whitespace/Unicode/null/non-string rationale blocked; exact role set enforced; verbatim and whitespace-padded reuse rejected with E-COMBINATION-RATIONALE-REUSED"},
+    {"id": "N-03", "severity": "HIGH", "status": "INDEPENDENTLY_CLOSED",
+     "evidence": "candidate/role/appointment/decision/evidence-id/type/status/timestamp/authority binding enforced; revoked and key-id-mismatch blocked; valid role-bound evidence passes"},
+    {"id": "N-15", "severity": "HIGH", "status": "INDEPENDENTLY_CLOSED",
+     "evidence": "V2 AttributeError and _WrappedReferencingError reproduced; V2.1 returns controlled E-SCHEMA/E-SCHEMA-REFERENCE with all dimensions FAIL; injected RuntimeError propagated"}
+  ],
+  "new_findings": [
+    {
+      "id": "F-007", "severity": "MEDIUM", "classification": "A", "status": "OPEN",
+      "title": "Invisible Unicode format characters satisfy meaningful_text()",
+      "component": "engine/validator.py meaningful_text()",
+      "reproduction": "approval.basis = U+200B x5 (also U+200E, U+2060)",
+      "observed": "V2.1 ready=True, zero issues; str.strip() does not remove format characters",
+      "relation": "residual variant of N-01/N-02 control intent; canonical HIGH not reopened",
+      "affects_stage_b_readiness": true
+    },
+    {
+      "id": "F-008", "severity": "LOW", "classification": "D", "status": "OPEN",
+      "title": "SchemaError from invalid schema structure is labelled E-SCHEMA-REFERENCE",
+      "component": "engine/validator.py structural_schema_errors()",
+      "reproduction": "schema {'type': 123, 'required': 'not-an-array'}",
+      "observed": "controlled but mislabelled code; no traceback; readiness NO",
+      "affects_stage_b_readiness": false
+    },
+    {
+      "id": "F-009", "severity": "LOW", "classification": "E", "status": "OPEN",
+      "title": "Rationale reuse guard rejects identical legitimate boilerplate across unrelated decisions",
+      "component": "engine/validator.py combination approvals used_rationales",
+      "reproduction": "copy an otherwise-valid approval with unchanged rationale to a different candidate",
+      "observed": "E-COMBINATION-RATIONALE-REUSED; deliberate strictness change requiring downstream compatibility decision",
+      "affects_stage_b_readiness": false
+    }
+  ],
+  "lower_severity": {
+    "total": 24, "medium": 17, "low": 7,
+    "classification_counts": {"A": 4, "B": 0, "C": 0, "D": 14, "E": 6},
+    "verified_closed": ["S-03"],
+    "stage_b_blockers": ["N-04", "N-08", "N-11", "N-12", "F-007"],
+    "recruitment_blockers": [],
+    "field_validation_blockers": [],
+    "note": "Full mapping in M001_LOWER_SEVERITY_RISK_TRIAGE.md and analysis/lower_severity_triage.json"
+  },
+  "not_reproduced": [],
+  "preservation": "V1, V2, prior audit, V2.1 and git repository unchanged against BASELINE_START.json"
+}

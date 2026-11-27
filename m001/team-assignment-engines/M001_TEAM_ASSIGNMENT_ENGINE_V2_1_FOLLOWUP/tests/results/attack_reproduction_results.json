@@ -1,0 +1,1978 @@
+{
+  "N01_basis_ascii_ws": {
+    "basis_value_repr": "'  \\t\\n '",
+    "notes": [
+      "ASCII space/tab/newline basis; V2 uses truthiness, V2.1 uses meaningful_text()"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-DECISION-EVIDENCE-EMPTY": 1
+      },
+      "codes": [
+        "E-DECISION-EVIDENCE-EMPTY"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-DECISION-EVIDENCE-EMPTY",
+          "dimension": "formal_appointment_validity",
+          "message": "Approval basis is missing, non-string or contains only whitespace",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N01_basis_meaningful": {
+    "basis_value_repr": "'PO decision recorded 2026-11-27 for C-P1:RESEARCH_OWNER'",
+    "notes": [
+      "control: real basis must still pass in V2.1"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    }
+  },
+  "N01_basis_unicode_ws": {
+    "basis_value_repr": "'\\xa0\\u2003\\u3000'",
+    "notes": [
+      "NBSP + EM SPACE + IDEOGRAPHIC SPACE basis"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-DECISION-EVIDENCE-EMPTY": 1
+      },
+      "codes": [
+        "E-DECISION-EVIDENCE-EMPTY"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-DECISION-EVIDENCE-EMPTY",
+          "dimension": "formal_appointment_validity",
+          "message": "Approval basis is missing, non-string or contains only whitespace",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N01_basis_zero_width_space": {
+    "basis_value_repr": "'\\u200b'",
+    "notes": [
+      "residual probe: U+200B is not str.strip() whitespace"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    }
+  },
+  "N02_rationale_ascii_ws": {
+    "notes": [],
+    "rationale_values": [
+      "  \t\n ",
+      "SYNTHETIC_TEST_DATA explicit PO approval for exact combination C-P2:MODERATOR+NOTE_TAKER"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-COMBINATION-RATIONALE": 1
+      },
+      "codes": [
+        "E-COMBINATION-RATIONALE"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P1",
+          "code": "E-COMBINATION-RATIONALE",
+          "dimension": "product_owner_combination_approval",
+          "message": "Combination rationale is missing, non-string or contains only whitespace",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N02_rationale_reuse_exact": {
+    "notes": [
+      "copy approval[0] meaningful rationale verbatim into unrelated approval[1]"
+    ],
+    "rationale_values": [
+      "SYNTHETIC_TEST_DATA explicit PO approval for exact combination C-P1:CONTINUE_STOP_OWNER+RESEARCH_OWNER",
+      "SYNTHETIC_TEST_DATA explicit PO approval for exact combination C-P1:CONTINUE_STOP_OWNER+RESEARCH_OWNER"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-COMBINATION-RATIONALE-REUSED": 1
+      },
+      "codes": [
+        "E-COMBINATION-RATIONALE-REUSED"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P2",
+          "code": "E-COMBINATION-RATIONALE-REUSED",
+          "dimension": "product_owner_combination_approval",
+          "message": "Rationale reused from another combination decision",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N02_rationale_reuse_whitespace_padded": {
+    "notes": [
+      "V2.1 normalizes with ' '.join(split()) before reuse comparison"
+    ],
+    "rationale_values": [
+      "SYNTHETIC_TEST_DATA explicit PO approval for exact combination C-P1:CONTINUE_STOP_OWNER+RESEARCH_OWNER",
+      "  SYNTHETIC_TEST_DATA explicit PO approval for exact combination C-P1:CONTINUE_STOP_OWNER+RESEARCH_OWNER\t"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-COMBINATION-RATIONALE-REUSED": 1
+      },
+      "codes": [
+        "E-COMBINATION-RATIONALE-REUSED"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P2",
+          "code": "E-COMBINATION-RATIONALE-REUSED",
+          "dimension": "product_owner_combination_approval",
+          "message": "Rationale reused from another combination decision",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N02_rationale_unicode_ws": {
+    "notes": [],
+    "rationale_values": [
+      "  　",
+      "SYNTHETIC_TEST_DATA explicit PO approval for exact combination C-P2:MODERATOR+NOTE_TAKER"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-COMBINATION-RATIONALE": 1
+      },
+      "codes": [
+        "E-COMBINATION-RATIONALE"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P1",
+          "code": "E-COMBINATION-RATIONALE",
+          "dimension": "product_owner_combination_approval",
+          "message": "Combination rationale is missing, non-string or contains only whitespace",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N03_acceptance_decision_ref_reuse": {
+    "notes": [
+      "V2 baseline has no decision_ref field (not representable)"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-ACCEPTANCE-DECISION-REUSED": 1
+      },
+      "codes": [
+        "E-ACCEPTANCE-DECISION-REUSED"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-DECISION-REUSED",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance decision reference reused for another appointment",
+          "role": "CONTINUE_STOP_OWNER",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N03_acceptance_missing": {
+    "notes": [],
+    "v2": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-EVIDENCE-MISSING": 1
+      },
+      "codes": [
+        "E-EVIDENCE-MISSING"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-MISSING",
+          "dimension": "evidence_integrity",
+          "message": "Evidence reference is empty",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-EVIDENCE-MISSING": 1
+      },
+      "codes": [
+        "E-EVIDENCE-MISSING"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-MISSING",
+          "dimension": "evidence_integrity",
+          "message": "Evidence reference is empty or not a string",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N03_acceptance_other_appointment": {
+    "notes": [
+      "V2 baseline has no appointment_ref field (not representable)"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-ACCEPTANCE-APPOINTMENT": 1
+      },
+      "codes": [
+        "E-ACCEPTANCE-APPOINTMENT"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N03_acceptance_revoked": {
+    "notes": [
+      "V2 baseline has no revoked field (not representable)"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-EVIDENCE-REVOKED": 1
+      },
+      "codes": [
+        "E-EVIDENCE-REVOKED"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-REVOKED",
+          "dimension": "evidence_integrity",
+          "message": "Evidence is revoked: e-acc-C-P1-RESEARCH_OWNER",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N03_acceptance_unverified": {
+    "notes": [],
+    "v2": {
+      "blocking_error_count": 3,
+      "code_counts": {
+        "E-EVIDENCE-UNVERIFIED": 3
+      },
+      "codes": [
+        "E-EVIDENCE-UNVERIFIED"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-UNVERIFIED",
+          "dimension": "evidence_integrity",
+          "message": "Evidence not verified: e-acc-C-P1",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-UNVERIFIED",
+          "dimension": "evidence_integrity",
+          "message": "Evidence not verified: e-acc-C-P1",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-UNVERIFIED",
+          "dimension": "evidence_integrity",
+          "message": "Unverified evidence e-acc-C-P1",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 2,
+      "code_counts": {
+        "E-EVIDENCE-UNVERIFIED": 2
+      },
+      "codes": [
+        "E-EVIDENCE-UNVERIFIED"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-UNVERIFIED",
+          "dimension": "evidence_integrity",
+          "message": "Evidence not verified: e-acc-C-P1-RESEARCH_OWNER",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-UNVERIFIED",
+          "dimension": "evidence_integrity",
+          "message": "Unverified evidence e-acc-C-P1-RESEARCH_OWNER",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N03_acceptance_wrong_candidate": {
+    "notes": [],
+    "v2": {
+      "blocking_error_count": 2,
+      "code_counts": {
+        "E-EVIDENCE-SUBJECT": 2
+      },
+      "codes": [
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P1",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P1",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 2,
+      "code_counts": {
+        "E-ACCEPTANCE-APPOINTMENT": 1,
+        "E-EVIDENCE-SUBJECT": 1
+      },
+      "codes": [
+        "E-ACCEPTANCE-APPOINTMENT",
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P1-RESEARCH_OWNER",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N03_acceptance_wrong_role": {
+    "notes": [
+      "V2 baseline has no role field on acceptance evidence (not representable); V2.1 baseline has role=C-P1's role"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-ACCEPTANCE-ROLE": 1
+      },
+      "codes": [
+        "E-ACCEPTANCE-ROLE"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-ROLE",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different role",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N03_two_roles_one_acceptance_record": {
+    "notes": [
+      "candidate C-P1 holds RESEARCH_OWNER + CONTINUE_STOP_OWNER; both acceptance.evidence_id point at one record with V2-style subject 'C-P1'"
+    ],
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 8,
+      "code_counts": {
+        "E-ACCEPTANCE-APPOINTMENT": 2,
+        "E-ACCEPTANCE-DECISION": 2,
+        "E-ACCEPTANCE-ROLE": 2,
+        "E-EVIDENCE-SUBJECT": 2
+      },
+      "codes": [
+        "E-ACCEPTANCE-APPOINTMENT",
+        "E-ACCEPTANCE-DECISION",
+        "E-ACCEPTANCE-ROLE",
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "CONTINUE_STOP_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-DECISION",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance decision reference is missing or empty",
+          "role": "CONTINUE_STOP_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-DECISION",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance decision reference is missing or empty",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-ROLE",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different role",
+          "role": "CONTINUE_STOP_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-ROLE",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different role",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P1",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P1",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N15_combined_gov_null_topology_x_acceptance_yes": {
+    "notes": [
+      "state built by deep-copying each version's own valid_four_person.json then mutating"
+    ],
+    "v2": {
+      "codes": [],
+      "exception_message": "'NoneType' object has no attribute 'get'",
+      "exception_type": "AttributeError",
+      "returned_normally": false,
+      "stage_b_role_ready": null,
+      "traceback_tail": [
+        "  File \"<stdin>\", line 32, in capture",
+        "  File \"C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v2\\engine\\validator.py\", line 293, in validate_state",
+        "    if governance.get('recruitment') != 'UNAUTHORIZED' or governance.get('field_validation') != 'NOT_STARTED':",
+        "       ^^^^^^^^^^^^^^",
+        "AttributeError: 'NoneType' object has no attribute 'get'"
+      ]
+    },
+    "v21": {
+      "blocking_error_count": 3,
+      "code_counts": {
+        "E-SCHEMA": 3
+      },
+      "codes": [
+        "E-SCHEMA"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "FAIL",
+        "onboarding_readiness": "FAIL",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "FAIL",
+        "role_compatibility": "FAIL",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA: governance: None is not of type 'object'",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-SCHEMA",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA: roles/RESEARCH_OWNER/acceptance: 'yes' is not of type 'object'",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-SCHEMA",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA: topology: 'x' is not of type 'object'",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N15_governance_null": {
+    "notes": [
+      "state built by deep-copying each version's own valid_four_person.json then mutating"
+    ],
+    "v2": {
+      "codes": [],
+      "exception_message": "'NoneType' object has no attribute 'get'",
+      "exception_type": "AttributeError",
+      "returned_normally": false,
+      "stage_b_role_ready": null,
+      "traceback_tail": [
+        "  File \"<stdin>\", line 32, in capture",
+        "  File \"C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v2\\engine\\validator.py\", line 293, in validate_state",
+        "    if governance.get('recruitment') != 'UNAUTHORIZED' or governance.get('field_validation') != 'NOT_STARTED':",
+        "       ^^^^^^^^^^^^^^",
+        "AttributeError: 'NoneType' object has no attribute 'get'"
+      ]
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-SCHEMA": 1
+      },
+      "codes": [
+        "E-SCHEMA"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "FAIL",
+        "onboarding_readiness": "FAIL",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "FAIL",
+        "role_compatibility": "FAIL",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA: governance: None is not of type 'object'",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N15_invalid_schema_structure": {
+    "notes": [
+      "valid state; schema replaced with {'type': 123, 'required': 'not-an-array'}"
+    ],
+    "v2": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-SCHEMA": 1
+      },
+      "codes": [
+        "E-SCHEMA"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA",
+          "dimension": "structural_topology_validity",
+          "message": "schema invalid: 123 is not valid under any of the given schemas",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-SCHEMA-REFERENCE": 1
+      },
+      "codes": [
+        "E-SCHEMA-REFERENCE"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "FAIL",
+        "onboarding_readiness": "FAIL",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "FAIL",
+        "role_compatibility": "FAIL",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA-REFERENCE",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA-REFERENCE: SchemaError: 123 is not valid under any of the given schemas",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N15_nondict_schema": {
+    "notes": [
+      "schema='not-a-schema' (non-object)"
+    ],
+    "v2": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-SCHEMA": 1
+      },
+      "codes": [
+        "E-SCHEMA"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA",
+          "dimension": "structural_topology_validity",
+          "message": "schema invalid: 'not-a-schema' is not of type 'object', 'boolean'",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-SCHEMA-REFERENCE": 1
+      },
+      "codes": [
+        "E-SCHEMA-REFERENCE"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "FAIL",
+        "onboarding_readiness": "FAIL",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "FAIL",
+        "role_compatibility": "FAIL",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA-REFERENCE",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA-REFERENCE: SchemaError: 'not-a-schema' is not of type 'object', 'boolean'",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N15_role_acceptance_string": {
+    "notes": [
+      "state built by deep-copying each version's own valid_four_person.json then mutating"
+    ],
+    "v2": {
+      "codes": [],
+      "exception_message": "'str' object has no attribute 'get'",
+      "exception_type": "AttributeError",
+      "returned_normally": false,
+      "stage_b_role_ready": null,
+      "traceback_tail": [
+        "  File \"<stdin>\", line 32, in capture",
+        "  File \"C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v2\\engine\\validator.py\", line 339, in validate_state",
+        "    if acc.get('candidate_accepted') is not True:",
+        "       ^^^^^^^",
+        "AttributeError: 'str' object has no attribute 'get'"
+      ]
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-SCHEMA": 1
+      },
+      "codes": [
+        "E-SCHEMA"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "FAIL",
+        "onboarding_readiness": "FAIL",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "FAIL",
+        "role_compatibility": "FAIL",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA: roles/RESEARCH_OWNER/acceptance: 'yes' is not of type 'object'",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N15_root_unresolvable_ref_schema": {
+    "notes": [
+      "valid state; whole schema is an unresolvable $ref"
+    ],
+    "v2": {
+      "codes": [],
+      "exception_message": "PointerToNowhere: '/$defs/NOPE' does not exist within {'$schema': 'https://json-schema.org/draft/2020-12/schema', '$ref': '#/$defs/NOPE'}",
+      "exception_type": "_WrappedReferencingError",
+      "returned_normally": false,
+      "stage_b_role_ready": null,
+      "traceback_tail": [
+        "    yield from validator._validate_reference(ref=ref, instance=instance)",
+        "               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\jsonschema\\validators.py\", line 464, in _validate_reference",
+        "    raise exceptions._WrappedReferencingError(err) from err",
+        "jsonschema.exceptions._WrappedReferencingError: PointerToNowhere: '/$defs/NOPE' does not exist within {'$schema': 'https://json-schema.org/draft/2020-12/schema', '$ref': '#/$defs/NOPE'}"
+      ]
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-SCHEMA-REFERENCE": 1
+      },
+      "codes": [
+        "E-SCHEMA-REFERENCE"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "FAIL",
+        "onboarding_readiness": "FAIL",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "FAIL",
+        "role_compatibility": "FAIL",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA-REFERENCE",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA-REFERENCE: _WrappedReferencingError: PointerToNowhere: '/$defs/NOPE' does not exist within {'$schema': 'https://json-schema.org/draft/2020-12/schema', '$ref': '#/$defs/NOPE'}",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N15_topology_string": {
+    "notes": [
+      "state built by deep-copying each version's own valid_four_person.json then mutating"
+    ],
+    "v2": {
+      "codes": [],
+      "exception_message": "'str' object has no attribute 'get'",
+      "exception_type": "AttributeError",
+      "returned_normally": false,
+      "stage_b_role_ready": null,
+      "traceback_tail": [
+        "  File \"<stdin>\", line 32, in capture",
+        "  File \"C:\\Users\\pc\\AppData\\Local\\Temp\\opencode\\M001_TEAM_ASSIGNMENT_ENGINE_V2_1_FOLLOWUP\\tests\\disposable_v2\\engine\\validator.py\", line 297, in validate_state",
+        "    if topology.get('status') != 'APPROVED' and policy.get('require_topology_approved_for_stage_b'):",
+        "       ^^^^^^^^^^^^",
+        "AttributeError: 'str' object has no attribute 'get'"
+      ]
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-SCHEMA": 1
+      },
+      "codes": [
+        "E-SCHEMA"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "FAIL",
+        "onboarding_readiness": "FAIL",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "FAIL",
+        "role_compatibility": "FAIL",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA: topology: 'x' is not of type 'object'",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "N15_unresolvable_ref_schema": {
+    "notes": [
+      "valid state; schema $ref changed to #/$defs/DOES_NOT_EXIST"
+    ],
+    "v2": {
+      "codes": [],
+      "exception_message": "PointerToNowhere: '/$defs/DOES_NOT_EXIST' does not exist within {'$schema': 'https://json-schema.org/draft/2020-12/schema', '$id': 'm001-team-assignment-state-v2', 'title': 'M001 Team Assignment State V2', 'type': 'object', 'additionalProperties': False, 'required': ['schema_version', 'governance', 'topology', 'candidates', 'evidence', 'roles', 'appointments', 'combination_approvals'], 'properties': {'schema_version': {'type': 'string', 'enum': ['2.0']}, 'governance': {'type': 'object', 'additionalProperties': False, 'required': ['m001_status', 'm002_status', 'recruitment', 'field_validation'], 'properties': {'m001_status': {'type': 'string', 'enum': ['OPEN']}, 'm002_status': {'type': 'string', 'enum': ['UNAUTHORIZED']}, 'recruitment': {'type': 'string', 'enum': ['UNAUTHORIZED']}, 'field_validation': {'type': 'string', 'enum': ['NOT_STARTED']}}}, 'topology': {'type': 'object', 'additionalProperties': False, 'required': ['status', 'model'], 'properties': {'status': {'type': 'string', 'enum': ['PROPOSED', 'APPROVED']}, 'model': {'type': 'string', 'enum': ['FOUR_PERSON', 'FIVE_PERSON', 'SIX_PERSON', 'OTHER']}}}, 'candidates': {'type': 'object', 'additionalProperties': {'$ref': '#/$defs/DOES_NOT_EXIST'}}, 'evidence': {'type': 'object', 'additionalProperties': {'$ref': '#/$defs/evidence'}}, 'roles': {'type': 'object', 'additionalProperties': False, 'required': ['RESEARCH_OWNER', 'MODERATOR', 'NOTE_TAKER', 'DATA_CUSTODIAN', 'ANALYST', 'CONTINUE_STOP_OWNER'], 'properties': {'RESEARCH_OWNER': {'$ref': '#/$defs/roleRecord'}, 'MODERATOR': {'$ref': '#/$defs/roleRecord'}, 'NOTE_TAKER': {'$ref': '#/$defs/roleRecord'}, 'DATA_CUSTODIAN': {'$ref': '#/$defs/roleRecord'}, 'ANALYST': {'$ref': '#/$defs/roleRecord'}, 'CONTINUE_STOP_OWNER': {'$ref': '#/$defs/roleRecord'}}}, 'appointments': {'type': 'array', 'items': {'$ref': '#/$defs/appointment'}}, 'combination_approvals': {'type': 'array', 'items': {'$ref': '#/$defs/combinationApproval'}}}, '$defs': {'candidate': {'type': 'object', 'additionalProperties': False, 'required': ['candidate_ref', 'active', 'fixture_marker'], 'properties': {'candidate_ref': {'type': 'string'}, 'active': {'type': 'boolean'}, 'fixture_marker': {'type': ['string', 'null']}}}, 'evidence': {'type': 'object', 'additionalProperties': False, 'required': ['evidence_id', 'evidence_type', 'source_ref', 'content_hash', 'recording_authority', 'timestamp', 'verification_status', 'subject'], 'properties': {'evidence_id': {'type': 'string'}, 'evidence_type': {'type': 'string'}, 'source_ref': {'type': ['string', 'null']}, 'content_hash': {'type': ['string', 'null']}, 'recording_authority': {'type': ['string', 'null']}, 'timestamp': {'type': ['string', 'null']}, 'verification_status': {'type': 'string'}, 'subject': {'type': ['string', 'null']}}}, 'roleRecord': {'type': 'object', 'additionalProperties': False, 'required': ['state', 'candidate_ref', 'recognition', 'acceptance', 'approval', 'formal', 'availability', 'conflict_disclosure', 'confidentiality', 'onboarding', 'escalation'], 'properties': {'state': {'type': 'string', 'enum': ['UNASSIGNED', 'PROPOSED', 'ACCEPTED_IN_CONVERSATION', 'CANDIDATE_ACCEPTED', 'REJECTED', 'DEFERRED', 'FORMALLY_APPOINTED']}, 'candidate_ref': {'type': ['string', 'null']}, 'recognition': {'type': 'object', 'additionalProperties': False, 'properties': {'status': {'type': ['string', 'null']}, 'decision_date': {'type': ['string', 'null']}, 'formal': {'type': 'boolean'}, 'evidence_text': {'type': ['string', 'null']}}}, 'acceptance': {'type': 'object', 'additionalProperties': False, 'properties': {'candidate_accepted': {'type': 'boolean'}, 'evidence_id': {'type': ['string', 'null']}, 'candidate_accepted_at': {'type': ['string', 'null']}}}, 'approval': {'type': 'object', 'additionalProperties': False, 'properties': {'product_owner_approved': {'type': 'boolean'}, 'formal': {'type': 'boolean'}, 'evidence_id': {'type': ['string', 'null']}, 'basis': {'type': ['string', 'null']}, 'product_owner_approved_at': {'type': ['string', 'null']}}}, 'formal': {'type': 'object', 'additionalProperties': False, 'properties': {'formally_appointed': {'type': 'boolean'}, 'evidence_id': {'type': ['string', 'null']}, 'formal_appointed_at': {'type': ['string', 'null']}}}, 'availability': {'type': 'object', 'additionalProperties': False, 'properties': {'confirmed': {'type': 'boolean'}}}, 'conflict_disclosure': {'type': 'object', 'additionalProperties': False, 'properties': {'provided': {'type': 'boolean'}}}, 'confidentiality': {'type': 'object', 'additionalProperties': False, 'properties': {'acknowledged': {'type': 'boolean'}}}, 'onboarding': {'type': 'object', 'additionalProperties': False, 'properties': {'completed': {'type': 'boolean'}, 'evidence_id': {'type': ['string', 'null']}}}, 'escalation': {'type': 'object', 'additionalProperties': False, 'properties': {'contact': {'type': ['string', 'null']}}}}}, 'appointment': {'type': 'object', 'additionalProperties': False, 'required': ['candidate_ref', 'role', 'state'], 'properties': {'candidate_ref': {'type': ['string', 'null']}, 'role': {'type': 'string'}, 'state': {'type': 'string'}}}, 'combinationApproval': {'type': 'object', 'additionalProperties': False, 'required': ['candidate_ref', 'roles', 'outcome', 'rationale', 'evidence_id', 'product_owner_approved', 'decision_timestamp'], 'properties': {'candidate_ref': {'type': 'string'}, 'roles': {'type': 'array', 'items': {'type': 'string'}}, 'outcome': {'type': 'string', 'enum': ['APPROVED', 'REJECTED']}, 'rationale': {'type': ['string', 'null']}, 'evidence_id': {'type': ['string', 'null']}, 'product_owner_approved': {'type': 'boolean'}, 'decision_timestamp': {'type': ['string', 'null']}}}}}",
+      "exception_type": "_WrappedReferencingError",
+      "returned_normally": false,
+      "stage_b_role_ready": null,
+      "traceback_tail": [
+        "    yield from validator._validate_reference(ref=ref, instance=instance)",
+        "               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Users\\pc\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\jsonschema\\validators.py\", line 464, in _validate_reference",
+        "    raise exceptions._WrappedReferencingError(err) from err",
+        "jsonschema.exceptions._WrappedReferencingError: PointerToNowhere: '/$defs/DOES_NOT_EXIST' does not exist within {'$schema': 'https://json-schema.org/draft/2020-12/schema', '$id': 'm001-team-assignment-state-v2', 'title': 'M001 Team Assignment State V2', 'type': 'object', 'additionalProperties': False, 'required': ['schema_version', 'governance', 'topology', 'candidates', 'evidence', 'roles', 'appointments', 'combination_approvals'], 'properties': {'schema_version': {'type': 'string', 'enum': ['2.0']}, 'governance': {'type': 'object', 'additionalProperties': False, 'required': ['m001_status', 'm002_status', 'recruitment', 'field_validation'], 'properties': {'m001_status': {'type': 'string', 'enum': ['OPEN']}, 'm002_status': {'type': 'string', 'enum': ['UNAUTHORIZED']}, 'recruitment': {'type': 'string', 'enum': ['UNAUTHORIZED']}, 'field_validation': {'type': 'string', 'enum': ['NOT_STARTED']}}}, 'topology': {'type': 'object', 'additionalProperties': False, 'required': ['status', 'model'], 'properties': {'status': {'type': 'string', 'enum': ['PROPOSED', 'APPROVED']}, 'model': {'type': 'string', 'enum': ['FOUR_PERSON', 'FIVE_PERSON', 'SIX_PERSON', 'OTHER']}}}, 'candidates': {'type': 'object', 'additionalProperties': {'$ref': '#/$defs/DOES_NOT_EXIST'}}, 'evidence': {'type': 'object', 'additionalProperties': {'$ref': '#/$defs/evidence'}}, 'roles': {'type': 'object', 'additionalProperties': False, 'required': ['RESEARCH_OWNER', 'MODERATOR', 'NOTE_TAKER', 'DATA_CUSTODIAN', 'ANALYST', 'CONTINUE_STOP_OWNER'], 'properties': {'RESEARCH_OWNER': {'$ref': '#/$defs/roleRecord'}, 'MODERATOR': {'$ref': '#/$defs/roleRecord'}, 'NOTE_TAKER': {'$ref': '#/$defs/roleRecord'}, 'DATA_CUSTODIAN': {'$ref': '#/$defs/roleRecord'}, 'ANALYST': {'$ref': '#/$defs/roleRecord'}, 'CONTINUE_STOP_OWNER': {'$ref': '#/$defs/roleRecord'}}}, 'appointments': {'type': 'array', 'items': {'$ref': '#/$defs/appointment'}}, 'combination_approvals': {'type': 'array', 'items': {'$ref': '#/$defs/combinationApproval'}}}, '$defs': {'candidate': {'type': 'object', 'additionalProperties': False, 'required': ['candidate_ref', 'active', 'fixture_marker'], 'properties': {'candidate_ref': {'type': 'string'}, 'active': {'type': 'boolean'}, 'fixture_marker': {'type': ['string', 'null']}}}, 'evidence': {'type': 'object', 'additionalProperties': False, 'required': ['evidence_id', 'evidence_type', 'source_ref', 'content_hash', 'recording_authority', 'timestamp', 'verification_status', 'subject'], 'properties': {'evidence_id': {'type': 'string'}, 'evidence_type': {'type': 'string'}, 'source_ref': {'type': ['string', 'null']}, 'content_hash': {'type': ['string', 'null']}, 'recording_authority': {'type': ['string', 'null']}, 'timestamp': {'type': ['string', 'null']}, 'verification_status': {'type': 'string'}, 'subject': {'type': ['string', 'null']}}}, 'roleRecord': {'type': 'object', 'additionalProperties': False, 'required': ['state', 'candidate_ref', 'recognition', 'acceptance', 'approval', 'formal', 'availability', 'conflict_disclosure', 'confidentiality', 'onboarding', 'escalation'], 'properties': {'state': {'type': 'string', 'enum': ['UNASSIGNED', 'PROPOSED', 'ACCEPTED_IN_CONVERSATION', 'CANDIDATE_ACCEPTED', 'REJECTED', 'DEFERRED', 'FORMALLY_APPOINTED']}, 'candidate_ref': {'type': ['string', 'null']}, 'recognition': {'type': 'object', 'additionalProperties': False, 'properties': {'status': {'type': ['string', 'null']}, 'decision_date': {'type': ['string', 'null']}, 'formal': {'type': 'boolean'}, 'evidence_text': {'type': ['string', 'null']}}}, 'acceptance': {'type': 'object', 'additionalProperties': False, 'properties': {'candidate_accepted': {'type': 'boolean'}, 'evidence_id': {'type': ['string', 'null']}, 'candidate_accepted_at': {'type': ['string', 'null']}}}, 'approval': {'type': 'object', 'additionalProperties': False, 'properties': {'product_owner_approved': {'type': 'boolean'}, 'formal': {'type': 'boolean'}, 'evidence_id': {'type': ['string', 'null']}, 'basis': {'type': ['string', 'null']}, 'product_owner_approved_at': {'type': ['string', 'null']}}}, 'formal': {'type': 'object', 'additionalProperties': False, 'properties': {'formally_appointed': {'type': 'boolean'}, 'evidence_id': {'type': ['string', 'null']}, 'formal_appointed_at': {'type': ['string', 'null']}}}, 'availability': {'type': 'object', 'additionalProperties': False, 'properties': {'confirmed': {'type': 'boolean'}}}, 'conflict_disclosure': {'type': 'object', 'additionalProperties': False, 'properties': {'provided': {'type': 'boolean'}}}, 'confidentiality': {'type': 'object', 'additionalProperties': False, 'properties': {'acknowledged': {'type': 'boolean'}}}, 'onboarding': {'type': 'object', 'additionalProperties': False, 'properties': {'completed': {'type': 'boolean'}, 'evidence_id': {'type': ['string', 'null']}}}, 'escalation': {'type': 'object', 'additionalProperties': False, 'properties': {'contact': {'type': ['string', 'null']}}}}}, 'appointment': {'type': 'object', 'additionalProperties': False, 'required': ['candidate_ref', 'role', 'state'], 'properties': {'candidate_ref': {'type': ['string', 'null']}, 'role': {'type': 'string'}, 'state': {'type': 'string'}}}, 'combinationApproval': {'type': 'object', 'additionalProperties': False, 'required': ['candidate_ref', 'roles', 'outcome', 'rationale', 'evidence_id', 'product_owner_approved', 'decision_timestamp'], 'properties': {'candidate_ref': {'type': 'string'}, 'roles': {'type': 'array', 'items': {'type': 'string'}}, 'outcome': {'type': 'string', 'enum': ['APPROVED', 'REJECTED']}, 'rationale': {'type': ['string', 'null']}, 'evidence_id': {'type': ['string', 'null']}, 'product_owner_approved': {'type': 'boolean'}, 'decision_timestamp': {'type': ['string', 'null']}}}}}"
+      ]
+    },
+    "v21": {
+      "blocking_error_count": 1,
+      "code_counts": {
+        "E-SCHEMA-REFERENCE": 1
+      },
+      "codes": [
+        "E-SCHEMA-REFERENCE"
+      ],
+      "dimensions": {
+        "evidence_integrity": "FAIL",
+        "formal_appointment_validity": "FAIL",
+        "human_candidate_acceptance": "FAIL",
+        "onboarding_readiness": "FAIL",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "FAIL",
+        "role_compatibility": "FAIL",
+        "structural_topology_validity": "FAIL"
+      },
+      "issues": [
+        {
+          "candidate": "",
+          "code": "E-SCHEMA-REFERENCE",
+          "dimension": "structural_topology_validity",
+          "message": "E-SCHEMA-REFERENCE: _WrappedReferencingError: PointerToNowhere: '/$defs/DOES_NOT_EXIST' does not exist within {'$schema': 'https://json-schema.org/draft/2020-12/schema', '$id': 'm001-team-assignment-state-v2', 'title': 'M001 T...[truncated]",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "REGRESSION_v21_valid_fixtures": {
+    "v2": {
+      "valid_five_person.json": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "returned_normally": true,
+        "stage_b_role_ready": true,
+        "warning_count": 0
+      },
+      "valid_four_person.json": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "returned_normally": true,
+        "stage_b_role_ready": true,
+        "warning_count": 0
+      },
+      "valid_six_person.json": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "returned_normally": true,
+        "stage_b_role_ready": true,
+        "warning_count": 0
+      }
+    },
+    "v21": {
+      "valid_five_person.json": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "returned_normally": true,
+        "stage_b_role_ready": true,
+        "warning_count": 0
+      },
+      "valid_four_person.json": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "returned_normally": true,
+        "stage_b_role_ready": true,
+        "warning_count": 0
+      },
+      "valid_six_person.json": {
+        "blocking_error_count": 0,
+        "code_counts": {},
+        "codes": [],
+        "dimensions": {
+          "evidence_integrity": "PASS",
+          "formal_appointment_validity": "PASS",
+          "human_candidate_acceptance": "PASS",
+          "onboarding_readiness": "PASS",
+          "product_owner_combination_approval": "PASS",
+          "role_assignment_completeness": "PASS",
+          "role_compatibility": "PASS",
+          "structural_topology_validity": "PASS"
+        },
+        "issues": [],
+        "returned_normally": true,
+        "stage_b_role_ready": true,
+        "warning_count": 0
+      }
+    }
+  },
+  "REGRESSION_v2_valid_fixtures": {
+    "valid_five_person.json": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "valid_four_person.json": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "valid_six_person.json": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    }
+  },
+  "REGRESSION_v2_valid_state_into_v21": {
+    "notes": [
+      "deep copy of v2 valid_four_person.json fed to v21 validator"
+    ],
+    "source_tag": "v2",
+    "v21": {
+      "blocking_error_count": 25,
+      "code_counts": {
+        "E-ACCEPTANCE-APPOINTMENT": 6,
+        "E-ACCEPTANCE-DECISION": 6,
+        "E-ACCEPTANCE-ROLE": 6,
+        "E-COMBINATION-RATIONALE-REUSED": 1,
+        "E-EVIDENCE-SUBJECT": 6
+      },
+      "codes": [
+        "E-ACCEPTANCE-APPOINTMENT",
+        "E-ACCEPTANCE-DECISION",
+        "E-ACCEPTANCE-ROLE",
+        "E-COMBINATION-RATIONALE-REUSED",
+        "E-EVIDENCE-SUBJECT"
+      ],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "FAIL",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [
+        {
+          "candidate": "C-P4",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "ANALYST",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "CONTINUE_STOP_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P3",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "DATA_CUSTODIAN",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P2",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "MODERATOR",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P2",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "NOTE_TAKER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-APPOINTMENT",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different appointment",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P4",
+          "code": "E-ACCEPTANCE-DECISION",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance decision reference is missing or empty",
+          "role": "ANALYST",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-DECISION",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance decision reference is missing or empty",
+          "role": "CONTINUE_STOP_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P3",
+          "code": "E-ACCEPTANCE-DECISION",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance decision reference is missing or empty",
+          "role": "DATA_CUSTODIAN",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P2",
+          "code": "E-ACCEPTANCE-DECISION",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance decision reference is missing or empty",
+          "role": "MODERATOR",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P2",
+          "code": "E-ACCEPTANCE-DECISION",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance decision reference is missing or empty",
+          "role": "NOTE_TAKER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-DECISION",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance decision reference is missing or empty",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P4",
+          "code": "E-ACCEPTANCE-ROLE",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different role",
+          "role": "ANALYST",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-ROLE",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different role",
+          "role": "CONTINUE_STOP_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P3",
+          "code": "E-ACCEPTANCE-ROLE",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different role",
+          "role": "DATA_CUSTODIAN",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P2",
+          "code": "E-ACCEPTANCE-ROLE",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different role",
+          "role": "MODERATOR",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P2",
+          "code": "E-ACCEPTANCE-ROLE",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different role",
+          "role": "NOTE_TAKER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P1",
+          "code": "E-ACCEPTANCE-ROLE",
+          "dimension": "evidence_integrity",
+          "message": "Acceptance evidence is for a different role",
+          "role": "RESEARCH_OWNER",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "C-P2",
+          "code": "E-COMBINATION-RATIONALE-REUSED",
+          "dimension": "product_owner_combination_approval",
+          "message": "Rationale reused from another combination decision",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P1",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P1",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P2",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P2",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P3",
+          "role": "",
+          "severity": "ERROR"
+        },
+        {
+          "candidate": "",
+          "code": "E-EVIDENCE-SUBJECT",
+          "dimension": "evidence_integrity",
+          "message": "Evidence subject mismatch: e-acc-C-P4",
+          "role": "",
+          "severity": "ERROR"
+        }
+      ],
+      "returned_normally": true,
+      "stage_b_role_ready": false,
+      "warning_count": 0
+    }
+  },
+  "auditor": "independent security subagent",
+  "baseline": {
+    "v2": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    },
+    "v21": {
+      "blocking_error_count": 0,
+      "code_counts": {},
+      "codes": [],
+      "dimensions": {
+        "evidence_integrity": "PASS",
+        "formal_appointment_validity": "PASS",
+        "human_candidate_acceptance": "PASS",
+        "onboarding_readiness": "PASS",
+        "product_owner_combination_approval": "PASS",
+        "role_assignment_completeness": "PASS",
+        "role_compatibility": "PASS",
+        "structural_topology_validity": "PASS"
+      },
+      "issues": [],
+      "returned_normally": true,
+      "stage_b_role_ready": true,
+      "warning_count": 0
+    }
+  },
+  "commands": [
+    "$env:PYTHONDONTWRITEBYTECODE=1",
+    "python -   # harness piped from a PowerShell single-quoted here-string; workdir = FOLLOWUP",
+    "copy step: shutil.copytree(src/{engine,policy,schemas}, dst/...) and src/tests/fixtures -> dst/tests/fixtures, ignore=__pycache__,*.pyc,mutants (v21 pre-existed and was hash-verified, not overwritten)",
+    "all states: copy.deepcopy(version's own tests/fixtures/valid_four_person.json); validators loaded with importlib.util.spec_from_file_location (isolated module names)"
+  ],
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "jsonschema": "4.26.0 (importable)",
+    "python": "3.13.5"
+  },
+  "generated_utc": "2026-11-27T18:11:56.488561+00:00",
+  "mission": "M001-TEAM-007 independent attack reproduction (V2 vs V2.1)",
+  "provenance": {
+    "v21_copy": "tests/disposable_v21 pre-existed; verified byte-identical to V2.1 across 55 files (engine/policy/schemas/all fixtures), reused instead of overwritten",
+    "v21_validator_sha256": "58082f5cc1f0d54809c79a6bdba34cdbb08750a5efcc61901f77a6bef91a1b2f",
+    "v2_copy": "tests/disposable_v2 created by this audit from V2 engine/policy/schemas/tests-fixtures; __pycache__/mutants excluded",
+    "v2_validator_sha256": "c6efd2f0cc1ab85dc60a5f4299be7042a1e76cc5708a611ad03581cce65e1d66"
+  },
+  "verdicts": {
+    "N-01": "REPRODUCED in V2 (whitespace basis accepted, stage_b_role_ready=True); REJECTED in V2.1 (E-DECISION-EVIDENCE-EMPTY); no placeholder text substituted; meaningful basis still passes",
+    "N-02": "REPRODUCED in V2 (whitespace rationale accepted; verbatim reuse accepted); REJECTED in V2.1 (E-COMBINATION-RATIONALE / E-COMBINATION-RATIONALE-REUSED, normalized across approvals)",
+    "N-03": "REPRODUCED in V2 (two roles share one candidate-subject acceptance record, V2 ready=True); REJECTED in V2.1 (E-EVIDENCE-SUBJECT, E-ACCEPTANCE-ROLE, E-ACCEPTANCE-APPOINTMENT, E-ACCEPTANCE-DECISION, E-ACCEPTANCE-DECISION-REUSED, E-EVIDENCE-REVOKED)",
+    "N-15": "REPRODUCED in V2 (uncaught AttributeError for malformed state values; uncaught _WrappedReferencingError/PointerToNowhere for unresolvable $ref schema); V2.1 returns controlled ValidationResult with terminal E-SCHEMA/E-SCHEMA-REFERENCE codes",
+    "new_defects_or_residual_gaps": [
+      "V2.1 accepts a basis consisting solely of U+200B ZERO WIDTH SPACE (str.strip does not remove it): meaningful_text() is incomplete for invisible non-whitespace-by-strip characters",
+      "V2.1 maps jsonschema.SchemaError (invalid STRUCTURE) to E-SCHEMA-REFERENCE rather than E-SCHEMA-INVALID; controlled but mislabelled",
+      "V2.1 E-COMBINATION-RATIONALE-REUSED rejects identical meaningful rationale text even across unrelated candidates; strict, may reject legitimate boilerplate (part of the N-02 fix, not an unrelated regression)"
+    ],
+    "not_reproduced": [
+      "No unrelated V2.1 regression on valid states",
+      "V2 did not crash on a structurally invalid schema object (jsonschema.SchemaError is caught in V2); it still crashes on unresolvable $ref and on schema-invalid state values"
+    ],
+    "unintended_regression": "None found: V2.1 passes its own valid_four/five/six fixtures and all cross-feed rejections of V2 states are attributable to the four fixes"
+  }
+}
